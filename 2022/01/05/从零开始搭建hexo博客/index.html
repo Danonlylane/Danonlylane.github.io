@@ -31,7 +31,7 @@
 <meta property="og:description" content="搭建一个自己的博客Hexo 快速搭建环境准备（安装方法自行查阅网上资料）">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-01-05T01:34:29.000Z">
-<meta property="article:modified_time" content="2022-01-05T05:17:58.799Z">
+<meta property="article:modified_time" content="2022-01-05T05:28:04.398Z">
 <meta property="article:author" content="beiyep">
 <meta property="article:tag" content="教程">
 <meta name="twitter:card" content="summary">
@@ -165,13 +165,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">1</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">1</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -236,7 +236,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2022-01-05 09:34:29 / Modified: 13:17:58" itemprop="dateCreated datePublished" datetime="2022-01-05T09:34:29+08:00">2022-01-05</time>
+      <time title="Created: 2022-01-05 09:34:29 / Modified: 13:28:04" itemprop="dateCreated datePublished" datetime="2022-01-05T09:34:29+08:00">2022-01-05</time>
     </span>
 
   
@@ -252,7 +252,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">Symbols count in article: </span>
-      <span>4.5k</span>
+      <span>4.6k</span>
     </span>
     <span class="post-meta-item" title="Reading time">
       <span class="post-meta-item-icon">
@@ -395,7 +395,7 @@
 <h3 id="添加search栏"><a href="#添加search栏" class="headerlink" title="添加search栏"></a>添加search栏</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd 项目根目录</span><br><span class="line">npm install hexo-generator-searchdb --save</span><br></pre></td></tr></table></figure>
 
 <p>修改配置文件 <code>themes/next/_config.yml</code></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">local_search:</span><br><span class="line">  enable: true</span><br><span class="line">search:</span><br><span class="line">  path: search.xml</span><br><span class="line">  field: post</span><br><span class="line">  format: html</span><br><span class="line">  limit: 10000</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">local_search:</span><br><span class="line">  enable: true</span><br><span class="line"></span><br><span class="line">// 在local_search:下面添加，注意search和local_search是在同一缩进上</span><br><span class="line">search:</span><br><span class="line">  path: search.xml</span><br><span class="line">  field: post</span><br><span class="line">  format: html</span><br><span class="line">  limit: 10000</span><br></pre></td></tr></table></figure>
 
 
 
@@ -449,15 +449,6 @@
 
         
 
-          <div class="post-nav">
-            <div class="post-nav-item">
-                <a href="/2022/01/04/new-Year/" rel="prev" title="new Year">
-                  <i class="fa fa-chevron-left"></i> new Year
-                </a>
-            </div>
-            <div class="post-nav-item">
-            </div>
-          </div>
     </footer>
   </article>
 </div>
