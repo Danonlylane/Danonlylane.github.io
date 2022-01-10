@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>2022的日常</title>
+    <url>/2022/01/10/2022%E7%9A%84%E6%97%A5%E5%B8%B8/</url>
+    <content><![CDATA[<h3 id="1"><a href="#1" class="headerlink" title="1"></a>1</h3><p>1-10</p>
+<p>学习从懒散恢复状态，开始啃红宝书以及写文档输出。肩胛骨疼痛的症状也缓解了不少。果然打游戏是一件脑力和体力活。对身体确实不太好。</p>
+]]></content>
+      <tags>
+        <tag>生活&amp;记录</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>js数组</title>
     <url>/2022/01/08/js%E6%95%B0%E7%BB%84/</url>
     <content><![CDATA[<h1 id="javascript数组探究"><a href="#javascript数组探究" class="headerlink" title="javascript数组探究"></a>javascript数组探究</h1><p>数组作为最基础的数据结构，我们不仅要熟练掌握它，还要了解它的许多特性</p>
