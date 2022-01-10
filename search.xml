@@ -3,17 +3,49 @@
   <entry>
     <title>2022的日常</title>
     <url>/2022/01/10/2022%E7%9A%84%E6%97%A5%E5%B8%B8/</url>
-    <content><![CDATA[<h3 id="1"><a href="#1" class="headerlink" title="1"></a>1</h3><p>1-10</p>
+    <content><![CDATA[<h3 id="January"><a href="#January" class="headerlink" title="January"></a>January</h3><span id="more"></span>
+
+<p>1-10</p>
 <p>学习从懒散恢复状态，开始啃红宝书以及写文档输出。肩胛骨疼痛的症状也缓解了不少。果然打游戏是一件脑力和体力活。对身体确实不太好。</p>
 ]]></content>
+      <categories>
+        <category>日常</category>
+      </categories>
       <tags>
         <tag>生活&amp;记录</tag>
       </tags>
   </entry>
   <entry>
+    <title>hexo美化</title>
+    <url>/2022/01/11/hexo%E7%BE%8E%E5%8C%96/</url>
+    <content><![CDATA[<h2 id="hexo主题美化教程"><a href="#hexo主题美化教程" class="headerlink" title="hexo主题美化教程"></a>hexo主题美化教程</h2><span id="more"></span>
+
+<h3 id="在每篇文章末尾统一添加“本文结束”标记"><a href="#在每篇文章末尾统一添加“本文结束”标记" class="headerlink" title="在每篇文章末尾统一添加“本文结束”标记"></a>在每篇文章末尾统一添加“本文结束”标记</h3><p><strong>实现效果图</strong></p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNgy1gy90vctmacj30za03kgli.jpg"></p>
+<p><strong>具体实现方法</strong></p>
+<p>在路径 <code>\themes\next\layout\_macro</code> 中新建 <code>passage-end-tag.njk</code> 文件,并添加以下内容：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">    &#123;% <span class="keyword">if</span> not is_index %&#125;</span><br><span class="line">        &lt;div style=<span class="string">&quot;text-align:center;color: #ccc;font-size:14px;&quot;</span>&gt;------------- 本文结束 &lt;i <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;fas fa-book-reader&quot;</span>&gt;&lt;<span class="regexp">/i&gt; 感谢阅读 -------------&lt;/</span>div&gt;</span><br><span class="line">    &#123;% endif %&#125;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>接着打开<code>\themes\next\layout\_macro\post.njk</code>文件，在<code>post-body</code> 之后， <code>post-footer</code> 之前添加如下圈住的代码：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">  &#123;% if not is_index %&#125;</span><br><span class="line">  &#123;% include &#x27;passage-end-tag.njk&#x27; %&#125;</span><br><span class="line">  &#123;% endif %&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNgy1gy90wy5kuhj31ip0u0wiw.jpg"></p>
+<p>然后打开主题配置文件（<code>_config.yml</code>),在末尾添加：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 文章末尾添加“本文结束”标记</span></span><br><span class="line"><span class="attr">passage_end_tag:</span></span><br><span class="line">  <span class="attr">enabled:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<p>完成以上设置之后，在每篇文章之后都会添加如上效果图的样子。</p>
+]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>js数组</title>
     <url>/2022/01/08/js%E6%95%B0%E7%BB%84/</url>
-    <content><![CDATA[<h1 id="javascript数组探究"><a href="#javascript数组探究" class="headerlink" title="javascript数组探究"></a>javascript数组探究</h1><p>数组作为最基础的数据结构，我们不仅要熟练掌握它，还要了解它的许多特性</p>
+    <content><![CDATA[<h1 id="JavaScript数组探究"><a href="#JavaScript数组探究" class="headerlink" title="JavaScript数组探究"></a>JavaScript数组探究</h1><p>数组作为最基础的数据结构，我们不仅要熟练掌握它，还要了解它的许多特性</p>
 <span id="more"></span>
 
 <p>js的数组很灵活，和其他语言的数组不一样，js的数组可以存储不同类型的值</p>
@@ -110,8 +142,11 @@
 <p>如果在上面的示例中我们使用了 <code>users.filter(army.canJoin)</code>，那么 <code>army.canJoin</code> 将被作为独立函数调用，并且这时 <code>this=undefined</code>，从而会导致即时错误。所以我们这里一般都用剪头函数。</p>
 <h3 id="数组的本质"><a href="#数组的本质" class="headerlink" title="数组的本质"></a>数组的本质</h3><p>数组是一种特殊的对象，比如数组访问元素的方式是arr[0]和对象obj[key]很相似，其中arr是对象，数字用作键。数组和类相似，也是引用类型。但是数组又拓展了对象，因为数组可以处理有序的数据集合。</p>
 ]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
       <tags>
-        <tag>js基础</tag>
+        <tag>JavaScript</tag>
       </tags>
   </entry>
   <entry>
@@ -173,13 +208,18 @@
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hexo g -d</span><br></pre></td></tr></table></figure></li>
 </ol>
 <p>用浏览器输入，https://你的用户名.github.io，就可以看到你的博客了。</p>
-<h2 id="配置主题"><a href="#配置主题" class="headerlink" title="配置主题"></a>配置主题</h2><p>个人用的是<a href="https://theme-next.js.org/">NexT主题</a></p>
+<h2 id="配置主题及语言"><a href="#配置主题及语言" class="headerlink" title="配置主题及语言"></a>配置主题及语言</h2><p>个人用的是<a href="https://theme-next.js.org/">NexT主题</a></p>
 <p>进入项目根目录，下载NexT主题</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git <span class="built_in">clone</span> https://github.com/next-theme/hexo-theme-next themes/next</span></span><br></pre></td></tr></table></figure>
 
 <p>修改<strong>项目根目录</strong>下的<code>_config.yml</code>的配置</p>
 <p>注意：<code>_config.yml</code>配置文件有两个，一个在项目根目录，一个在<code>/themes/next</code>中，大部分配置在主题里面改。</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># Themes: https://hexo.io/themes/</span></span></span><br><span class="line">theme: next</span><br></pre></td></tr></table></figure>
+
+<p>修改语言：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Site</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">博客的名字</span></span><br><span class="line"><span class="attr">subtitle:</span> <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="attr">keywords:</span></span><br><span class="line"><span class="attr">author:</span> </span><br><span class="line"><span class="attr">language:</span> <span class="string">zh-CN</span></span><br><span class="line"><span class="attr">timezone:</span> <span class="string">&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+
 
 <h2 id="NexT配置"><a href="#NexT配置" class="headerlink" title="NexT配置"></a>NexT配置</h2><p>以下均在<code>/blogName/themes/next/_config.yml</code>文件中修改</p>
 <blockquote>
@@ -283,8 +323,11 @@
 </li>
 </ul>
 ]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
       <tags>
-        <tag>教程</tag>
+        <tag>hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -526,6 +569,9 @@
 <figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">int</span> result;</span><br><span class="line">    <span class="keyword">int</span> g_key;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">kthSmallest</span><span class="params">(TreeNode* root, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        g_key = k;</span><br><span class="line">        <span class="built_in">kLittleNumber</span>(root, k);</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">kLittleNumber</span><span class="params">(TreeNode* root, <span class="keyword">int</span>&amp; key)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root == <span class="literal">nullptr</span>) <span class="keyword">return</span>;</span><br><span class="line">        <span class="built_in">kLittleNumber</span>(root-&gt;left, key);</span><br><span class="line">        <span class="keyword">if</span>(key == <span class="number">1</span>) &#123;</span><br><span class="line">            result = root-&gt;val;</span><br><span class="line">            <span class="comment">// return;  // 为什么这里出错呢，因为找到了 key == 1 的时候，返回上一层递归，那么key还是不变，此时就会出现错误结果</span></span><br><span class="line">        &#125;</span><br><span class="line">        key--;</span><br><span class="line">        <span class="built_in">kLittleNumber</span>(root-&gt;right, key);</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
 ]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
       <tags>
         <tag>算法</tag>
       </tags>
