@@ -18,8 +18,34 @@
   <entry>
     <title>hexo美化</title>
     <url>/2022/01/11/hexo%E7%BE%8E%E5%8C%96/</url>
-    <content><![CDATA[<h2 id="hexo主题美化教程"><a href="#hexo主题美化教程" class="headerlink" title="hexo主题美化教程"></a>hexo主题美化教程</h2><span id="more"></span>
+    <content><![CDATA[<h2 id="hexo进阶教程"><a href="#hexo进阶教程" class="headerlink" title="hexo进阶教程"></a>hexo进阶教程</h2><span id="more"></span>
 
+<h3 id="Hexo博客-绑定个人域名"><a href="#Hexo博客-绑定个人域名" class="headerlink" title="Hexo博客-绑定个人域名"></a>Hexo博客-绑定个人域名</h3><ol>
+<li><p>首先得有一个域名，在腾讯云阿里云购买都可以。</p>
+</li>
+<li><p>设置域名解析</p>
+</li>
+</ol>
+<img src="https://tva1.sinaimg.cn/large/008i3skNgy1gy926kk6t7j32l60ba76f.jpg" style="zoom: 25%;" />
+
+
+
+<ol start="3">
+<li><p>设置CNAME</p>
+</li>
+<li><p>在 hexo 项目下的<code>source</code> 文件夹下面创建 CNAME 文件（没有后缀名的），Mac用户可以</p>
+<img src="https://tva1.sinaimg.cn/large/008i3skNgy1gy9285o2ncj308e01ut8j.jpg" style="zoom:50%;" />
+
+
+
+<p>在里面写上购买的域名。</p>
+</li>
+<li><p>在 github 上面，打开 <a href="http://username.github.io/">username.github.io</a> 项目的（Settings）设置，然后在 <code>GitHub Pages</code>的 <code>Custom domain</code>设置里填上购买的域名。比如：</p>
+</li>
+</ol>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNgy1gy922se47aj31v60f0myl.jpg"></p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNgy1gy923cjs5hj313g0ag0tp.jpg"></p>
+<p>点击save就可以了。</p>
 <h3 id="在每篇文章末尾统一添加“本文结束”标记"><a href="#在每篇文章末尾统一添加“本文结束”标记" class="headerlink" title="在每篇文章末尾统一添加“本文结束”标记"></a>在每篇文章末尾统一添加“本文结束”标记</h3><p><strong>实现效果图</strong></p>
 <p><img src="https://tva1.sinaimg.cn/large/008i3skNgy1gy90vctmacj30za03kgli.jpg"></p>
 <p><strong>具体实现方法</strong></p>
