@@ -60,6 +60,11 @@
 <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 文章末尾添加“本文结束”标记</span></span><br><span class="line"><span class="attr">passage_end_tag:</span></span><br><span class="line">  <span class="attr">enabled:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
 
 <p>完成以上设置之后，在每篇文章之后都会添加如上效果图的样子。</p>
+<h3 id="代码复制和设置Mac风格"><a href="#代码复制和设置Mac风格" class="headerlink" title="代码复制和设置Mac风格"></a>代码复制和设置Mac风格</h3><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">copy_button:</span> <span class="comment"># 复制代码按钮</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span> <span class="comment">#原始false</span></span><br><span class="line">  <span class="attr">show_result:</span> <span class="literal">true</span> <span class="comment">#原始true</span></span><br><span class="line">  <span class="comment"># Available values: default | flat | mac</span></span><br><span class="line">  <span class="attr">style:</span> <span class="string">mac</span> <span class="comment">#代码更换mac风格</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="开启评论功能"><a href="#开启评论功能" class="headerlink" title="开启评论功能"></a>开启评论功能</h3><h3 id="添加本站运行时间"><a href="#添加本站运行时间" class="headerlink" title="添加本站运行时间"></a>添加本站运行时间</h3><p>打开<code>themes/next/layout/_partials/footer.njk</code>文件，在末尾加入如下代码：</p>
 ]]></content>
       <categories>
         <category>教程</category>
@@ -312,7 +317,7 @@
 
 
 
-<h2 id="Hexo命令"><a href="#Hexo命令" class="headerlink" title="Hexo命令"></a>Hexo命令</h2><ul>
+<h2 id="Hexo常用命令"><a href="#Hexo常用命令" class="headerlink" title="Hexo常用命令"></a>Hexo常用命令</h2><ul>
 <li><p><code>hexo init [folder]</code></p>
 <ul>
 <li>Hexo 默认在目前的文件夹建立网站。</li>
@@ -323,7 +328,7 @@
 <li><pre><code>hexo new &#39;文章标题&#39;
 </code></pre>
 <ul>
-<li>新建文件，写的时候自己用typora打开写</li>
+<li>新建文件，写的时候自己用typora打开写。可简写为<code>hexo n &#39;文章标题&#39;</code></li>
 </ul>
 </li>
 <li><p><code>hexo clean</code></p>
