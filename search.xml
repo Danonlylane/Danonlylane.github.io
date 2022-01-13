@@ -17,7 +17,7 @@
   </entry>
   <entry>
     <title>hexo美化</title>
-    <url>/2022/01/11/hexo%E7%BE%8E%E5%8C%96/</url>
+    <url>/2022/01/11/hexo%E4%B9%8Bnext%E4%B8%BB%E9%A2%98%E7%BE%8E%E5%8C%96/</url>
     <content><![CDATA[<h2 id="hexo进阶教程"><a href="#hexo进阶教程" class="headerlink" title="hexo进阶教程"></a>hexo进阶教程</h2><span id="more"></span>
 
 <h3 id="Hexo博客-绑定个人域名"><a href="#Hexo博客-绑定个人域名" class="headerlink" title="Hexo博客-绑定个人域名"></a>Hexo博客-绑定个人域名</h3><ol>
@@ -64,7 +64,7 @@
 
 
 
-<h3 id="开启评论功能"><a href="#开启评论功能" class="headerlink" title="开启评论功能"></a>开启评论功能</h3><h3 id="添加本站运行时间"><a href="#添加本站运行时间" class="headerlink" title="添加本站运行时间"></a>添加本站运行时间</h3><p>打开<code>themes/next/layout/_partials/footer.njk</code>文件，在末尾加入如下代码：</p>
+<h3 id="开启评论功能"><a href="#开启评论功能" class="headerlink" title="开启评论功能"></a>开启评论功能</h3><h3 id="添加本站运行时间和底部美化"><a href="#添加本站运行时间和底部美化" class="headerlink" title="添加本站运行时间和底部美化"></a>添加本站运行时间和底部美化</h3><p>打开<code>themes/next/layout/_partials/footer.njk</code>文件，在末尾加入如下代码：</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 网站运行时间的设置 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">&quot;timeDate&quot;</span>&gt;</span>载入天数...<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">&quot;times&quot;</span>&gt;</span>载入时分秒...<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> now = <span class="keyword">new</span> <span class="built_in">Date</span>();</span></span><br><span class="line"><span class="javascript">    <span class="function"><span class="keyword">function</span> <span class="title">createtime</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> grt= <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="string">&quot;01/01/2022 00:00:00&quot;</span>);<span class="comment">//此处修改你的建站时间或者网站上线时间</span></span></span><br><span class="line"><span class="javascript">        now.setTime(now.getTime()+<span class="number">250</span>);</span></span><br><span class="line"><span class="javascript">        days = (now - grt ) / <span class="number">1000</span> / <span class="number">60</span> / <span class="number">60</span> / <span class="number">24</span>; dnum = <span class="built_in">Math</span>.floor(days);</span></span><br><span class="line"><span class="javascript">        hours = (now - grt ) / <span class="number">1000</span> / <span class="number">60</span> / <span class="number">60</span> - (<span class="number">24</span> * dnum); hnum = <span class="built_in">Math</span>.floor(hours);</span></span><br><span class="line"><span class="javascript">        <span class="keyword">if</span>(<span class="built_in">String</span>(hnum).length ==<span class="number">1</span> )&#123;hnum = <span class="string">&quot;0&quot;</span> + hnum;&#125; minutes = (now - grt ) / <span class="number">1000</span> /<span class="number">60</span> - (<span class="number">24</span> * <span class="number">60</span> * dnum) - (<span class="number">60</span> * hnum);</span></span><br><span class="line"><span class="javascript">        mnum = <span class="built_in">Math</span>.floor(minutes); <span class="keyword">if</span>(<span class="built_in">String</span>(mnum).length ==<span class="number">1</span> )&#123;mnum = <span class="string">&quot;0&quot;</span> + mnum;&#125;</span></span><br><span class="line"><span class="javascript">        seconds = (now - grt ) / <span class="number">1000</span> - (<span class="number">24</span> * <span class="number">60</span> * <span class="number">60</span> * dnum) - (<span class="number">60</span> * <span class="number">60</span> * hnum) - (<span class="number">60</span> * mnum);</span></span><br><span class="line"><span class="javascript">        snum = <span class="built_in">Math</span>.round(seconds); <span class="keyword">if</span>(<span class="built_in">String</span>(snum).length ==<span class="number">1</span> )&#123;snum = <span class="string">&quot;0&quot;</span> + snum;&#125;</span></span><br><span class="line"><span class="javascript">        <span class="built_in">document</span>.getElementById(<span class="string">&quot;timeDate&quot;</span>).innerHTML = <span class="string">&quot;本站已运行 &quot;</span>+dnum+<span class="string">&quot; 天 &quot;</span>;</span></span><br><span class="line"><span class="javascript">        <span class="built_in">document</span>.getElementById(<span class="string">&quot;times&quot;</span>).innerHTML = hnum + <span class="string">&quot; 小时 &quot;</span> + mnum + <span class="string">&quot; 分 &quot;</span> + snum + <span class="string">&quot; 秒&quot;</span>;</span></span><br><span class="line"><span class="javascript">    &#125;</span></span><br><span class="line"><span class="javascript"><span class="built_in">setInterval</span>(<span class="string">&quot;createtime()&quot;</span>,<span class="number">250</span>);</span></span><br><span class="line"><span class="javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>要是觉得时间有两行不好看的花，也可以将</p>
@@ -73,12 +73,151 @@
 <p>改成以下代码</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">span</span>&gt;</span><span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">&quot;timeDate&quot;</span>&gt;</span>载入天数...<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">&quot;times&quot;</span>&gt;</span>载入时分秒...<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
+
+
+<p>将访问人数和字数统计合并在同一行，用一个span标签包裹起来,在<code>themes/next/layout/_partials/footer.njk</code>这个文件中，找到<code>class=&quot;wordcount&quot;</code>，将其标签从div改成span。<code>class=&quot;busuanzi-count&quot;</code>这个div也同样改成span，然后再用一个span将它们两个包裹起来。</p>
+<p><strong><font color=red>这里博主有个不明白的地方，span本来就是行内元素，假设有两个span为a和b，怎么两个span就变成了两行，然后将a和b这两个span用一个span包裹起来，它们就可以在同一行上了，如果有知道的大佬可以告知本菜鸡一些，不胜感激！</font></strong></p>
 ]]></content>
       <categories>
         <category>教程</category>
       </categories>
       <tags>
         <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>React笔记1:JSX语法</title>
+    <url>/2022/01/12/React%E7%AC%94%E8%AE%B01:JSX%E8%AF%AD%E6%B3%95/</url>
+    <content><![CDATA[<h3 id="欲要学好React，JSX语法须先行"><a href="#欲要学好React，JSX语法须先行" class="headerlink" title="欲要学好React，JSX语法须先行"></a>欲要学好React，JSX语法须先行</h3><span id="more"></span>
+
+<p>[toc]</p>
+<h3 id="JSX-简介"><a href="#JSX-简介" class="headerlink" title="JSX 简介"></a>JSX 简介</h3><p>先来看这样的一段代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const element = &lt;h1&gt;Hello, world!&lt;/h1&gt;;</span><br></pre></td></tr></table></figure>
+
+<p>是不是感觉有点怪怪的，因为它既不是字符串，也不是HTML，它就是 JSX，是一个 JavaScript 的语法扩展。React官方建议在 React 中配合使用 JSX，因为JSX 可以很好地描述 UI 应该呈现出它应有交互的本质形式。</p>
+<p><strong>在JSX中插入javascript的方式</strong></p>
+<p>在 JSX 语法中，你可以在大括号内放置任何有效的 <strong>JavaScript 表达式</strong>。（什么是表达式？）</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const name = &#x27;james kobe&#x27;;</span><br><span class="line">const element = &lt;h1&gt;Hello, &#123;name&#125;&lt;/h1&gt;;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(</span><br><span class="line">  element,</span><br><span class="line">  document.getElementById(&#x27;root&#x27;)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>为了便于阅读，我们可以将JSX语法拆分成多行，并将内容包裹在小括号中，这样可以避免陷入自动插入分号的陷阱。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const element = (</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;h1&gt;Hello!&lt;/h1&gt;</span><br><span class="line">    &lt;h2&gt;Good to see you here.&lt;/h2&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>JSX也是一个表达式</strong></p>
+<p>在编译之后，JSX 表达式会被转为普通 JavaScript 函数调用，并且对其取值后得到 JavaScript 对象。</p>
+<p>也就是说，你可以在 <code>if</code> 语句和 <code>for</code> 循环的代码块中使用 JSX，将 JSX 赋值给变量，把 JSX 当作参数传入，以及从函数中返回 JSX：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function getGreeting(user) &#123;</span><br><span class="line">  if (user) &#123;</span><br><span class="line">    return &lt;h1&gt;Hello, &#123;formatName(user)&#125;!&lt;/h1&gt;;</span><br><span class="line">  &#125;</span><br><span class="line">  return &lt;h1&gt;Hello, Stranger.&lt;/h1&gt;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>JSX的特定属性</strong></p>
+<p>你可以通过使用引号，来将属性值指定为字符串字面量：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const element = &lt;div tabIndex=&quot;0&quot;&gt;&lt;/div&gt;;</span><br></pre></td></tr></table></figure>
+
+<p>也可以使用大括号，来在属性值中插入一个 JavaScript 表达式：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const element = &lt;img src=&#123;user.avatarUrl&#125;&gt;&lt;/img&gt;;</span><br></pre></td></tr></table></figure>
+
+<p>在属性中嵌入 JavaScript 表达式时，不要在大括号外面加上引号。你应该仅使用引号（对于字符串值）或大括号（对于表达式）中的一个，对于同一属性不能同时使用这两种符号。</p>
+<p><strong>需要注意的是：</strong></p>
+<ul>
+<li><p>因为 JSX 语法上更接近 JavaScript 而不是 HTML，所以 React DOM 使用 <code>camelCase</code>（小驼峰命名）来定义属性的名称，而不使用 HTML 属性名称的命名约定。</p>
+</li>
+<li><p>例如，JSX 里的 <code>class</code> 变成了 <code>className</code>，而 <code>tabindex</code> 则变为 <code>tabIndex</code>。</p>
+</li>
+<li><p>JSX的顶层<strong>只能有一个根元素</strong>，所以我们很多时候会在外层包裹一个div原生(或者使用后面我们学习的Fragment);</p>
+</li>
+<li><p>JSX中的标签可以是单标签，也可以是双标签。注意:如果是单标签，必须以<code>/&gt;</code>结尾;     </p>
+</li>
+</ul>
+<p><strong>使用 JSX 指定子元素</strong></p>
+<p>假如一个标签里面没有内容，也就是说这个标签是一个单标签的话，你可以使用 <code>/&gt;</code> 来闭合标签，就像 XML 语法一样：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const element = &lt;img src=&#123;user.avatarUrl&#125; /&gt;;</span><br></pre></td></tr></table></figure>
+
+<p>JSX 标签里能够包含很多子元素:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const element = (</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;h1&gt;Hello!&lt;/h1&gt;</span><br><span class="line">    &lt;h2&gt;Good to see you here.&lt;/h2&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>JSX 表示对象</strong></p>
+<p>Babel 会把 JSX 转译成一个名为 <code>React.createElement()</code> 函数调用。</p>
+<p>以下两种示例代码完全等效：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const element = (</span><br><span class="line">  &lt;h1 className=&quot;greeting&quot;&gt;</span><br><span class="line">    Hello, world!</span><br><span class="line">  &lt;/h1&gt;</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">const element = React.createElement(</span><br><span class="line">  &#x27;h1&#x27;,</span><br><span class="line">  &#123;className: &#x27;greeting&#x27;&#125;,</span><br><span class="line">  &#x27;Hello, world!&#x27;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="疑问：（什么是表达式？表达式和语句又有什么区别呢？）"><a href="#疑问：（什么是表达式？表达式和语句又有什么区别呢？）" class="headerlink" title="疑问：（什么是表达式？表达式和语句又有什么区别呢？）"></a>疑问：（什么是表达式？表达式和语句又有什么区别呢？）</h4><p>语句指的是执行单元，通常以行为单位，表达式指的是可用于计算的式子，即可能产生一个值的式子。语句可以包含有表达式，表达式也可以单独形成一个语句。</p>
+<p><strong>表达式会产生一个值，如赋值表达式：a=1。在控制台输出1。</strong></p>
+<p><strong>表达式可以参与运算</strong>，如：</p>
+<p>var c = 1==2 ? 3 : 4;</p>
+<p>1==2 是一个表达式，1==2 ? 3 : 4这也是一个表达式，表达式是由运算符构成并运算产生结果的语法结构。</p>
+<p>我们通常用”;”来分隔语句，组成程序，而本身就是语句的语法结构如：</p>
+<p>if(){}else{} for(){} 等。</p>
+<p>表达式一般由操作符和操作数组成，而我们把表达式按照语法结构组成语句，然后组成程序，表达式跟语句有重合的部分。</p>
+<p>因此可以理解为表达式通常是语句的一部分或者本身就能起到一个语句的作用，而语句代表一段可执行的程序的最小单元。</p>
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>React</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>React笔记1:React的特点和优点</title>
+    <url>/2022/01/12/React%E7%AC%94%E8%AE%B01:React%E7%9A%84%E7%89%B9%E7%82%B9%E5%92%8C%E4%BC%98%E7%82%B9/</url>
+    <content><![CDATA[<p>React作为国内最流行的前端框架之一，肯定有它的好用先进之处，作为技术geek，那肯定要学穿它🤔</p>
+<h3 id="React的特点"><a href="#React的特点" class="headerlink" title="React的特点"></a>React的特点</h3><ol>
+<li>声明式编程<ul>
+<li>允许我们只需要维护自己的状态，当状态改变时，React可以根据最新的状态去渲染我们的UI界面;</li>
+</ul>
+</li>
+<li>组件化开发<ul>
+<li>能把一个大问题分解成一个小问题一个个实现，便于开发和维护。</li>
+</ul>
+</li>
+<li>多平台适配<ul>
+<li>React不仅能开发网页应用，React Native也能开发Android和iOS应用。</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>除此之外，学习React还能掌握先进的技术和思想。并且React的思想被许多框架借鉴，比如Google的Flutter框架就借鉴了React的思想，老美有意思的一点就是他借鉴React的思想，直接官网明牌说出来了。</p>
+</blockquote>
+<h3 id="React开发依赖"><a href="#React开发依赖" class="headerlink" title="React开发依赖"></a><strong>React开发依赖</strong></h3><p>开发React必须依赖三个库:</p>
+<ul>
+<li>react:包含react所必须的核心代码</li>
+<li>react-dom:react渲染在不同平台所需要的核心代码</li>
+<li>babel:将jsx转换成React代码的工具<ul>
+<li>babel可以将es6语法转换为es5语法，并且可以将jsx语法转换为js语法。帮助我们更好的进行开发。</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p> react包中包含了react和react-native所共同拥有的核心代码。</p>
+</blockquote>
+<p>react-dom针对web和native所完成的事情不同:</p>
+<ul>
+<li>web端:react-dom会讲jsx最终渲染成真实的DOM，显示在浏览器中</li>
+<li>native端:react-dom会讲jsx最终渲染成原生的控件(比如Android中的Button，iOS中的UIButton)</li>
+</ul>
+<h3 id="React的优点"><a href="#React的优点" class="headerlink" title="React的优点"></a>React的优点</h3><p>为什么需要React呢，我们来看一个案例，要求点击按钮，网页上的文字内容会发生改变。</p>
+<p>以下是原生实现。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h2</span> <span class="attr">class</span>=<span class="string">&quot;title&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;btn&quot;</span>&gt;</span>change text<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript"></span></span><br><span class="line"><span class="javascript">        <span class="comment">// 这里是命令式编程，就是给计算机一步步指令去完成一件事</span></span></span><br><span class="line"><span class="javascript"></span></span><br><span class="line"><span class="javascript">        <span class="comment">// 1.定义数据</span></span></span><br><span class="line"><span class="javascript">        <span class="keyword">let</span> message = <span class="string">&quot;Hello, World!&quot;</span>;</span></span><br><span class="line"><span class="javascript"></span></span><br><span class="line"><span class="javascript">        <span class="comment">// 2.将数据显示在h2元素中</span></span></span><br><span class="line"><span class="javascript">        <span class="keyword">let</span> titleEl = <span class="built_in">document</span>.getElementsByClassName(<span class="string">&quot;title&quot;</span>)[<span class="number">0</span>];</span></span><br><span class="line"><span class="javascript">        titleEl.innerHTML = message;</span></span><br><span class="line"><span class="javascript"></span></span><br><span class="line"><span class="javascript">        <span class="comment">// 3.点击按钮，页面数据发生改变</span></span></span><br><span class="line"><span class="javascript">        <span class="keyword">let</span> btnEl = <span class="built_in">document</span>.getElementsByClassName(<span class="string">&quot;btn&quot;</span>)[<span class="number">0</span>];</span></span><br><span class="line"><span class="javascript">        btnEl.addEventListener(<span class="string">&quot;click&quot;</span>, <span class="function"><span class="params">e</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="javascript">            message = <span class="string">&quot;Hello, React!&quot;</span>;</span></span><br><span class="line"><span class="javascript">            titleEl.innerHTML = message;</span></span><br><span class="line"><span class="javascript">        &#125;)</span></span><br><span class="line"><span class="javascript">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>再来看看React实现，是不是感觉代码有点多，还比原生的复杂了。这里是因为我们调用了render函数，并且还没用到React的声明式编程和组件化开发的特点。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/babel&quot;</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript"></span></span><br><span class="line"><span class="javascript">        <span class="keyword">let</span> message = <span class="string">&quot;Hello,World!&quot;</span>;</span></span><br><span class="line"><span class="javascript"></span></span><br><span class="line"><span class="javascript">        <span class="function"><span class="keyword">function</span> <span class="title">btnClick</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">            message = <span class="string">&quot;Hello,React!&quot;</span>;</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(message);</span></span><br><span class="line"><span class="javascript">            render();</span></span><br><span class="line"><span class="javascript">        &#125;</span></span><br><span class="line"><span class="javascript"></span></span><br><span class="line"><span class="javascript">        <span class="function"><span class="keyword">function</span> <span class="title">render</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">            ReactDOM.render(</span></span><br><span class="line"><span class="javascript">                <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span></span><br><span class="line"><span class="xml"><span class="javascript">                    <span class="tag">&lt;<span class="name">h2</span>&gt;</span>&#123;message&#125;<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span></span></span><br><span class="line"><span class="xml"><span class="javascript">                    <span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;btnClick&#125;</span>&gt;</span>change text<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span></span><br><span class="line"><span class="xml"><span class="javascript">                <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>,</span></span><br><span class="line"><span class="javascript">                <span class="built_in">document</span>.getElementById(<span class="string">&quot;app&quot;</span>)</span></span><br><span class="line"><span class="javascript">            );</span></span><br><span class="line"><span class="javascript">        &#125;</span></span><br><span class="line"><span class="javascript"></span></span><br><span class="line"><span class="javascript">        render();</span></span><br><span class="line"><span class="javascript"></span></span><br><span class="line"><span class="javascript">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://unpkg.com/react@16/umd/react.development.js&quot;</span> <span class="attr">crossorigin</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://unpkg.com/react-dom@16/umd/react-dom.development.js&quot;</span> <span class="attr">crossorigin</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- babel转换代码 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://unpkg.com/babel-standalone@6/babel.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>下面再来看利用了React特点写的代码</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/babel&quot;</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript">        <span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="function"><span class="title">constructor</span>(<span class="params"></span>)</span> &#123;</span></span><br><span class="line"><span class="javascript">                <span class="built_in">super</span>();</span></span><br><span class="line"><span class="javascript">                <span class="built_in">this</span>.state = &#123;</span></span><br><span class="line"><span class="javascript">                    <span class="attr">message</span>: <span class="string">&quot;Hello,World&quot;</span>,</span></span><br><span class="line"><span class="javascript">                &#125;</span></span><br><span class="line"><span class="javascript">            &#125;</span></span><br><span class="line"><span class="javascript"></span></span><br><span class="line"><span class="javascript">            render = <span class="function">() =&gt;</span> &#123;</span></span><br><span class="line"><span class="javascript">                <span class="keyword">return</span> (</span></span><br><span class="line"><span class="javascript">                    <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span></span><br><span class="line"><span class="xml"><span class="javascript">                        <span class="tag">&lt;<span class="name">h2</span>&gt;</span>&#123;this.state.message&#125;<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span></span></span><br><span class="line"><span class="xml"><span class="javascript">                        <span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;this.btnClick&#125;</span>&gt;</span>change text<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span></span><br><span class="line"><span class="xml"><span class="javascript">                    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span></span><br><span class="line"><span class="javascript">                )</span></span><br><span class="line"><span class="javascript">            &#125;</span></span><br><span class="line"><span class="javascript"></span></span><br><span class="line"><span class="javascript">            btnClick = <span class="function">() =&gt;</span> &#123;</span></span><br><span class="line"><span class="javascript">                <span class="comment">// this.state.message = &quot;Hello,React&quot;;</span></span></span><br><span class="line"><span class="javascript">                <span class="comment">// console.log(this.state);</span></span></span><br><span class="line"><span class="javascript"></span></span><br><span class="line"><span class="javascript">                <span class="built_in">this</span>.setState(&#123;</span></span><br><span class="line"><span class="javascript">                    <span class="attr">message</span>: <span class="string">&quot;Hello,React&quot;</span></span></span><br><span class="line"><span class="javascript">                &#125;)</span></span><br><span class="line"><span class="javascript">            &#125;</span></span><br><span class="line"><span class="javascript">        &#125;</span></span><br><span class="line"><span class="javascript"></span></span><br><span class="line"><span class="javascript">        ReactDOM.render(<span class="xml"><span class="tag">&lt;<span class="name">App</span> /&gt;</span></span>, <span class="built_in">document</span>.getElementById(<span class="string">&quot;app&quot;</span>));</span></span><br><span class="line"><span class="javascript">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://unpkg.com/react@16/umd/react.development.js&quot;</span> <span class="attr">crossorigin</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://unpkg.com/react-dom@16/umd/react-dom.development.js&quot;</span> <span class="attr">crossorigin</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- babel转换代码 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://unpkg.com/babel-standalone@6/babel.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>看起来确实优雅了不少。</p>
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>React</tag>
       </tags>
   </entry>
   <entry>
@@ -186,187 +325,6 @@
       </categories>
       <tags>
         <tag>JavaScript</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>从零开始搭建hexo博客</title>
-    <url>/2022/01/05/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BAhexo%E5%8D%9A%E5%AE%A2/</url>
-    <content><![CDATA[<h1 id="用Hexo-快速搭建属于自己的博客"><a href="#用Hexo-快速搭建属于自己的博客" class="headerlink" title="用Hexo 快速搭建属于自己的博客"></a>用Hexo 快速搭建属于自己的博客</h1><span id="more"></span>
-
-<h3 id="环境准备（安装方法自行查阅网上资料）"><a href="#环境准备（安装方法自行查阅网上资料）" class="headerlink" title="环境准备（安装方法自行查阅网上资料）"></a>环境准备（安装方法自行查阅网上资料）</h3><ul>
-<li>git</li>
-<li>node</li>
-<li>npm</li>
-</ul>
-<p>命令行里验证是否安装成功</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git --version</span></span><br><span class="line">git version 2.30.1 (Apple Git-130)</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> node --version</span></span><br><span class="line">v16.4.2</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> npm -v</span></span><br><span class="line">7.18.1</span><br></pre></td></tr></table></figure>
-
-<h3 id="配置SSH-Key"><a href="#配置SSH-Key" class="headerlink" title="配置SSH Key"></a>配置SSH Key</h3><p>如果第一次用git工具，记得配置一下SSH key，为部署本地博客到 Github 做准备。</p>
-<p>如果之前没有创建，则执行以下命令全局配置一下本地账户：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git config --global user.name &quot;GitHub用户名&quot;</span><br><span class="line">git config --global user.email &quot;注册GitHub邮箱地址&quot;</span><br></pre></td></tr></table></figure>
-
-<p>生成密钥SSK key</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &#x27;上面的邮箱地址&#x27;</span><br></pre></td></tr></table></figure>
-
-<p>输入上面的命令之后，按下三次回车，即可生成ssh key。<code>.ssh</code>目录下有两个文件，<code>id_rsa</code>和<code>id_rsa.pub</code>，这两个就是ssh key的密钥对，<code>id_rsa</code>是私钥，<code>id_rsa.pub</code>是公钥</p>
-<p>cat获取你的ssh</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cat ~/.ssh/id_rsa.pub</span><br></pre></td></tr></table></figure>
-
-<p>复制输出内容</p>
-<p>登录github，settings -&gt; SSH and GPG keys -&gt; New SSH key</p>
-<p>Title随便写</p>
-<p>Key填写刚才复制的内容，确认完成。</p>
-<h3 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h3><p>执行命令</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> npm install -g hexo-cli	<span class="comment"># -g 代表着全局安装</span></span></span><br></pre></td></tr></table></figure>
-
-<p>完成后建立自己的个人博客</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> hexo init blogName</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> blogName</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> npm install</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="创建你的第一篇博文"><a href="#创建你的第一篇博文" class="headerlink" title="创建你的第一篇博文"></a>创建你的第一篇博文</h3><p>新建一篇博文：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> hexo new <span class="string">&#x27;blogName&#x27;</span></span></span><br></pre></td></tr></table></figure>
-
-<p>在 <code>/source/_posts</code>文件夹下找到你的博文，使用typora（推荐）打开并编辑。</p>
-<p>保存后运行：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> hexo generate <span class="comment"># 生成静态文件，可简写为 hexo g</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo server <span class="comment"># 启动服务器。默认情况下，访问网址为：http://localhost:4000/。可以简写为 hexo s</span></span></span><br></pre></td></tr></table></figure>
-
-<p>此时已经可以在<code>public</code>文件夹下看到完整的静态文件。<br>在浏览器中输入<code>http://localhost:4000/</code>就可以看到预览效果了。</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 如果写的文章太长的话，想要在Home页显示文章的前一小部分的话，可以在想要显示部分的后面加上&lt;!--more--&gt;，就可以实现文章折叠。</span></span><br></pre></td></tr></table></figure>
-
-<p>以上是本地部署，下面讲博客部署到Github page上</p>
-<h2 id="部署到Github-page"><a href="#部署到Github-page" class="headerlink" title="部署到Github page"></a>部署到Github page</h2><p>登录github，新建仓库，仓库名为<code>username.github.io</code>，<strong>注意：<code>username</code>应该是你github的用户名</strong></p>
-<p>本地和github都完成之后，现在需要把这两者连接在一起</p>
-<ol>
-<li><p>修改被指</p>
-<p>在项目根目录下的<code>_config.yml</code>修改配置参数（如果这里命令行显示连接不了GitHub，那就用仓库的ssh链接代替https链接，因为GitHub现在增强了安全性，用户名和密码登录不能保证安全性）</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> Deployment</span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># Docs: https://hexo.io/docs/one-command-deployment</span></span></span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo:</span><br><span class="line">    github: https://github.com/你的用户名/你的用户名.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure></li>
-<li><p>安装部署插件</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure></li>
-<li><p>部署前最好能先执行一下 hexo clean 命令，清除缓存文件 (db.json) 和已生成的静态文件 (public)。在某些情况（尤其是更换主题后），如果发现对站点的更改无论如何也不生效，可能需要运行该命令。</p>
-</li>
-<li><p>部署上线</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hexo g -d</span><br></pre></td></tr></table></figure></li>
-</ol>
-<p>用浏览器输入，https://你的用户名.github.io，就可以看到你的博客了。</p>
-<h2 id="配置主题及语言"><a href="#配置主题及语言" class="headerlink" title="配置主题及语言"></a>配置主题及语言</h2><p>个人用的是<a href="https://theme-next.js.org/">NexT主题</a></p>
-<p>进入项目根目录，下载NexT主题</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git <span class="built_in">clone</span> https://github.com/next-theme/hexo-theme-next themes/next</span></span><br></pre></td></tr></table></figure>
-
-<p>修改<strong>项目根目录</strong>下的<code>_config.yml</code>的配置</p>
-<p>注意：<code>_config.yml</code>配置文件有两个，一个在项目根目录，一个在<code>/themes/next</code>中，大部分配置在主题里面改。</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># Themes: https://hexo.io/themes/</span></span></span><br><span class="line">theme: next</span><br></pre></td></tr></table></figure>
-
-<p>修改语言：</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Site</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">博客的名字</span></span><br><span class="line"><span class="attr">subtitle:</span> <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="attr">keywords:</span></span><br><span class="line"><span class="attr">author:</span> </span><br><span class="line"><span class="attr">language:</span> <span class="string">zh-CN</span></span><br><span class="line"><span class="attr">timezone:</span> <span class="string">&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="NexT配置"><a href="#NexT配置" class="headerlink" title="NexT配置"></a>NexT配置</h2><p>以下均在<code>/blogName/themes/next/_config.yml</code>文件中修改</p>
-<blockquote>
-<p>修改主题的时候，可以使用hexo s现在本地预览，然后再部署上线。部署上线的效果可能有几分钟的延迟，耐心等待就好</p>
-</blockquote>
-<h3 id="修改NexT风格"><a href="#修改NexT风格" class="headerlink" title="修改NexT风格"></a>修改NexT风格</h3><p>NexT主题有四个风格，想要的取消注释</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> Schemes</span></span><br><span class="line"><span class="meta">#</span><span class="bash">scheme: Muse</span></span><br><span class="line">scheme: Mist</span><br><span class="line"><span class="meta">#</span><span class="bash">scheme: Pisces</span></span><br><span class="line"><span class="meta">#</span><span class="bash">scheme: Gemini</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="暗黑模式"><a href="#暗黑模式" class="headerlink" title="暗黑模式"></a>暗黑模式</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> Dark Mode</span></span><br><span class="line">darkmode: true</span><br></pre></td></tr></table></figure>
-
-<h3 id="改变网页标签icon"><a href="#改变网页标签icon" class="headerlink" title="改变网页标签icon"></a>改变网页标签icon</h3><p>把你想要用的图片放在<code>/themes/next/source/images</code>中</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">favicon:</span><br><span class="line">  small: /images/图片名字</span><br><span class="line">  medium: /images/图片名字</span><br></pre></td></tr></table></figure>
-
-<h3 id="增加或删除博客页面功能"><a href="#增加或删除博客页面功能" class="headerlink" title="增加或删除博客页面功能"></a>增加或删除博客页面功能</h3><p>想用的取消注释，</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">menu:</span><br><span class="line">  home: / || fa fa-home</span><br><span class="line">  about: /about/ || fa fa-user</span><br><span class="line">  tags: /tags/ || fa fa-tags</span><br><span class="line">  categories: /categories/ || fa fa-th</span><br><span class="line">  archives: /archives/ || fa fa-archive</span><br><span class="line"><span class="meta">  #</span><span class="bash">schedule: /schedule/ || fa fa-calendar</span></span><br><span class="line"><span class="meta">  #</span><span class="bash">sitemap: /sitemap.xml || fa fa-sitemap</span></span><br><span class="line"><span class="meta">  #</span><span class="bash">commonweal: /404/ || fa fa-heartbeat</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="添加标签页面"><a href="#添加标签页面" class="headerlink" title="添加标签页面"></a>添加标签页面</h4><p>在项目根目录</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hexo new page tags</span><br><span class="line">cd ./source/tags</span><br></pre></td></tr></table></figure>
-
-<p>打开<code>index.md</code>文件，增加一个<code>type</code>字段</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: tags</span><br><span class="line">type: &quot;tags&quot;</span><br><span class="line">comments: false</span><br><span class="line">date: 2022-01-04 13:29:07</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
-
-<h4 id="添加分类页面"><a href="#添加分类页面" class="headerlink" title="添加分类页面"></a>添加分类页面</h4><p>在项目根目录</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hexo new page categories</span><br><span class="line">cd ./source/categories</span><br></pre></td></tr></table></figure>
-
-<p>打开<code>index.md</code>文件，增加一个<code>type</code>字段</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: categories</span><br><span class="line">type: &quot;categories&quot;</span><br><span class="line">date: 2022-01-04 13:55:58</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
-
-<h4 id="添加about页面"><a href="#添加about页面" class="headerlink" title="添加about页面"></a>添加about页面</h4><p>在项目根目录</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hexo new page about</span><br><span class="line">cd ./source/about</span><br></pre></td></tr></table></figure>
-
-<p>打开<code>index.md</code>文件，可以在里面写自己的个人介绍。</p>
-<h3 id="调整侧边栏位置"><a href="#调整侧边栏位置" class="headerlink" title="调整侧边栏位置"></a>调整侧边栏位置</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sidebar:</span><br><span class="line"><span class="meta">  #</span><span class="bash"> Sidebar Position.</span></span><br><span class="line"><span class="meta">  #</span><span class="bash">position: left</span></span><br><span class="line">  position: right</span><br></pre></td></tr></table></figure>
-
-<h3 id="添加侧边栏头像图片"><a href="#添加侧边栏头像图片" class="headerlink" title="添加侧边栏头像图片"></a>添加侧边栏头像图片</h3><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Sidebar Avatar</span></span><br><span class="line">avatar:</span><br><span class="line">  <span class="comment"># 把要展示的图片放在images中</span></span><br><span class="line">  url: /images/avatar.jpg</span><br><span class="line">  <span class="comment"># If true, the avatar will be displayed in circle.</span></span><br><span class="line">  rounded: <span class="literal">false</span></span><br><span class="line">  <span class="comment"># If true, the avatar will be rotated with the cursor.</span></span><br><span class="line">  rotated: <span class="literal">false</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="启用不蒜子统计"><a href="#启用不蒜子统计" class="headerlink" title="启用不蒜子统计"></a>启用不蒜子统计</h3><p>不蒜子是用于统计文章的阅读次数</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">busuanzi_count:</span><br><span class="line">  <span class="built_in">enable</span>: <span class="literal">true</span></span><br><span class="line">  total_visitors: <span class="literal">true</span></span><br><span class="line">  total_visitors_icon: fa fa-user</span><br><span class="line">  total_views: <span class="literal">true</span></span><br><span class="line">  total_views_icon: fa fa-eye</span><br><span class="line">  post_views: <span class="literal">true</span></span><br><span class="line">  post_views_icon: fa fa-eye</span><br></pre></td></tr></table></figure>
-
-<h3 id="添加网页加载进度条"><a href="#添加网页加载进度条" class="headerlink" title="添加网页加载进度条"></a>添加网页加载进度条</h3><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> themes/next</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/theme-next/theme-next-pace <span class="built_in">source</span>/lib/pace</span><br></pre></td></tr></table></figure>
-
-<p>修改配置文件 <code>themes/next/_config.yml</code></p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">pace:</span><br><span class="line">  enable: true</span><br><span class="line">  theme: minimal</span><br></pre></td></tr></table></figure>
-
-<h3 id="添加页面顶部阅读进度条"><a href="#添加页面顶部阅读进度条" class="headerlink" title="添加页面顶部阅读进度条"></a>添加页面顶部阅读进度条</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd themes/next</span><br><span class="line">git clone https://github.com/theme-next/theme-next-reading-progress source/lib/reading_progress</span><br></pre></td></tr></table></figure>
-
-<p>修改配置文件 <code>themes/next/_config.yml</code></p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">reading_progress:</span><br><span class="line">  enable: true</span><br><span class="line">  position: top               # 进度条的位置：top | bottom</span><br><span class="line">  color: &quot;#37c6c0&quot;            # 进度条的颜色</span><br><span class="line">  height: 3px                 # 进度条的大小</span><br></pre></td></tr></table></figure>
-
-<h3 id="显示侧栏底部阅读进度百分比"><a href="#显示侧栏底部阅读进度百分比" class="headerlink" title="显示侧栏底部阅读进度百分比"></a>显示侧栏底部阅读进度百分比</h3><p>修改配置文件 <code>themes/next/_config.yml</code></p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">back2top:</span><br><span class="line">  enable: true</span><br><span class="line">  sidebar: false</span><br><span class="line">  scrollpercent: true</span><br></pre></td></tr></table></figure>
-
-<h3 id="字数与阅读时长统计插件"><a href="#字数与阅读时长统计插件" class="headerlink" title="字数与阅读时长统计插件"></a>字数与阅读时长统计插件</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd 项目根目录</span><br><span class="line">npm install eslint --save</span><br><span class="line">npm install hexo-symbols-count-time --save</span><br></pre></td></tr></table></figure>
-
-<p>修改配置文件 <code>themes/next/_config.yml</code></p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">symbols_count_time:</span><br><span class="line">  time: true                   # 文章阅读时长</span><br><span class="line">  symbols: true                # 文章字数统计</span><br><span class="line">  total_time: true             # 站点总阅读时长</span><br><span class="line">  total_symbols: true          # 站点总字数统计</span><br><span class="line">  exclude_codeblock: true      # 排除代码字数统计</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="添加search栏"><a href="#添加search栏" class="headerlink" title="添加search栏"></a>添加search栏</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd 项目根目录</span><br><span class="line">npm install hexo-generator-searchdb --save</span><br></pre></td></tr></table></figure>
-
-<p>修改配置文件 <code>themes/next/_config.yml</code></p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">local_search:</span><br><span class="line">  enable: true</span><br><span class="line"></span><br><span class="line">// 在local_search:下面添加，注意search和local_search是在同一缩进上</span><br><span class="line">search:</span><br><span class="line">  path: search.xml</span><br><span class="line">  field: post</span><br><span class="line">  format: html</span><br><span class="line">  limit: 10000</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="Hexo常用命令"><a href="#Hexo常用命令" class="headerlink" title="Hexo常用命令"></a>Hexo常用命令</h2><ul>
-<li><p><code>hexo init [folder]</code></p>
-<ul>
-<li>Hexo 默认在目前的文件夹建立网站。</li>
-<li>Git clone <a href="https://github.com/hexojs/hexo-starter">hexo-starter</a> 和 <a href="https://github.com/hexojs/hexo-theme-landscape">hexo-theme-landscape</a> 主题到当前目录或指定目录。</li>
-<li>使用 <a href="https://classic.yarnpkg.com/lang/en/">Yarn 1</a>、<a href="https://pnpm.js.org/">pnpm</a> 或 <a href="https://docs.npmjs.com/cli/install">npm</a> 包管理器下载依赖（如有已安装多个，则列在前面的优先）。npm 默认随 <a href="https://hexo.io/docs/#Install-Node-js">Node.js</a> 安装。</li>
-</ul>
-</li>
-<li><pre><code>hexo new &#39;文章标题&#39;
-</code></pre>
-<ul>
-<li>新建文件，写的时候自己用typora打开写。可简写为<code>hexo n &#39;文章标题&#39;</code></li>
-</ul>
-</li>
-<li><p><code>hexo clean</code></p>
-<ul>
-<li>清除缓存文件 (<code>db.json</code>) 和已生成的静态文件 (<code>public</code>)。</li>
-<li>在某些情况（尤其是更换主题后），如果发现您对站点的更改无论如何也不生效，您可能需要运行该命令。</li>
-</ul>
-</li>
-<li><p><code>hexo generate</code></p>
-<ul>
-<li>生成静态文件，可简写为<code>hexo g</code></li>
-</ul>
-</li>
-<li><p><code>hexo server</code></p>
-<ul>
-<li>启动服务器。默认情况下，访问网址为：<code>http://localhost:4000/</code>。可以简写为 hexo s</li>
-</ul>
-</li>
-<li><p><code>hexo deploy</code></p>
-<ul>
-<li>部署网站，可简写为<code>hexo d</code></li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>教程</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -613,6 +571,187 @@
       </categories>
       <tags>
         <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>从零开始搭建hexo博客</title>
+    <url>/2022/01/05/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BAhexo%E5%8D%9A%E5%AE%A2/</url>
+    <content><![CDATA[<h1 id="用Hexo-快速搭建属于自己的博客"><a href="#用Hexo-快速搭建属于自己的博客" class="headerlink" title="用Hexo 快速搭建属于自己的博客"></a>用Hexo 快速搭建属于自己的博客</h1><span id="more"></span>
+
+<h3 id="环境准备（安装方法自行查阅网上资料）"><a href="#环境准备（安装方法自行查阅网上资料）" class="headerlink" title="环境准备（安装方法自行查阅网上资料）"></a>环境准备（安装方法自行查阅网上资料）</h3><ul>
+<li>git</li>
+<li>node</li>
+<li>npm</li>
+</ul>
+<p>命令行里验证是否安装成功</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git --version</span></span><br><span class="line">git version 2.30.1 (Apple Git-130)</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> node --version</span></span><br><span class="line">v16.4.2</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> npm -v</span></span><br><span class="line">7.18.1</span><br></pre></td></tr></table></figure>
+
+<h3 id="配置SSH-Key"><a href="#配置SSH-Key" class="headerlink" title="配置SSH Key"></a>配置SSH Key</h3><p>如果第一次用git工具，记得配置一下SSH key，为部署本地博客到 Github 做准备。</p>
+<p>如果之前没有创建，则执行以下命令全局配置一下本地账户：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git config --global user.name &quot;GitHub用户名&quot;</span><br><span class="line">git config --global user.email &quot;注册GitHub邮箱地址&quot;</span><br></pre></td></tr></table></figure>
+
+<p>生成密钥SSK key</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &#x27;上面的邮箱地址&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>输入上面的命令之后，按下三次回车，即可生成ssh key。<code>.ssh</code>目录下有两个文件，<code>id_rsa</code>和<code>id_rsa.pub</code>，这两个就是ssh key的密钥对，<code>id_rsa</code>是私钥，<code>id_rsa.pub</code>是公钥</p>
+<p>cat获取你的ssh</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cat ~/.ssh/id_rsa.pub</span><br></pre></td></tr></table></figure>
+
+<p>复制输出内容</p>
+<p>登录github，settings -&gt; SSH and GPG keys -&gt; New SSH key</p>
+<p>Title随便写</p>
+<p>Key填写刚才复制的内容，确认完成。</p>
+<h3 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h3><p>执行命令</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> npm install -g hexo-cli	<span class="comment"># -g 代表着全局安装</span></span></span><br></pre></td></tr></table></figure>
+
+<p>完成后建立自己的个人博客</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> hexo init blogName</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> blogName</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> npm install</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="创建你的第一篇博文"><a href="#创建你的第一篇博文" class="headerlink" title="创建你的第一篇博文"></a>创建你的第一篇博文</h3><p>新建一篇博文：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> hexo new <span class="string">&#x27;blogName&#x27;</span></span></span><br></pre></td></tr></table></figure>
+
+<p>在 <code>/source/_posts</code>文件夹下找到你的博文，使用typora（推荐）打开并编辑。</p>
+<p>保存后运行：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> hexo generate <span class="comment"># 生成静态文件，可简写为 hexo g</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo server <span class="comment"># 启动服务器。默认情况下，访问网址为：http://localhost:4000/。可以简写为 hexo s</span></span></span><br></pre></td></tr></table></figure>
+
+<p>此时已经可以在<code>public</code>文件夹下看到完整的静态文件。<br>在浏览器中输入<code>http://localhost:4000/</code>就可以看到预览效果了。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 如果写的文章太长的话，想要在Home页显示文章的前一小部分的话，可以在想要显示部分的后面加上&lt;!--more--&gt;，就可以实现文章折叠。</span></span><br></pre></td></tr></table></figure>
+
+<p>以上是本地部署，下面讲博客部署到Github page上</p>
+<h2 id="部署到Github-page"><a href="#部署到Github-page" class="headerlink" title="部署到Github page"></a>部署到Github page</h2><p>登录github，新建仓库，仓库名为<code>username.github.io</code>，<strong>注意：<code>username</code>应该是你github的用户名</strong></p>
+<p>本地和github都完成之后，现在需要把这两者连接在一起</p>
+<ol>
+<li><p>修改被指</p>
+<p>在项目根目录下的<code>_config.yml</code>修改配置参数（如果这里命令行显示连接不了GitHub，那就用仓库的ssh链接代替https链接，因为GitHub现在增强了安全性，用户名和密码登录不能保证安全性）</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> Deployment</span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># Docs: https://hexo.io/docs/one-command-deployment</span></span></span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo:</span><br><span class="line">    github: https://github.com/你的用户名/你的用户名.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure></li>
+<li><p>安装部署插件</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure></li>
+<li><p>部署前最好能先执行一下 hexo clean 命令，清除缓存文件 (db.json) 和已生成的静态文件 (public)。在某些情况（尤其是更换主题后），如果发现对站点的更改无论如何也不生效，可能需要运行该命令。</p>
+</li>
+<li><p>部署上线</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hexo g -d</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>用浏览器输入，https://你的用户名.github.io，就可以看到你的博客了。</p>
+<h2 id="配置主题及语言"><a href="#配置主题及语言" class="headerlink" title="配置主题及语言"></a>配置主题及语言</h2><p>个人用的是<a href="https://theme-next.js.org/">NexT主题</a></p>
+<p>进入项目根目录，下载NexT主题</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git <span class="built_in">clone</span> https://github.com/next-theme/hexo-theme-next themes/next</span></span><br></pre></td></tr></table></figure>
+
+<p>修改<strong>项目根目录</strong>下的<code>_config.yml</code>的配置</p>
+<p>注意：<code>_config.yml</code>配置文件有两个，一个在项目根目录，一个在<code>/themes/next</code>中，大部分配置在主题里面改。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># Themes: https://hexo.io/themes/</span></span></span><br><span class="line">theme: next</span><br></pre></td></tr></table></figure>
+
+<p>修改语言：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Site</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">博客的名字</span></span><br><span class="line"><span class="attr">subtitle:</span> <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="attr">keywords:</span></span><br><span class="line"><span class="attr">author:</span> </span><br><span class="line"><span class="attr">language:</span> <span class="string">zh-CN</span></span><br><span class="line"><span class="attr">timezone:</span> <span class="string">&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="NexT配置"><a href="#NexT配置" class="headerlink" title="NexT配置"></a>NexT配置</h2><p>以下均在<code>/blogName/themes/next/_config.yml</code>文件中修改</p>
+<blockquote>
+<p>修改主题的时候，可以使用hexo s现在本地预览，然后再部署上线。部署上线的效果可能有几分钟的延迟，耐心等待就好</p>
+</blockquote>
+<h3 id="修改NexT风格"><a href="#修改NexT风格" class="headerlink" title="修改NexT风格"></a>修改NexT风格</h3><p>NexT主题有四个风格，想要的取消注释</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> Schemes</span></span><br><span class="line"><span class="meta">#</span><span class="bash">scheme: Muse</span></span><br><span class="line">scheme: Mist</span><br><span class="line"><span class="meta">#</span><span class="bash">scheme: Pisces</span></span><br><span class="line"><span class="meta">#</span><span class="bash">scheme: Gemini</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="暗黑模式"><a href="#暗黑模式" class="headerlink" title="暗黑模式"></a>暗黑模式</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> Dark Mode</span></span><br><span class="line">darkmode: true</span><br></pre></td></tr></table></figure>
+
+<h3 id="改变网页标签icon"><a href="#改变网页标签icon" class="headerlink" title="改变网页标签icon"></a>改变网页标签icon</h3><p>把你想要用的图片放在<code>/themes/next/source/images</code>中</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">favicon:</span><br><span class="line">  small: /images/图片名字</span><br><span class="line">  medium: /images/图片名字</span><br></pre></td></tr></table></figure>
+
+<h3 id="增加或删除博客页面功能"><a href="#增加或删除博客页面功能" class="headerlink" title="增加或删除博客页面功能"></a>增加或删除博客页面功能</h3><p>想用的取消注释，</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">menu:</span><br><span class="line">  home: / || fa fa-home</span><br><span class="line">  about: /about/ || fa fa-user</span><br><span class="line">  tags: /tags/ || fa fa-tags</span><br><span class="line">  categories: /categories/ || fa fa-th</span><br><span class="line">  archives: /archives/ || fa fa-archive</span><br><span class="line"><span class="meta">  #</span><span class="bash">schedule: /schedule/ || fa fa-calendar</span></span><br><span class="line"><span class="meta">  #</span><span class="bash">sitemap: /sitemap.xml || fa fa-sitemap</span></span><br><span class="line"><span class="meta">  #</span><span class="bash">commonweal: /404/ || fa fa-heartbeat</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="添加标签页面"><a href="#添加标签页面" class="headerlink" title="添加标签页面"></a>添加标签页面</h4><p>在项目根目录</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hexo new page tags</span><br><span class="line">cd ./source/tags</span><br></pre></td></tr></table></figure>
+
+<p>打开<code>index.md</code>文件，增加一个<code>type</code>字段</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: tags</span><br><span class="line">type: &quot;tags&quot;</span><br><span class="line">comments: false</span><br><span class="line">date: 2022-01-04 13:29:07</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+
+<h4 id="添加分类页面"><a href="#添加分类页面" class="headerlink" title="添加分类页面"></a>添加分类页面</h4><p>在项目根目录</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hexo new page categories</span><br><span class="line">cd ./source/categories</span><br></pre></td></tr></table></figure>
+
+<p>打开<code>index.md</code>文件，增加一个<code>type</code>字段</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: categories</span><br><span class="line">type: &quot;categories&quot;</span><br><span class="line">date: 2022-01-04 13:55:58</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+
+<h4 id="添加about页面"><a href="#添加about页面" class="headerlink" title="添加about页面"></a>添加about页面</h4><p>在项目根目录</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hexo new page about</span><br><span class="line">cd ./source/about</span><br></pre></td></tr></table></figure>
+
+<p>打开<code>index.md</code>文件，可以在里面写自己的个人介绍。</p>
+<h3 id="调整侧边栏位置"><a href="#调整侧边栏位置" class="headerlink" title="调整侧边栏位置"></a>调整侧边栏位置</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sidebar:</span><br><span class="line"><span class="meta">  #</span><span class="bash"> Sidebar Position.</span></span><br><span class="line"><span class="meta">  #</span><span class="bash">position: left</span></span><br><span class="line">  position: right</span><br></pre></td></tr></table></figure>
+
+<h3 id="添加侧边栏头像图片"><a href="#添加侧边栏头像图片" class="headerlink" title="添加侧边栏头像图片"></a>添加侧边栏头像图片</h3><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Sidebar Avatar</span></span><br><span class="line">avatar:</span><br><span class="line">  <span class="comment"># 把要展示的图片放在images中</span></span><br><span class="line">  url: /images/avatar.jpg</span><br><span class="line">  <span class="comment"># If true, the avatar will be displayed in circle.</span></span><br><span class="line">  rounded: <span class="literal">false</span></span><br><span class="line">  <span class="comment"># If true, the avatar will be rotated with the cursor.</span></span><br><span class="line">  rotated: <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="启用不蒜子统计"><a href="#启用不蒜子统计" class="headerlink" title="启用不蒜子统计"></a>启用不蒜子统计</h3><p>不蒜子是用于统计文章的阅读次数</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">busuanzi_count:</span><br><span class="line">  <span class="built_in">enable</span>: <span class="literal">true</span></span><br><span class="line">  total_visitors: <span class="literal">true</span></span><br><span class="line">  total_visitors_icon: fa fa-user</span><br><span class="line">  total_views: <span class="literal">true</span></span><br><span class="line">  total_views_icon: fa fa-eye</span><br><span class="line">  post_views: <span class="literal">true</span></span><br><span class="line">  post_views_icon: fa fa-eye</span><br></pre></td></tr></table></figure>
+
+<h3 id="添加网页加载进度条"><a href="#添加网页加载进度条" class="headerlink" title="添加网页加载进度条"></a>添加网页加载进度条</h3><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> themes/next</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/theme-next/theme-next-pace <span class="built_in">source</span>/lib/pace</span><br></pre></td></tr></table></figure>
+
+<p>修改配置文件 <code>themes/next/_config.yml</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">pace:</span><br><span class="line">  enable: true</span><br><span class="line">  theme: minimal</span><br></pre></td></tr></table></figure>
+
+<h3 id="添加页面顶部阅读进度条"><a href="#添加页面顶部阅读进度条" class="headerlink" title="添加页面顶部阅读进度条"></a>添加页面顶部阅读进度条</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd themes/next</span><br><span class="line">git clone https://github.com/theme-next/theme-next-reading-progress source/lib/reading_progress</span><br></pre></td></tr></table></figure>
+
+<p>修改配置文件 <code>themes/next/_config.yml</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">reading_progress:</span><br><span class="line">  enable: true</span><br><span class="line">  position: top               # 进度条的位置：top | bottom</span><br><span class="line">  color: &quot;#37c6c0&quot;            # 进度条的颜色</span><br><span class="line">  height: 3px                 # 进度条的大小</span><br></pre></td></tr></table></figure>
+
+<h3 id="显示侧栏底部阅读进度百分比"><a href="#显示侧栏底部阅读进度百分比" class="headerlink" title="显示侧栏底部阅读进度百分比"></a>显示侧栏底部阅读进度百分比</h3><p>修改配置文件 <code>themes/next/_config.yml</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">back2top:</span><br><span class="line">  enable: true</span><br><span class="line">  sidebar: false</span><br><span class="line">  scrollpercent: true</span><br></pre></td></tr></table></figure>
+
+<h3 id="字数与阅读时长统计插件"><a href="#字数与阅读时长统计插件" class="headerlink" title="字数与阅读时长统计插件"></a>字数与阅读时长统计插件</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd 项目根目录</span><br><span class="line">npm install eslint --save</span><br><span class="line">npm install hexo-symbols-count-time --save</span><br></pre></td></tr></table></figure>
+
+<p>修改配置文件 <code>themes/next/_config.yml</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">symbols_count_time:</span><br><span class="line">  time: true                   # 文章阅读时长</span><br><span class="line">  symbols: true                # 文章字数统计</span><br><span class="line">  total_time: true             # 站点总阅读时长</span><br><span class="line">  total_symbols: true          # 站点总字数统计</span><br><span class="line">  exclude_codeblock: true      # 排除代码字数统计</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="添加search栏"><a href="#添加search栏" class="headerlink" title="添加search栏"></a>添加search栏</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd 项目根目录</span><br><span class="line">npm install hexo-generator-searchdb --save</span><br></pre></td></tr></table></figure>
+
+<p>修改配置文件 <code>themes/next/_config.yml</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">local_search:</span><br><span class="line">  enable: true</span><br><span class="line"></span><br><span class="line">// 在local_search:下面添加，注意search和local_search是在同一缩进上</span><br><span class="line">search:</span><br><span class="line">  path: search.xml</span><br><span class="line">  field: post</span><br><span class="line">  format: html</span><br><span class="line">  limit: 10000</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Hexo常用命令"><a href="#Hexo常用命令" class="headerlink" title="Hexo常用命令"></a>Hexo常用命令</h2><ul>
+<li><p><code>hexo init [folder]</code></p>
+<ul>
+<li>Hexo 默认在目前的文件夹建立网站。</li>
+<li>Git clone <a href="https://github.com/hexojs/hexo-starter">hexo-starter</a> 和 <a href="https://github.com/hexojs/hexo-theme-landscape">hexo-theme-landscape</a> 主题到当前目录或指定目录。</li>
+<li>使用 <a href="https://classic.yarnpkg.com/lang/en/">Yarn 1</a>、<a href="https://pnpm.js.org/">pnpm</a> 或 <a href="https://docs.npmjs.com/cli/install">npm</a> 包管理器下载依赖（如有已安装多个，则列在前面的优先）。npm 默认随 <a href="https://hexo.io/docs/#Install-Node-js">Node.js</a> 安装。</li>
+</ul>
+</li>
+<li><pre><code>hexo new &#39;文章标题&#39;
+</code></pre>
+<ul>
+<li>新建文件，写的时候自己用typora打开写。可简写为<code>hexo n &#39;文章标题&#39;</code></li>
+</ul>
+</li>
+<li><p><code>hexo clean</code></p>
+<ul>
+<li>清除缓存文件 (<code>db.json</code>) 和已生成的静态文件 (<code>public</code>)。</li>
+<li>在某些情况（尤其是更换主题后），如果发现您对站点的更改无论如何也不生效，您可能需要运行该命令。</li>
+</ul>
+</li>
+<li><p><code>hexo generate</code></p>
+<ul>
+<li>生成静态文件，可简写为<code>hexo g</code></li>
+</ul>
+</li>
+<li><p><code>hexo server</code></p>
+<ul>
+<li>启动服务器。默认情况下，访问网址为：<code>http://localhost:4000/</code>。可以简写为 hexo s</li>
+</ul>
+</li>
+<li><p><code>hexo deploy</code></p>
+<ul>
+<li>部署网站，可简写为<code>hexo d</code></li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
       </tags>
   </entry>
 </search>
