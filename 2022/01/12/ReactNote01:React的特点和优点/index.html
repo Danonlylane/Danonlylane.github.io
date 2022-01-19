@@ -22,28 +22,28 @@
   <script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","version":"8.9.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
-<meta name="description" content="React作为国内最流行的前端框架之一，肯定有它的好用先进之处，作为技术geek，那肯定要学穿它🤔 React的特点 声明式编程 允许我们只需要维护自己的状态，当状态改变时，React可以根据最新的状态去渲染我们的UI界面;   组件化开发 能把一个大问题分解成一个小问题一个个实现，便于开发和维护。   多平台适配 React不仅能开发网页应用，React Native也能开发Android和i">
+<meta name="description" content="React作为国内最流行的前端框架之一，肯定有它的好用先进之处，作为技术geek，那肯定要学穿它🤔">
 <meta property="og:type" content="article">
-<meta property="og:title" content="React笔记1:React的特点和优点">
-<meta property="og:url" content="http://example.com/2022/01/12/React%E7%AC%94%E8%AE%B01:React%E7%9A%84%E7%89%B9%E7%82%B9%E5%92%8C%E4%BC%98%E7%82%B9/index.html">
+<meta property="og:title" content="ReactNote01:React的特点和优点">
+<meta property="og:url" content="http://example.com/2022/01/12/ReactNote01:React%E7%9A%84%E7%89%B9%E7%82%B9%E5%92%8C%E4%BC%98%E7%82%B9/index.html">
 <meta property="og:site_name" content="beiyep&#39;s Blog">
-<meta property="og:description" content="React作为国内最流行的前端框架之一，肯定有它的好用先进之处，作为技术geek，那肯定要学穿它🤔 React的特点 声明式编程 允许我们只需要维护自己的状态，当状态改变时，React可以根据最新的状态去渲染我们的UI界面;   组件化开发 能把一个大问题分解成一个小问题一个个实现，便于开发和维护。   多平台适配 React不仅能开发网页应用，React Native也能开发Android和i">
+<meta property="og:description" content="React作为国内最流行的前端框架之一，肯定有它的好用先进之处，作为技术geek，那肯定要学穿它🤔">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-01-12T01:59:25.000Z">
-<meta property="article:modified_time" content="2022-01-12T13:44:25.304Z">
+<meta property="article:modified_time" content="2022-01-19T13:38:33.980Z">
 <meta property="article:author" content="beiyep">
 <meta property="article:tag" content="React">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://example.com/2022/01/12/React%E7%AC%94%E8%AE%B01:React%E7%9A%84%E7%89%B9%E7%82%B9%E5%92%8C%E4%BC%98%E7%82%B9/">
+<link rel="canonical" href="http://example.com/2022/01/12/ReactNote01:React%E7%9A%84%E7%89%B9%E7%82%B9%E5%92%8C%E4%BC%98%E7%82%B9/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2022/01/12/React%E7%AC%94%E8%AE%B01:React%E7%9A%84%E7%89%B9%E7%82%B9%E5%92%8C%E4%BC%98%E7%82%B9/","path":"2022/01/12/React笔记1:React的特点和优点/","title":"React笔记1:React的特点和优点"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2022/01/12/ReactNote01:React%E7%9A%84%E7%89%B9%E7%82%B9%E5%92%8C%E4%BC%98%E7%82%B9/","path":"2022/01/12/ReactNote01:React的特点和优点/","title":"ReactNote01:React的特点和优点"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>React笔记1:React的特点和优点 | beiyep's Blog</title>
+<title>ReactNote01:React的特点和优点 | beiyep's Blog</title>
   
 
 
@@ -91,8 +91,8 @@
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
         <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">5</span></a></li>
-        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">5</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">7</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">6</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">8</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -164,13 +164,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-count">8</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -215,7 +215,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/12/React%E7%AC%94%E8%AE%B01:React%E7%9A%84%E7%89%B9%E7%82%B9%E5%92%8C%E4%BC%98%E7%82%B9/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/12/ReactNote01:React%E7%9A%84%E7%89%B9%E7%82%B9%E5%92%8C%E4%BC%98%E7%82%B9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpeg">
@@ -228,7 +228,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          React笔记1:React的特点和优点
+          ReactNote01:React的特点和优点
         </h1>
 
         <div class="post-meta-container">
@@ -238,9 +238,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2022-01-12 09:59:25 / 修改时间：21:44:25" itemprop="dateCreated datePublished" datetime="2022-01-12T09:59:25+08:00">2022-01-12</time>
+      <time title="创建时间：2022-01-12 09:59:25" itemprop="dateCreated datePublished" datetime="2022-01-12T09:59:25+08:00">2022-01-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-01-19 21:38:33" itemprop="dateModified" datetime="2022-01-19T21:38:33+08:00">2022-01-19</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -248,7 +254,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a>
+          <a href="/categories/React%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">React笔记</span></a>
         </span>
     </span>
 
@@ -284,6 +290,8 @@
     
     <div class="post-body" itemprop="articleBody">
         <p>React作为国内最流行的前端框架之一，肯定有它的好用先进之处，作为技术geek，那肯定要学穿它🤔</p>
+<span id="more"></span>
+
 <h3 id="React的特点"><a href="#React的特点" class="headerlink" title="React的特点"></a>React的特点</h3><ol>
 <li>声明式编程<ul>
 <li>允许我们只需要维护自己的状态，当状态改变时，React可以根据最新的状态去渲染我们的UI界面;</li>
@@ -299,7 +307,7 @@
 </li>
 </ol>
 <blockquote>
-<p>除此之外，学习React还能掌握先进的技术和思想。并且React的思想被许多框架借鉴，比如Google的Flutter框架就借鉴了React的思想，老美有意思的一点就是他借鉴React的思想，直接官网明牌说出来了。</p>
+<p>除此之外，学习React还能掌握先进的技术和思想。并且React的思想被许多框架借鉴，比如Google的Flutter框架就借鉴了React的思想，老美有意思的一点就是他借鉴React的思想，直接官网摆明了说出来。</p>
 </blockquote>
 <h3 id="React开发依赖"><a href="#React开发依赖" class="headerlink" title="React开发依赖"></a><strong>React开发依赖</strong></h3><p>开发React必须依赖三个库:</p>
 <ul>
@@ -361,8 +369,8 @@
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2022/01/12/React%E7%AC%94%E8%AE%B01:JSX%E8%AF%AD%E6%B3%95/" rel="next" title="React笔记1:JSX语法">
-                  React笔记1:JSX语法 <i class="fa fa-chevron-right"></i>
+                <a href="/2022/01/12/ReactNote02:%E4%BA%86%E8%A7%A3JSX%E8%AF%AD%E6%B3%95/" rel="next" title="ReactNote02:了解JSX语法">
+                  ReactNote02:了解JSX语法 <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
@@ -399,13 +407,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">32k</span>
+    <span title="站点总字数">36k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">29 分钟</span>
+    <span title="站点阅读时长">33 分钟</span>
   </span>
 </span>
 &nbsp;&nbsp;&nbsp;&nbsp;
@@ -474,7 +482,7 @@ setInterval("createtime()",250);
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
 
-<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":null,"repo":null,"client_id":null,"client_secret":null,"admin_user":null,"distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CM","js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"a1156c03f0ea2d7e35006dde4ec230c4"}</script>
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":null,"repo":null,"client_id":null,"client_secret":null,"admin_user":null,"distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CM","js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"573efbdf2df638f88c1f5c2a0e71a3f8"}</script>
 <script src="/js/third-party/comments/gitalk.js"></script>
 
 </body>
