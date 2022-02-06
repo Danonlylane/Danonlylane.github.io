@@ -22,28 +22,28 @@
   <script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","version":"8.9.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
-<meta name="description" content="欲要学好React，JSX语法须先行">
+<meta name="description" content="组件间的通信方式">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ReactNote02:了解JSX语法">
-<meta property="og:url" content="http://example.com/2022/01/12/ReactNote02:%E4%BA%86%E8%A7%A3JSX%E8%AF%AD%E6%B3%95/index.html">
+<meta property="og:title" content="ReactNote04:组件通信方式">
+<meta property="og:url" content="http://example.com/2022/01/31/ReactNote04:%20%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F/index.html">
 <meta property="og:site_name" content="beiyep&#39;s Blog">
-<meta property="og:description" content="欲要学好React，JSX语法须先行">
+<meta property="og:description" content="组件间的通信方式">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-01-12T13:44:43.000Z">
-<meta property="article:modified_time" content="2022-01-31T09:51:06.122Z">
+<meta property="article:published_time" content="2022-01-30T17:49:34.000Z">
+<meta property="article:modified_time" content="2022-02-06T17:56:44.901Z">
 <meta property="article:author" content="beiyep">
 <meta property="article:tag" content="React">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://example.com/2022/01/12/ReactNote02:%E4%BA%86%E8%A7%A3JSX%E8%AF%AD%E6%B3%95/">
+<link rel="canonical" href="http://example.com/2022/01/31/ReactNote04:%20%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2022/01/12/ReactNote02:%E4%BA%86%E8%A7%A3JSX%E8%AF%AD%E6%B3%95/","path":"2022/01/12/ReactNote02:了解JSX语法/","title":"ReactNote02:了解JSX语法"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2022/01/31/ReactNote04:%20%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F/","path":"2022/01/31/ReactNote04: 组件通信方式/","title":"ReactNote04:组件通信方式"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>ReactNote02:了解JSX语法 | beiyep's Blog</title>
+<title>ReactNote04:组件通信方式 | beiyep's Blog</title>
   
 
 
@@ -149,7 +149,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AC%B2%E8%A6%81%E5%AD%A6%E5%A5%BDReact%EF%BC%8CJSX%E8%AF%AD%E6%B3%95%E9%A1%BB%E5%85%88%E8%A1%8C"><span class="nav-number">1.</span> <span class="nav-text">欲要学好React，JSX语法须先行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JSX-%E7%AE%80%E4%BB%8B"><span class="nav-number">2.</span> <span class="nav-text">JSX 简介</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%96%91%E9%97%AE%EF%BC%9A%EF%BC%88%E4%BB%80%E4%B9%88%E6%98%AF%E8%A1%A8%E8%BE%BE%E5%BC%8F%EF%BC%9F%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%92%8C%E8%AF%AD%E5%8F%A5%E5%8F%88%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%E5%91%A2%EF%BC%9F%EF%BC%89"><span class="nav-number">2.1.</span> <span class="nav-text">疑问：（什么是表达式？表达式和语句又有什么区别呢？）</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%84%E4%BB%B6%E9%97%B4%E7%9A%84%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F"><span class="nav-number">1.</span> <span class="nav-text">组件间的通信方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E7%88%B6%E7%BB%84%E4%BB%B6%E4%BC%A0%E9%80%92%E4%BF%A1%E6%81%AF%E7%BB%99%E5%AD%90%E7%BB%84%E4%BB%B6"><span class="nav-number">1.1.</span> <span class="nav-text">1. 父组件传递信息给子组件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E7%BB%84%E4%BB%B6%E4%BC%A0%E9%80%92%E4%BF%A1%E6%81%AF%E6%97%B6%E7%9A%84%E6%95%B0%E6%8D%AE%E9%AA%8C%E8%AF%81"><span class="nav-number">1.2.</span> <span class="nav-text">2. 组件传递信息时的数据验证</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -215,7 +215,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/12/ReactNote02:%E4%BA%86%E8%A7%A3JSX%E8%AF%AD%E6%B3%95/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/31/ReactNote04:%20%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpeg">
@@ -228,7 +228,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          ReactNote02:了解JSX语法
+          ReactNote04:组件通信方式
         </h1>
 
         <div class="post-meta-container">
@@ -239,14 +239,14 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2022-01-12 21:44:43" itemprop="dateCreated datePublished" datetime="2022-01-12T21:44:43+08:00">2022-01-12</time>
+      <time title="创建时间：2022-01-31 01:49:34" itemprop="dateCreated datePublished" datetime="2022-01-31T01:49:34+08:00">2022-01-31</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-01-31 17:51:06" itemprop="dateModified" datetime="2022-01-31T17:51:06+08:00">2022-01-31</time>
+      <time title="修改时间：2022-02-07 01:56:44" itemprop="dateModified" datetime="2022-02-07T01:56:44+08:00">2022-02-07</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -271,7 +271,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>2.3k</span>
+      <span>2.2k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -289,75 +289,21 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h3 id="欲要学好React，JSX语法须先行"><a href="#欲要学好React，JSX语法须先行" class="headerlink" title="欲要学好React，JSX语法须先行"></a>欲要学好React，JSX语法须先行</h3><span id="more"></span>
-
-
+        <h3 id="组件间的通信方式"><a href="#组件间的通信方式" class="headerlink" title="组件间的通信方式"></a>组件间的通信方式</h3><span id="more"></span>
 
 <p>[toc]</p>
-<h3 id="JSX-简介"><a href="#JSX-简介" class="headerlink" title="JSX 简介"></a>JSX 简介</h3><p>先来看这样的一段代码：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const element = &lt;h1&gt;Hello, world!&lt;/h1&gt;;</span><br></pre></td></tr></table></figure>
-
-<p>是不是感觉有点怪怪的，因为它既不是字符串，也不是HTML，它就是 JSX，是一个 JavaScript 的语法扩展。React官方建议在 React 中配合使用 JSX，因为JSX 可以很好地描述 UI 应该呈现出它应有交互的本质形式。</p>
-<p><strong>在JSX中插入javascript的方式</strong></p>
-<p>在 JSX 语法中，你可以在大括号内放置任何有效的 <strong>JavaScript 表达式</strong>。（什么是表达式？）</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const name = &#x27;james kobe&#x27;;</span><br><span class="line">const element = &lt;h1&gt;Hello, &#123;name&#125;&lt;/h1&gt;;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(</span><br><span class="line">  element,</span><br><span class="line">  document.getElementById(&#x27;root&#x27;)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-
-<p>为了便于阅读，我们可以将JSX语法拆分成多行，并将内容包裹在小括号中，这样可以避免陷入自动插入分号的陷阱。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const element = (</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;h1&gt;Hello!&lt;/h1&gt;</span><br><span class="line">    &lt;h2&gt;Good to see you here.&lt;/h2&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<h4 id="1-父组件传递信息给子组件"><a href="#1-父组件传递信息给子组件" class="headerlink" title="1. 父组件传递信息给子组件"></a>1. 父组件传递信息给子组件</h4><blockquote>
+<p>先看React官网的一句话：当 React 元素为用户自定义组件时，它会将 JSX 所接收的属性（attributes）以及子组件（children）转换为单个对象传递给组件，这个对象被称之为 “props”。</p>
+</blockquote>
+<p>以下例子说明了父组件传递信息给子组件的方式是：在父组件的子组件中写形参的时候，React会将子组件接受到的属性转换为props对象传递给组件，所以渲染子组件的时候就可以使用props里面的数据了。函数组件同理。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; Component &#125; from &#x27;react&#x27;</span><br><span class="line">class Son extends Component &#123;</span><br><span class="line">    constructor(props) &#123;</span><br><span class="line">        super(props);</span><br><span class="line">        this.state = &#123;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    render() &#123;</span><br><span class="line">        // 为什么这里可以通过this.props取得父组件里面传来的值呢？</span><br><span class="line">        const &#123; name, age, height &#125; = this.props;</span><br><span class="line">        return (</span><br><span class="line">            &lt;div&gt;</span><br><span class="line">                &lt;h2&gt;&#123;name + &quot; &quot; + age + &quot; &quot; + height&#125;&lt;/h2&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default class App extends Component &#123;</span><br><span class="line">    render() &#123;</span><br><span class="line">        return (</span><br><span class="line">            &lt;div&gt;</span><br><span class="line">                &lt;Son name=&quot;beiyep&quot; age=&quot;18&quot; height=&quot;1.88&quot;&gt;&lt;/Son&gt;</span><br><span class="line">                &lt;Son name=&quot;hala&quot; age=&quot;188&quot; height=&quot;1.88&quot;&gt;&lt;/Son&gt;</span><br><span class="line">                &lt;Son name=&quot;indexjs&quot; age=&quot;11118&quot; height=&quot;1.8228&quot;&gt;&lt;/Son&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
-<p><strong>JSX也是一个表达式</strong></p>
-<p>在编译之后，JSX 表达式会被转为普通 JavaScript 函数调用，并且对其取值后得到 JavaScript 对象。</p>
-<p>也就是说，你可以在 <code>if</code> 语句和 <code>for</code> 循环的代码块中使用 JSX，将 JSX 赋值给变量，把 JSX 当作参数传入，以及从函数中返回 JSX：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function getGreeting(user) &#123;</span><br><span class="line">  if (user) &#123;</span><br><span class="line">    return &lt;h1&gt;Hello, &#123;formatName(user)&#125;!&lt;/h1&gt;;</span><br><span class="line">  &#125;</span><br><span class="line">  return &lt;h1&gt;Hello, Stranger.&lt;/h1&gt;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="2-组件传递信息时的数据验证"><a href="#2-组件传递信息时的数据验证" class="headerlink" title="2. 组件传递信息时的数据验证"></a>2. 组件传递信息时的数据验证</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; Component &#125; from &#x27;react&#x27;;</span><br><span class="line">import PropTypes from &quot;prop-types&quot;;</span><br><span class="line"></span><br><span class="line">function Son(props) &#123;</span><br><span class="line">    const &#123; name, age, height, names &#125; = props;</span><br><span class="line">    return (</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">            &lt;h2&gt;&#123;name + &quot; &quot; + age + &quot; &quot; + height&#125;&lt;/h2&gt;</span><br><span class="line">            &lt;ul&gt;</span><br><span class="line">                &#123;</span><br><span class="line">                    names.map((item, index) =&gt; &#123;</span><br><span class="line">                        return &lt;li&gt;&#123;item&#125;&lt;/li&gt;</span><br><span class="line">                    &#125;)</span><br><span class="line">                &#125;</span><br><span class="line">            &lt;/ul&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Son.propTypes = &#123;</span><br><span class="line">    name: PropTypes.string.isRequired,</span><br><span class="line">    age: PropTypes.number,</span><br><span class="line">    height: PropTypes.number,</span><br><span class="line">    names: PropTypes.array</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 默认属性</span><br><span class="line">Son.defaultProps = &#123;</span><br><span class="line">    name: &quot;hcb&quot;,</span><br><span class="line">    age: 11,</span><br><span class="line">    height: 178,</span><br><span class="line">    names: [&quot;hcb&quot;, &quot;bbxk&quot;]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">export default class App extends Component &#123;</span><br><span class="line">    render() &#123;</span><br><span class="line">        return (</span><br><span class="line">            &lt;div&gt;</span><br><span class="line">                &lt;Son name=&quot;beiyep333&quot; age=&quot;18&quot; height=&quot;1.88&quot; names=&#123;[&quot;aaa&quot;, &quot;bbb&quot;, &quot;ccc&quot;]&#125;&gt;&lt;/Son&gt;</span><br><span class="line">                &lt;Son name=&quot;hala333&quot; age=&quot;188&quot; height=&quot;1.88&quot; names=&#123;[&quot;aaa&quot;, &quot;bbb&quot;, &quot;ccc&quot;]&#125;&gt;&lt;/Son&gt;</span><br><span class="line">                &lt;Son name=&quot;indexjs函数&quot; age=&quot;11118&quot; height=&quot;1.8228&quot;&gt;&lt;/Son&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 
 
-<p><strong>JSX的特定属性</strong></p>
-<p>你可以通过使用引号，来将属性值指定为字符串字面量：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const element = &lt;div tabIndex=&quot;0&quot;&gt;&lt;/div&gt;;</span><br></pre></td></tr></table></figure>
-
-<p>也可以使用大括号，来在属性值中插入一个 JavaScript 表达式：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const element = &lt;img src=&#123;user.avatarUrl&#125;&gt;&lt;/img&gt;;</span><br></pre></td></tr></table></figure>
-
-<p>在属性中嵌入 JavaScript 表达式时，不要在大括号外面加上引号。你应该仅使用引号（对于字符串值）或大括号（对于表达式）中的一个，对于同一属性不能同时使用这两种符号。</p>
-<p><strong>需要注意的是：</strong></p>
-<ul>
-<li><p>因为 JSX 语法上更接近 JavaScript 而不是 HTML，所以 React DOM 使用 <code>camelCase</code>（小驼峰命名）来定义属性的名称，而不使用 HTML 属性名称的命名约定。</p>
-</li>
-<li><p>例如，JSX 里的 <code>class</code> 变成了 <code>className</code>，而 <code>tabindex</code> 则变为 <code>tabIndex</code>。</p>
-</li>
-<li><p>JSX的顶层<strong>只能有一个根元素</strong>，所以我们很多时候会在外层包裹一个div原生(或者使用后面我们学习的Fragment);</p>
-</li>
-<li><p>JSX中的标签可以是单标签，也可以是双标签。注意:如果是单标签，必须以<code>/&gt;</code>结尾;     </p>
-</li>
-</ul>
-<p><strong>使用 JSX 指定子元素</strong></p>
-<p>假如一个标签里面没有内容，也就是说这个标签是一个单标签的话，你可以使用 <code>/&gt;</code> 来闭合标签，就像 XML 语法一样：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const element = &lt;img src=&#123;user.avatarUrl&#125; /&gt;;</span><br></pre></td></tr></table></figure>
-
-<p>JSX 标签里能够包含很多子元素:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const element = (</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;h1&gt;Hello!&lt;/h1&gt;</span><br><span class="line">    &lt;h2&gt;Good to see you here.&lt;/h2&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-
-
-
-<p><strong>JSX 表示对象</strong></p>
-<p>Babel 会把 JSX 转译成一个名为 <code>React.createElement()</code> 函数调用。</p>
-<p>以下两种示例代码完全等效：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">const element = (</span><br><span class="line">  &lt;h1 className=&quot;greeting&quot;&gt;</span><br><span class="line">    Hello, world!</span><br><span class="line">  &lt;/h1&gt;</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">const element = React.createElement(</span><br><span class="line">  &#x27;h1&#x27;,</span><br><span class="line">  &#123;className: &#x27;greeting&#x27;&#125;,</span><br><span class="line">  &#x27;Hello, world!&#x27;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="疑问：（什么是表达式？表达式和语句又有什么区别呢？）"><a href="#疑问：（什么是表达式？表达式和语句又有什么区别呢？）" class="headerlink" title="疑问：（什么是表达式？表达式和语句又有什么区别呢？）"></a>疑问：（什么是表达式？表达式和语句又有什么区别呢？）</h4><p>语句指的是执行单元，通常以行为单位，表达式指的是可用于计算的式子，即可能产生一个值的式子。语句可以包含有表达式，表达式也可以单独形成一个语句。</p>
-<p><strong>表达式会产生一个值，如赋值表达式：a=1。在控制台输出1。</strong></p>
-<p><strong>表达式可以参与运算</strong>，如：</p>
-<p>var c = 1==2 ? 3 : 4;</p>
-<p>1==2 是一个表达式，1==2 ? 3 : 4这也是一个表达式，表达式是由运算符构成并运算产生结果的语法结构。</p>
-<p>我们通常用”;”来分隔语句，组成程序，而本身就是语句的语法结构如：</p>
-<p>if(){}else{} for(){} 等。</p>
-<p>表达式一般由操作符和操作数组成，而我们把表达式按照语法结构组成语句，然后组成程序，表达式跟语句有重合的部分。</p>
-<p>因此可以理解为表达式通常是语句的一部分或者本身就能起到一个语句的作用，而语句代表一段可执行的程序的最小单元。</p>
 
     </div>
 
@@ -385,13 +331,13 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2022/01/12/ReactNote01:%20React%E7%9A%84%E7%89%B9%E7%82%B9%E5%92%8C%E4%BC%98%E7%82%B9/" rel="prev" title="ReactNote01:React的特点和优点">
-                  <i class="fa fa-chevron-left"></i> ReactNote01:React的特点和优点
+                <a href="/2022/01/17/ReactNote03:%20JSX%E6%9C%AC%E8%B4%A8%E5%8F%8A%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/" rel="prev" title="ReactNote03:JSX本质及源码解析">
+                  <i class="fa fa-chevron-left"></i> ReactNote03:JSX本质及源码解析
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2022/01/17/ReactNote03:%20JSX%E6%9C%AC%E8%B4%A8%E5%8F%8A%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/" rel="next" title="ReactNote03:JSX本质及源码解析">
-                  ReactNote03:JSX本质及源码解析 <i class="fa fa-chevron-right"></i>
+                <a href="/2022/01/31/CSS%E5%87%A0%E7%A7%8D%E5%B8%B8%E8%A7%81%E7%9A%84%E5%B8%83%E5%B1%80/" rel="next" title="CSS几种常见的布局">
+                  CSS几种常见的布局 <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
@@ -503,7 +449,7 @@ setInterval("createtime()",250);
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
 
-<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":null,"repo":null,"client_id":null,"client_secret":null,"admin_user":null,"distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CM","js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"6cd9ceab6705834dfa35375e259873a5"}</script>
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":null,"repo":null,"client_id":null,"client_secret":null,"admin_user":null,"distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CM","js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"9c534f941bbf9dae322e28239c6514dc"}</script>
 <script src="/js/third-party/comments/gitalk.js"></script>
 
 </body>
