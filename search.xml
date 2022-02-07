@@ -9,7 +9,7 @@
 <p>学习从懒散恢复状态，开始啃红宝书以及写文档输出。肩胛骨疼痛的症状也缓解了不少。果然打游戏是一件脑力和体力活。对身体确实不太好。</p>
 <p>1-16</p>
 <p>今天坐高铁回家，因为宿舍天天吵到晚上两三点，而自己想要一个更安静的环境学习，所以跑路回家。回来收拾了房间和行李，整顿好电脑桌显示器。明天准备开工干项目。</p>
-<p>现在准备泡个脚睡个早觉，明天早起把coderwhy的react一到六复习一遍，将代码再打一遍，然后继续一天两集react两道算法题一篇面筋的节奏。11:29</p>
+<p>现在准备泡个脚睡个早觉，明天早起把coderwhy的react一到六复习一遍，将代码再打一遍，然后继续一天两集react两道算法题一篇面经的节奏。11:29</p>
 ]]></content>
       <categories>
         <category>日常</category>
@@ -21,15 +21,12 @@
   <entry>
     <title>ReactNote02:了解JSX语法</title>
     <url>/2022/01/12/ReactNote02:%E4%BA%86%E8%A7%A3JSX%E8%AF%AD%E6%B3%95/</url>
-    <content><![CDATA[<h3 id="欲要学好React，JSX语法须先行"><a href="#欲要学好React，JSX语法须先行" class="headerlink" title="欲要学好React，JSX语法须先行"></a>欲要学好React，JSX语法须先行</h3><span id="more"></span>
-
-
-
-<p>[toc]</p>
-<h3 id="JSX-简介"><a href="#JSX-简介" class="headerlink" title="JSX 简介"></a>JSX 简介</h3><p>先来看这样的一段代码：</p>
+    <content><![CDATA[<h3 id="欲要学好React，JSX语法须先行"><a href="#欲要学好React，JSX语法须先行" class="headerlink" title="欲要学好React，JSX语法须先行"></a>欲要学好React，JSX语法须先行</h3><h3 id="JSX-简介"><a href="#JSX-简介" class="headerlink" title="JSX 简介"></a>JSX 简介</h3><p>先来看这样的一段代码：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const element = &lt;h1&gt;Hello, world!&lt;/h1&gt;;</span><br></pre></td></tr></table></figure>
 
 <p>是不是感觉有点怪怪的，因为它既不是字符串，也不是HTML，它就是 JSX，是一个 JavaScript 的语法扩展。React官方建议在 React 中配合使用 JSX，因为JSX 可以很好地描述 UI 应该呈现出它应有交互的本质形式。</p>
+<span id="more"></span>
+
 <p><strong>在JSX中插入javascript的方式</strong></p>
 <p>在 JSX 语法中，你可以在大括号内放置任何有效的 <strong>JavaScript 表达式</strong>。（什么是表达式？）</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const name = &#x27;james kobe&#x27;;</span><br><span class="line">const element = &lt;h1&gt;Hello, &#123;name&#125;&lt;/h1&gt;;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(</span><br><span class="line">  element,</span><br><span class="line">  document.getElementById(&#x27;root&#x27;)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
@@ -353,9 +350,9 @@
     <title>js数组</title>
     <url>/2022/01/08/js%E6%95%B0%E7%BB%84/</url>
     <content><![CDATA[<h1 id="JavaScript数组探究"><a href="#JavaScript数组探究" class="headerlink" title="JavaScript数组探究"></a>JavaScript数组探究</h1><p>数组作为最基础的数据结构，我们不仅要熟练掌握它，还要了解它的许多特性</p>
+<p>js的数组很灵活，和其他语言的数组不一样，js的数组可以存储不同类型的值</p>
 <span id="more"></span>
 
-<p>js的数组很灵活，和其他语言的数组不一样，js的数组可以存储不同类型的值</p>
 <h3 id="创建一维数组的两种方法"><a href="#创建一维数组的两种方法" class="headerlink" title="创建一维数组的两种方法"></a>创建一维数组的两种方法</h3><p>1.数组字面量法</p>
 <p>需要注意的是：使用数组字面量法创建数组并不会调用Array构造函数</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> arr1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">11</span>, <span class="number">13</span>, <span class="number">24</span>];</span><br></pre></td></tr></table></figure>
@@ -459,10 +456,10 @@
   <entry>
     <title>算法——二叉树</title>
     <url>/2022/01/05/%E7%AE%97%E6%B3%95%E2%80%94%E2%80%94%E4%BA%8C%E5%8F%89%E6%A0%91/</url>
-    <content><![CDATA[<h2 id="力扣刷题之二叉树总结"><a href="#力扣刷题之二叉树总结" class="headerlink" title="力扣刷题之二叉树总结"></a>力扣刷题之二叉树总结</h2><span id="more"></span>
-
-<h4 id="145-二叉树的后序遍历"><a href="#145-二叉树的后序遍历" class="headerlink" title="145. 二叉树的后序遍历"></a><a href="https://leetcode-cn.com/problems/binary-tree-postorder-traversal/">145. 二叉树的后序遍历</a></h4><p>难度简单727</p>
+    <content><![CDATA[<h2 id="力扣刷题之二叉树总结"><a href="#力扣刷题之二叉树总结" class="headerlink" title="力扣刷题之二叉树总结"></a>力扣刷题之二叉树总结</h2><h4 id="145-二叉树的后序遍历"><a href="#145-二叉树的后序遍历" class="headerlink" title="145. 二叉树的后序遍历"></a><a href="https://leetcode-cn.com/problems/binary-tree-postorder-traversal/">145. 二叉树的后序遍历</a></h4><p>难度简单727</p>
 <p>给定一个二叉树，返回它的 <em>后序</em> 遍历。</p>
+<span id="more"></span>
+
 <p><strong>示例:</strong></p>
 <figure class="highlight inform7"><table><tr><td class="code"><pre><span class="line">输入: <span class="comment">[1,null,2,3]</span>  </span><br><span class="line">   1</span><br><span class="line">    \</span><br><span class="line">     2</span><br><span class="line">    /</span><br><span class="line">   3 </span><br><span class="line"></span><br><span class="line">输出: <span class="comment">[3,2,1]</span></span><br></pre></td></tr></table></figure>
 
@@ -705,14 +702,13 @@
   <entry>
     <title>CSS几种常见的布局</title>
     <url>/2022/01/31/CSS%E5%87%A0%E7%A7%8D%E5%B8%B8%E8%A7%81%E7%9A%84%E5%B8%83%E5%B1%80/</url>
-    <content><![CDATA[<h3 id="几种常见且基础的CSS布局"><a href="#几种常见且基础的CSS布局" class="headerlink" title="几种常见且基础的CSS布局"></a>几种常见且基础的CSS布局</h3><span id="more"></span>
-
-<p>[toc]</p>
-<h4 id="一-单列布局"><a href="#一-单列布局" class="headerlink" title="一. 单列布局"></a>一. 单列布局</h4><p>常见的单列布局有两种：</p>
+    <content><![CDATA[<h3 id="几种常见且基础的CSS布局"><a href="#几种常见且基础的CSS布局" class="headerlink" title="几种常见且基础的CSS布局"></a>几种常见且基础的CSS布局</h3><h4 id="一-单列布局"><a href="#一-单列布局" class="headerlink" title="一. 单列布局"></a>一. 单列布局</h4><p>常见的单列布局有两种：</p>
 <ul>
 <li>header,content和footer等宽的单列布局</li>
 <li>header与footer等宽,content略窄的单列布局</li>
 </ul>
+<span id="more"></span>
+
 <ol>
 <li><p>第一种通过设置header、content、footer统一设置width：1000px;或者max-width：1000px即可实现。区别在于显示屏幕小于1000px时，前者会有滚动条出现，而后者不会（也就是说后者显示的是实际宽度）</p>
 <blockquote>
@@ -813,9 +809,9 @@
   <entry>
     <title>ReactNote03:JSX本质及源码解析</title>
     <url>/2022/01/17/ReactNote03:%20JSX%E6%9C%AC%E8%B4%A8%E5%8F%8A%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/</url>
-    <content><![CDATA[<h3 id="JSX的本质"><a href="#JSX的本质" class="headerlink" title="JSX的本质"></a>JSX的本质</h3><span id="more"></span>
+    <content><![CDATA[<h3 id="JSX的本质"><a href="#JSX的本质" class="headerlink" title="JSX的本质"></a>JSX的本质</h3><p>实际上，jsx仅仅只是React.createElement(component, props, …children)函数的语法糖。所有的jsx语法都会被转换为React.createElement语法的调用。</p>
+<span id="more"></span>
 
-<p>实际上，jsx仅仅只是React.createElement(component, props, …children)函数的语法糖。所有的jsx语法都会被转换为React.createElement语法的调用。</p>
 <p>先来看一下几行jsx代码：</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span>nihao<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h2</span>&gt;</span>you are the best<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>1<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>2<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
@@ -927,12 +923,11 @@
   <entry>
     <title>ReactNote04:组件通信方式</title>
     <url>/2022/01/31/ReactNote04:%20%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F/</url>
-    <content><![CDATA[<h3 id="组件间的通信方式"><a href="#组件间的通信方式" class="headerlink" title="组件间的通信方式"></a>组件间的通信方式</h3><span id="more"></span>
-
-<p>[toc]</p>
-<h4 id="1-父组件传递信息给子组件"><a href="#1-父组件传递信息给子组件" class="headerlink" title="1. 父组件传递信息给子组件"></a>1. 父组件传递信息给子组件</h4><blockquote>
+    <content><![CDATA[<h3 id="组件间的通信方式"><a href="#组件间的通信方式" class="headerlink" title="组件间的通信方式"></a>组件间的通信方式</h3><h4 id="1-父组件传递信息给子组件"><a href="#1-父组件传递信息给子组件" class="headerlink" title="1. 父组件传递信息给子组件"></a>1. 父组件传递信息给子组件</h4><blockquote>
 <p>先看React官网的一句话：当 React 元素为用户自定义组件时，它会将 JSX 所接收的属性（attributes）以及子组件（children）转换为单个对象传递给组件，这个对象被称之为 “props”。</p>
 </blockquote>
+<span id="more"></span>
+
 <p>以下例子说明了父组件传递信息给子组件的方式是：在父组件的子组件中写形参的时候，React会将子组件接受到的属性转换为props对象传递给组件，所以渲染子组件的时候就可以使用props里面的数据了。函数组件同理。</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import React, &#123; Component &#125; from &#x27;react&#x27;</span><br><span class="line">class Son extends Component &#123;</span><br><span class="line">    constructor(props) &#123;</span><br><span class="line">        super(props);</span><br><span class="line">        this.state = &#123;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    render() &#123;</span><br><span class="line">        // 为什么这里可以通过this.props取得父组件里面传来的值呢？</span><br><span class="line">        const &#123; name, age, height &#125; = this.props;</span><br><span class="line">        return (</span><br><span class="line">            &lt;div&gt;</span><br><span class="line">                &lt;h2&gt;&#123;name + &quot; &quot; + age + &quot; &quot; + height&#125;&lt;/h2&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default class App extends Component &#123;</span><br><span class="line">    render() &#123;</span><br><span class="line">        return (</span><br><span class="line">            &lt;div&gt;</span><br><span class="line">                &lt;Son name=&quot;beiyep&quot; age=&quot;18&quot; height=&quot;1.88&quot;&gt;&lt;/Son&gt;</span><br><span class="line">                &lt;Son name=&quot;hala&quot; age=&quot;188&quot; height=&quot;1.88&quot;&gt;&lt;/Son&gt;</span><br><span class="line">                &lt;Son name=&quot;indexjs&quot; age=&quot;11118&quot; height=&quot;1.8228&quot;&gt;&lt;/Son&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -958,6 +953,8 @@
 <p><strong><code>apply()</code></strong> 方法调用一个具有给定<code>this</code>值的函数，以及以一个数组（或<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Indexed_collections#working_with_array-like_objects">类数组对象</a>）的形式提供的参数。</p>
 </blockquote>
 <p>总的来说，call和apply的区别就是参数的不同。</p>
+<span id="more"></span>
+
 <h4 id="call的实现"><a href="#call的实现" class="headerlink" title="call的实现"></a>call的实现</h4><p>举个例子：</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> foo = &#123;</span><br><span class="line">    <span class="attr">value</span>: <span class="number">1</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">this</span>.value);</span><br><span class="line">&#125;</span><br><span class="line">bar.call(foo); <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
 
@@ -1027,6 +1024,8 @@
 <p><strong><code>bind()</code></strong> 方法创建一个新的函数，在 <code>bind()</code> 被调用时，这个新函数的 <code>this</code> 被指定为 <code>bind()</code> 的第一个参数，而其余参数将作为新函数的参数，供调用时使用。</p>
 </blockquote>
 <p>也就是说bind和apply和call不一样，bind是返回一个函数，并且可以传入参数。来看一看bind的例子</p>
+<span id="more"></span>
+
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> foo = &#123;</span><br><span class="line">    <span class="attr">value</span>: <span class="number">1</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">this</span>.value);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 返回了一个函数</span></span><br><span class="line"><span class="keyword">var</span> bindFoo = bar.bind(foo); </span><br><span class="line">bindFoo(); <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
 
 <p>bind返回的是一个函数，并且返回的函数可以继续传入参数。</p>
