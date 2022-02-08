@@ -3,13 +3,9 @@
   <entry>
     <title>2022的日常</title>
     <url>/2022/01/10/2022%E7%9A%84%E6%97%A5%E5%B8%B8/</url>
-    <content><![CDATA[<h3 id="January"><a href="#January" class="headerlink" title="January"></a>January</h3><span id="more"></span>
+    <content><![CDATA[<p>二月春风似剪刀</p>
+<span id="more"></span>
 
-<p>1-10</p>
-<p>学习从懒散恢复状态，开始啃红宝书以及写文档输出。肩胛骨疼痛的症状也缓解了不少。果然打游戏是一件脑力和体力活。对身体确实不太好。</p>
-<p>1-16</p>
-<p>今天坐高铁回家，因为宿舍天天吵到晚上两三点，而自己想要一个更安静的环境学习，所以跑路回家。回来收拾了房间和行李，整顿好电脑桌显示器。明天准备开工干项目。</p>
-<p>现在准备泡个脚睡个早觉，明天早起把coderwhy的react一到六复习一遍，将代码再打一遍，然后继续一天两集react两道算法题一篇面经的节奏。11:29</p>
 ]]></content>
       <categories>
         <category>日常</category>
@@ -98,9 +94,7 @@
   <entry>
     <title>hexo美化</title>
     <url>/2022/01/11/hexo%E4%B9%8Bnext%E4%B8%BB%E9%A2%98%E7%BE%8E%E5%8C%96/</url>
-    <content><![CDATA[<h2 id="hexo进阶教程"><a href="#hexo进阶教程" class="headerlink" title="hexo进阶教程"></a>hexo进阶教程</h2><span id="more"></span>
-
-<h3 id="Hexo博客-绑定个人域名"><a href="#Hexo博客-绑定个人域名" class="headerlink" title="Hexo博客-绑定个人域名"></a>Hexo博客-绑定个人域名</h3><ol>
+    <content><![CDATA[<h2 id="hexo进阶教程"><a href="#hexo进阶教程" class="headerlink" title="hexo进阶教程"></a>hexo进阶教程</h2><h3 id="Hexo博客-绑定个人域名"><a href="#Hexo博客-绑定个人域名" class="headerlink" title="Hexo博客-绑定个人域名"></a>Hexo博客-绑定个人域名</h3><ol>
 <li><p>首先得有一个域名，在腾讯云阿里云购买都可以。</p>
 </li>
 <li><p>设置域名解析</p>
@@ -108,7 +102,7 @@
 </ol>
 <img src="https://tva1.sinaimg.cn/large/008i3skNgy1gy926kk6t7j32l60ba76f.jpg" style="zoom: 25%;" />
 
-
+<span id="more"></span>
 
 <ol start="3">
 <li><p>设置CNAME</p>
@@ -168,15 +162,15 @@
   <entry>
     <title>从零开始搭建hexo博客</title>
     <url>/2022/01/05/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BAhexo%E5%8D%9A%E5%AE%A2/</url>
-    <content><![CDATA[<h1 id="用Hexo-快速搭建属于自己的博客"><a href="#用Hexo-快速搭建属于自己的博客" class="headerlink" title="用Hexo 快速搭建属于自己的博客"></a>用Hexo 快速搭建属于自己的博客</h1><span id="more"></span>
-
-<h3 id="环境准备（安装方法自行查阅网上资料）"><a href="#环境准备（安装方法自行查阅网上资料）" class="headerlink" title="环境准备（安装方法自行查阅网上资料）"></a>环境准备（安装方法自行查阅网上资料）</h3><ul>
+    <content><![CDATA[<h1 id="用Hexo-快速搭建属于自己的博客"><a href="#用Hexo-快速搭建属于自己的博客" class="headerlink" title="用Hexo 快速搭建属于自己的博客"></a>用Hexo 快速搭建属于自己的博客</h1><h3 id="环境准备（安装方法自行查阅网上资料）"><a href="#环境准备（安装方法自行查阅网上资料）" class="headerlink" title="环境准备（安装方法自行查阅网上资料）"></a>环境准备（安装方法自行查阅网上资料）</h3><ul>
 <li>git</li>
 <li>node</li>
 <li>npm</li>
 </ul>
 <p>命令行里验证是否安装成功</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git --version</span></span><br><span class="line">git version 2.30.1 (Apple Git-130)</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> node --version</span></span><br><span class="line">v16.4.2</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> npm -v</span></span><br><span class="line">7.18.1</span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
 
 <h3 id="配置SSH-Key"><a href="#配置SSH-Key" class="headerlink" title="配置SSH Key"></a>配置SSH Key</h3><p>如果第一次用git工具，记得配置一下SSH key，为部署本地博客到 Github 做准备。</p>
 <p>如果之前没有创建，则执行以下命令全局配置一下本地账户：</p>
@@ -1056,6 +1050,42 @@
       </categories>
       <tags>
         <tag>JavaScript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ReactNote05:深入源码探究memo、PureComponent</title>
+    <url>/2022/02/08/ReactNote05-%E6%B7%B1%E5%85%A5%E6%8E%A2%E7%A9%B6memo%E3%80%81PureComponent/</url>
+    <content><![CDATA[<h3 id="深入源码探究memo、PureComponent"><a href="#深入源码探究memo、PureComponent" class="headerlink" title="深入源码探究memo、PureComponent"></a>深入源码探究memo、PureComponent</h3><h4 id="窥探PureComponent"><a href="#窥探PureComponent" class="headerlink" title="窥探PureComponent"></a>窥探PureComponent</h4><p>今天学到了PureComponent，它可以起到在Component里面添加SCU的效果，虽然类组件以后会很少用，但是它的底层原理还是要了解一下，也能了解一下React不断进步背后的思想，PureComponent在React里面是怎么实现的呢，肘，跟我进源码（版本是16.3.1）。</p>
+<p>这里安利一下vscode的Bookmarks插件，看源码是非常方便。</p>
+<span id="more"></span>
+
+<blockquote>
+<p>以下源码均为节选</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 路径</span></span><br><span class="line"><span class="comment">// packages/react-reconciler/src/ReactFiberClassComponent.js</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">checkShouldComponentUpdate</span>(<span class="params"></span></span></span><br><span class="line"><span class="params"><span class="function">  workInProgress,</span></span></span><br><span class="line"><span class="params"><span class="function">  ctor,</span></span></span><br><span class="line"><span class="params"><span class="function">  oldProps,</span></span></span><br><span class="line"><span class="params"><span class="function">  newProps,</span></span></span><br><span class="line"><span class="params"><span class="function">  oldState,</span></span></span><br><span class="line"><span class="params"><span class="function">  newState,</span></span></span><br><span class="line"><span class="params"><span class="function">  nextContext,</span></span></span><br><span class="line"><span class="params"><span class="function"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> instance = workInProgress.stateNode;</span><br><span class="line">    </span><br><span class="line">  <span class="comment">// 判断是否使用了shouldComponentUpdate</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> instance.shouldComponentUpdate === <span class="string">&#x27;function&#x27;</span>) &#123;</span><br><span class="line">    <span class="comment">// 使用了shouldComponentUpdate的话，那么就比较State和props的数据</span></span><br><span class="line">    <span class="comment">// 如果变化就返回true，不变化的话就返回false</span></span><br><span class="line">    <span class="keyword">const</span> shouldUpdate = instance.shouldComponentUpdate(</span><br><span class="line">      newProps,</span><br><span class="line">      newState,</span><br><span class="line">      nextContext,</span><br><span class="line">    );</span><br><span class="line">    <span class="keyword">return</span> shouldUpdate;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 判断是否使用了PureReactComponent</span></span><br><span class="line">  <span class="keyword">if</span> (ctor.prototype &amp;&amp; ctor.prototype.isPureReactComponent) &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      <span class="comment">// 浅层比较，注意有取反操作</span></span><br><span class="line">      !shallowEqual(oldProps, newProps) || !shallowEqual(oldState, newState)</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">    </span><br><span class="line">  <span class="comment">// 默认返回的是true，也就是更新</span></span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>这里就弄清楚了判断组件的更新的逻辑，下面我们再看一下shallowEqual这个函数，按住commond进去，</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> shallowEqual <span class="keyword">from</span> <span class="string">&#x27;shared/shallowEqual&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>去<code>share</code>文件夹里面找<code>shallowEqual</code>这个文件</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">shallowEqual</span>(<span class="params">objA: mixed, objB: mixed</span>): <span class="title">boolean</span> </span>&#123;</span><br><span class="line">  <span class="comment">// 同一个对象返回ture，到了checkShouldComponentUpdate那里就是false，因为进行取反操作了</span></span><br><span class="line">  <span class="keyword">if</span> (is(objA, objB)) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 不是对象或者为空就强制刷新</span></span><br><span class="line">  <span class="keyword">if</span> (</span><br><span class="line">    <span class="keyword">typeof</span> objA !== <span class="string">&#x27;object&#x27;</span> ||</span><br><span class="line">    objA === <span class="literal">null</span> ||</span><br><span class="line">    <span class="keyword">typeof</span> objB !== <span class="string">&#x27;object&#x27;</span> ||</span><br><span class="line">    objB === <span class="literal">null</span></span><br><span class="line">  ) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line">	</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">const</span> keysA = <span class="built_in">Object</span>.keys(objA);</span><br><span class="line">  <span class="keyword">const</span> keysB = <span class="built_in">Object</span>.keys(objB);</span><br><span class="line">	</span><br><span class="line">  <span class="comment">// 如果两个对象的key的长度不一样的话，那么数据肯定发生了变化</span></span><br><span class="line">  <span class="keyword">if</span> (keysA.length !== keysB.length) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line">	</span><br><span class="line">  <span class="comment">// 如果A中和B中的key值不一样，那就更新</span></span><br><span class="line">  <span class="comment">// Test for A&#x27;s keys different from B.</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; keysA.length; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (</span><br><span class="line">      !hasOwnProperty.call(objB, keysA[i]) ||</span><br><span class="line">      !is(objA[keysA[i]], objB[keysA[i]])</span><br><span class="line">    ) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="窥探memo"><a href="#窥探memo" class="headerlink" title="窥探memo"></a>窥探memo</h4><p>既然memo和PureComponent作用类似，那么其原理应该也是和PureComponent思想类似</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// packages/react/src/memo.js</span></span><br><span class="line"><span class="keyword">import</span> &#123;REACT_MEMO_TYPE&#125; <span class="keyword">from</span> <span class="string">&#x27;shared/ReactSymbols&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> isValidElementType <span class="keyword">from</span> <span class="string">&#x27;shared/isValidElementType&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 这里是可以传入两个参数的，如果没有传入第二个参数呢？</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">memo</span>&lt;<span class="title">Props</span>&gt;(<span class="params"></span></span></span><br><span class="line"><span class="params"><span class="function">  type: React$ElementType,</span></span></span><br><span class="line"><span class="params"><span class="function">  compare?: (oldProps: Props, newProps: Props) =&gt; boolean,</span></span></span><br><span class="line"><span class="params"><span class="function"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    <span class="attr">$$typeof</span>: REACT_MEMO_TYPE,</span><br><span class="line">    type,</span><br><span class="line">    <span class="attr">compare</span>: compare === <span class="literal">undefined</span> ? <span class="literal">null</span> : compare,</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>那么源码已经用<code>compare = compare !== null ? compare : shallowEqual;</code>帮助我们做了判断，意思就是如果我们传入了自己编写的compare函数，那么就用这个函数，否则它帮我们调用shallowEqual函数。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">updateMemoComponent</span>(<span class="params"></span></span></span><br><span class="line"><span class="params"><span class="function">  current: Fiber | <span class="literal">null</span>,</span></span></span><br><span class="line"><span class="params"><span class="function">  workInProgress: Fiber,</span></span></span><br><span class="line"><span class="params"><span class="function">  Component: any,</span></span></span><br><span class="line"><span class="params"><span class="function">  nextProps: any,</span></span></span><br><span class="line"><span class="params"><span class="function">  updateExpirationTime,</span></span></span><br><span class="line"><span class="params"><span class="function">  renderExpirationTime: ExpirationTime,</span></span></span><br><span class="line"><span class="params"><span class="function"></span>): <span class="title">null</span> | <span class="title">Fiber</span> </span>&#123;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">let</span> currentChild = ((current.child: any): Fiber); <span class="comment">// This is always exactly one child</span></span><br><span class="line">  <span class="keyword">if</span> (updateExpirationTime &lt; renderExpirationTime) &#123;</span><br><span class="line">    <span class="keyword">const</span> prevProps = currentChild.memoizedProps;</span><br><span class="line">    <span class="keyword">let</span> compare = Component.compare;</span><br><span class="line">    compare = compare !== <span class="literal">null</span> ? compare : shallowEqual;</span><br><span class="line">    <span class="keyword">if</span> (compare(prevProps, nextProps) &amp;&amp; current.ref === workInProgress.ref) &#123;</span><br><span class="line">      <span class="keyword">return</span> bailoutOnAlreadyFinishedWork(</span><br><span class="line">        current,</span><br><span class="line">        workInProgress,</span><br><span class="line">        renderExpirationTime,</span><br><span class="line">      );</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>React笔记</category>
+      </categories>
+      <tags>
+        <tag>React</tag>
       </tags>
   </entry>
 </search>
