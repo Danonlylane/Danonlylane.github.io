@@ -1094,6 +1094,8 @@
     <content><![CDATA[<h3 id="为hexo的next主题添加评论系统，在评论区和网友激情对线-doge"><a href="#为hexo的next主题添加评论系统，在评论区和网友激情对线-doge" class="headerlink" title="为hexo的next主题添加评论系统，在评论区和网友激情对线[doge]"></a>为hexo的next主题添加评论系统，在评论区和网友激情对线[doge]</h3><p>早就想为自己的博客添加一个评论系统了，能在评论区发表自己的所思所得，还能和网友激情对线，想想都刺激。</p>
 <p>还要清楚的是，Valine 评论系统在 Next 主题高版本 (7.+) 以上已没有支持，且 Valine 已经很久没有更新维护了。不过，有大佬在 Valine 的基础之上开发了 <a href="https://waline.js.org/">Waline</a> 。还有Gitment最新版next也不支持了。</p>
 <p>这次，我们添加的是能够快速上手安装，配置更加人性化且带后端的 <a href="https://waline.js.org/">Waline</a> 评论系统</p>
+<span id="more"></span>
+
 <h4 id="1-配置数据库"><a href="#1-配置数据库" class="headerlink" title="1.配置数据库"></a>1.配置数据库</h4><p>我们需要注册一个 <a href="https://console.leancloud.app/register">Leancloud 国际版 </a>的账号，注意，一定要是 <strong>国际版</strong>，国内版需要绑定备案的域名，比较麻烦。具体可以在注册时的左上角看到：</p>
 <img src="https://tva1.sinaimg.cn/large/008i3skNgy1gz9fwq8jjqj32p90u0wi2.jpg" style="zoom: 25%;" />
 
@@ -1130,6 +1132,9 @@
 <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Waline</span></span><br><span class="line"><span class="comment"># For more information: https://waline.js.org, https://github.com/walinejs/waline</span></span><br><span class="line"><span class="attr">waline:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span> <span class="comment">#是否开启</span></span><br><span class="line">  <span class="attr">serverURL:</span> <span class="string">waline-server-pearl.vercel.app</span> <span class="comment"># Waline #服务端地址，我们这里就是上面部署的 Vercel 地址</span></span><br><span class="line">  <span class="attr">placeholder:</span> <span class="string">请文明评论呀</span> <span class="comment"># #评论框的默认文字</span></span><br><span class="line">  <span class="attr">avatar:</span> <span class="string">mm</span> <span class="comment"># 头像风格</span></span><br><span class="line">  <span class="attr">meta:</span> [<span class="string">nick</span>, <span class="string">mail</span>, <span class="string">link</span>] <span class="comment"># 自定义评论框上面的三个输入框的内容</span></span><br><span class="line">  <span class="attr">pageSize:</span> <span class="number">10</span> <span class="comment"># 评论数量多少时显示分页</span></span><br><span class="line">  <span class="attr">lang:</span> <span class="string">zh-cn</span> <span class="comment"># 语言, 可选值: en, zh-cn</span></span><br><span class="line">  <span class="comment"># Warning: 不要同时启用 `waline.visitor` 以及 `leancloud_visitors`.</span></span><br><span class="line">  <span class="attr">visitor:</span> <span class="literal">false</span> <span class="comment"># 文章阅读统计</span></span><br><span class="line">  <span class="attr">comment_count:</span> <span class="literal">true</span> <span class="comment"># 如果为 false , 评论数量只会在当前评论页面显示, 主页则不显示</span></span><br><span class="line">  <span class="attr">requiredFields:</span> [] <span class="comment"># 设置用户评论时必填的信息，[nick,mail]: [nick] | [nick, mail]</span></span><br><span class="line">  <span class="attr">libUrl:</span> <span class="comment"># Set custom library cdn url</span></span><br></pre></td></tr></table></figure>
 
 <p>重新部署 <code>Hexo</code> ，就可以看到结果了。</p>
+<h4 id="4-登录管理端"><a href="#4-登录管理端" class="headerlink" title="4. 登录管理端"></a>4. 登录管理端</h4><p>由于 <code>Waline</code> 有服务端，支持评论管理。我们需要注册一个账号作为管理员。</p>
+<p>找到评论框，点击 <code>登录</code> 按钮，会弹出一个窗口，找到用户注册，默认第一个注册的用户为管理员，所以部署好一定要记得及时注册。</p>
+<p>注册好，登录之后即可进入评论管理的后台，可以对评论进行管理。</p>
 ]]></content>
       <categories>
         <category>教程</category>
