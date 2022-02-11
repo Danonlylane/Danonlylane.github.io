@@ -1133,8 +1133,9 @@
 
 <p>重新部署 <code>Hexo</code> ，就可以看到结果了。</p>
 <h4 id="4-登录管理端"><a href="#4-登录管理端" class="headerlink" title="4. 登录管理端"></a>4. 登录管理端</h4><p>由于 <code>Waline</code> 有服务端，支持评论管理。我们需要注册一个账号作为管理员。</p>
-<p>找到评论框，点击 <code>登录</code> 按钮，会弹出一个窗口，找到用户注册，默认第一个注册的用户为管理员，所以部署好一定要记得及时注册。</p>
-<p>注册好，登录之后即可进入评论管理的后台，可以对评论进行管理。</p>
+<p>找到评论框，点击 <code>登录</code> 按钮，会弹出一个窗口，找到用户注册，默认第一个注册的用户为管理员，所以部署好一定要记得及时注册。注册好了之后，登录之后即可进入评论管理的后台，可以对评论进行管理。</p>
+<h4 id="5-其他"><a href="#5-其他" class="headerlink" title="5. 其他"></a>5. 其他</h4><h5 id="5-1-自定义头像"><a href="#5-1-自定义头像" class="headerlink" title="5.1 自定义头像"></a>5.1 自定义头像</h5><p>参考：<a href="https://waline.js.org/guide/client/avatar.html">头像配置 | Waline</a></p>
+<h5 id="5-2-参考"><a href="#5-2-参考" class="headerlink" title="5.2 参考"></a>5.2 参考</h5><p><a href="https://waline.js.org/guide/get-started.html">https://waline.js.org/guide/get-started.html</a></p>
 ]]></content>
       <categories>
         <category>教程</category>
