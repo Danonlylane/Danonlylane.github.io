@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="JavaScript: prototype、__proto__、[[prototype]]的区别, beiyep&#39;s Blog">
-    <meta name="description" content="prototype、__proto__、[[prototype]]三者之间的区别最近在网上看到instanceof的手写版，里面涉及到了prototype、__proto__，仔细推敲 一下代码，发现自己对prototype,__proto">
+    <meta name="description" content="prototype、__proto__、[[prototype]] 三者之间的区别最近在网上看到 instanceof 的手写版，里面涉及到了 prototype、__proto__，仔细推敲 一下代码，发现自己对 prototype, _">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -401,14 +401,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-02-07
+                    2022-02-26
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    919
+                    932
                 </div>
                 
 
@@ -438,10 +438,10 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="prototype、-proto-、-prototype-三者之间的区别"><a href="#prototype、-proto-、-prototype-三者之间的区别" class="headerlink" title="prototype、__proto__、[[prototype]]三者之间的区别"></a>prototype、__proto__、[[prototype]]三者之间的区别</h3><p>最近在网上看到<code>instanceof</code>的手写版，里面涉及到了<code>prototype</code>、<code>__proto__</code>，仔细推敲 一下代码，发现自己对<code>prototype</code>,<code>__proto__</code>的理解不够深刻导致自己对手写版的instanceof代码理解不是很透彻。</p>
+                <h3 id="prototype、-proto-、-prototype-三者之间的区别"><a href="#prototype、-proto-、-prototype-三者之间的区别" class="headerlink" title="prototype、__proto__、[[prototype]] 三者之间的区别"></a>prototype、__proto__、[[prototype]] 三者之间的区别</h3><p>最近在网上看到 <code>instanceof</code> 的手写版，里面涉及到了 <code>prototype</code>、<code>__proto__</code>，仔细推敲 一下代码，发现自己对 <code>prototype</code>, <code>__proto__ </code> 的理解不够深刻导致自己对手写版的 instanceof 代码理解不是很透彻。</p>
 <span id="more"></span>
 
-<p>首先来看一下<code>instanceof</code>的手写代码</p>
+<p>首先来看一下 <code>instanceof</code> 的手写代码</p>
 <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">myInstanceof</span><span class="token punctuation">(</span><span class="token parameter">obj<span class="token punctuation">,</span> constructor</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
   	<span class="token comment">// 拿到obj的</span>
     <span class="token keyword">let</span> implicitPrototype <span class="token operator">=</span> obj<span class="token operator">?.</span>__proto__<span class="token punctuation">;</span>
@@ -455,56 +455,55 @@
 
 
 
-<p>如果不是很清楚<code>prototype</code>,<code>__proto__</code>的话，很难正确理解上述代码。所以我们先要搞清楚它们的区别。</p>
+<p>如果不是很清楚 <code>prototype</code> , <code>__proto__</code> 的话，很难正确理解上述代码。所以我们先要搞清楚它们的区别。</p>
 <p><strong>1. 概念区分</strong></p>
-<p>其实说<code>__proto__</code>并不准确，确切的说是对象的<code>[[prototype]]</code>属性，只不过在主流的浏览器中，都用<code>__proto__</code>来代表<code>[[prototype]]</code>属性，因为<code>[[prototype]]</code>只是一个标准，而针对这个标准，不同的浏览器有不同的实现方式。在ES5中用<code>Object.getPrototypeOf</code>函数获得一个对象的<code>[[prototype]]</code>。ES6中，使用<code>Object.setPrototypeOf</code>可以直接修改一个对象的<code>[[prototype]]</code>。</p>
-<p>而<code>prototype</code>属性是只有函数才特有的属性，当你创建一个函数时，js会自动为这个函数加上<code>prototype</code>属性，值是一个空对象。所以，函数在js中是非常特殊的，是所谓的一等公民。</p>
+<p>其实说 <code>__proto__</code> 并不准确，确切的说是对象的 <code>[[prototype]]</code> 属性，只不过在主流的浏览器中，都用 <code>__proto__</code> 来代表 <code>[[prototype]]</code> 属性，因为 <code>[[prototype]] </code>只是一个标准，而针对这个标准，不同的浏览器有不同的实现方式。在ES5中用 <code>Object.getPrototypeOf</code> 函数获得一个对象的 <code>[[prototype]]</code>。ES6中，使用  <code>Object.setPrototypeOf</code> 可以直接修改一个对象的 <code>[[prototype]]</code>。</p>
+<p>而 <code>prototype</code> 属性是只有函数才特有的属性，当你创建一个函数时，js会自动为这个函数加上 <code>prototype</code> 属性，值是一个空对象。所以，函数在js中是非常特殊的，是所谓的一等公民。</p>
 <p><strong>2.必须明确</strong></p>
-<p><code>__proto__</code>是隐式原型</p>
-<p><code>prototype</code>是显式原型</p>
-<p>显式原型 ：每一个函数在创建之后都会拥有一个名为<code>prototype</code>的属性，这个属性指向函数的原型对象。</p>
-<p>隐式原型：JavaScript中任意对象都有一个内置属性<code>[[prototype]]</code>，在ES5之前没有标准的方法访问这个内置属性，但是大多数浏览器都支持通过<code>__proto__</code>来访问。</p>
-<p>注意: <code>Object.prototype</code> 这个对象是个例外，它的<code>__proto__</code>值为<code>null</code></p>
+<p><code>__proto__ </code>是隐式原型</p>
+<p><code>prototype</code> 是显式原型</p>
+<p>显式原型 ：每一个函数在创建之后都会拥有一个名为 <code>prototype</code> 的属性，这个属性指向函数的原型对象。</p>
+<p>隐式原型：JavaScript中任意对象都有一个内置属性 <code>[[prototype]]</code>，在ES5之前没有标准的方法访问这个内置属性，但是大多数浏览器都支持通过 <code>__proto__</code> 来访问。</p>
+<p>注意:  <code>Object.prototype</code> 这个对象是个例外，它的 <code>__proto__</code> 值为 <code>null</code></p>
 <p><strong>二者的关系：</strong></p>
-<p><strong>隐式原型指向创建这个对象的函数(constructor)的prototype</strong></p>
+<p><strong>隐式原型指向创建这个对象的函数(constructor)的 prototype</strong></p>
 <p><strong>3.他们的作用</strong></p>
-<p>隐式原型的作用：构成原型链，同样用于实现基于原型的继承。举个例子，当我们访问obj这个对象中的x属性时，如果在obj中找不到，那么就会沿着<code>__proto__</code>依次查找。</p>
+<p>隐式原型的作用：构成原型链，同样用于实现基于原型的继承。举个例子，当我们访问 obj 这个对象中的x属性时，如果在 obj 中找不到，那么就会沿着 <code>__proto__</code> 依次查找。</p>
 <p>显式原型的作用：用来实现基于原型的继承与属性的共享</p>
-<p>所以现在我们可以分析一下<code>instanceof</code>代码了。一般来说，<code>instanceof</code>内部实现机制和隐式原型、显式原型有直接的关系。<code>instanceof</code>的左值一般是一个对象，右值一般是一个构造函数，用来判断左值是否是右值的实例。</p>
+<p>所以现在我们可以分析一下 <code>instanceof </code>代码了。一般来说，<code>instanceof </code>内部实现机制和隐式原型、显式原型有直接的关系。<code>instanceof </code>的左值一般是一个对象，右值一般是一个构造函数，用来判断左值是否是右值的实例。</p>
 <p>所以在我们的手写代码中：</p>
 <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">//设 obj instanceof constructor</span>
 <span class="token comment">//通过判断</span>
  obj<span class="token punctuation">.</span>__proto__<span class="token punctuation">.</span>__proto__ <span class="token operator">...</span><span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token operator">===</span> constructor<span class="token punctuation">.</span>prototype
 <span class="token comment">//最终返回true or false</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p>也就是一直沿着obj的<code>__proto__</code>一直寻找下去，知道等于<code>constructor.prototype</code>或者<code>null</code>为止。</p>
+<p>也就是一直沿着obj的 <code>__proto__ </code> 一直寻找下去，知道等于 <code>constructor.prototype</code> 或者 <code>null</code> 为止。</p>
 <p>这就是instanceof的原理</p>
 <p>4.进一步的探究</p>
 <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>Object <span class="token keyword">instanceof</span> <span class="token class-name">Function</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//true</span>
 console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>Function <span class="token keyword">instanceof</span> <span class="token class-name">Object</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//true</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-<p>上面两行代码的结果都为true，这就有点奇怪了</p>
-<p>接下来我们来探究一下：</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token class-name">Object</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>__proto__<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//null</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>上面两行代码的结果都为 true，这就有点奇怪了</p>
+<h6 id="接下来我们来探究一下："><a href="#接下来我们来探究一下：" class="headerlink" title="接下来我们来探究一下："></a>接下来我们来探究一下：</h6><pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token class-name">Object</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>__proto__<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//null</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p>所以原型链的尽头（root）是<code>Object.prototype</code>。<strong>所有对象均从<code>Object.prototype</code>继承属性。</strong></p>
+<p>所以原型链的尽头（root）是 <code>Object.prototype</code>。<strong>所有对象均从 <code>Object.prototype</code> 继承属性。</strong></p>
 <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token class-name">Function</span><span class="token punctuation">.</span>prototype<span class="token punctuation">)</span><span class="token punctuation">;</span>
 console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>Function<span class="token punctuation">.</span>__proto__<span class="token punctuation">)</span><span class="token punctuation">;</span>
 console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token class-name">Function</span><span class="token punctuation">.</span>prototype <span class="token operator">===</span> Function<span class="token punctuation">.</span>__proto__<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//true</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
-<p>所以<code>Function.prototype</code>和<code>Function.__proto__</code>为<strong>同一对象</strong>。</p>
+<p>所以 <code>Function.prototype</code>  和 <code>Function.__proto__</code> 为<strong>同一对象</strong>。</p>
 <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token class-name">Function</span><span class="token punctuation">.</span>prototype <span class="token operator">===</span> Array<span class="token punctuation">.</span>__proto__<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//true</span>
 console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token class-name">Function</span><span class="token punctuation">.</span>prototype <span class="token operator">===</span> String<span class="token punctuation">.</span>__proto__<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//true</span>
 console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token class-name">Function</span><span class="token punctuation">.</span>prototype <span class="token operator">===</span> Object<span class="token punctuation">.</span>__proto__<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//true</span>
 console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token class-name">Function</span><span class="token punctuation">.</span>prototype <span class="token operator">===</span> Number<span class="token punctuation">.</span>__proto__<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//true</span>
 console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token class-name">Function</span><span class="token punctuation">.</span>prototype <span class="token operator">===</span> Boolean<span class="token punctuation">.</span>__proto__<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//true</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p>这意味着： <strong><code>Object</code>/<code>Array</code>/<code>String</code>等等构造函数本质上和<code>Function</code>一样，均继承于<code>Function.prototype</code>。</strong></p>
+<p>这意味着： <strong><code>Object</code>/<code>Array</code>/<code>String</code> 等等构造函数本质上和 <code>Function</code> 一样，均继承于 <code>Function.prototype</code>。</strong></p>
 <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token class-name">Function</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>__proto__ <span class="token operator">===</span> <span class="token class-name">Object</span><span class="token punctuation">.</span>prototype<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//true</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p>最后<code>Function.prototype</code>直接继承<code>Object.prototype</code></p>
-<p><strong>总结</strong>：<strong>先有<code>Object.prototype</code>（原型链顶端），<code>Function.prototype</code>继承<code>Object.prototype</code>而产生，最后，<code>Function</code>和<code>Object</code>和其它构造函数继承<code>Function.prototype</code>而产生。</strong></p>
-
+<p>最后 <code>Function.prototype</code> 直接继承 <code>Object.prototype</code></p>
+<p><strong>总结</strong>：<strong>先有 <code>Object.prototype</code>（原型链顶端）， <code>Function.prototype</code> 继承 <code>Object.prototype</code> 而产生，最后，<code>Function</code> 和 <code>Object</code> 和其它构造函数继承 <code>Function.prototype</code> 而产生。</strong></p>
+<h4 id=""><a href="#" class="headerlink" title=""></a></h4>
                 
             </div>
             <hr/>
@@ -530,7 +529,7 @@ console<span class="token punctuation">.</span><span class="token function">log<
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2022/02/03/javascript-prototype-proto-prototype-de-qu-bie/">http://example.com/2022/02/03/javascript-prototype-proto-prototype-de-qu-bie/</a>
+                    <a href="https://danonlylane.github.io/2022/02/03/javascript-prototype-proto-prototype-de-qu-bie/">https://danonlylane.github.io/2022/02/03/javascript-prototype-proto-prototype-de-qu-bie/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -883,35 +882,31 @@ apply() 方法调用一个具有给
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/01/31/css-ji-chong-chang-jian-de-bu-ju/">
+                <a href="/2022/02/01/a-li-yun-fu-wu-qi-cao-zuo-ji-lu/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="CSS几种常见的布局">
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="阿里云服务器操作记录">
                         
-                        <span class="card-title">CSS几种常见的布局</span>
+                        <span class="card-title">阿里云服务器操作记录</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            几种常见且基础的CSS布局一. 单列布局常见的单列布局有两种：
-
-header,content和footer等宽的单列布局
-header与footer等宽,content略窄的单列布局
-
+                            
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-31
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-01
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/CSS%E7%AC%94%E8%AE%B0/" class="post-category">
-                                    CSS笔记
+                            <a href="/categories/%E6%95%99%E7%A8%8B/" class="post-category">
+                                    教程
                                 </a>
                             
                             
@@ -921,8 +916,8 @@ header与footer等宽,content略窄的单列布局
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/CSS/">
-                        <span class="chip bg-color">CSS</span>
+                    <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/">
+                        <span class="chip bg-color">服务器</span>
                     </a>
                     
                 </div>
@@ -1072,7 +1067,7 @@ header与footer等宽,content略窄的单列布局
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">18.9k</span>
+                        class="white-color">20.8k</span>
             
             
             

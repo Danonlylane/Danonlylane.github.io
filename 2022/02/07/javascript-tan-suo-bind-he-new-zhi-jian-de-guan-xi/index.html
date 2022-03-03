@@ -5,9 +5,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="JavaScript:探索bind和new之间的关系, beiyep&#39;s Blog">
-    <meta name="description" content="JavaScript:探索bind和new之间的关系首先了解一下bind的定义
+    <meta name="description" content="JavaScript: 手写 bind 和探索 bind 与 new 之间的关系首先了解一下 bind 的定义
 
-bind() 方法创建一个新的函数，在 bind() 被调用时，这个新函数的 this 被指定为 bind() 的第一个参数，而其余参数将作为新函数的参数，供">
+bind() 方法创建一个新的函数，在 bind() 被调用时，这个新函数的 this 被指定为 bind() 的第一个参数，">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -403,21 +403,21 @@ bind() 方法创建一个新的函数，在 bind() 被调用时，这个新函�
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-02-07
+                    2022-02-28
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    910
+                    1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    4 分
                 </div>
                 
 
@@ -440,11 +440,11 @@ bind() 方法创建一个新的函数，在 bind() 被调用时，这个新函�
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="JavaScript-探索bind和new之间的关系"><a href="#JavaScript-探索bind和new之间的关系" class="headerlink" title="JavaScript:探索bind和new之间的关系"></a>JavaScript:探索bind和new之间的关系</h3><p>首先了解一下bind的定义</p>
+                <h3 id="JavaScript-手写-bind-和探索-bind-与-new-之间的关系"><a href="#JavaScript-手写-bind-和探索-bind-与-new-之间的关系" class="headerlink" title="JavaScript: 手写 bind 和探索 bind 与 new 之间的关系"></a>JavaScript: 手写 bind 和探索 bind 与 new 之间的关系</h3><p>首先了解一下 <code>bind</code> 的定义</p>
 <blockquote>
 <p><strong><code>bind()</code></strong> 方法创建一个新的函数，在 <code>bind()</code> 被调用时，这个新函数的 <code>this</code> 被指定为 <code>bind()</code> 的第一个参数，而其余参数将作为新函数的参数，供调用时使用。</p>
 </blockquote>
-<p>也就是说bind和apply和call不一样，bind是返回一个函数，并且可以传入参数。来看一看bind的例子</p>
+<p>也就是说 <code>bind</code> 和 <code>apply</code> 、<code>call</code> 不一样，<code>bind</code> 是返回一个待执行函数，并且可以传入参数。来看一看 <code>bind</code> 的例子</p>
 <span id="more"></span>
 
 <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">var</span> foo <span class="token operator">=</span> <span class="token punctuation">{</span>
@@ -455,9 +455,10 @@ bind() 方法创建一个新的函数，在 bind() 被调用时，这个新函�
 <span class="token punctuation">}</span>
 <span class="token comment">// 返回了一个函数</span>
 <span class="token keyword">var</span> bindFoo <span class="token operator">=</span> <span class="token function">bar</span><span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span>foo<span class="token punctuation">)</span><span class="token punctuation">;</span> 
-<span class="token function">bindFoo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 1</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token function">bindFoo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 1</span>
+<span class="token comment">// bindFoo() 相当于 bar.bind(foo)();</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p>bind返回的是一个函数，并且返回的函数可以继续传入参数。</p>
+<p>所以 <code>bind</code> 返回的是一个函数（这也是为什么 <code>new</code> 可以改变 <code>bind</code>  后函数的 <code>this</code> 指向的原因）并且返回的函数可以继续传入参数。</p>
 <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">var</span> foo <span class="token operator">=</span> <span class="token punctuation">{</span>
     value<span class="token operator">:</span> <span class="token number">1</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
@@ -477,7 +478,7 @@ bind() 方法创建一个新的函数，在 bind() 被调用时，这个新函�
 <span class="token class-name">Function</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">myBind</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">context</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 
     <span class="token keyword">var</span> self <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
-    <span class="token comment">// 获取bind2函数从第二个参数到最后一个参数</span>
+    <span class="token comment">// 获取myBind第二个参数到最后一个参数</span>
     <span class="token keyword">var</span> args <span class="token operator">=</span> <span class="token class-name">Array</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span>arguments<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
     <span class="token keyword">return</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -489,23 +490,24 @@ bind() 方法创建一个新的函数，在 bind() 被调用时，这个新函�
 
 
 
-<p>到这里bind的基本功能差不多完成了，但是bind还有一个特点，那就是和new配合使用的时候，bind 时指定的 this 值会失效，但传入的参数依然生效。下面这个例子就可以说明。</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">var</span> foo <span class="token operator">=</span> <span class="token punctuation">{</span>
+<p>到这里 <code>bind</code> 的基本功能差不多完成了，但是 <code>bind</code> 还有一个特点，那就是和 <code>new</code> 配合使用的时候，<code>bind </code> 时指定的  <code>this</code>  值会失效，但传入的参数依然生效。下面这个例子就可以说明。</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">var</span> foo <span class="token operator">=</span> <span class="token punctuation">{</span>
     value<span class="token operator">:</span> <span class="token number">1</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
-function <span class="token function">bar</span><span class="token punctuation">(</span>name<span class="token punctuation">,</span> age<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">this</span><span class="token punctuation">.</span>habit <span class="token operator">=</span> <span class="token string">'shopping'</span><span class="token punctuation">;</span>
+<span class="token keyword">function</span> <span class="token function">bar</span><span class="token punctuation">(</span><span class="token parameter">name<span class="token punctuation">,</span> age</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>habit <span class="token operator">=</span> <span class="token string">'game'</span><span class="token punctuation">;</span>
     console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
     console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
     console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>age<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 <span class="token keyword">var</span> bindFoo <span class="token operator">=</span> bar<span class="token punctuation">.</span><span class="token function">myBind</span><span class="token punctuation">(</span>foo<span class="token punctuation">,</span> <span class="token string">'hcb'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">var</span> obj <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">bindFoo</span><span class="token punctuation">(</span><span class="token string">'18'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// this值已经失效了</span>
+<span class="token keyword">var</span> obj <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">bindFoo</span><span class="token punctuation">(</span><span class="token string">'18'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 这里bind绑定的this值已经失效了</span>
 <span class="token comment">// undefined</span>
 <span class="token comment">// hcb</span>
 <span class="token comment">// 18</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>所以我们要通过修改返回的函数的原型来实现</p>
+<p>特别要注意下面的代码执行完只是返回 <code>fBound</code> ，函数里面的语句还未执行，所以这就是为什么这里能判断 <code>fBound</code> 里面的 <code>this</code> 到底指向普通函数还是构造函数</p>
 <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token class-name">Function</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">myBind</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">context</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">var</span> self <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
     <span class="token keyword">var</span> args <span class="token operator">=</span> <span class="token class-name">Array</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span>arguments<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -523,7 +525,7 @@ function <span class="token function">bar</span><span class="token punctuation">
     <span class="token keyword">return</span> fBound<span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p>但是在这个写法中，我们直接将 fBound.prototype = this.prototype，我们直接修改 fBound.prototype 的时候，也会直接修改绑定函数的 prototype。这个时候，我们可以通过一个空函数来进行中转。</p>
+<p>但是在这个写法中，我们直接将 fBound.prototype = this.prototype，我们直接修改 fBound.prototype 的时候，也会直接修改绑定函数的 prototype。为什么也会直接修改呢？因为这里是引用类型，这个时候，我们可以通过一个空函数来进行中转。</p>
 <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token class-name">Function</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">myBind</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">context</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 
   	<span class="token comment">// 只有函数才能调用bind，所以要加这个判断</span>
@@ -548,7 +550,7 @@ function <span class="token function">bar</span><span class="token punctuation">
 
 
 
-<p>来看一下new的手写实现：</p>
+<p>来看一下 <code>new</code> 的手写实现：</p>
 <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">myNew4</span><span class="token punctuation">(</span><span class="token parameter">fn<span class="token punctuation">,</span> <span class="token operator">...</span>args</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> fn <span class="token operator">!==</span> <span class="token string">'function'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">throw</span> <span class="token string">'fn must be a function'</span><span class="token punctuation">;</span>
@@ -591,7 +593,7 @@ function <span class="token function">bar</span><span class="token punctuation">
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2022/02/07/javascript-tan-suo-bind-he-new-zhi-jian-de-guan-xi/">http://example.com/2022/02/07/javascript-tan-suo-bind-he-new-zhi-jian-de-guan-xi/</a>
+                    <a href="https://danonlylane.github.io/2022/02/07/javascript-tan-suo-bind-he-new-zhi-jian-de-guan-xi/">https://danonlylane.github.io/2022/02/07/javascript-tan-suo-bind-he-new-zhi-jian-de-guan-xi/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -1129,7 +1131,7 @@ apply() 方法调用一个具有给
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">18.9k</span>
+                        class="white-color">20.8k</span>
             
             
             

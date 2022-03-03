@@ -4,11 +4,15 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="2022的日常, beiyep&#39;s Blog">
-    <meta name="description" content="二月春风似剪刀
+    <meta name="keywords" content="阿里云服务器操作记录, beiyep&#39;s Blog">
+    <meta name="description" content="阿里云服务器默认不开启 root 远程登录需要先进行 VNC 远程连接登录，再进行实例登录。
+可以在Mac的命令行进行登录
+ssh root@你的公网地址
+password 你的密码
 
 
-">
+
+阿里云 centos 安装 nginxyum in">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -20,7 +24,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>2022的日常 | beiyep&#39;s Blog</title>
+    <title>阿里云服务器操作记录 | beiyep&#39;s Blog</title>
     <link rel="icon" type="image/png" href="/myfavicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -251,12 +255,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">2022的日常</h1>
+                    <h1 class="description center-align post-title">阿里云服务器操作记录</h1>
                 </div>
             </div>
         </div>
@@ -372,8 +376,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E7%94%9F%E6%B4%BB-%E8%AE%B0%E5%BD%95/">
-                                <span class="chip bg-color">生活&amp;记录</span>
+                            <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/">
+                                <span class="chip bg-color">服务器</span>
                             </a>
                         
                     </div>
@@ -384,8 +388,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E6%97%A5%E5%B8%B8/" class="post-category">
-                                日常
+                            <a href="/categories/%E6%95%99%E7%A8%8B/" class="post-category">
+                                教程
                             </a>
                         
                     </div>
@@ -397,21 +401,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-01-10
+                    2022-02-01
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-02-07
+                    2022-02-26
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    7
+                    316
                 </div>
                 
 
@@ -441,9 +445,47 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>二月春风似剪刀</p>
-<span id="more"></span>
+                <h3 id="阿里云服务器默认不开启-root-远程登录"><a href="#阿里云服务器默认不开启-root-远程登录" class="headerlink" title="阿里云服务器默认不开启 root 远程登录"></a>阿里云服务器默认不开启 root 远程登录</h3><p>需要先进行 VNC 远程连接登录，再进行实例登录。</p>
+<p>可以在Mac的命令行进行登录</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">ssh root@你的公网地址
+password 你的密码<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
+
+
+<h3 id="阿里云-centos-安装-nginx"><a href="#阿里云-centos-安装-nginx" class="headerlink" title="阿里云 centos 安装 nginx"></a>阿里云 centos 安装 nginx</h3><pre class="line-numbers language-none"><code class="language-none">yum install nginx<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>就一条命令就行，yum 会自动帮我们安装 nginx 所需要的依赖的</p>
+<p>如果出现错误，那么就是 etc/yum.repos.d/CentOS-AppStream.repo 里面的镜像源出现了错误。</p>
+<p>2022.02.16（出现了镜像源改变，所以我们需要改配置文件里面的路径）</p>
+<p>将这个文件夹下的所有</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">baseurl=http://mirrors.cloud.aliyuncs.com/$contentdir/$releasever/AppStream/$basearch/os/<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>改成：</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">baseurl=https://mirrors.aliyun.com/$contentdir/$releasever-stream/AppStream/$basearch/os/<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>比如：</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"># CentOS-AppStream.repo
+#
+# The mirror system uses the connecting IP address of the client and the
+# update status of each mirror to pick mirrors that are updated to and
+# geographically close to the client.  You should use this for CentOS updates
+# unless you are manually picking other mirrors.
+#
+# If the mirrorlist= does not work for you, as a fall back you can try the
+# remarked out baseurl= line instead.
+#
+#
+
+[AppStream]
+name=CentOS-$releasever - AppStream
+#baseurl=http://mirrors.cloud.aliyuncs.com/$contentdir/$releasever/AppStream/$basearch/os/
+#改为下面这个
+baseurl=http://mirrors.aliyuncs.com/$contentdir/$releasever-stream/AppStream/$basearch/os/
+gpgcheck=1
+enabled=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-centosofficial<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>安装成功，配置端口之后重启服务即可</p>
 
                 
             </div>
@@ -470,7 +512,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2022/01/10/2022-de-ri-chang/">http://example.com/2022/01/10/2022-de-ri-chang/</a>
+                    <a href="https://danonlylane.github.io/2022/02/01/a-li-yun-fu-wu-qi-cao-zuo-ji-lu/">https://danonlylane.github.io/2022/02/01/a-li-yun-fu-wu-qi-cao-zuo-ji-lu/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -508,8 +550,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E7%94%9F%E6%B4%BB-%E8%AE%B0%E5%BD%95/">
-                                    <span class="chip bg-color">生活&amp;记录</span>
+                                <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/">
+                                    <span class="chip bg-color">服务器</span>
                                 </a>
                             
                         </div>
@@ -772,82 +814,25 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2022/01/11/hexo-zhi-next-zhu-ti-mei-hua/">
+                <a href="/2022/02/03/javascript-prototype-proto-prototype-de-qu-bie/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="hexo：next主题美化进阶设置">
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="JavaScript: prototype、__proto__、[[prototype]]的区别">
                         
-                        <span class="card-title">hexo：next主题美化进阶设置</span>
+                        <span class="card-title">JavaScript: prototype、__proto__、[[prototype]]的区别</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            hexo进阶教程[toc]
-Hexo博客-绑定个人域名
-首先得有一个域名，在腾讯云阿里云购买都可以。
-
-设置域名解析
-
-
-
+                            prototype、__proto__、[[prototype]] 三者之间的区别最近在网上看到 instanceof 的手写版，里面涉及到了 prototype、__proto__，仔细推敲 一下代码，发现自己对 prototype, _
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-01-11
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-02-03
                         </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E6%95%99%E7%A8%8B/" class="post-category">
-                                    教程
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/hexo/">
-                        <span class="chip bg-color">hexo</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2022/01/08/javascript-shu-zu-tan-jiu/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="JavaScript：JavaScript数组探究">
-                        
-                        <span class="card-title">JavaScript：JavaScript数组探究</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            JavaScript数组探究数组作为最基础的数据结构，我们不仅要熟练掌握它，还要了解它的许多特性
-js的数组很灵活，和其他语言的数组不一样，js的数组可以存储不同类型的值
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-08
-                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -865,6 +850,59 @@ js的数组很灵活，和其他语言的数组不一样，js的数组可以存�
                     
                     <a href="/tags/JavaScript/">
                         <span class="chip bg-color">JavaScript</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/01/31/css-ji-chong-chang-jian-de-bu-ju/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="CSS几种常见的布局">
+                        
+                        <span class="card-title">CSS几种常见的布局</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            几种常见且基础的CSS布局一. 单列布局常见的单列布局有两种：
+
+header,content和footer等宽的单列布局
+header与footer等宽,content略窄的单列布局
+
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-31
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/CSS%E7%AC%94%E8%AE%B0/" class="post-category">
+                                    CSS笔记
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/CSS/">
+                        <span class="chip bg-color">CSS</span>
                     </a>
                     
                 </div>
@@ -1014,7 +1052,7 @@ js的数组很灵活，和其他语言的数组不一样，js的数组可以存�
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">18.9k</span>
+                        class="white-color">20.8k</span>
             
             
             

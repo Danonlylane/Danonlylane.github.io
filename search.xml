@@ -1,20 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>2022的日常</title>
-    <url>/2022/01/10/2022-de-ri-chang/</url>
-    <content><![CDATA[<p>二月春风似剪刀</p>
-<span id="more"></span>
-
-]]></content>
-      <categories>
-        <category>日常</category>
-      </categories>
-      <tags>
-        <tag>生活&amp;记录</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>CSS几种常见的布局</title>
     <url>/2022/01/31/css-ji-chong-chang-jian-de-bu-ju/</url>
     <content><![CDATA[<h3 id="几种常见且基础的CSS布局"><a href="#几种常见且基础的CSS布局" class="headerlink" title="几种常见且基础的CSS布局"></a>几种常见且基础的CSS布局</h3><h4 id="一-单列布局"><a href="#一-单列布局" class="headerlink" title="一. 单列布局"></a>一. 单列布局</h4><p>常见的单列布局有两种：</p>
@@ -469,13 +455,89 @@ foo<span class="token punctuation">.</span><span class="token function">fn</span
       </tags>
   </entry>
   <entry>
+    <title>JavaScript: prototype、__proto__、[[prototype]]的区别</title>
+    <url>/2022/02/03/javascript-prototype-proto-prototype-de-qu-bie/</url>
+    <content><![CDATA[<h3 id="prototype、-proto-、-prototype-三者之间的区别"><a href="#prototype、-proto-、-prototype-三者之间的区别" class="headerlink" title="prototype、__proto__、[[prototype]] 三者之间的区别"></a>prototype、__proto__、[[prototype]] 三者之间的区别</h3><p>最近在网上看到 <code>instanceof</code> 的手写版，里面涉及到了 <code>prototype</code>、<code>__proto__</code>，仔细推敲 一下代码，发现自己对 <code>prototype</code>, <code>__proto__ </code> 的理解不够深刻导致自己对手写版的 instanceof 代码理解不是很透彻。</p>
+<span id="more"></span>
+
+<p>首先来看一下 <code>instanceof</code> 的手写代码</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">myInstanceof</span><span class="token punctuation">(</span><span class="token parameter">obj<span class="token punctuation">,</span> constructor</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  	<span class="token comment">// 拿到obj的</span>
+    <span class="token keyword">let</span> implicitPrototype <span class="token operator">=</span> obj<span class="token operator">?.</span>__proto__<span class="token punctuation">;</span>
+    <span class="token keyword">const</span> displayPrototype <span class="token operator">=</span> constructor<span class="token punctuation">.</span>prototype<span class="token punctuation">;</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>implicitPrototype<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>implicitPrototype <span class="token operator">===</span> displayPrototype<span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+        implicitPrototype <span class="token operator">=</span> implicitPrototype<span class="token punctuation">.</span>__proto__<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>如果不是很清楚 <code>prototype</code> , <code>__proto__</code> 的话，很难正确理解上述代码。所以我们先要搞清楚它们的区别。</p>
+<p><strong>1. 概念区分</strong></p>
+<p>其实说 <code>__proto__</code> 并不准确，确切的说是对象的 <code>[[prototype]]</code> 属性，只不过在主流的浏览器中，都用 <code>__proto__</code> 来代表 <code>[[prototype]]</code> 属性，因为 <code>[[prototype]] </code>只是一个标准，而针对这个标准，不同的浏览器有不同的实现方式。在ES5中用 <code>Object.getPrototypeOf</code> 函数获得一个对象的 <code>[[prototype]]</code>。ES6中，使用  <code>Object.setPrototypeOf</code> 可以直接修改一个对象的 <code>[[prototype]]</code>。</p>
+<p>而 <code>prototype</code> 属性是只有函数才特有的属性，当你创建一个函数时，js会自动为这个函数加上 <code>prototype</code> 属性，值是一个空对象。所以，函数在js中是非常特殊的，是所谓的一等公民。</p>
+<p><strong>2.必须明确</strong></p>
+<p><code>__proto__ </code>是隐式原型</p>
+<p><code>prototype</code> 是显式原型</p>
+<p>显式原型 ：每一个函数在创建之后都会拥有一个名为 <code>prototype</code> 的属性，这个属性指向函数的原型对象。</p>
+<p>隐式原型：JavaScript中任意对象都有一个内置属性 <code>[[prototype]]</code>，在ES5之前没有标准的方法访问这个内置属性，但是大多数浏览器都支持通过 <code>__proto__</code> 来访问。</p>
+<p>注意:  <code>Object.prototype</code> 这个对象是个例外，它的 <code>__proto__</code> 值为 <code>null</code></p>
+<p><strong>二者的关系：</strong></p>
+<p><strong>隐式原型指向创建这个对象的函数(constructor)的 prototype</strong></p>
+<p><strong>3.他们的作用</strong></p>
+<p>隐式原型的作用：构成原型链，同样用于实现基于原型的继承。举个例子，当我们访问 obj 这个对象中的x属性时，如果在 obj 中找不到，那么就会沿着 <code>__proto__</code> 依次查找。</p>
+<p>显式原型的作用：用来实现基于原型的继承与属性的共享</p>
+<p>所以现在我们可以分析一下 <code>instanceof </code>代码了。一般来说，<code>instanceof </code>内部实现机制和隐式原型、显式原型有直接的关系。<code>instanceof </code>的左值一般是一个对象，右值一般是一个构造函数，用来判断左值是否是右值的实例。</p>
+<p>所以在我们的手写代码中：</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">//设 obj instanceof constructor</span>
+<span class="token comment">//通过判断</span>
+ obj<span class="token punctuation">.</span>__proto__<span class="token punctuation">.</span>__proto__ <span class="token operator">...</span><span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token operator">===</span> constructor<span class="token punctuation">.</span>prototype
+<span class="token comment">//最终返回true or false</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>也就是一直沿着obj的 <code>__proto__ </code> 一直寻找下去，知道等于 <code>constructor.prototype</code> 或者 <code>null</code> 为止。</p>
+<p>这就是instanceof的原理</p>
+<p>4.进一步的探究</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>Object <span class="token keyword">instanceof</span> <span class="token class-name">Function</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//true</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>Function <span class="token keyword">instanceof</span> <span class="token class-name">Object</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//true</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>上面两行代码的结果都为 true，这就有点奇怪了</p>
+<h6 id="接下来我们来探究一下："><a href="#接下来我们来探究一下：" class="headerlink" title="接下来我们来探究一下："></a>接下来我们来探究一下：</h6><pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token class-name">Object</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>__proto__<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//null</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>所以原型链的尽头（root）是 <code>Object.prototype</code>。<strong>所有对象均从 <code>Object.prototype</code> 继承属性。</strong></p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token class-name">Function</span><span class="token punctuation">.</span>prototype<span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>Function<span class="token punctuation">.</span>__proto__<span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token class-name">Function</span><span class="token punctuation">.</span>prototype <span class="token operator">===</span> Function<span class="token punctuation">.</span>__proto__<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//true</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>所以 <code>Function.prototype</code>  和 <code>Function.__proto__</code> 为<strong>同一对象</strong>。</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token class-name">Function</span><span class="token punctuation">.</span>prototype <span class="token operator">===</span> Array<span class="token punctuation">.</span>__proto__<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//true</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token class-name">Function</span><span class="token punctuation">.</span>prototype <span class="token operator">===</span> String<span class="token punctuation">.</span>__proto__<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//true</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token class-name">Function</span><span class="token punctuation">.</span>prototype <span class="token operator">===</span> Object<span class="token punctuation">.</span>__proto__<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//true</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token class-name">Function</span><span class="token punctuation">.</span>prototype <span class="token operator">===</span> Number<span class="token punctuation">.</span>__proto__<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//true</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token class-name">Function</span><span class="token punctuation">.</span>prototype <span class="token operator">===</span> Boolean<span class="token punctuation">.</span>__proto__<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//true</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这意味着： <strong><code>Object</code>/<code>Array</code>/<code>String</code> 等等构造函数本质上和 <code>Function</code> 一样，均继承于 <code>Function.prototype</code>。</strong></p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token class-name">Function</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>__proto__ <span class="token operator">===</span> <span class="token class-name">Object</span><span class="token punctuation">.</span>prototype<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//true</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>最后 <code>Function.prototype</code> 直接继承 <code>Object.prototype</code></p>
+<p><strong>总结</strong>：<strong>先有 <code>Object.prototype</code>（原型链顶端）， <code>Function.prototype</code> 继承 <code>Object.prototype</code> 而产生，最后，<code>Function</code> 和 <code>Object</code> 和其它构造函数继承 <code>Function.prototype</code> 而产生。</strong></p>
+<h4 id=""><a href="#" class="headerlink" title=""></a></h4>]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>JavaScript:探索bind和new之间的关系</title>
     <url>/2022/02/07/javascript-tan-suo-bind-he-new-zhi-jian-de-guan-xi/</url>
-    <content><![CDATA[<h3 id="JavaScript-探索bind和new之间的关系"><a href="#JavaScript-探索bind和new之间的关系" class="headerlink" title="JavaScript:探索bind和new之间的关系"></a>JavaScript:探索bind和new之间的关系</h3><p>首先了解一下bind的定义</p>
+    <content><![CDATA[<h3 id="JavaScript-手写-bind-和探索-bind-与-new-之间的关系"><a href="#JavaScript-手写-bind-和探索-bind-与-new-之间的关系" class="headerlink" title="JavaScript: 手写 bind 和探索 bind 与 new 之间的关系"></a>JavaScript: 手写 bind 和探索 bind 与 new 之间的关系</h3><p>首先了解一下 <code>bind</code> 的定义</p>
 <blockquote>
 <p><strong><code>bind()</code></strong> 方法创建一个新的函数，在 <code>bind()</code> 被调用时，这个新函数的 <code>this</code> 被指定为 <code>bind()</code> 的第一个参数，而其余参数将作为新函数的参数，供调用时使用。</p>
 </blockquote>
-<p>也就是说bind和apply和call不一样，bind是返回一个函数，并且可以传入参数。来看一看bind的例子</p>
+<p>也就是说 <code>bind</code> 和 <code>apply</code> 、<code>call</code> 不一样，<code>bind</code> 是返回一个待执行函数，并且可以传入参数。来看一看 <code>bind</code> 的例子</p>
 <span id="more"></span>
 
 <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">var</span> foo <span class="token operator">=</span> <span class="token punctuation">{</span>
@@ -486,9 +548,10 @@ foo<span class="token punctuation">.</span><span class="token function">fn</span
 <span class="token punctuation">}</span>
 <span class="token comment">// 返回了一个函数</span>
 <span class="token keyword">var</span> bindFoo <span class="token operator">=</span> <span class="token function">bar</span><span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span>foo<span class="token punctuation">)</span><span class="token punctuation">;</span> 
-<span class="token function">bindFoo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 1</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token function">bindFoo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 1</span>
+<span class="token comment">// bindFoo() 相当于 bar.bind(foo)();</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p>bind返回的是一个函数，并且返回的函数可以继续传入参数。</p>
+<p>所以 <code>bind</code> 返回的是一个函数（这也是为什么 <code>new</code> 可以改变 <code>bind</code>  后函数的 <code>this</code> 指向的原因）并且返回的函数可以继续传入参数。</p>
 <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">var</span> foo <span class="token operator">=</span> <span class="token punctuation">{</span>
     value<span class="token operator">:</span> <span class="token number">1</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
@@ -508,7 +571,7 @@ foo<span class="token punctuation">.</span><span class="token function">fn</span
 <span class="token class-name">Function</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">myBind</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">context</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 
     <span class="token keyword">var</span> self <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
-    <span class="token comment">// 获取bind2函数从第二个参数到最后一个参数</span>
+    <span class="token comment">// 获取myBind第二个参数到最后一个参数</span>
     <span class="token keyword">var</span> args <span class="token operator">=</span> <span class="token class-name">Array</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span>arguments<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
     <span class="token keyword">return</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -520,23 +583,24 @@ foo<span class="token punctuation">.</span><span class="token function">fn</span
 
 
 
-<p>到这里bind的基本功能差不多完成了，但是bind还有一个特点，那就是和new配合使用的时候，bind 时指定的 this 值会失效，但传入的参数依然生效。下面这个例子就可以说明。</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">var</span> foo <span class="token operator">=</span> <span class="token punctuation">{</span>
+<p>到这里 <code>bind</code> 的基本功能差不多完成了，但是 <code>bind</code> 还有一个特点，那就是和 <code>new</code> 配合使用的时候，<code>bind </code> 时指定的  <code>this</code>  值会失效，但传入的参数依然生效。下面这个例子就可以说明。</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">var</span> foo <span class="token operator">=</span> <span class="token punctuation">{</span>
     value<span class="token operator">:</span> <span class="token number">1</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
-function <span class="token function">bar</span><span class="token punctuation">(</span>name<span class="token punctuation">,</span> age<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">this</span><span class="token punctuation">.</span>habit <span class="token operator">=</span> <span class="token string">'shopping'</span><span class="token punctuation">;</span>
+<span class="token keyword">function</span> <span class="token function">bar</span><span class="token punctuation">(</span><span class="token parameter">name<span class="token punctuation">,</span> age</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>habit <span class="token operator">=</span> <span class="token string">'game'</span><span class="token punctuation">;</span>
     console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
     console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
     console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>age<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 <span class="token keyword">var</span> bindFoo <span class="token operator">=</span> bar<span class="token punctuation">.</span><span class="token function">myBind</span><span class="token punctuation">(</span>foo<span class="token punctuation">,</span> <span class="token string">'hcb'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">var</span> obj <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">bindFoo</span><span class="token punctuation">(</span><span class="token string">'18'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// this值已经失效了</span>
+<span class="token keyword">var</span> obj <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">bindFoo</span><span class="token punctuation">(</span><span class="token string">'18'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 这里bind绑定的this值已经失效了</span>
 <span class="token comment">// undefined</span>
 <span class="token comment">// hcb</span>
 <span class="token comment">// 18</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>所以我们要通过修改返回的函数的原型来实现</p>
+<p>特别要注意下面的代码执行完只是返回 <code>fBound</code> ，函数里面的语句还未执行，所以这就是为什么这里能判断 <code>fBound</code> 里面的 <code>this</code> 到底指向普通函数还是构造函数</p>
 <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token class-name">Function</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">myBind</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">context</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">var</span> self <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
     <span class="token keyword">var</span> args <span class="token operator">=</span> <span class="token class-name">Array</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span>arguments<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -554,7 +618,7 @@ function <span class="token function">bar</span><span class="token punctuation">
     <span class="token keyword">return</span> fBound<span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p>但是在这个写法中，我们直接将 fBound.prototype = this.prototype，我们直接修改 fBound.prototype 的时候，也会直接修改绑定函数的 prototype。这个时候，我们可以通过一个空函数来进行中转。</p>
+<p>但是在这个写法中，我们直接将 fBound.prototype = this.prototype，我们直接修改 fBound.prototype 的时候，也会直接修改绑定函数的 prototype。为什么也会直接修改呢？因为这里是引用类型，这个时候，我们可以通过一个空函数来进行中转。</p>
 <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token class-name">Function</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">myBind</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">context</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 
   	<span class="token comment">// 只有函数才能调用bind，所以要加这个判断</span>
@@ -579,7 +643,7 @@ function <span class="token function">bar</span><span class="token punctuation">
 
 
 
-<p>来看一下new的手写实现：</p>
+<p>来看一下 <code>new</code> 的手写实现：</p>
 <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">myNew4</span><span class="token punctuation">(</span><span class="token parameter">fn<span class="token punctuation">,</span> <span class="token operator">...</span>args</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> fn <span class="token operator">!==</span> <span class="token string">'function'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">throw</span> <span class="token string">'fn must be a function'</span><span class="token punctuation">;</span>
@@ -605,80 +669,174 @@ function <span class="token function">bar</span><span class="token punctuation">
       </tags>
   </entry>
   <entry>
-    <title>JavaScript: prototype、__proto__、[[prototype]]的区别</title>
-    <url>/2022/02/03/javascript-prototype-proto-prototype-de-qu-bie/</url>
-    <content><![CDATA[<h3 id="prototype、-proto-、-prototype-三者之间的区别"><a href="#prototype、-proto-、-prototype-三者之间的区别" class="headerlink" title="prototype、__proto__、[[prototype]]三者之间的区别"></a>prototype、__proto__、[[prototype]]三者之间的区别</h3><p>最近在网上看到<code>instanceof</code>的手写版，里面涉及到了<code>prototype</code>、<code>__proto__</code>，仔细推敲 一下代码，发现自己对<code>prototype</code>,<code>__proto__</code>的理解不够深刻导致自己对手写版的instanceof代码理解不是很透彻。</p>
+    <title></title>
+    <url>/2022/01/17/reactnote03-jsx-ben-zhi-ji-yuan-ma-jie-xi/</url>
+    <content><![CDATA[<h3 id="JSX-的本质"><a href="#JSX-的本质" class="headerlink" title="JSX 的本质"></a>JSX 的本质</h3><p>实际上，jsx 仅仅只是 React.createElement(component, props, …children) 函数的语法糖。所有的 jsx 语法都会被转换为 React.createElement 语法的调用。</p>
 <span id="more"></span>
 
-<p>首先来看一下<code>instanceof</code>的手写代码</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">myInstanceof</span><span class="token punctuation">(</span><span class="token parameter">obj<span class="token punctuation">,</span> constructor</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  	<span class="token comment">// 拿到obj的</span>
-    <span class="token keyword">let</span> implicitPrototype <span class="token operator">=</span> obj<span class="token operator">?.</span>__proto__<span class="token punctuation">;</span>
-    <span class="token keyword">const</span> displayPrototype <span class="token operator">=</span> constructor<span class="token punctuation">.</span>prototype<span class="token punctuation">;</span>
-    <span class="token keyword">while</span> <span class="token punctuation">(</span>implicitPrototype<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>implicitPrototype <span class="token operator">===</span> displayPrototype<span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
-        implicitPrototype <span class="token operator">=</span> implicitPrototype<span class="token punctuation">.</span>__proto__<span class="token punctuation">;</span>
+<p>先来看一下几行 jsx 代码：</p>
+<pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span>nihao<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h2</span><span class="token punctuation">&gt;</span></span>you are the best<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h2</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span>1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span>2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>那么它们转换成 js 代码会是什么样的呢？</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js">React<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">"div"</span><span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">,</span> React<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">"div"</span><span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">,</span> <span class="token string">"nihao"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                        React<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">"h2"</span><span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">,</span> <span class="token string">"you are the best"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                        React<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">"ul"</span><span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">,</span>
+                            React<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">"li"</span><span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">,</span> <span class="token string">"1"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                            React<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">"li"</span><span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">,</span> <span class="token string">"2"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>好家伙，直接一个嵌套地狱，要是代码再多一点的话能把人看哭。还是 jsx 香</p>
+<blockquote>
+<p> 查看 React.createElement 的源码</p>
+<p>源码位置：packages/react/src/ReactElement.js</p>
+</blockquote>
+<pre class="line-numbers language-react" data-language="react"><code class="language-react">/**
+ * Create and return a new ReactElement of the given type.
+ * See https://reactjs.org/docs/react-api.html#createelement
+ */
+export function createElement(type, config, children) {
+  let propName;
+
+  // Reserved names are extracted
+  const props = {};
+
+  let key = null;
+  let ref = null;
+  let self = null;
+  let source = null;
+
+  if (config != null) {
+    if (hasValidRef(config)) {
+      ref = config.ref;
+
+      if (__DEV__) {
+        warnIfStringRefCannotBeAutoConverted(config);
+      }
+    }
+    if (hasValidKey(config)) {
+      key = '' + config.key;
+    }
+
+    self = config.__self === undefined ? null : config.__self;
+    source = config.__source === undefined ? null : config.__source;
+    // Remaining properties are added to a new props object
+    for (propName in config) {
+      if (
+        hasOwnProperty.call(config, propName) &amp;&amp;
+        !RESERVED_PROPS.hasOwnProperty(propName)
+      ) {
+        props[propName] = config[propName];
+      }
+    }
+  }
+
+  // Children can be more than one argument, and those are transferred onto
+  // the newly allocated props object.
+  const childrenLength = arguments.length - 2;
+  if (childrenLength === 1) {
+    props.children = children;
+  } else if (childrenLength &gt; 1) {
+    const childArray = Array(childrenLength);
+    for (let i = 0; i &lt; childrenLength; i++) {
+      childArray[i] = arguments[i + 2];
+    }
+    if (__DEV__) {
+      if (Object.freeze) {
+        Object.freeze(childArray);
+      }
+    }
+    props.children = childArray;
+  }
+
+  // Resolve default props
+  if (type &amp;&amp; type.defaultProps) {
+    const defaultProps = type.defaultProps;
+    for (propName in defaultProps) {
+      if (props[propName] === undefined) {
+        props[propName] = defaultProps[propName];
+      }
+    }
+  }
+  if (__DEV__) {
+    if (key || ref) {
+      const displayName =
+        typeof type === 'function'
+          ? type.displayName || type.name || 'Unknown'
+          : type;
+      if (key) {
+        defineKeyPropWarningGetter(props, displayName);
+      }
+      if (ref) {
+        defineRefPropWarningGetter(props, displayName);
+      }
+    }
+  }
+  return ReactElement(
+    type,
+    key,
+    ref,
+    self,
+    source,
+    ReactCurrentOwner.current,
+    props,
+  );
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>createElement的三个参数：</p>
+<ul>
+<li><ol>
+<li>type</li>
+</ol>
+<ul>
+<li>是当前 React 的类型，如果是标签元素，则用字符串表示，例如 “div”。如果是组件元素，则直接用组件名称</li>
+</ul>
+</li>
+<li><ol start="2">
+<li>config</li>
+</ol>
+<ul>
+<li>所有 jsx 中的属性都在 config 中以对象的键值对存储</li>
+</ul>
+</li>
+<li><ol start="3">
+<li>存放标签中的内容，以数组的方式存储</li>
+</ol>
+<ul>
+<li> 为什么是以数组的形式存储呢？</li>
+<li>因为 jsx 里面可以会传入很多的同级标签，createElement 并不是只能传入三个参数。为什么可以传入多个参数呢？这就要回到源码里面一探究竟了，毕竟源码之下，了无秘密。</li>
+</ul>
+</li>
+</ul>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">const</span> childrenLength <span class="token operator">=</span> arguments<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">2</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>childrenLength <span class="token operator">===</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    props<span class="token punctuation">.</span>children <span class="token operator">=</span> children<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>childrenLength <span class="token operator">&gt;</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> childArray <span class="token operator">=</span> <span class="token function">Array</span><span class="token punctuation">(</span>childrenLength<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> childrenLength<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      childArray<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> arguments<span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-    <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>__DEV__<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>Object<span class="token punctuation">.</span>freeze<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        Object<span class="token punctuation">.</span><span class="token function">freeze</span><span class="token punctuation">(</span>childArray<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    props<span class="token punctuation">.</span>children <span class="token operator">=</span> childArray<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-
-
-<p>如果不是很清楚<code>prototype</code>,<code>__proto__</code>的话，很难正确理解上述代码。所以我们先要搞清楚它们的区别。</p>
-<p><strong>1. 概念区分</strong></p>
-<p>其实说<code>__proto__</code>并不准确，确切的说是对象的<code>[[prototype]]</code>属性，只不过在主流的浏览器中，都用<code>__proto__</code>来代表<code>[[prototype]]</code>属性，因为<code>[[prototype]]</code>只是一个标准，而针对这个标准，不同的浏览器有不同的实现方式。在ES5中用<code>Object.getPrototypeOf</code>函数获得一个对象的<code>[[prototype]]</code>。ES6中，使用<code>Object.setPrototypeOf</code>可以直接修改一个对象的<code>[[prototype]]</code>。</p>
-<p>而<code>prototype</code>属性是只有函数才特有的属性，当你创建一个函数时，js会自动为这个函数加上<code>prototype</code>属性，值是一个空对象。所以，函数在js中是非常特殊的，是所谓的一等公民。</p>
-<p><strong>2.必须明确</strong></p>
-<p><code>__proto__</code>是隐式原型</p>
-<p><code>prototype</code>是显式原型</p>
-<p>显式原型 ：每一个函数在创建之后都会拥有一个名为<code>prototype</code>的属性，这个属性指向函数的原型对象。</p>
-<p>隐式原型：JavaScript中任意对象都有一个内置属性<code>[[prototype]]</code>，在ES5之前没有标准的方法访问这个内置属性，但是大多数浏览器都支持通过<code>__proto__</code>来访问。</p>
-<p>注意: <code>Object.prototype</code> 这个对象是个例外，它的<code>__proto__</code>值为<code>null</code></p>
-<p><strong>二者的关系：</strong></p>
-<p><strong>隐式原型指向创建这个对象的函数(constructor)的prototype</strong></p>
-<p><strong>3.他们的作用</strong></p>
-<p>隐式原型的作用：构成原型链，同样用于实现基于原型的继承。举个例子，当我们访问obj这个对象中的x属性时，如果在obj中找不到，那么就会沿着<code>__proto__</code>依次查找。</p>
-<p>显式原型的作用：用来实现基于原型的继承与属性的共享</p>
-<p>所以现在我们可以分析一下<code>instanceof</code>代码了。一般来说，<code>instanceof</code>内部实现机制和隐式原型、显式原型有直接的关系。<code>instanceof</code>的左值一般是一个对象，右值一般是一个构造函数，用来判断左值是否是右值的实例。</p>
-<p>所以在我们的手写代码中：</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">//设 obj instanceof constructor</span>
-<span class="token comment">//通过判断</span>
- obj<span class="token punctuation">.</span>__proto__<span class="token punctuation">.</span>__proto__ <span class="token operator">...</span><span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token operator">===</span> constructor<span class="token punctuation">.</span>prototype
-<span class="token comment">//最终返回true or false</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>也就是一直沿着obj的<code>__proto__</code>一直寻找下去，知道等于<code>constructor.prototype</code>或者<code>null</code>为止。</p>
-<p>这就是instanceof的原理</p>
-<p>4.进一步的探究</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>Object <span class="token keyword">instanceof</span> <span class="token class-name">Function</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//true</span>
-console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>Function <span class="token keyword">instanceof</span> <span class="token class-name">Object</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//true</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-<p>上面两行代码的结果都为true，这就有点奇怪了</p>
-<p>接下来我们来探究一下：</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token class-name">Object</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>__proto__<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//null</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>所以原型链的尽头（root）是<code>Object.prototype</code>。<strong>所有对象均从<code>Object.prototype</code>继承属性。</strong></p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token class-name">Function</span><span class="token punctuation">.</span>prototype<span class="token punctuation">)</span><span class="token punctuation">;</span>
-console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>Function<span class="token punctuation">.</span>__proto__<span class="token punctuation">)</span><span class="token punctuation">;</span>
-console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token class-name">Function</span><span class="token punctuation">.</span>prototype <span class="token operator">===</span> Function<span class="token punctuation">.</span>__proto__<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//true</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-<p>所以<code>Function.prototype</code>和<code>Function.__proto__</code>为<strong>同一对象</strong>。</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token class-name">Function</span><span class="token punctuation">.</span>prototype <span class="token operator">===</span> Array<span class="token punctuation">.</span>__proto__<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//true</span>
-console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token class-name">Function</span><span class="token punctuation">.</span>prototype <span class="token operator">===</span> String<span class="token punctuation">.</span>__proto__<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//true</span>
-console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token class-name">Function</span><span class="token punctuation">.</span>prototype <span class="token operator">===</span> Object<span class="token punctuation">.</span>__proto__<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//true</span>
-console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token class-name">Function</span><span class="token punctuation">.</span>prototype <span class="token operator">===</span> Number<span class="token punctuation">.</span>__proto__<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//true</span>
-console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token class-name">Function</span><span class="token punctuation">.</span>prototype <span class="token operator">===</span> Boolean<span class="token punctuation">.</span>__proto__<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//true</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>这意味着： <strong><code>Object</code>/<code>Array</code>/<code>String</code>等等构造函数本质上和<code>Function</code>一样，均继承于<code>Function.prototype</code>。</strong></p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token class-name">Function</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>__proto__ <span class="token operator">===</span> <span class="token class-name">Object</span><span class="token punctuation">.</span>prototype<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//true</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>最后<code>Function.prototype</code>直接继承<code>Object.prototype</code></p>
-<p><strong>总结</strong>：<strong>先有<code>Object.prototype</code>（原型链顶端），<code>Function.prototype</code>继承<code>Object.prototype</code>而产生，最后，<code>Function</code>和<code>Object</code>和其它构造函数继承<code>Function.prototype</code>而产生。</strong></p>
+<p>这里就是上面 createElement 源码的一部分，也就是说 children 是一个数组，里面存储着第三个参数及以后的所有参数。</p>
 ]]></content>
       <categories>
-        <category>JavaScript</category>
+        <category>React笔记</category>
       </categories>
       <tags>
-        <tag>JavaScript</tag>
+        <tag>React</tag>
       </tags>
   </entry>
   <entry>
@@ -781,6 +939,250 @@ const element = React.createElement(
 <p>if(){}else{} for(){} 等。</p>
 <p>表达式一般由操作符和操作数组成，而我们把表达式按照语法结构组成语句，然后组成程序，表达式跟语句有重合的部分。</p>
 <p>因此可以理解为表达式通常是语句的一部分或者本身就能起到一个语句的作用，而语句代表一段可执行的程序的最小单元。</p>
+]]></content>
+      <categories>
+        <category>React笔记</category>
+      </categories>
+      <tags>
+        <tag>React</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ReactNote04:组件通信方式</title>
+    <url>/2022/01/31/reactnote04-zu-jian-tong-xin-fang-shi/</url>
+    <content><![CDATA[<h3 id="组件间的通信方式"><a href="#组件间的通信方式" class="headerlink" title="组件间的通信方式"></a>组件间的通信方式</h3><h4 id="1-父组件传递信息给子组件"><a href="#1-父组件传递信息给子组件" class="headerlink" title="1. 父组件传递信息给子组件"></a>1. 父组件传递信息给子组件</h4><blockquote>
+<p>先看React官网的一句话：当 React 元素为用户自定义组件时，它会将 JSX 所接收的属性（attributes）以及子组件（children）转换为单个对象传递给组件，这个对象被称之为 “props”。</p>
+</blockquote>
+<span id="more"></span>
+
+<p>以下例子说明了父组件传递信息给子组件的方式是：在父组件的子组件中写形参的时候，React会将子组件接受到的属性转换为props对象传递给组件，所以渲染子组件的时候就可以使用props里面的数据了。函数组件同理。</p>
+<pre class="line-numbers language-react" data-language="react"><code class="language-react">import React, { Component } from 'react'
+class Son extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+        }
+    }
+    render() {
+        // 为什么这里可以通过this.props取得父组件里面传来的值呢？
+        const { name, age, height } = this.props;
+        return (
+            &lt;div&gt;
+                &lt;h2&gt;{name + " " + age + " " + height}&lt;/h2&gt;
+            &lt;/div&gt;
+        )
+    }
+}
+
+export default class App extends Component {
+    render() {
+        return (
+            &lt;div&gt;
+                &lt;Son name="beiyep" age="18" height="1.88"&gt;&lt;/Son&gt;
+                &lt;Son name="hala" age="188" height="1.88"&gt;&lt;/Son&gt;
+                &lt;Son name="indexjs" age="11118" height="1.8228"&gt;&lt;/Son&gt;
+            &lt;/div&gt;
+        )
+    }
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="2-组件传递信息时的数据验证"><a href="#2-组件传递信息时的数据验证" class="headerlink" title="2. 组件传递信息时的数据验证"></a>2. 组件传递信息时的数据验证</h4><pre class="line-numbers language-react" data-language="react"><code class="language-react">import React, { Component } from 'react';
+import PropTypes from "prop-types";
+
+function Son(props) {
+    const { name, age, height, names } = props;
+    return (
+        &lt;div&gt;
+            &lt;h2&gt;{name + " " + age + " " + height}&lt;/h2&gt;
+            &lt;ul&gt;
+                {
+                    names.map((item, index) =&gt; {
+                        return &lt;li&gt;{item}&lt;/li&gt;
+                    })
+                }
+            &lt;/ul&gt;
+        &lt;/div&gt;
+    )
+}
+
+Son.propTypes = {
+    name: PropTypes.string.isRequired,
+    age: PropTypes.number,
+    height: PropTypes.number,
+    names: PropTypes.array
+}
+
+// 默认属性
+Son.defaultProps = {
+    name: "hcb",
+    age: 11,
+    height: 178,
+    names: ["hcb", "bbxk"]
+}
+
+
+
+export default class App extends Component {
+    render() {
+        return (
+            &lt;div&gt;
+                &lt;Son name="beiyep333" age="18" height="1.88" names={["aaa", "bbb", "ccc"]}&gt;&lt;/Son&gt;
+                &lt;Son name="hala333" age="188" height="1.88" names={["aaa", "bbb", "ccc"]}&gt;&lt;/Son&gt;
+                &lt;Son name="indexjs函数" age="11118" height="1.8228"&gt;&lt;/Son&gt;
+            &lt;/div&gt;
+        )
+    }
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+]]></content>
+      <categories>
+        <category>React笔记</category>
+      </categories>
+      <tags>
+        <tag>React</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ReactNote05:深入源码探究memo、PureComponent</title>
+    <url>/2022/02/08/reactnote05-shen-ru-tan-jiu-memo-purecomponent/</url>
+    <content><![CDATA[<h3 id="深入源码探究memo、PureComponent"><a href="#深入源码探究memo、PureComponent" class="headerlink" title="深入源码探究memo、PureComponent"></a>深入源码探究memo、PureComponent</h3><h4 id="窥探PureComponent"><a href="#窥探PureComponent" class="headerlink" title="窥探PureComponent"></a>窥探PureComponent</h4><p>今天学到了PureComponent，它可以起到在Component里面添加SCU的效果，虽然类组件以后会很少用，但是它的底层原理还是要了解一下，也能了解一下React不断进步背后的思想，PureComponent在React里面是怎么实现的呢，肘，跟我进源码（版本是16.3.1）。</p>
+<p>这里安利一下vscode的Bookmarks插件，看源码是非常方便。</p>
+<span id="more"></span>
+
+<blockquote>
+<p>以下源码均为节选</p>
+</blockquote>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 路径</span>
+<span class="token comment">// packages/react-reconciler/src/ReactFiberClassComponent.js</span>
+
+<span class="token keyword">function</span> <span class="token function">checkShouldComponentUpdate</span><span class="token punctuation">(</span>
+  <span class="token parameter">workInProgress<span class="token punctuation">,</span>
+  ctor<span class="token punctuation">,</span>
+  oldProps<span class="token punctuation">,</span>
+  newProps<span class="token punctuation">,</span>
+  oldState<span class="token punctuation">,</span>
+  newState<span class="token punctuation">,</span>
+  nextContext<span class="token punctuation">,</span></span>
+<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> instance <span class="token operator">=</span> workInProgress<span class="token punctuation">.</span>stateNode<span class="token punctuation">;</span>
+    
+  <span class="token comment">// 判断是否使用了shouldComponentUpdate</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> instance<span class="token punctuation">.</span>shouldComponentUpdate <span class="token operator">===</span> <span class="token string">'function'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 使用了shouldComponentUpdate的话，那么就比较State和props的数据</span>
+    <span class="token comment">// 如果变化就返回true，不变化的话就返回false</span>
+    <span class="token keyword">const</span> shouldUpdate <span class="token operator">=</span> instance<span class="token punctuation">.</span><span class="token function">shouldComponentUpdate</span><span class="token punctuation">(</span>
+      newProps<span class="token punctuation">,</span>
+      newState<span class="token punctuation">,</span>
+      nextContext<span class="token punctuation">,</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> shouldUpdate<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">// 判断是否使用了PureReactComponent</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>ctor<span class="token punctuation">.</span>prototype <span class="token operator">&amp;&amp;</span> ctor<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>isPureReactComponent<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>
+      <span class="token comment">// 浅层比较，注意有取反操作</span>
+      <span class="token operator">!</span><span class="token function">shallowEqual</span><span class="token punctuation">(</span>oldProps<span class="token punctuation">,</span> newProps<span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token operator">!</span><span class="token function">shallowEqual</span><span class="token punctuation">(</span>oldState<span class="token punctuation">,</span> newState<span class="token punctuation">)</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+    
+  <span class="token comment">// 默认返回的是true，也就是更新</span>
+  <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>这里就弄清楚了判断组件的更新的逻辑，下面我们再看一下shallowEqual这个函数，按住commond进去，</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">import</span> shallowEqual <span class="token keyword">from</span> <span class="token string">'shared/shallowEqual'</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>去<code>share</code>文件夹里面找<code>shallowEqual</code>这个文件</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">shallowEqual</span><span class="token punctuation">(</span><span class="token parameter">objA<span class="token operator">:</span> mixed<span class="token punctuation">,</span> objB<span class="token operator">:</span> mixed</span><span class="token punctuation">)</span><span class="token operator">:</span> boolean <span class="token punctuation">{</span>
+  <span class="token comment">// 同一个对象返回ture，到了checkShouldComponentUpdate那里就是false，因为进行取反操作了</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">is</span><span class="token punctuation">(</span>objA<span class="token punctuation">,</span> objB<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">// 不是对象或者为空就强制刷新</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>
+    <span class="token keyword">typeof</span> objA <span class="token operator">!==</span> <span class="token string">'object'</span> <span class="token operator">||</span>
+    objA <span class="token operator">===</span> <span class="token keyword">null</span> <span class="token operator">||</span>
+    <span class="token keyword">typeof</span> objB <span class="token operator">!==</span> <span class="token string">'object'</span> <span class="token operator">||</span>
+    objB <span class="token operator">===</span> <span class="token keyword">null</span>
+  <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+	
+  
+  <span class="token keyword">const</span> keysA <span class="token operator">=</span> Object<span class="token punctuation">.</span><span class="token function">keys</span><span class="token punctuation">(</span>objA<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> keysB <span class="token operator">=</span> Object<span class="token punctuation">.</span><span class="token function">keys</span><span class="token punctuation">(</span>objB<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	
+  <span class="token comment">// 如果两个对象的key的长度不一样的话，那么数据肯定发生了变化</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>keysA<span class="token punctuation">.</span>length <span class="token operator">!==</span> keysB<span class="token punctuation">.</span>length<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+	
+  <span class="token comment">// 如果A中和B中的key值不一样，那就更新</span>
+  <span class="token comment">// Test for A's keys different from B.</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> keysA<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>
+      <span class="token operator">!</span><span class="token function">hasOwnProperty</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span>objB<span class="token punctuation">,</span> keysA<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">||</span>
+      <span class="token operator">!</span><span class="token function">is</span><span class="token punctuation">(</span>objA<span class="token punctuation">[</span>keysA<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">,</span> objB<span class="token punctuation">[</span>keysA<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="窥探memo"><a href="#窥探memo" class="headerlink" title="窥探memo"></a>窥探memo</h4><p>既然memo和PureComponent作用类似，那么其原理应该也是和PureComponent思想类似</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// packages/react/src/memo.js</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span><span class="token constant">REACT_MEMO_TYPE</span><span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'shared/ReactSymbols'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> isValidElementType <span class="token keyword">from</span> <span class="token string">'shared/isValidElementType'</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 这里是可以传入两个参数的，如果没有传入第二个参数呢？</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">function</span> memo<span class="token operator">&lt;</span>Props<span class="token operator">&gt;</span><span class="token punctuation">(</span>
+  type<span class="token operator">:</span> React$ElementType<span class="token punctuation">,</span>
+  compare<span class="token operator">?</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter">oldProps<span class="token operator">:</span> Props<span class="token punctuation">,</span> newProps<span class="token operator">:</span> Props</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> boolean<span class="token punctuation">,</span>
+<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">{</span>
+    $$<span class="token keyword">typeof</span><span class="token operator">:</span> <span class="token constant">REACT_MEMO_TYPE</span><span class="token punctuation">,</span>
+    type<span class="token punctuation">,</span>
+    compare<span class="token operator">:</span> compare <span class="token operator">===</span> <span class="token keyword">undefined</span> <span class="token operator">?</span> <span class="token keyword">null</span> <span class="token operator">:</span> compare<span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>那么源码已经用<code>compare = compare !== null ? compare : shallowEqual;</code>帮助我们做了判断，意思就是如果我们传入了自己编写的compare函数，那么就用这个函数，否则它帮我们调用shallowEqual函数。</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">updateMemoComponent</span><span class="token punctuation">(</span>
+  <span class="token parameter">current<span class="token operator">:</span> Fiber <span class="token operator">|</span> <span class="token keyword">null</span><span class="token punctuation">,</span>
+  workInProgress<span class="token operator">:</span> Fiber<span class="token punctuation">,</span>
+  Component<span class="token operator">:</span> any<span class="token punctuation">,</span>
+  nextProps<span class="token operator">:</span> any<span class="token punctuation">,</span>
+  updateExpirationTime<span class="token punctuation">,</span>
+  renderExpirationTime<span class="token operator">:</span> ExpirationTime<span class="token punctuation">,</span></span>
+<span class="token punctuation">)</span><span class="token operator">:</span> <span class="token keyword">null</span> <span class="token operator">|</span> Fiber <span class="token punctuation">{</span>
+  
+  <span class="token keyword">let</span> currentChild <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>current<span class="token punctuation">.</span>child<span class="token operator">:</span> any<span class="token punctuation">)</span><span class="token operator">:</span> Fiber<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// This is always exactly one child</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>updateExpirationTime <span class="token operator">&lt;</span> renderExpirationTime<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> prevProps <span class="token operator">=</span> currentChild<span class="token punctuation">.</span>memoizedProps<span class="token punctuation">;</span>
+    <span class="token keyword">let</span> compare <span class="token operator">=</span> Component<span class="token punctuation">.</span>compare<span class="token punctuation">;</span>
+    compare <span class="token operator">=</span> compare <span class="token operator">!==</span> <span class="token keyword">null</span> <span class="token operator">?</span> compare <span class="token operator">:</span> shallowEqual<span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">compare</span><span class="token punctuation">(</span>prevProps<span class="token punctuation">,</span> nextProps<span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> current<span class="token punctuation">.</span>ref <span class="token operator">===</span> workInProgress<span class="token punctuation">.</span>ref<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> <span class="token function">bailoutOnAlreadyFinishedWork</span><span class="token punctuation">(</span>
+        current<span class="token punctuation">,</span>
+        workInProgress<span class="token punctuation">,</span>
+        renderExpirationTime<span class="token punctuation">,</span>
+      <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 ]]></content>
       <categories>
         <category>React笔记</category>
@@ -1148,324 +1550,6 @@ arr<span class="token punctuation">.</span><span class="token function">map</spa
       </tags>
   </entry>
   <entry>
-    <title>ReactNote03:JSX本质及源码解析</title>
-    <url>/2022/01/17/reactnote03-jsx-ben-zhi-ji-yuan-ma-jie-xi/</url>
-    <content><![CDATA[<h3 id="JSX的本质"><a href="#JSX的本质" class="headerlink" title="JSX的本质"></a>JSX的本质</h3><p>实际上，jsx仅仅只是React.createElement(component, props, …children)函数的语法糖。所有的jsx语法都会被转换为React.createElement语法的调用。</p>
-<span id="more"></span>
-
-<p>先来看一下几行jsx代码：</p>
-<pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span>nihao<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h2</span><span class="token punctuation">&gt;</span></span>you are the best<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h2</span><span class="token punctuation">&gt;</span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span>1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span>2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">&gt;</span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>那么它们转换成js代码会是什么样的呢？</p>
-<pre class="line-numbers language-js" data-language="js"><code class="language-js">React<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">"div"</span><span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">,</span> React<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">"div"</span><span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">,</span> <span class="token string">"nihao"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-                        React<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">"h2"</span><span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">,</span> <span class="token string">"you are the best"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-                        React<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">"ul"</span><span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">,</span>
-                            React<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">"li"</span><span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">,</span> <span class="token string">"1"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-                            React<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">"li"</span><span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">,</span> <span class="token string">"2"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>好家伙，直接一个嵌套地狱，要是代码再多一点的话能把人看哭。还是jsx香</p>
-<blockquote>
-<p> 查看React.createElement的源码</p>
-<p>源码位置：packages/react/src/ReactElement.js</p>
-</blockquote>
-<pre class="line-numbers language-react" data-language="react"><code class="language-react">/**
- * Create and return a new ReactElement of the given type.
- * See https://reactjs.org/docs/react-api.html#createelement
- */
-export function createElement(type, config, children) {
-  let propName;
-
-  // Reserved names are extracted
-  const props = {};
-
-  let key = null;
-  let ref = null;
-  let self = null;
-  let source = null;
-
-  if (config != null) {
-    if (hasValidRef(config)) {
-      ref = config.ref;
-
-      if (__DEV__) {
-        warnIfStringRefCannotBeAutoConverted(config);
-      }
-    }
-    if (hasValidKey(config)) {
-      key = '' + config.key;
-    }
-
-    self = config.__self === undefined ? null : config.__self;
-    source = config.__source === undefined ? null : config.__source;
-    // Remaining properties are added to a new props object
-    for (propName in config) {
-      if (
-        hasOwnProperty.call(config, propName) &amp;&amp;
-        !RESERVED_PROPS.hasOwnProperty(propName)
-      ) {
-        props[propName] = config[propName];
-      }
-    }
-  }
-
-  // Children can be more than one argument, and those are transferred onto
-  // the newly allocated props object.
-  const childrenLength = arguments.length - 2;
-  if (childrenLength === 1) {
-    props.children = children;
-  } else if (childrenLength &gt; 1) {
-    const childArray = Array(childrenLength);
-    for (let i = 0; i &lt; childrenLength; i++) {
-      childArray[i] = arguments[i + 2];
-    }
-    if (__DEV__) {
-      if (Object.freeze) {
-        Object.freeze(childArray);
-      }
-    }
-    props.children = childArray;
-  }
-
-  // Resolve default props
-  if (type &amp;&amp; type.defaultProps) {
-    const defaultProps = type.defaultProps;
-    for (propName in defaultProps) {
-      if (props[propName] === undefined) {
-        props[propName] = defaultProps[propName];
-      }
-    }
-  }
-  if (__DEV__) {
-    if (key || ref) {
-      const displayName =
-        typeof type === 'function'
-          ? type.displayName || type.name || 'Unknown'
-          : type;
-      if (key) {
-        defineKeyPropWarningGetter(props, displayName);
-      }
-      if (ref) {
-        defineRefPropWarningGetter(props, displayName);
-      }
-    }
-  }
-  return ReactElement(
-    type,
-    key,
-    ref,
-    self,
-    source,
-    ReactCurrentOwner.current,
-    props,
-  );
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>createElement的三个参数：</p>
-<ul>
-<li><ol>
-<li>type</li>
-</ol>
-<ul>
-<li>是当前React的类型，如果是标签元素，则用字符串表示，例如“div”。如果是组件元素，则直接用组件名称</li>
-</ul>
-</li>
-<li><ol start="2">
-<li>config</li>
-</ol>
-<ul>
-<li>所有jsx中的属性都在config中以对象的键值对存储</li>
-</ul>
-</li>
-<li><ol start="3">
-<li>存放标签中的内容，以数组的方式存储</li>
-</ol>
-<ul>
-<li> 为什么是以数组的形式存储呢？</li>
-<li>因为jsx里面可以会传入很多的同级标签，createElement并不是只能传入三个参数。为什么可以传入多个参数呢？这就要回到源码里面一探究竟了，毕竟源码之下，了无秘密。</li>
-</ul>
-</li>
-</ul>
-<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">const</span> childrenLength <span class="token operator">=</span> arguments<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">2</span><span class="token punctuation">;</span>
-  <span class="token keyword">if</span> <span class="token punctuation">(</span>childrenLength <span class="token operator">===</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    props<span class="token punctuation">.</span>children <span class="token operator">=</span> children<span class="token punctuation">;</span>
-  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>childrenLength <span class="token operator">&gt;</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">const</span> childArray <span class="token operator">=</span> <span class="token function">Array</span><span class="token punctuation">(</span>childrenLength<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> childrenLength<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-      childArray<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> arguments<span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>__DEV__<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-      <span class="token keyword">if</span> <span class="token punctuation">(</span>Object<span class="token punctuation">.</span>freeze<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        Object<span class="token punctuation">.</span><span class="token function">freeze</span><span class="token punctuation">(</span>childArray<span class="token punctuation">)</span><span class="token punctuation">;</span>
-      <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-    props<span class="token punctuation">.</span>children <span class="token operator">=</span> childArray<span class="token punctuation">;</span>
-  <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>这里就是上面createElement源码的一部分，也就是说children是一个数组，里面存储着第三个参数及以后的所有参数。</p>
-]]></content>
-      <categories>
-        <category>React笔记</category>
-      </categories>
-      <tags>
-        <tag>React</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>hexo:使用matery主题对博客进行美化</title>
-    <url>/2022/02/16/hexo-shi-yong-matery-zhu-ti-dui-bo-ke-jin-xing-mei-hua/</url>
-    <content><![CDATA[<h1 id="使用-matery-主题搭建完美博客页面"><a href="#使用-matery-主题搭建完美博客页面" class="headerlink" title="使用 matery 主题搭建完美博客页面"></a>使用 <code>matery</code> 主题搭建完美博客页面</h1><p>因为最近看到一位腾讯大佬 <a href="https://yangchaoyi.vip/">一百个Chocolate</a> 的个人博客，使用的也是 <code>matery</code> 主题，而且用了 <a href="https://github.com/blinkfox/hexo-theme-matery/blob/develop/README_CN.md">中文文案排版指北 (简体中文版)</a>  对博客文章进行排版，第一眼感觉非常惊艳，这样的博客看起来很舒服，所以自己也想向大佬看齐。</p>
-<p>一下如无特别说明，以下配置文件都是 <code>matery</code> 主题下的 <code>_config.yml</code> </p>
-<h2 id="下载（最好下载master分支最新稳定版的代码）"><a href="#下载（最好下载master分支最新稳定版的代码）" class="headerlink" title="下载（最好下载master分支最新稳定版的代码）"></a>下载（最好下载master分支最新稳定版的代码）</h2><p>本主题<strong>推荐你使用 Hexo 5.0.0 及以上的版本</strong>。如果，你已经有一个自己的 <a href="https://hexo.io/zh-cn/">Hexo</a> 博客了，建议你将 Hexo 升级到最新稳定的版本。</p>
-<p>点击 <a href="https://codeload.github.com/blinkfox/hexo-theme-matery/zip/master">这里</a> 下载 <code>master</code> 分支的最新稳定版的代码，解压缩后，将 <code>hexo-theme-matery</code> 的文件夹复制到你 Hexo 的 <code>themes</code> 文件夹中即可。（用这种方式下载的文件夹名字是 <code>hexo-theme-matery-master</code>，需要改成 <code>hexo-theme-matery</code> 再复制到 Hexo 的 <code>themes</code> 文件夹中）</p>
-<p>当然你也可以在你的 <code>themes</code> 文件夹下使用 <code>git clone</code> 命令来下载:</p>
-<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">git clone https://github.com/blinkfox/hexo-theme-matery.git<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><h3 id="切换主题"><a href="#切换主题" class="headerlink" title="切换主题"></a>切换主题</h3><p>修改 Hexo 根目录下的 <code>_config.yml</code> 的 <code>theme</code> 的值：<code>theme: hexo-theme-matery</code></p>
-<h4 id="config-yml-文件的其它修改建议"><a href="#config-yml-文件的其它修改建议" class="headerlink" title="_config.yml 文件的其它修改建议:"></a><code>_config.yml</code> 文件的其它修改建议:</h4><ul>
-<li>请修改 <code>_config.yml</code> 的 <code>url</code> 的值为你的网站主 <code>URL</code>（如：<code>http://xxx.github.io</code>）。</li>
-<li>建议修改两个 <code>per_page</code> 的分页条数值为 <code>6</code> 的倍数，如：<code>12</code>、<code>18</code> 等，这样文章列表在各个屏幕下都能较好的显示。</li>
-<li>如果你是中文用户，则建议修改 <code>language</code> 的值为 <code>zh-CN</code>。</li>
-</ul>
-<h3 id="新建分类-categories-页"><a href="#新建分类-categories-页" class="headerlink" title="新建分类 categories 页"></a>新建分类 categories 页</h3><p><code>categories</code> 页是用来展示所有分类的页面，如果在你的博客 <code>source</code> 目录下还没有 <code>categories/index.md</code> 文件，那么你就需要新建一个，命令如下：</p>
-<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">hexo new page "categories"<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>编辑你刚刚新建的页面文件 <code>/source/categories/index.md</code>，至少需要以下内容：</p>
-<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">---
-title: categories
-date: 2018-09-30 17:25:30
-type: "categories"
-layout: "categories"
----<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h3 id="新建标签-tags-页"><a href="#新建标签-tags-页" class="headerlink" title="新建标签 tags 页"></a>新建标签 tags 页</h3><p><code>tags</code> 页是用来展示所有标签的页面，如果在你的博客 <code>source</code> 目录下还没有 <code>tags/index.md</code> 文件，那么你就需要新建一个，命令如下：</p>
-<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">hexo new page "tags"<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>编辑你刚刚新建的页面文件 <code>/source/tags/index.md</code>，至少需要以下内容：</p>
-<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">---
-title: tags
-date: 2018-09-30 18:23:38
-type: "tags"
-layout: "tags"
----<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h3 id="新建关于我-about-页"><a href="#新建关于我-about-页" class="headerlink" title="新建关于我 about 页"></a>新建关于我 about 页</h3><p><code>about</code> 页是用来展示<strong>关于我和我的博客</strong>信息的页面，如果在你的博客 <code>source</code> 目录下还没有 <code>about/index.md</code> 文件，那么你就需要新建一个，命令如下：</p>
-<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">hexo new page "about"<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>编辑你刚刚新建的页面文件 <code>/source/about/index.md</code>，至少需要以下内容：</p>
-<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">---
-title: about
-date: 2018-09-30 17:25:30
-type: "about"
-layout: "about"
----<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h3 id="新建留言板-contact-页（可选的）"><a href="#新建留言板-contact-页（可选的）" class="headerlink" title="新建留言板 contact 页（可选的）"></a>新建留言板 contact 页（可选的）</h3><p><code>contact</code> 页是用来展示<strong>留言板</strong>信息的页面，如果在你的博客 <code>source</code> 目录下还没有 <code>contact/index.md</code> 文件，那么你就需要新建一个，命令如下：</p>
-<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">hexo new page "contact"<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>编辑你刚刚新建的页面文件 <code>/source/contact/index.md</code>，至少需要以下内容：</p>
-<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">---
-title: contact
-date: 2018-09-30 17:25:30
-type: "contact"
-layout: "contact"
----<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<blockquote>
-<p><strong>注</strong>：本留言板功能依赖于第三方评论系统，请<strong>激活</strong>你的评论系统才有效果。并且在主题的 <code>_config.yml</code> 文件中，第 <code>19</code> 至 <code>21</code> 行的“<strong>菜单</strong>”配置，取消关于留言板的注释即可。</p>
-</blockquote>
-<h3 id="新建友情链接-friends-页（可选的）"><a href="#新建友情链接-friends-页（可选的）" class="headerlink" title="新建友情链接 friends 页（可选的）"></a>新建友情链接 friends 页（可选的）</h3><p><code>friends</code> 页是用来展示<strong>友情链接</strong>信息的页面，如果在你的博客 <code>source</code> 目录下还没有 <code>friends/index.md</code> 文件，那么你就需要新建一个，命令如下：</p>
-<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">hexo new page "friends"<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>编辑你刚刚新建的页面文件 <code>/source/friends/index.md</code>，至少需要以下内容：</p>
-<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">---
-title: friends
-date: 2018-12-12 21:25:30
-type: "friends"
-layout: "friends"
----<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>同时，在你的博客 <code>source</code> 目录下新建 <code>_data</code> 目录，在 <code>_data</code> 目录中新建 <code>friends.json</code> 文件，文件内容如下所示：</p>
-<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token punctuation">[</span><span class="token punctuation">{</span>
-    <span class="token property">"avatar"</span><span class="token operator">:</span> <span class="token string">"http://image.luokangyuan.com/1_qq_27922023.jpg"</span><span class="token punctuation">,</span>
-    <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"码酱"</span><span class="token punctuation">,</span>
-    <span class="token property">"introduction"</span><span class="token operator">:</span> <span class="token string">"我不是大佬，只是在追寻大佬的脚步"</span><span class="token punctuation">,</span>
-    <span class="token property">"url"</span><span class="token operator">:</span> <span class="token string">"http://luokangyuan.com/"</span><span class="token punctuation">,</span>
-    <span class="token property">"title"</span><span class="token operator">:</span> <span class="token string">"前去学习"</span>
-<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
-    <span class="token property">"avatar"</span><span class="token operator">:</span> <span class="token string">"http://image.luokangyuan.com/4027734.jpeg"</span><span class="token punctuation">,</span>
-    <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"闪烁之狐"</span><span class="token punctuation">,</span>
-    <span class="token property">"introduction"</span><span class="token operator">:</span> <span class="token string">"编程界大佬，技术牛，人还特别好，不懂的都可以请教大佬"</span><span class="token punctuation">,</span>
-    <span class="token property">"url"</span><span class="token operator">:</span> <span class="token string">"https://blinkfox.github.io/"</span><span class="token punctuation">,</span>
-    <span class="token property">"title"</span><span class="token operator">:</span> <span class="token string">"前去学习"</span>
-<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
-    <span class="token property">"avatar"</span><span class="token operator">:</span> <span class="token string">"http://image.luokangyuan.com/avatar.jpg"</span><span class="token punctuation">,</span>
-    <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"ja_rome"</span><span class="token punctuation">,</span>
-    <span class="token property">"introduction"</span><span class="token operator">:</span> <span class="token string">"平凡的脚步也可以走出伟大的行程"</span><span class="token punctuation">,</span>
-    <span class="token property">"url"</span><span class="token operator">:</span> <span class="token string">"https://me.csdn.net/jlh912008548"</span><span class="token punctuation">,</span>
-    <span class="token property">"title"</span><span class="token operator">:</span> <span class="token string">"前去学习"</span>
-<span class="token punctuation">}</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
-<h3 id="代码高亮"><a href="#代码高亮" class="headerlink" title="代码高亮"></a>代码高亮</h3><p>从 Hexo5.0 版本开始自带了 <code>prismjs</code> 代码语法高亮的支持，本主题对此进行了改造支持。</p>
-<p>如果你的博客中曾经安装过 <code>hexo-prism-plugin</code> 的插件，那么你须要执行 <code>npm uninstall hexo-prism-plugin</code> 来卸载掉它，否则生成的代码中会有 <code>{</code> 和 <code>}</code> 的转义字符。</p>
-<p>然后，修改 Hexo 根目录下 <code>_config.yml</code> 文件中 <code>highlight.enable</code> 的值为 <code>false</code>，并将 <code>prismjs.enable</code> 的值设置为 <code>true</code>，主要配置如下：</p>
-<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">highlight</span><span class="token punctuation">:</span>
-  <span class="token key atrule">enable</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
-  <span class="token key atrule">line_number</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
-  <span class="token key atrule">auto_detect</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
-  <span class="token key atrule">tab_replace</span><span class="token punctuation">:</span> <span class="token string">''</span>
-  <span class="token key atrule">wrap</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
-  <span class="token key atrule">hljs</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
-<span class="token key atrule">prismjs</span><span class="token punctuation">:</span>
-  <span class="token key atrule">enable</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
-  <span class="token key atrule">preprocess</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
-  <span class="token key atrule">line_number</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
-  <span class="token key atrule">tab_replace</span><span class="token punctuation">:</span> <span class="token string">''</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>主题中默认的 <code>prismjs</code> 主题是 <code>Tomorrow Night</code>，如果你想定制自己的主题，可以前往 <a href="https://prismjs.com/download.html">prismjs 下载页面</a> 定制下载自己喜欢的主题 <code>css</code> 文件，然后将此 css 主题文件取名为 <code>prism.css</code>，替换掉 <code>hexo-theme-matery</code> 主题文件夹中的 <code>source/libs/prism/prism.css</code> 文件即可。</p>
-<h3 id="中文链接转拼音（建议安装，否则底部的文章链接很乱）"><a href="#中文链接转拼音（建议安装，否则底部的文章链接很乱）" class="headerlink" title="中文链接转拼音（建议安装，否则底部的文章链接很乱）"></a>中文链接转拼音（建议安装，否则底部的文章链接很乱）</h3><p>如果你的文章名称是中文的，那么 Hexo 默认生成的永久链接也会有中文，这样不利于 <code>SEO</code>，且 <code>gitment</code> 评论对中文链接也不支持。我们可以用 <a href="https://github.com/viko16/hexo-permalink-pinyin">hexo-permalink-pinyin</a> Hexo 插件使在生成文章时生成中文拼音的永久链接。</p>
-<p>安装命令如下：</p>
-<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">npm i hexo-permalink-pinyin --save<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>在 Hexo 根目录下的 <code>_config.yml</code> 文件中，新增以下的配置项：</p>
-<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">permalink_pinyin</span><span class="token punctuation">:</span>
-  <span class="token key atrule">enable</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
-  <span class="token key atrule">separator</span><span class="token punctuation">:</span> <span class="token string">'-'</span> <span class="token comment"># default: '-'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-<blockquote>
-<p><strong>注</strong>：除了此插件外，<a href="https://github.com/rozbo/hexo-abbrlink">hexo-abbrlink</a> 插件也可以生成非中文的链接。</p>
-</blockquote>
-<h3 id="文章字数统计插件（建议安装）"><a href="#文章字数统计插件（建议安装）" class="headerlink" title="文章字数统计插件（建议安装）"></a>文章字数统计插件（建议安装）</h3><p>如果你想要在文章中显示文章字数、阅读时长信息，可以安装 <a href="https://github.com/willin/hexo-wordcount">hexo-wordcount</a>插件。</p>
-<p>安装命令如下：</p>
-<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">npm i --save hexo-wordcount<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>然后只需在本主题下的 <code>_config.yml</code> 文件中，将各个文章字数相关的配置激活即可：</p>
-<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">postInfo</span><span class="token punctuation">:</span>
-  <span class="token key atrule">date</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
-  <span class="token key atrule">update</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
-  <span class="token key atrule">wordCount</span><span class="token punctuation">:</span> <span class="token boolean important">false</span> <span class="token comment"># 设置文章字数统计为 true.</span>
-  <span class="token key atrule">totalCount</span><span class="token punctuation">:</span> <span class="token boolean important">false</span> <span class="token comment"># 设置站点文章总字数统计为 true.</span>
-  <span class="token key atrule">min2read</span><span class="token punctuation">:</span> <span class="token boolean important">false</span> <span class="token comment"># 阅读时长.</span>
-  <span class="token key atrule">readCount</span><span class="token punctuation">:</span> <span class="token boolean important">false</span> <span class="token comment"># 阅读次数.</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h3 id=""><a href="#" class="headerlink" title=""></a></h3>]]></content>
-      <categories>
-        <category>教程</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>hexo：next主题美化进阶设置</title>
     <url>/2022/01/11/hexo-zhi-next-zhu-ti-mei-hua/</url>
     <content><![CDATA[<h2 id="hexo进阶教程"><a href="#hexo进阶教程" class="headerlink" title="hexo进阶教程"></a>hexo进阶教程</h2><p>[toc]</p>
@@ -1570,106 +1654,6 @@ passage_end_tag:
       </categories>
       <tags>
         <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ReactNote04:组件通信方式</title>
-    <url>/2022/01/31/reactnote04-zu-jian-tong-xin-fang-shi/</url>
-    <content><![CDATA[<h3 id="组件间的通信方式"><a href="#组件间的通信方式" class="headerlink" title="组件间的通信方式"></a>组件间的通信方式</h3><h4 id="1-父组件传递信息给子组件"><a href="#1-父组件传递信息给子组件" class="headerlink" title="1. 父组件传递信息给子组件"></a>1. 父组件传递信息给子组件</h4><blockquote>
-<p>先看React官网的一句话：当 React 元素为用户自定义组件时，它会将 JSX 所接收的属性（attributes）以及子组件（children）转换为单个对象传递给组件，这个对象被称之为 “props”。</p>
-</blockquote>
-<span id="more"></span>
-
-<p>以下例子说明了父组件传递信息给子组件的方式是：在父组件的子组件中写形参的时候，React会将子组件接受到的属性转换为props对象传递给组件，所以渲染子组件的时候就可以使用props里面的数据了。函数组件同理。</p>
-<pre class="line-numbers language-react" data-language="react"><code class="language-react">import React, { Component } from 'react'
-class Son extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-        }
-    }
-    render() {
-        // 为什么这里可以通过this.props取得父组件里面传来的值呢？
-        const { name, age, height } = this.props;
-        return (
-            &lt;div&gt;
-                &lt;h2&gt;{name + " " + age + " " + height}&lt;/h2&gt;
-            &lt;/div&gt;
-        )
-    }
-}
-
-export default class App extends Component {
-    render() {
-        return (
-            &lt;div&gt;
-                &lt;Son name="beiyep" age="18" height="1.88"&gt;&lt;/Son&gt;
-                &lt;Son name="hala" age="188" height="1.88"&gt;&lt;/Son&gt;
-                &lt;Son name="indexjs" age="11118" height="1.8228"&gt;&lt;/Son&gt;
-            &lt;/div&gt;
-        )
-    }
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
-<h4 id="2-组件传递信息时的数据验证"><a href="#2-组件传递信息时的数据验证" class="headerlink" title="2. 组件传递信息时的数据验证"></a>2. 组件传递信息时的数据验证</h4><pre class="line-numbers language-react" data-language="react"><code class="language-react">import React, { Component } from 'react';
-import PropTypes from "prop-types";
-
-function Son(props) {
-    const { name, age, height, names } = props;
-    return (
-        &lt;div&gt;
-            &lt;h2&gt;{name + " " + age + " " + height}&lt;/h2&gt;
-            &lt;ul&gt;
-                {
-                    names.map((item, index) =&gt; {
-                        return &lt;li&gt;{item}&lt;/li&gt;
-                    })
-                }
-            &lt;/ul&gt;
-        &lt;/div&gt;
-    )
-}
-
-Son.propTypes = {
-    name: PropTypes.string.isRequired,
-    age: PropTypes.number,
-    height: PropTypes.number,
-    names: PropTypes.array
-}
-
-// 默认属性
-Son.defaultProps = {
-    name: "hcb",
-    age: 11,
-    height: 178,
-    names: ["hcb", "bbxk"]
-}
-
-
-
-export default class App extends Component {
-    render() {
-        return (
-            &lt;div&gt;
-                &lt;Son name="beiyep333" age="18" height="1.88" names={["aaa", "bbb", "ccc"]}&gt;&lt;/Son&gt;
-                &lt;Son name="hala333" age="188" height="1.88" names={["aaa", "bbb", "ccc"]}&gt;&lt;/Son&gt;
-                &lt;Son name="indexjs函数" age="11118" height="1.8228"&gt;&lt;/Son&gt;
-            &lt;/div&gt;
-        )
-    }
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
-]]></content>
-      <categories>
-        <category>React笔记</category>
-      </categories>
-      <tags>
-        <tag>React</tag>
       </tags>
   </entry>
   <entry>
@@ -1947,227 +1931,6 @@ search:
       </categories>
       <tags>
         <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>hexo:为next主题添加评论系统</title>
-    <url>/2022/02/11/hexo-wei-next-zhu-ti-tian-jia-ping-lun-xi-tong/</url>
-    <content><![CDATA[<h3 id="为hexo的next主题添加评论系统，在评论区和网友激情对线-doge"><a href="#为hexo的next主题添加评论系统，在评论区和网友激情对线-doge" class="headerlink" title="为hexo的next主题添加评论系统，在评论区和网友激情对线[doge]"></a>为hexo的next主题添加评论系统，在评论区和网友激情对线[doge]</h3><p>早就想为自己的博客添加一个评论系统了，能在评论区发表自己的所思所得，还能和网友激情对线，想想都刺激。</p>
-<p>还要清楚的是，Valine 评论系统在 Next 主题高版本 (7.+) 以上已没有支持，且 Valine 已经很久没有更新维护了。不过，有大佬在 Valine 的基础之上开发了 <a href="https://waline.js.org/">Waline</a> 。还有Gitment最新版next也不支持了。</p>
-<p>这次，我们添加的是能够快速上手安装，配置更加人性化且带后端的 <a href="https://waline.js.org/">Waline</a> 评论系统</p>
-<span id="more"></span>
-
-<h4 id="1-配置数据库"><a href="#1-配置数据库" class="headerlink" title="1.配置数据库"></a>1.配置数据库</h4><p>我们需要注册一个 <a href="https://console.leancloud.app/register">Leancloud 国际版 </a>的账号，注意，一定要是 <strong>国际版</strong>，国内版需要绑定备案的域名，比较麻烦。具体可以在注册时的左上角看到：</p>
-<img src="https://tva1.sinaimg.cn/large/008i3skNgy1gz9fwq8jjqj32p90u0wi2.jpg" style="zoom: 15%;">
-
-<p>注册完成后，登录，然后我们找到<code>创建应用</code><br>在这里填写你的应用名称,名称可以自己定义，然后，下面选择<code>开发版</code> 点击<code>创建</code>。</p>
-<img src="https://tva1.sinaimg.cn/large/008i3skNgy1gz9gaaylmmj31310u0tb4.jpg" style="zoom:25%;">
-
-<p>然后点击设置，进入应用凭证页面，取得我们 <code>AppKey</code> 、<code>App id</code> 、以及 <code>MasterKey</code> ：</p>
-<p>数据库配置完毕，接下来安装服务端。</p>
-<h4 id="2-安装服务端"><a href="#2-安装服务端" class="headerlink" title="2.安装服务端"></a>2.安装服务端</h4><p><code>Waline</code> 支持多种服务端，这里我们使用第一种方式，即在 <code>Vercl</code> 上安装服务端。</p>
-<p><a href="https://vercel.com/import/project?template=https://github.com/walinejs/waline/tree/main/example"><img src="https://vercel.com/button" alt="Vercel"></a></p>
-<p>点击上方按钮，跳转至 Vercel 进行 Server 端部署。</p>
-<p>如果你未登录的话，Vercel 会让你注册或登录，请使用 GitHub 账户进行快捷登录。</p>
-<img src="https://tva1.sinaimg.cn/large/008i3skNgy1gz9gidu3i3j310c0u0mz2.jpg" style="zoom:25%;">
-
-<p><code>GIT POST</code>那里绑定你的<code>github</code>账号，第二栏输入一个你喜欢的 Vercel 项目名称并点击 <code>Create</code> 继续，等待一小会时间</p>
-<img src="https://tva1.sinaimg.cn/large/008i3skNgy1gz9go73rbij314z0u0q5i.jpg" style="zoom:25%;">
-
-<p>创建成功还会有烟花，嗯，不错</p>
-<img src="/Users/onlybei/Library/Application Support/typora-user-images/image-20220211123356740.png" alt="image-20220211123356740" style="zoom:10%;">
-
-<p>点击 <code>Go to Dashboard</code>，点击顶部的 <code>Settings</code> - <code>Environment Variables</code> 进入环境变量配置页，并配置三个环境变量<code>LEAN_ID</code>, <code>LEAN_KEY</code> 和 <code>LEAN_MASTER_KEY</code> 。它们的值分别对应上一步在 LeanCloud 中获得的 <code>APP ID</code>, <code>APP KEY</code>, <code>Master Key</code>。</p>
-<img src="/Users/onlybei/Library/Application Support/typora-user-images/image-20220211124013867.png" alt="image-20220211124013867" style="zoom:20%;">
-
-<blockquote>
-<p>提示</p>
-<p>如果你使用 LeanCloud 国内版，请额外配置 <code>LEAN_SERVER</code> 环境变量，值为你绑定好的域名。</p>
-</blockquote>
-<p>环境变量配置完成之后点击顶部的 <code>Deployments</code> 点击顶部最新的一次部署右侧的 <code>Redeploy</code> 按钮进行重新部署。该步骤是为了让刚才设置的环境变量生效。</p>
-<p>此时会跳转到 <code>Overview</code> 界面开始部署，等待片刻后 <code>STATUS</code> 会变成 <code>Ready</code>。此时请点击 <code>Visit</code> ，即可跳转到部署好的网站地址，此地址即为你的服务端地址。</p>
-<h4 id="3-在Hexo-Next主题中配置"><a href="#3-在Hexo-Next主题中配置" class="headerlink" title="3. 在Hexo Next主题中配置"></a>3. 在Hexo Next主题中配置</h4><p>由于 Next 主题中并不自带 <code>Waline</code> 的评论配置，我们需要安装官方提供的插件。在 <code>Hexo</code> 根目录执行：</p>
-<pre class="line-numbers language-none"><code class="language-none">npm install @waline/hexo-next<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>找到 Next 的主题配置文件，在最后加上，记得修改servarURL</p>
-<pre class="line-numbers language-none"><code class="language-none"># Waline
-# For more information: https://waline.js.org, https://github.com/walinejs/waline
-waline:
-  enable: true #是否开启
-  serverURL: waline-server-pearl.vercel.app # Waline #服务端地址，我们这里就是上面部署的 Vercel 地址
-  placeholder: 请文明评论呀 # #评论框的默认文字
-  avatar: mm # 头像风格
-  meta: [nick, mail, link] # 自定义评论框上面的三个输入框的内容
-  pageSize: 10 # 评论数量多少时显示分页
-  lang: zh-cn # 语言, 可选值: en, zh-cn
-  # Warning: 不要同时启用 `waline.visitor` 以及 `leancloud_visitors`.
-  visitor: false # 文章阅读统计
-  comment_count: true # 如果为 false , 评论数量只会在当前评论页面显示, 主页则不显示
-  requiredFields: [] # 设置用户评论时必填的信息，[nick,mail]: [nick] | [nick, mail]
-  libUrl: # Set custom library cdn url<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>重新部署 <code>Hexo</code> ，就可以看到结果了。</p>
-<h4 id="4-登录管理端"><a href="#4-登录管理端" class="headerlink" title="4. 登录管理端"></a>4. 登录管理端</h4><p>由于 <code>Waline</code> 有服务端，支持评论管理。我们需要注册一个账号作为管理员。</p>
-<p>找到评论框，点击 <code>登录</code> 按钮，会弹出一个窗口，找到用户注册，默认第一个注册的用户为管理员，所以部署好一定要记得及时注册。注册好了之后，登录之后即可进入评论管理的后台，可以对评论进行管理。</p>
-<h4 id="5-其他"><a href="#5-其他" class="headerlink" title="5. 其他"></a>5. 其他</h4><h5 id="5-1-自定义头像"><a href="#5-1-自定义头像" class="headerlink" title="5.1 自定义头像"></a>5.1 自定义头像</h5><p>参考：<a href="https://waline.js.org/guide/client/avatar.html">头像配置 | Waline</a></p>
-<blockquote>
-<p> 注意：官方头像配置教程已过时，需要在服务端进行设置</p>
-<p>已过时</p>
-<p>建议配合最新版本的服务端，通过服务端的 <code>AVATAR_PROXY</code> 配置。</p>
-</blockquote>
-<p>在服务器设置中添加<code>AVATAR_PROXY</code>和<code>GRAVATAR_STR</code>设置，记得value要添加上默认的值，然后注册 <a href="https://www.libravatar.org/">Libravatar</a>账号，可以上传自己的喜欢的头像。</p>
-<h5 id="5-2-参考"><a href="#5-2-参考" class="headerlink" title="5.2 参考"></a>5.2 参考</h5><p><a href="https://waline.js.org/guide/get-started.html">快速入门 ｜ Waline</a></p>
-<p><a href="https://waline.js.org/reference/server.html#%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F">服务器配置 | Waline</a></p>
-]]></content>
-      <categories>
-        <category>教程</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ReactNote05:深入源码探究memo、PureComponent</title>
-    <url>/2022/02/08/reactnote05-shen-ru-tan-jiu-memo-purecomponent/</url>
-    <content><![CDATA[<h3 id="深入源码探究memo、PureComponent"><a href="#深入源码探究memo、PureComponent" class="headerlink" title="深入源码探究memo、PureComponent"></a>深入源码探究memo、PureComponent</h3><h4 id="窥探PureComponent"><a href="#窥探PureComponent" class="headerlink" title="窥探PureComponent"></a>窥探PureComponent</h4><p>今天学到了PureComponent，它可以起到在Component里面添加SCU的效果，虽然类组件以后会很少用，但是它的底层原理还是要了解一下，也能了解一下React不断进步背后的思想，PureComponent在React里面是怎么实现的呢，肘，跟我进源码（版本是16.3.1）。</p>
-<p>这里安利一下vscode的Bookmarks插件，看源码是非常方便。</p>
-<span id="more"></span>
-
-<blockquote>
-<p>以下源码均为节选</p>
-</blockquote>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 路径</span>
-<span class="token comment">// packages/react-reconciler/src/ReactFiberClassComponent.js</span>
-
-<span class="token keyword">function</span> <span class="token function">checkShouldComponentUpdate</span><span class="token punctuation">(</span>
-  <span class="token parameter">workInProgress<span class="token punctuation">,</span>
-  ctor<span class="token punctuation">,</span>
-  oldProps<span class="token punctuation">,</span>
-  newProps<span class="token punctuation">,</span>
-  oldState<span class="token punctuation">,</span>
-  newState<span class="token punctuation">,</span>
-  nextContext<span class="token punctuation">,</span></span>
-<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">const</span> instance <span class="token operator">=</span> workInProgress<span class="token punctuation">.</span>stateNode<span class="token punctuation">;</span>
-    
-  <span class="token comment">// 判断是否使用了shouldComponentUpdate</span>
-  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> instance<span class="token punctuation">.</span>shouldComponentUpdate <span class="token operator">===</span> <span class="token string">'function'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token comment">// 使用了shouldComponentUpdate的话，那么就比较State和props的数据</span>
-    <span class="token comment">// 如果变化就返回true，不变化的话就返回false</span>
-    <span class="token keyword">const</span> shouldUpdate <span class="token operator">=</span> instance<span class="token punctuation">.</span><span class="token function">shouldComponentUpdate</span><span class="token punctuation">(</span>
-      newProps<span class="token punctuation">,</span>
-      newState<span class="token punctuation">,</span>
-      nextContext<span class="token punctuation">,</span>
-    <span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> shouldUpdate<span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
-
-  <span class="token comment">// 判断是否使用了PureReactComponent</span>
-  <span class="token keyword">if</span> <span class="token punctuation">(</span>ctor<span class="token punctuation">.</span>prototype <span class="token operator">&amp;&amp;</span> ctor<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>isPureReactComponent<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">return</span> <span class="token punctuation">(</span>
-      <span class="token comment">// 浅层比较，注意有取反操作</span>
-      <span class="token operator">!</span><span class="token function">shallowEqual</span><span class="token punctuation">(</span>oldProps<span class="token punctuation">,</span> newProps<span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token operator">!</span><span class="token function">shallowEqual</span><span class="token punctuation">(</span>oldState<span class="token punctuation">,</span> newState<span class="token punctuation">)</span>
-    <span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
-    
-  <span class="token comment">// 默认返回的是true，也就是更新</span>
-  <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
-<p>这里就弄清楚了判断组件的更新的逻辑，下面我们再看一下shallowEqual这个函数，按住commond进去，</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">import</span> shallowEqual <span class="token keyword">from</span> <span class="token string">'shared/shallowEqual'</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>去<code>share</code>文件夹里面找<code>shallowEqual</code>这个文件</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">shallowEqual</span><span class="token punctuation">(</span><span class="token parameter">objA<span class="token operator">:</span> mixed<span class="token punctuation">,</span> objB<span class="token operator">:</span> mixed</span><span class="token punctuation">)</span><span class="token operator">:</span> boolean <span class="token punctuation">{</span>
-  <span class="token comment">// 同一个对象返回ture，到了checkShouldComponentUpdate那里就是false，因为进行取反操作了</span>
-  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">is</span><span class="token punctuation">(</span>objA<span class="token punctuation">,</span> objB<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
-
-  <span class="token comment">// 不是对象或者为空就强制刷新</span>
-  <span class="token keyword">if</span> <span class="token punctuation">(</span>
-    <span class="token keyword">typeof</span> objA <span class="token operator">!==</span> <span class="token string">'object'</span> <span class="token operator">||</span>
-    objA <span class="token operator">===</span> <span class="token keyword">null</span> <span class="token operator">||</span>
-    <span class="token keyword">typeof</span> objB <span class="token operator">!==</span> <span class="token string">'object'</span> <span class="token operator">||</span>
-    objB <span class="token operator">===</span> <span class="token keyword">null</span>
-  <span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
-	
-  
-  <span class="token keyword">const</span> keysA <span class="token operator">=</span> Object<span class="token punctuation">.</span><span class="token function">keys</span><span class="token punctuation">(</span>objA<span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token keyword">const</span> keysB <span class="token operator">=</span> Object<span class="token punctuation">.</span><span class="token function">keys</span><span class="token punctuation">(</span>objB<span class="token punctuation">)</span><span class="token punctuation">;</span>
-	
-  <span class="token comment">// 如果两个对象的key的长度不一样的话，那么数据肯定发生了变化</span>
-  <span class="token keyword">if</span> <span class="token punctuation">(</span>keysA<span class="token punctuation">.</span>length <span class="token operator">!==</span> keysB<span class="token punctuation">.</span>length<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
-	
-  <span class="token comment">// 如果A中和B中的key值不一样，那就更新</span>
-  <span class="token comment">// Test for A's keys different from B.</span>
-  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> keysA<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>
-      <span class="token operator">!</span><span class="token function">hasOwnProperty</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span>objB<span class="token punctuation">,</span> keysA<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">||</span>
-      <span class="token operator">!</span><span class="token function">is</span><span class="token punctuation">(</span>objA<span class="token punctuation">[</span>keysA<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">,</span> objB<span class="token punctuation">[</span>keysA<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
-    <span class="token punctuation">)</span> <span class="token punctuation">{</span>
-      <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-  <span class="token punctuation">}</span>
-  <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
-<h4 id="窥探memo"><a href="#窥探memo" class="headerlink" title="窥探memo"></a>窥探memo</h4><p>既然memo和PureComponent作用类似，那么其原理应该也是和PureComponent思想类似</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// packages/react/src/memo.js</span>
-<span class="token keyword">import</span> <span class="token punctuation">{</span><span class="token constant">REACT_MEMO_TYPE</span><span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'shared/ReactSymbols'</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> isValidElementType <span class="token keyword">from</span> <span class="token string">'shared/isValidElementType'</span><span class="token punctuation">;</span>
-
-<span class="token comment">// 这里是可以传入两个参数的，如果没有传入第二个参数呢？</span>
-<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">function</span> memo<span class="token operator">&lt;</span>Props<span class="token operator">&gt;</span><span class="token punctuation">(</span>
-  type<span class="token operator">:</span> React$ElementType<span class="token punctuation">,</span>
-  compare<span class="token operator">?</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter">oldProps<span class="token operator">:</span> Props<span class="token punctuation">,</span> newProps<span class="token operator">:</span> Props</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> boolean<span class="token punctuation">,</span>
-<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">return</span> <span class="token punctuation">{</span>
-    $$<span class="token keyword">typeof</span><span class="token operator">:</span> <span class="token constant">REACT_MEMO_TYPE</span><span class="token punctuation">,</span>
-    type<span class="token punctuation">,</span>
-    compare<span class="token operator">:</span> compare <span class="token operator">===</span> <span class="token keyword">undefined</span> <span class="token operator">?</span> <span class="token keyword">null</span> <span class="token operator">:</span> compare<span class="token punctuation">,</span>
-  <span class="token punctuation">}</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>那么源码已经用<code>compare = compare !== null ? compare : shallowEqual;</code>帮助我们做了判断，意思就是如果我们传入了自己编写的compare函数，那么就用这个函数，否则它帮我们调用shallowEqual函数。</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">updateMemoComponent</span><span class="token punctuation">(</span>
-  <span class="token parameter">current<span class="token operator">:</span> Fiber <span class="token operator">|</span> <span class="token keyword">null</span><span class="token punctuation">,</span>
-  workInProgress<span class="token operator">:</span> Fiber<span class="token punctuation">,</span>
-  Component<span class="token operator">:</span> any<span class="token punctuation">,</span>
-  nextProps<span class="token operator">:</span> any<span class="token punctuation">,</span>
-  updateExpirationTime<span class="token punctuation">,</span>
-  renderExpirationTime<span class="token operator">:</span> ExpirationTime<span class="token punctuation">,</span></span>
-<span class="token punctuation">)</span><span class="token operator">:</span> <span class="token keyword">null</span> <span class="token operator">|</span> Fiber <span class="token punctuation">{</span>
-  
-  <span class="token keyword">let</span> currentChild <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>current<span class="token punctuation">.</span>child<span class="token operator">:</span> any<span class="token punctuation">)</span><span class="token operator">:</span> Fiber<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// This is always exactly one child</span>
-  <span class="token keyword">if</span> <span class="token punctuation">(</span>updateExpirationTime <span class="token operator">&lt;</span> renderExpirationTime<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">const</span> prevProps <span class="token operator">=</span> currentChild<span class="token punctuation">.</span>memoizedProps<span class="token punctuation">;</span>
-    <span class="token keyword">let</span> compare <span class="token operator">=</span> Component<span class="token punctuation">.</span>compare<span class="token punctuation">;</span>
-    compare <span class="token operator">=</span> compare <span class="token operator">!==</span> <span class="token keyword">null</span> <span class="token operator">?</span> compare <span class="token operator">:</span> shallowEqual<span class="token punctuation">;</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">compare</span><span class="token punctuation">(</span>prevProps<span class="token punctuation">,</span> nextProps<span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> current<span class="token punctuation">.</span>ref <span class="token operator">===</span> workInProgress<span class="token punctuation">.</span>ref<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-      <span class="token keyword">return</span> <span class="token function">bailoutOnAlreadyFinishedWork</span><span class="token punctuation">(</span>
-        current<span class="token punctuation">,</span>
-        workInProgress<span class="token punctuation">,</span>
-        renderExpirationTime<span class="token punctuation">,</span>
-      <span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-  <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-]]></content>
-      <categories>
-        <category>React笔记</category>
-      </categories>
-      <tags>
-        <tag>React</tag>
       </tags>
   </entry>
   <entry>
@@ -2941,6 +2704,552 @@ public:
       </categories>
       <tags>
         <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hexo:使用matery主题对博客进行美化</title>
+    <url>/2022/02/16/hexo-shi-yong-matery-zhu-ti-dui-bo-ke-jin-xing-mei-hua/</url>
+    <content><![CDATA[<h1 id="使用-matery-主题搭建很好看的博客页面"><a href="#使用-matery-主题搭建很好看的博客页面" class="headerlink" title="使用 matery 主题搭建很好看的博客页面"></a>使用 <code>matery</code> 主题搭建很好看的博客页面</h1><p>因为最近看到一位腾讯大佬 <a href="https://yangchaoyi.vip/">一百个Chocolate</a> 的个人博客，使用的也是 <code>matery</code> 主题，而且用了 <a href="https://mazhuang.org/wiki/chinese-copywriting-guidelines/">中文文案排版指北 (简体中文版)</a>  对博客文章进行排版，第一眼感觉非常惊艳，这样的博客看起来很舒服，所以自己也想向大佬看齐。</p>
+<p>一下如无特别说明，以下配置文件都是 <code>matery</code> 主题下的 <code>_config.yml</code> </p>
+<h2 id="下载（最好下载master分支最新稳定版的代码）"><a href="#下载（最好下载master分支最新稳定版的代码）" class="headerlink" title="下载（最好下载master分支最新稳定版的代码）"></a>下载（最好下载master分支最新稳定版的代码）</h2><p>本主题<strong>推荐你使用 Hexo 5.0.0 及以上的版本</strong>。如果，你已经有一个自己的 <a href="https://hexo.io/zh-cn/">Hexo</a> 博客了，建议你将 Hexo 升级到最新稳定的版本。</p>
+<p>点击 <a href="https://codeload.github.com/blinkfox/hexo-theme-matery/zip/master">这里</a> 下载 <code>master</code> 分支的最新稳定版的代码，解压缩后，将 <code>hexo-theme-matery</code> 的文件夹复制到你 Hexo 的 <code>themes</code> 文件夹中即可。（用这种方式下载的文件夹名字是 <code>hexo-theme-matery-master</code>，需要改成 <code>hexo-theme-matery</code> 再复制到 Hexo 的 <code>themes</code> 文件夹中）</p>
+<p>当然你也可以在你的 <code>themes</code> 文件夹下使用 <code>git clone</code> 命令来下载:</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">git clone https://github.com/blinkfox/hexo-theme-matery.git<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><h3 id="切换主题"><a href="#切换主题" class="headerlink" title="切换主题"></a>切换主题</h3><p>修改 Hexo 根目录下的 <code>_config.yml</code> 的 <code>theme</code> 的值：<code>theme: hexo-theme-matery</code></p>
+<h4 id="config-yml-文件的其它修改建议"><a href="#config-yml-文件的其它修改建议" class="headerlink" title="_config.yml 文件的其它修改建议:"></a><code>_config.yml</code> 文件的其它修改建议:</h4><ul>
+<li>请修改 <code>_config.yml</code> 的 <code>url</code> 的值为你的网站主 <code>URL</code>（如：<code>http://xxx.github.io</code>）。</li>
+<li>建议修改两个 <code>per_page</code> 的分页条数值为 <code>6</code> 的倍数，如：<code>12</code>、<code>18</code> 等，这样文章列表在各个屏幕下都能较好的显示。</li>
+<li>如果你是中文用户，则建议修改 <code>language</code> 的值为 <code>zh-CN</code>。</li>
+</ul>
+<h3 id="新建分类-categories-页"><a href="#新建分类-categories-页" class="headerlink" title="新建分类 categories 页"></a>新建分类 categories 页</h3><p><code>categories</code> 页是用来展示所有分类的页面，如果在你的博客 <code>source</code> 目录下还没有 <code>categories/index.md</code> 文件，那么你就需要新建一个，命令如下：</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">hexo new page "categories"<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>编辑你刚刚新建的页面文件 <code>/source/categories/index.md</code>，至少需要以下内容：</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">---
+title: categories
+date: 2018-09-30 17:25:30
+type: "categories"
+layout: "categories"
+---<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="新建标签-tags-页"><a href="#新建标签-tags-页" class="headerlink" title="新建标签 tags 页"></a>新建标签 tags 页</h3><p><code>tags</code> 页是用来展示所有标签的页面，如果在你的博客 <code>source</code> 目录下还没有 <code>tags/index.md</code> 文件，那么你就需要新建一个，命令如下：</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">hexo new page "tags"<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>编辑你刚刚新建的页面文件 <code>/source/tags/index.md</code>，至少需要以下内容：</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">---
+title: tags
+date: 2018-09-30 18:23:38
+type: "tags"
+layout: "tags"
+---<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="新建关于我-about-页"><a href="#新建关于我-about-页" class="headerlink" title="新建关于我 about 页"></a>新建关于我 about 页</h3><p><code>about</code> 页是用来展示<strong>关于我和我的博客</strong>信息的页面，如果在你的博客 <code>source</code> 目录下还没有 <code>about/index.md</code> 文件，那么你就需要新建一个，命令如下：</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">hexo new page "about"<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>编辑你刚刚新建的页面文件 <code>/source/about/index.md</code>，至少需要以下内容：</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">---
+title: about
+date: 2018-09-30 17:25:30
+type: "about"
+layout: "about"
+---<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="新建留言板-contact-页（可选的）"><a href="#新建留言板-contact-页（可选的）" class="headerlink" title="新建留言板 contact 页（可选的）"></a>新建留言板 contact 页（可选的）</h3><p><code>contact</code> 页是用来展示<strong>留言板</strong>信息的页面，如果在你的博客 <code>source</code> 目录下还没有 <code>contact/index.md</code> 文件，那么你就需要新建一个，命令如下：</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">hexo new page "contact"<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>编辑你刚刚新建的页面文件 <code>/source/contact/index.md</code>，至少需要以下内容：</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">---
+title: contact
+date: 2018-09-30 17:25:30
+type: "contact"
+layout: "contact"
+---<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<blockquote>
+<p><strong>注</strong>：本留言板功能依赖于第三方评论系统，请<strong>激活</strong>你的评论系统才有效果。并且在主题的 <code>_config.yml</code> 文件中，第 <code>19</code> 至 <code>21</code> 行的“<strong>菜单</strong>”配置，取消关于留言板的注释即可。</p>
+</blockquote>
+<h3 id="新建友情链接-friends-页（可选的）"><a href="#新建友情链接-friends-页（可选的）" class="headerlink" title="新建友情链接 friends 页（可选的）"></a>新建友情链接 friends 页（可选的）</h3><p><code>friends</code> 页是用来展示<strong>友情链接</strong>信息的页面，如果在你的博客 <code>source</code> 目录下还没有 <code>friends/index.md</code> 文件，那么你就需要新建一个，命令如下：</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">hexo new page "friends"<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>编辑你刚刚新建的页面文件 <code>/source/friends/index.md</code>，至少需要以下内容：</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">---
+title: friends
+date: 2018-12-12 21:25:30
+type: "friends"
+layout: "friends"
+---<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>同时，在你的博客 <code>source</code> 目录下新建 <code>_data</code> 目录，在 <code>_data</code> 目录中新建 <code>friends.json</code> 文件，文件内容如下所示：</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token punctuation">[</span><span class="token punctuation">{</span>
+    <span class="token property">"avatar"</span><span class="token operator">:</span> <span class="token string">"http://image.luokangyuan.com/1_qq_27922023.jpg"</span><span class="token punctuation">,</span>
+    <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"码酱"</span><span class="token punctuation">,</span>
+    <span class="token property">"introduction"</span><span class="token operator">:</span> <span class="token string">"我不是大佬，只是在追寻大佬的脚步"</span><span class="token punctuation">,</span>
+    <span class="token property">"url"</span><span class="token operator">:</span> <span class="token string">"http://luokangyuan.com/"</span><span class="token punctuation">,</span>
+    <span class="token property">"title"</span><span class="token operator">:</span> <span class="token string">"前去学习"</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    <span class="token property">"avatar"</span><span class="token operator">:</span> <span class="token string">"http://image.luokangyuan.com/4027734.jpeg"</span><span class="token punctuation">,</span>
+    <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"闪烁之狐"</span><span class="token punctuation">,</span>
+    <span class="token property">"introduction"</span><span class="token operator">:</span> <span class="token string">"编程界大佬，技术牛，人还特别好，不懂的都可以请教大佬"</span><span class="token punctuation">,</span>
+    <span class="token property">"url"</span><span class="token operator">:</span> <span class="token string">"https://blinkfox.github.io/"</span><span class="token punctuation">,</span>
+    <span class="token property">"title"</span><span class="token operator">:</span> <span class="token string">"前去学习"</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    <span class="token property">"avatar"</span><span class="token operator">:</span> <span class="token string">"http://image.luokangyuan.com/avatar.jpg"</span><span class="token punctuation">,</span>
+    <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"ja_rome"</span><span class="token punctuation">,</span>
+    <span class="token property">"introduction"</span><span class="token operator">:</span> <span class="token string">"平凡的脚步也可以走出伟大的行程"</span><span class="token punctuation">,</span>
+    <span class="token property">"url"</span><span class="token operator">:</span> <span class="token string">"https://me.csdn.net/jlh912008548"</span><span class="token punctuation">,</span>
+    <span class="token property">"title"</span><span class="token operator">:</span> <span class="token string">"前去学习"</span>
+<span class="token punctuation">}</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="代码高亮"><a href="#代码高亮" class="headerlink" title="代码高亮"></a>代码高亮</h3><p>从 Hexo5.0 版本开始自带了 <code>prismjs</code> 代码语法高亮的支持，本主题对此进行了改造支持。</p>
+<p>如果你的博客中曾经安装过 <code>hexo-prism-plugin</code> 的插件，那么你须要执行 <code>npm uninstall hexo-prism-plugin</code> 来卸载掉它，否则生成的代码中会有 <code>{</code> 和 <code>}</code> 的转义字符。</p>
+<p>然后，修改 Hexo 根目录下 <code>_config.yml</code> 文件中 <code>highlight.enable</code> 的值为 <code>false</code>，并将 <code>prismjs.enable</code> 的值设置为 <code>true</code>，主要配置如下：</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">highlight</span><span class="token punctuation">:</span>
+  <span class="token key atrule">enable</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
+  <span class="token key atrule">line_number</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+  <span class="token key atrule">auto_detect</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
+  <span class="token key atrule">tab_replace</span><span class="token punctuation">:</span> <span class="token string">''</span>
+  <span class="token key atrule">wrap</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+  <span class="token key atrule">hljs</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
+<span class="token key atrule">prismjs</span><span class="token punctuation">:</span>
+  <span class="token key atrule">enable</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+  <span class="token key atrule">preprocess</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+  <span class="token key atrule">line_number</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+  <span class="token key atrule">tab_replace</span><span class="token punctuation">:</span> <span class="token string">''</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>主题中默认的 <code>prismjs</code> 主题是 <code>Tomorrow Night</code>，如果你想定制自己的主题，可以前往 <a href="https://prismjs.com/download.html">prismjs 下载页面</a> 定制下载自己喜欢的主题 <code>css</code> 文件，然后将此 css 主题文件取名为 <code>prism.css</code>，替换掉 <code>hexo-theme-matery</code> 主题文件夹中的 <code>source/libs/prism/prism.css</code> 文件即可。</p>
+<h3 id="中文链接转拼音（建议安装，否则底部的文章链接很乱）"><a href="#中文链接转拼音（建议安装，否则底部的文章链接很乱）" class="headerlink" title="中文链接转拼音（建议安装，否则底部的文章链接很乱）"></a>中文链接转拼音（建议安装，否则底部的文章链接很乱）</h3><p>如果你的文章名称是中文的，那么 Hexo 默认生成的永久链接也会有中文，这样不利于 <code>SEO</code>，且 <code>gitment</code> 评论对中文链接也不支持。我们可以用 <a href="https://github.com/viko16/hexo-permalink-pinyin">hexo-permalink-pinyin</a> Hexo 插件使在生成文章时生成中文拼音的永久链接。</p>
+<p>安装命令如下：</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">npm i hexo-permalink-pinyin --save<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>在 Hexo 根目录下的 <code>_config.yml</code> 文件中，新增以下的配置项：</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">permalink_pinyin</span><span class="token punctuation">:</span>
+
+  <span class="token key atrule">enable</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+  <span class="token key atrule">separator</span><span class="token punctuation">:</span> <span class="token string">'-'</span> <span class="token comment"># default: '-'</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>之后再将 Hexo 根目录下的 <code>_config.yml</code> 文件下的 url 改为自己的站点首地址</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token comment"># URL</span>
+<span class="token comment">## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'</span>
+<span class="token key atrule">url</span><span class="token punctuation">:</span> https<span class="token punctuation">:</span>//danonlylane.github.io <span class="token comment"># default: http://example.com</span>
+<span class="token key atrule">permalink</span><span class="token punctuation">:</span> <span class="token punctuation">:</span>year/<span class="token punctuation">:</span>month/<span class="token punctuation">:</span>day/<span class="token punctuation">:</span>title/
+<span class="token key atrule">permalink_defaults</span><span class="token punctuation">:</span>
+<span class="token key atrule">pretty_urls</span><span class="token punctuation">:</span>
+  <span class="token key atrule">trailing_index</span><span class="token punctuation">:</span> <span class="token boolean important">true</span> <span class="token comment"># Set to false to remove trailing 'index.html' from permalinks</span>
+  <span class="token key atrule">trailing_html</span><span class="token punctuation">:</span> <span class="token boolean important">true</span> <span class="token comment"># Set to false to remove trailing '.html' from permalinks</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<blockquote>
+<p><strong>注</strong>：除了此插件外，<a href="https://github.com/rozbo/hexo-abbrlink">hexo-abbrlink</a> 插件也可以生成非中文的链接。</p>
+</blockquote>
+<h3 id="文章字数统计插件（建议安装）"><a href="#文章字数统计插件（建议安装）" class="headerlink" title="文章字数统计插件（建议安装）"></a>文章字数统计插件（建议安装）</h3><p>如果你想要在文章中显示文章字数、阅读时长信息，可以安装 <a href="https://github.com/willin/hexo-wordcount">hexo-wordcount</a>插件。</p>
+<p>安装命令如下：</p>
+<pre class="line-numbers language-sh" data-language="sh"><code class="language-sh">npm i --save hexo-wordcount<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>然后只需在本主题下的 <code>_config.yml</code> 文件中，将各个文章字数相关的配置激活即可：</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">postInfo</span><span class="token punctuation">:</span>
+  <span class="token key atrule">date</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+  <span class="token key atrule">update</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
+  <span class="token key atrule">wordCount</span><span class="token punctuation">:</span> <span class="token boolean important">false</span> <span class="token comment"># 设置文章字数统计为 true.</span>
+  <span class="token key atrule">totalCount</span><span class="token punctuation">:</span> <span class="token boolean important">false</span> <span class="token comment"># 设置站点文章总字数统计为 true.</span>
+  <span class="token key atrule">min2read</span><span class="token punctuation">:</span> <span class="token boolean important">false</span> <span class="token comment"># 阅读时长.</span>
+  <span class="token key atrule">readCount</span><span class="token punctuation">:</span> <span class="token boolean important">false</span> <span class="token comment"># 阅读次数.</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="添加emoji表情支持（可选的）"><a href="#添加emoji表情支持（可选的）" class="headerlink" title="添加emoji表情支持（可选的）"></a>添加emoji表情支持（可选的）</h3><p>本主题新增了对<code>emoji</code>表情的支持，使用到了 <a href="https://npm.taobao.org/package/hexo-filter-github-emojis">hexo-filter-github-emojis</a> 的 Hexo 插件来支持 <code>emoji</code>表情的生成，把对应的<code>markdown emoji</code>语法（<code>::</code>,例如：<code>:smile:</code>）转变成会跳跃的<code>emoji</code>表情，安装命令如下：</p>
+<pre class="line-numbers language-none"><code class="language-none">npm install hexo-filter-github-emojis --save<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>在 Hexo 根目录下的 <code>_config.yml</code> 文件中，新增以下的配置项：</p>
+<pre class="line-numbers language-none"><code class="language-none">githubEmojis:
+  enable: true
+  className: github-emoji
+  inject: true
+  styles:
+  customEmojis:<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>执行 <code>hexo clean &amp;&amp; hexo g</code> 重新生成博客文件，然后就可以在文章中对应位置看到你用<code>emoji</code>语法写的表情了。</p>
+]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>断点看源码：探究React-router内部工作流程</title>
+    <url>/2022/03/03/duan-dian-kan-yuan-ma-tan-jiu-react-router-nei-bu-gong-zuo-liu-cheng/</url>
+    <content><![CDATA[<h3 id="从实际出发搞清楚react-router内部原理"><a href="#从实际出发搞清楚react-router内部原理" class="headerlink" title="从实际出发搞清楚react-router内部原理"></a>从实际出发搞清楚react-router内部原理</h3><p>[toc]</p>
+<p>前言：最近在看 <code>react-router</code> 的工作原理网上看了一圈文章，发现很多都是介绍了 <code>history</code> 库的原理和 <code>react-router</code> 里面的 <code>BrowserRouter</code> 组件、<code>Router</code> 组件等等，看了原理是大概知道了，但是它的内部是怎么样的一个工作流程还是一脸懵逼，又在找了一圈资料，看完还是觉得具体流程理不太清。想到平时在 js 代码的调试中可以打断点观察各个变量的情况以及程序的流程，<code>react</code> 程序那应该也可以这样调试。</p>
+<p>随后写了一个小 demo 测试一下：</p>
+<h4 id="准备文件："><a href="#准备文件：" class="headerlink" title="准备文件："></a>准备文件：</h4><p><code>App.js</code> 文件</p>
+<pre class="line-numbers language-react" data-language="react"><code class="language-react">import React, { PureComponent } from 'react'
+import { Link, Switch, Route, withRouter } from 'react-router-dom'
+
+// 为了看 history 的源码而引入
+import history from 'history'
+
+import Home from './pages/home';
+import Profile from './pages/profile';
+
+class App extends PureComponent {
+    constructor(props) {
+        super(props);
+        this.state = {
+        }
+    }
+
+    render() {
+        console.log(this.props);
+        return (
+            &lt;div&gt;
+                &lt;Link className='mylink' to="/"&gt;首页&lt;/Link&gt;
+                &lt;Link className='mylink' to="/profile"&gt;我的&lt;/Link&gt;
+                &lt;button onClick={() =&gt; this.jumpToProduct()}&gt;测试&lt;/button&gt;
+
+                &lt;Switch&gt;
+                    &lt;Route exact path="/" component={Home} /&gt;
+                    &lt;Route path="/profile" component={Profile} /&gt;
+                &lt;/Switch&gt;
+            &lt;/div&gt;
+        )
+    }
+
+    jumpToProduct() {
+        this.props.history.push("/profile");
+    }
+}
+
+export default withRouter(App);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><code>index.js</code> 文件</p>
+<pre class="line-numbers language-react" data-language="react"><code class="language-react">import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
+
+import {
+  BrowserRouter,
+} from 'react-router-dom';
+
+ReactDOM.render(
+  &lt;BrowserRouter&gt;
+    &lt;App /&gt;
+  &lt;/BrowserRouter&gt;
+  ,
+  document.getElementById('root')
+);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><code>profile.js</code> 组件， Home 一样</p>
+<pre class="line-numbers language-react" data-language="react"><code class="language-react">import React, { PureComponent } from 'react'
+
+export default class Profile extends PureComponent {
+    render() {
+        return (
+            &lt;div&gt;
+                &lt;h2&gt;Profile&lt;/h2&gt;
+            &lt;/div&gt;
+        )
+    }
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>到这里就可以开始了我们的流程探究了，在 <code>App.js</code> 文件的 <code>jumpToProduct</code> 里面的一行代码打上断点。</p>
+<p>打断点的具体方式是：将 demo 跑起来 -&gt; 打开浏览器的控制台 -&gt; source -&gt; 具体文件 -&gt; 打上断点</p>
+<pre class="line-numbers language-react" data-language="react"><code class="language-react">jumpToProduct() {
+        this.props.history.push("/profile");
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>如图：</p>
+<p><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1gzwst9j6j4j225y0n844l.jpg"></p>
+<p>点击 button 按钮，进行单步调试。然后程序就跳到 node_modules/history/cjs/history.js 的 push 函数里面了。</p>
+<p>这是为什么呢？因为 Link 组件里面判断了是用什么方法改变路径的。这里我们模拟的是 push 方法</p>
+<h4 id="1-Link-里面的判断代码片段（以下源码均为节选）"><a href="#1-Link-里面的判断代码片段（以下源码均为节选）" class="headerlink" title="1. Link 里面的判断代码片段（以下源码均为节选）"></a>1. Link 里面的判断代码片段（以下源码均为节选）</h4><pre class="line-numbers language-react" data-language="react"><code class="language-react">// 1. Link 里面的判断代码片段
+var props = _extends({}, rest, {
+      href: href,
+      navigate: function navigate() {
+        var location = resolveToLocation(to, context.location);
+        var isDuplicateNavigation = history.createPath(context.location) === history.createPath(normalizeToLocation(location));
+        var method = replace || isDuplicateNavigation ? history$1.replace : history$1.push;
+        method(location);
+      }
+    }); // React 15 compat<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="2-这里调用的是-history-下的-push-方法"><a href="#2-这里调用的是-history-下的-push-方法" class="headerlink" title="2. 这里调用的是 history 下的 push 方法"></a>2. 这里调用的是 history 下的 push 方法</h4><p>push方法里面创建一个新的 location 对象，然后通过 globalHistory 方法改变浏览器当前路由,最后通过<code>setState</code> 方法通知 <code>React-Router</code> 更新（这里会跳到 ReactRefreshEntry.js 这个文件），并传递当前的 location 对象</p>
+<pre class="line-numbers language-react" data-language="react"><code class="language-react">function push(path, state) {
+    var action = 'PUSH';
+  	/* 2. 创建location对象 */
+    var location = createLocation(path, state, createKey(), history.location);
+  	/* 3. 确定是否能进行路由转换 */
+    transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function (ok) {
+      if (!ok) return;
+      var href = createHref(location);
+      var key = location.key,
+          state = location.state;
+
+      if (canUseHistory) {
+        /* 改变 url */
+        globalHistory.pushState({
+          key: key,
+          state: state
+        }, null, href);
+
+        if (forceRefresh) {
+          window.location.href = href;
+        } else {
+          /* 改变 react-router location对象, 创建更新环境 */
+          setState({
+            action: action,
+            location: location
+          });
+        }
+      } 
+    });<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="3-history-下的-createTransitionManager-函数"><a href="#3-history-下的-createTransitionManager-函数" class="headerlink" title="3. history 下的 createTransitionManager 函数"></a>3. <code>history</code> 下的 <code>createTransitionManager</code> 函数</h4><p>作用是监听判断是否能进行路由转换 </p>
+<pre class="line-numbers language-react" data-language="react"><code class="language-react">/* 3. 确定是否能进行路由转换 */
+function createTransitionManager() {
+  var prompt = null;
+  
+  function confirmTransitionTo(location, action, getUserConfirmation, callback) {
+    if (prompt != null) {
+      var result = typeof prompt === 'function' ? prompt(location, action) : prompt;
+
+      if (typeof result === 'string') {
+        if (typeof getUserConfirmation === 'function') {
+          getUserConfirmation(result, callback);
+        } 
+      } else {
+        // Return false from a transition hook to cancel the transition.
+        callback(result !== false);
+      }
+    } else {
+      callback(true);
+    }
+  }
+  
+  var listeners = [];
+  
+  function appendListener(fn) {
+    var isActive = true;
+
+    function listener() {
+      if (isActive) fn.apply(void 0, arguments);
+    }
+
+    listeners.push(listener);
+    return function () {
+      isActive = false;
+      listeners = listeners.filter(function (item) {
+        return item !== listener;
+      });
+    };
+  }
+
+  function notifyListeners() {
+    listeners.forEach(function (listener) {
+      return listener.apply(void 0, args);
+    });
+  }
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="4-history-中-createBrowserHistory-props-函数的-setState"><a href="#4-history-中-createBrowserHistory-props-函数的-setState" class="headerlink" title="4. history  中 createBrowserHistory(props) 函数的 setState"></a>4. <code>history</code>  中 createBrowserHistory(props) 函数的 setState</h4><pre class="line-numbers language-react" data-language="react"><code class="language-react"> /* 通知listener更新，这里通知到 react-router了 */
+const setState = (nextState) =&gt; {
+    /* 合并信息 */
+    Object.assign(history, nextState)
+    history.length = globalHistory.length
+    /* 通知每一个listens路由已经发生变化 */
+    transitionManager.notifyListeners(
+      history.location,
+      history.action
+    )
+  }<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="5-路由匹配"><a href="#5-路由匹配" class="headerlink" title="5. 路由匹配"></a>5. 路由匹配</h4><pre class="line-numbers language-react" data-language="react"><code class="language-react"> /* 5. 监听并进行路由匹配 */
+class Router extends React.Component {
+  static computeRootMatch(pathname) {
+    return { path: "/", url: "/", params: {}, isExact: pathname === "/" };
+  }
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      location: props.history.location
+    };
+
+    this._isMounted = false;
+    this._pendingLocation = null;
+
+    if (!props.staticContext) {
+      this.unlisten = props.history.listen(location =&gt; {
+        if (this._isMounted) {
+          this.setState({ location });
+        } else {
+          this._pendingLocation = location;
+        }
+      });
+    }
+  }
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h4><p>路由转换的大致流程就是：</p>
+<ol>
+<li>模拟点击 Link</li>
+<li>调用 history.push 方法，通过 <code>history.pushState</code> 来改变当前 <code>url</code></li>
+<li>接下来触发history下面的 <code>setState</code> 方法，产生新的 location 对象，</li>
+<li>然后通知 Router 组件更新 <code>location</code></li>
+<li>路由匹配组件中监听更新的消息，找出符合的组件，最后进行页面更新。</li>
+</ol>
+<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><p><a href="https://juejin.cn/post/6886290490640039943#heading-13">「源码解析 」这一次彻底弄懂react-router路由原理</a></p>
+]]></content>
+      <categories>
+        <category>React笔记</category>
+      </categories>
+      <tags>
+        <tag>React React源码</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hexo:为next主题添加评论系统</title>
+    <url>/2022/02/11/hexo-wei-next-zhu-ti-tian-jia-ping-lun-xi-tong/</url>
+    <content><![CDATA[<h3 id="为hexo的next主题添加评论系统，就能在评论区和网友激情对线了-doge"><a href="#为hexo的next主题添加评论系统，就能在评论区和网友激情对线了-doge" class="headerlink" title="为hexo的next主题添加评论系统，就能在评论区和网友激情对线了[doge]"></a>为hexo的next主题添加评论系统，就能在评论区和网友激情对线了[doge]</h3><p>早就想为自己的博客添加一个评论系统了，能在评论区发表自己的所思所得，还能和网友激情对线，想想都刺激。</p>
+<p>还要清楚的是，Valine 评论系统在 Next 主题高版本 (7.+) 以上已没有支持，且 Valine 已经很久没有更新维护了。不过，有大佬在 Valine 的基础之上开发了 <a href="https://waline.js.org/">Waline</a> 。还有Gitment最新版next也不支持了。</p>
+<p>这次，我们添加的是能够快速上手安装，配置更加人性化且带后端的 <a href="https://waline.js.org/">Waline</a> 评论系统</p>
+<span id="more"></span>
+
+<h4 id="1-配置数据库"><a href="#1-配置数据库" class="headerlink" title="1.配置数据库"></a>1.配置数据库</h4><p>我们需要注册一个 <a href="https://console.leancloud.app/register">Leancloud 国际版 </a>的账号，注意，一定要是 <strong>国际版</strong>，国内版需要绑定备案的域名，比较麻烦。具体可以在注册时的左上角看到：</p>
+<img src="https://tva1.sinaimg.cn/large/008i3skNgy1gz9fwq8jjqj32p90u0wi2.jpg" style="zoom: 15%;">
+
+<p>注册完成后，登录，然后我们找到<code>创建应用</code><br>在这里填写你的应用名称,名称可以自己定义，然后，下面选择<code>开发版</code> 点击<code>创建</code>。</p>
+<img src="https://tva1.sinaimg.cn/large/008i3skNgy1gz9gaaylmmj31310u0tb4.jpg" style="zoom:25%;">
+
+<p>然后点击设置，进入应用凭证页面，取得我们 <code>AppKey</code> 、<code>App id</code> 、以及 <code>MasterKey</code> ：</p>
+<p>数据库配置完毕，接下来安装服务端。</p>
+<h4 id="2-安装服务端"><a href="#2-安装服务端" class="headerlink" title="2.安装服务端"></a>2.安装服务端</h4><p><code>Waline</code> 支持多种服务端，这里我们使用第一种方式，即在 <code>Vercl</code> 上安装服务端。</p>
+<p><a href="https://vercel.com/import/project?template=https://github.com/walinejs/waline/tree/main/example"><img src="https://vercel.com/button" alt="Vercel"></a></p>
+<p>点击上方按钮，跳转至 Vercel 进行 Server 端部署。</p>
+<p>如果你未登录的话，Vercel 会让你注册或登录，请使用 GitHub 账户进行快捷登录。</p>
+<img src="https://tva1.sinaimg.cn/large/008i3skNgy1gz9gidu3i3j310c0u0mz2.jpg" style="zoom:25%;">
+
+<p><code>GIT POST</code>那里绑定你的<code>github</code>账号，第二栏输入一个你喜欢的 Vercel 项目名称并点击 <code>Create</code> 继续，等待一小会时间</p>
+<img src="https://tva1.sinaimg.cn/large/008i3skNgy1gz9go73rbij314z0u0q5i.jpg" style="zoom:25%;">
+
+<p>创建成功还会有烟花，嗯，不错</p>
+<img src="/Users/onlybei/Library/Application Support/typora-user-images/image-20220211123356740.png" alt="image-20220211123356740" style="zoom:10%;">
+
+<p>点击 <code>Go to Dashboard</code>，点击顶部的 <code>Settings</code> - <code>Environment Variables</code> 进入环境变量配置页，并配置三个环境变量<code>LEAN_ID</code>, <code>LEAN_KEY</code> 和 <code>LEAN_MASTER_KEY</code> 。它们的值分别对应上一步在 LeanCloud 中获得的 <code>APP ID</code>, <code>APP KEY</code>, <code>Master Key</code>。</p>
+<img src="/Users/onlybei/Library/Application Support/typora-user-images/image-20220211124013867.png" alt="image-20220211124013867" style="zoom:20%;">
+
+<blockquote>
+<p>提示</p>
+<p>如果你使用 LeanCloud 国内版，请额外配置 <code>LEAN_SERVER</code> 环境变量，值为你绑定好的域名。</p>
+</blockquote>
+<p>环境变量配置完成之后点击顶部的 <code>Deployments</code> 点击顶部最新的一次部署右侧的 <code>Redeploy</code> 按钮进行重新部署。该步骤是为了让刚才设置的环境变量生效。</p>
+<p>此时会跳转到 <code>Overview</code> 界面开始部署，等待片刻后 <code>STATUS</code> 会变成 <code>Ready</code>。此时请点击 <code>Visit</code> ，即可跳转到部署好的网站地址，此地址即为你的服务端地址。</p>
+<h4 id="3-在Hexo-Next主题中配置"><a href="#3-在Hexo-Next主题中配置" class="headerlink" title="3. 在Hexo Next主题中配置"></a>3. 在Hexo Next主题中配置</h4><p>由于 Next 主题中并不自带 <code>Waline</code> 的评论配置，我们需要安装官方提供的插件。在 <code>Hexo</code> 根目录执行：</p>
+<pre class="line-numbers language-none"><code class="language-none">npm install @waline/hexo-next<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>找到 Next 的主题配置文件，在最后加上，记得修改servarURL</p>
+<pre class="line-numbers language-none"><code class="language-none"># Waline
+# For more information: https://waline.js.org, https://github.com/walinejs/waline
+waline:
+  enable: true #是否开启
+  serverURL: waline-server-pearl.vercel.app # Waline #服务端地址，我们这里就是上面部署的 Vercel 地址
+  placeholder: 请文明评论呀 # #评论框的默认文字
+  avatar: mm # 头像风格
+  meta: [nick, mail, link] # 自定义评论框上面的三个输入框的内容
+  pageSize: 10 # 评论数量多少时显示分页
+  lang: zh-cn # 语言, 可选值: en, zh-cn
+  # Warning: 不要同时启用 `waline.visitor` 以及 `leancloud_visitors`.
+  visitor: false # 文章阅读统计
+  comment_count: true # 如果为 false , 评论数量只会在当前评论页面显示, 主页则不显示
+  requiredFields: [] # 设置用户评论时必填的信息，[nick,mail]: [nick] | [nick, mail]
+  libUrl: # Set custom library cdn url<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>重新部署 <code>Hexo</code> ，就可以看到结果了。</p>
+<h4 id="4-登录管理端"><a href="#4-登录管理端" class="headerlink" title="4. 登录管理端"></a>4. 登录管理端</h4><p>由于 <code>Waline</code> 有服务端，支持评论管理。我们需要注册一个账号作为管理员。</p>
+<p>找到评论框，点击 <code>登录</code> 按钮，会弹出一个窗口，找到用户注册，默认第一个注册的用户为管理员，所以部署好一定要记得及时注册。注册好了之后，登录之后即可进入评论管理的后台，可以对评论进行管理。</p>
+<h4 id="5-其他"><a href="#5-其他" class="headerlink" title="5. 其他"></a>5. 其他</h4><h5 id="5-1-自定义头像"><a href="#5-1-自定义头像" class="headerlink" title="5.1 自定义头像"></a>5.1 自定义头像</h5><p>参考：<a href="https://waline.js.org/guide/client/avatar.html">头像配置 | Waline</a></p>
+<blockquote>
+<p> 注意：官方头像配置教程已过时，需要在服务端进行设置</p>
+<p>已过时</p>
+<p>建议配合最新版本的服务端，通过服务端的 <code>AVATAR_PROXY</code> 配置。</p>
+</blockquote>
+<p>在服务器设置中添加<code>AVATAR_PROXY</code>和<code>GRAVATAR_STR</code>设置，记得value要添加上默认的值，然后注册 <a href="https://www.libravatar.org/">Libravatar</a>账号，可以上传自己的喜欢的头像。</p>
+<h5 id="5-2-参考"><a href="#5-2-参考" class="headerlink" title="5.2 参考"></a>5.2 参考</h5><p><a href="https://waline.js.org/guide/get-started.html">快速入门 ｜ Waline</a></p>
+<p><a href="https://waline.js.org/reference/server.html#%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F">服务器配置 | Waline</a></p>
+]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>阿里云服务器操作记录</title>
+    <url>/2022/02/01/a-li-yun-fu-wu-qi-cao-zuo-ji-lu/</url>
+    <content><![CDATA[<h3 id="阿里云服务器默认不开启-root-远程登录"><a href="#阿里云服务器默认不开启-root-远程登录" class="headerlink" title="阿里云服务器默认不开启 root 远程登录"></a>阿里云服务器默认不开启 root 远程登录</h3><p>需要先进行 VNC 远程连接登录，再进行实例登录。</p>
+<p>可以在Mac的命令行进行登录</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">ssh root@你的公网地址
+password 你的密码<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="阿里云-centos-安装-nginx"><a href="#阿里云-centos-安装-nginx" class="headerlink" title="阿里云 centos 安装 nginx"></a>阿里云 centos 安装 nginx</h3><pre class="line-numbers language-none"><code class="language-none">yum install nginx<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>就一条命令就行，yum 会自动帮我们安装 nginx 所需要的依赖的</p>
+<p>如果出现错误，那么就是 etc/yum.repos.d/CentOS-AppStream.repo 里面的镜像源出现了错误。</p>
+<p>2022.02.16（出现了镜像源改变，所以我们需要改配置文件里面的路径）</p>
+<p>将这个文件夹下的所有</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">baseurl=http://mirrors.cloud.aliyuncs.com/$contentdir/$releasever/AppStream/$basearch/os/<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>改成：</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">baseurl=https://mirrors.aliyun.com/$contentdir/$releasever-stream/AppStream/$basearch/os/<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>比如：</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"># CentOS-AppStream.repo
+#
+# The mirror system uses the connecting IP address of the client and the
+# update status of each mirror to pick mirrors that are updated to and
+# geographically close to the client.  You should use this for CentOS updates
+# unless you are manually picking other mirrors.
+#
+# If the mirrorlist= does not work for you, as a fall back you can try the
+# remarked out baseurl= line instead.
+#
+#
+
+[AppStream]
+name=CentOS-$releasever - AppStream
+#baseurl=http://mirrors.cloud.aliyuncs.com/$contentdir/$releasever/AppStream/$basearch/os/
+#改为下面这个
+baseurl=http://mirrors.aliyuncs.com/$contentdir/$releasever-stream/AppStream/$basearch/os/
+gpgcheck=1
+enabled=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-centosofficial<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>安装成功，配置端口之后重启服务即可</p>
+]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
+      <tags>
+        <tag>服务器</tag>
       </tags>
   </entry>
 </search>

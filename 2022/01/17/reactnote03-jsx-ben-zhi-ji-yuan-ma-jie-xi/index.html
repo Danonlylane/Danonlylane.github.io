@@ -4,11 +4,9 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="ReactNote03:JSX本质及源码解析, beiyep&#39;s Blog">
-    <meta name="description" content="JSX的本质实际上，jsx仅仅只是React.createElement(component, props, …children)函数的语法糖。所有的jsx语法都会被转换为React.createElement语法的调用。
-
-
-先来看一下几">
+    <meta name="keywords" content="beiyep&#39;s Blog">
+    <meta name="description" content="JSX 的本质实际上，jsx 仅仅只是 React.createElement(component, props, …children) 函数的语法糖。所有的 jsx 语法都会被转换为 React.createElement 语法的调用。
+">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -20,7 +18,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>ReactNote03:JSX本质及源码解析 | beiyep&#39;s Blog</title>
+    <title>beiyep&#39;s Blog</title>
     <link rel="icon" type="image/png" href="/myfavicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -251,12 +249,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">ReactNote03:JSX本质及源码解析</h1>
+                    <h1 class="description center-align post-title"></h1>
                 </div>
             </div>
         </div>
@@ -404,14 +402,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-02-07
+                    2022-02-26
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    659
+                    662
                 </div>
                 
 
@@ -441,10 +439,10 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="JSX的本质"><a href="#JSX的本质" class="headerlink" title="JSX的本质"></a>JSX的本质</h3><p>实际上，jsx仅仅只是React.createElement(component, props, …children)函数的语法糖。所有的jsx语法都会被转换为React.createElement语法的调用。</p>
+                <h3 id="JSX-的本质"><a href="#JSX-的本质" class="headerlink" title="JSX 的本质"></a>JSX 的本质</h3><p>实际上，jsx 仅仅只是 React.createElement(component, props, …children) 函数的语法糖。所有的 jsx 语法都会被转换为 React.createElement 语法的调用。</p>
 <span id="more"></span>
 
-<p>先来看一下几行jsx代码：</p>
+<p>先来看一下几行 jsx 代码：</p>
 <pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span>nihao<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h2</span><span class="token punctuation">&gt;</span></span>you are the best<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h2</span><span class="token punctuation">&gt;</span></span>
@@ -454,16 +452,16 @@
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p>那么它们转换成js代码会是什么样的呢？</p>
+<p>那么它们转换成 js 代码会是什么样的呢？</p>
 <pre class="line-numbers language-js" data-language="js"><code class="language-js">React<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">"div"</span><span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">,</span> React<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">"div"</span><span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">,</span> <span class="token string">"nihao"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
                         React<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">"h2"</span><span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">,</span> <span class="token string">"you are the best"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
                         React<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">"ul"</span><span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">,</span>
                             React<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">"li"</span><span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">,</span> <span class="token string">"1"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
                             React<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">"li"</span><span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">,</span> <span class="token string">"2"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p>好家伙，直接一个嵌套地狱，要是代码再多一点的话能把人看哭。还是jsx香</p>
+<p>好家伙，直接一个嵌套地狱，要是代码再多一点的话能把人看哭。还是 jsx 香</p>
 <blockquote>
-<p> 查看React.createElement的源码</p>
+<p> 查看 React.createElement 的源码</p>
 <p>源码位置：packages/react/src/ReactElement.js</p>
 </blockquote>
 <pre class="line-numbers language-react" data-language="react"><code class="language-react">/**
@@ -565,14 +563,14 @@ export function createElement(type, config, children) {
 <li>type</li>
 </ol>
 <ul>
-<li>是当前React的类型，如果是标签元素，则用字符串表示，例如“div”。如果是组件元素，则直接用组件名称</li>
+<li>是当前 React 的类型，如果是标签元素，则用字符串表示，例如 “div”。如果是组件元素，则直接用组件名称</li>
 </ul>
 </li>
 <li><ol start="2">
 <li>config</li>
 </ol>
 <ul>
-<li>所有jsx中的属性都在config中以对象的键值对存储</li>
+<li>所有 jsx 中的属性都在 config 中以对象的键值对存储</li>
 </ul>
 </li>
 <li><ol start="3">
@@ -580,7 +578,7 @@ export function createElement(type, config, children) {
 </ol>
 <ul>
 <li> 为什么是以数组的形式存储呢？</li>
-<li>因为jsx里面可以会传入很多的同级标签，createElement并不是只能传入三个参数。为什么可以传入多个参数呢？这就要回到源码里面一探究竟了，毕竟源码之下，了无秘密。</li>
+<li>因为 jsx 里面可以会传入很多的同级标签，createElement 并不是只能传入三个参数。为什么可以传入多个参数呢？这就要回到源码里面一探究竟了，毕竟源码之下，了无秘密。</li>
 </ul>
 </li>
 </ul>
@@ -600,7 +598,7 @@ export function createElement(type, config, children) {
     props<span class="token punctuation">.</span>children <span class="token operator">=</span> childArray<span class="token punctuation">;</span>
   <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p>这里就是上面createElement源码的一部分，也就是说children是一个数组，里面存储着第三个参数及以后的所有参数。</p>
+<p>这里就是上面 createElement 源码的一部分，也就是说 children 是一个数组，里面存储着第三个参数及以后的所有参数。</p>
 
                 
             </div>
@@ -627,7 +625,7 @@ export function createElement(type, config, children) {
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2022/01/17/reactnote03-jsx-ben-zhi-ji-yuan-ma-jie-xi/">http://example.com/2022/01/17/reactnote03-jsx-ben-zhi-ji-yuan-ma-jie-xi/</a>
+                    <a href="https://danonlylane.github.io/2022/01/17/reactnote03-jsx-ben-zhi-ji-yuan-ma-jie-xi/">https://danonlylane.github.io/2022/01/17/reactnote03-jsx-ben-zhi-ji-yuan-ma-jie-xi/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -1167,7 +1165,7 @@ const element = &lt;h1&gt;Hello, world!&lt;/h1&gt;;
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">18.9k</span>
+                        class="white-color">20.8k</span>
             
             
             

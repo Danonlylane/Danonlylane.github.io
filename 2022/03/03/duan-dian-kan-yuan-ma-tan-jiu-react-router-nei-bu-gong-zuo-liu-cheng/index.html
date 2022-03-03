@@ -4,9 +4,9 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="ReactNote04:组件通信方式, beiyep&#39;s Blog">
-    <meta name="description" content="组件间的通信方式1. 父组件传递信息给子组件
-先看React官网的一句话：当 React 元素为用户自定义组件时，它会将 JSX 所接收的属性（attributes）以及子组件（children）转换为单个对象传递给组件，这个对象被称之为 ">
+    <meta name="keywords" content="断点看源码：探究React-router内部工作流程, beiyep&#39;s Blog">
+    <meta name="description" content="从实际出发搞清楚react-router内部原理[toc]
+前言：最近在看 react-router 的工作原理网上看了一圈文章，发现很多都是介绍了 history 库的原理和 react-router 里面的 BrowserRouter ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -18,7 +18,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>ReactNote04:组件通信方式 | beiyep&#39;s Blog</title>
+    <title>断点看源码：探究React-router内部工作流程 | beiyep&#39;s Blog</title>
     <link rel="icon" type="image/png" href="/myfavicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -249,12 +249,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">ReactNote04:组件通信方式</h1>
+                    <h1 class="description center-align post-title">断点看源码：探究React-router内部工作流程</h1>
                 </div>
             </div>
         </div>
@@ -370,8 +370,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/React/">
-                                <span class="chip bg-color">React</span>
+                            <a href="/tags/React-React%E6%BA%90%E7%A0%81/">
+                                <span class="chip bg-color">React React源码</span>
                             </a>
                         
                     </div>
@@ -395,28 +395,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-01-31
+                    2022-03-03
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-02-07
+                    2022-03-03
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    441
+                    1.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    5 分
                 </div>
                 
 
@@ -439,95 +439,233 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="组件间的通信方式"><a href="#组件间的通信方式" class="headerlink" title="组件间的通信方式"></a>组件间的通信方式</h3><h4 id="1-父组件传递信息给子组件"><a href="#1-父组件传递信息给子组件" class="headerlink" title="1. 父组件传递信息给子组件"></a>1. 父组件传递信息给子组件</h4><blockquote>
-<p>先看React官网的一句话：当 React 元素为用户自定义组件时，它会将 JSX 所接收的属性（attributes）以及子组件（children）转换为单个对象传递给组件，这个对象被称之为 “props”。</p>
-</blockquote>
-<span id="more"></span>
+                <h3 id="从实际出发搞清楚react-router内部原理"><a href="#从实际出发搞清楚react-router内部原理" class="headerlink" title="从实际出发搞清楚react-router内部原理"></a>从实际出发搞清楚react-router内部原理</h3><p>[toc]</p>
+<p>前言：最近在看 <code>react-router</code> 的工作原理网上看了一圈文章，发现很多都是介绍了 <code>history</code> 库的原理和 <code>react-router</code> 里面的 <code>BrowserRouter</code> 组件、<code>Router</code> 组件等等，看了原理是大概知道了，但是它的内部是怎么样的一个工作流程还是一脸懵逼，又在找了一圈资料，看完还是觉得具体流程理不太清。想到平时在 js 代码的调试中可以打断点观察各个变量的情况以及程序的流程，<code>react</code> 程序那应该也可以这样调试。</p>
+<p>随后写了一个小 demo 测试一下：</p>
+<h4 id="准备文件："><a href="#准备文件：" class="headerlink" title="准备文件："></a>准备文件：</h4><p><code>App.js</code> 文件</p>
+<pre class="line-numbers language-react" data-language="react"><code class="language-react">import React, { PureComponent } from 'react'
+import { Link, Switch, Route, withRouter } from 'react-router-dom'
 
-<p>以下例子说明了父组件传递信息给子组件的方式是：在父组件的子组件中写形参的时候，React会将子组件接受到的属性转换为props对象传递给组件，所以渲染子组件的时候就可以使用props里面的数据了。函数组件同理。</p>
-<pre class="line-numbers language-react" data-language="react"><code class="language-react">import React, { Component } from 'react'
-class Son extends Component {
+// 为了看 history 的源码而引入
+import history from 'history'
+
+import Home from './pages/home';
+import Profile from './pages/profile';
+
+class App extends PureComponent {
     constructor(props) {
         super(props);
         this.state = {
         }
     }
+
     render() {
-        // 为什么这里可以通过this.props取得父组件里面传来的值呢？
-        const { name, age, height } = this.props;
+        console.log(this.props);
         return (
             &lt;div&gt;
-                &lt;h2&gt;{name + " " + age + " " + height}&lt;/h2&gt;
+                &lt;Link className='mylink' to="/"&gt;首页&lt;/Link&gt;
+                &lt;Link className='mylink' to="/profile"&gt;我的&lt;/Link&gt;
+                &lt;button onClick={() =&gt; this.jumpToProduct()}&gt;测试&lt;/button&gt;
+
+                &lt;Switch&gt;
+                    &lt;Route exact path="/" component={Home} /&gt;
+                    &lt;Route path="/profile" component={Profile} /&gt;
+                &lt;/Switch&gt;
             &lt;/div&gt;
         )
+    }
+
+    jumpToProduct() {
+        this.props.history.push("/profile");
     }
 }
 
-export default class App extends Component {
+export default withRouter(App);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><code>index.js</code> 文件</p>
+<pre class="line-numbers language-react" data-language="react"><code class="language-react">import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
+
+import {
+  BrowserRouter,
+} from 'react-router-dom';
+
+ReactDOM.render(
+  &lt;BrowserRouter&gt;
+    &lt;App /&gt;
+  &lt;/BrowserRouter&gt;
+  ,
+  document.getElementById('root')
+);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><code>profile.js</code> 组件， Home 一样</p>
+<pre class="line-numbers language-react" data-language="react"><code class="language-react">import React, { PureComponent } from 'react'
+
+export default class Profile extends PureComponent {
     render() {
         return (
             &lt;div&gt;
-                &lt;Son name="beiyep" age="18" height="1.88"&gt;&lt;/Son&gt;
-                &lt;Son name="hala" age="188" height="1.88"&gt;&lt;/Son&gt;
-                &lt;Son name="indexjs" age="11118" height="1.8228"&gt;&lt;/Son&gt;
+                &lt;h2&gt;Profile&lt;/h2&gt;
             &lt;/div&gt;
         )
     }
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>到这里就可以开始了我们的流程探究了，在 <code>App.js</code> 文件的 <code>jumpToProduct</code> 里面的一行代码打上断点。</p>
+<p>打断点的具体方式是：将 demo 跑起来 -&gt; 打开浏览器的控制台 -&gt; source -&gt; 具体文件 -&gt; 打上断点</p>
+<pre class="line-numbers language-react" data-language="react"><code class="language-react">jumpToProduct() {
+        this.props.history.push("/profile");
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>如图：</p>
+<p><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1gzwst9j6j4j225y0n844l.jpg"></p>
+<p>点击 button 按钮，进行单步调试。然后程序就跳到 node_modules/history/cjs/history.js 的 push 函数里面了。</p>
+<p>这是为什么呢？因为 Link 组件里面判断了是用什么方法改变路径的。这里我们模拟的是 push 方法</p>
+<h4 id="1-Link-里面的判断代码片段（以下源码均为节选）"><a href="#1-Link-里面的判断代码片段（以下源码均为节选）" class="headerlink" title="1. Link 里面的判断代码片段（以下源码均为节选）"></a>1. Link 里面的判断代码片段（以下源码均为节选）</h4><pre class="line-numbers language-react" data-language="react"><code class="language-react">// 1. Link 里面的判断代码片段
+var props = _extends({}, rest, {
+      href: href,
+      navigate: function navigate() {
+        var location = resolveToLocation(to, context.location);
+        var isDuplicateNavigation = history.createPath(context.location) === history.createPath(normalizeToLocation(location));
+        var method = replace || isDuplicateNavigation ? history$1.replace : history$1.push;
+        method(location);
+      }
+    }); // React 15 compat<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="2-这里调用的是-history-下的-push-方法"><a href="#2-这里调用的是-history-下的-push-方法" class="headerlink" title="2. 这里调用的是 history 下的 push 方法"></a>2. 这里调用的是 history 下的 push 方法</h4><p>push方法里面创建一个新的 location 对象，然后通过 globalHistory 方法改变浏览器当前路由,最后通过<code>setState</code> 方法通知 <code>React-Router</code> 更新（这里会跳到 ReactRefreshEntry.js 这个文件），并传递当前的 location 对象</p>
+<pre class="line-numbers language-react" data-language="react"><code class="language-react">function push(path, state) {
+    var action = 'PUSH';
+  	/* 2. 创建location对象 */
+    var location = createLocation(path, state, createKey(), history.location);
+  	/* 3. 确定是否能进行路由转换 */
+    transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function (ok) {
+      if (!ok) return;
+      var href = createHref(location);
+      var key = location.key,
+          state = location.state;
+
+      if (canUseHistory) {
+        /* 改变 url */
+        globalHistory.pushState({
+          key: key,
+          state: state
+        }, null, href);
+
+        if (forceRefresh) {
+          window.location.href = href;
+        } else {
+          /* 改变 react-router location对象, 创建更新环境 */
+          setState({
+            action: action,
+            location: location
+          });
+        }
+      } 
+    });<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
-<h4 id="2-组件传递信息时的数据验证"><a href="#2-组件传递信息时的数据验证" class="headerlink" title="2. 组件传递信息时的数据验证"></a>2. 组件传递信息时的数据验证</h4><pre class="line-numbers language-react" data-language="react"><code class="language-react">import React, { Component } from 'react';
-import PropTypes from "prop-types";
+<h4 id="3-history-下的-createTransitionManager-函数"><a href="#3-history-下的-createTransitionManager-函数" class="headerlink" title="3. history 下的 createTransitionManager 函数"></a>3. <code>history</code> 下的 <code>createTransitionManager</code> 函数</h4><p>作用是监听判断是否能进行路由转换 </p>
+<pre class="line-numbers language-react" data-language="react"><code class="language-react">/* 3. 确定是否能进行路由转换 */
+function createTransitionManager() {
+  var prompt = null;
+  
+  function confirmTransitionTo(location, action, getUserConfirmation, callback) {
+    if (prompt != null) {
+      var result = typeof prompt === 'function' ? prompt(location, action) : prompt;
 
-function Son(props) {
-    const { name, age, height, names } = props;
-    return (
-        &lt;div&gt;
-            &lt;h2&gt;{name + " " + age + " " + height}&lt;/h2&gt;
-            &lt;ul&gt;
-                {
-                    names.map((item, index) =&gt; {
-                        return &lt;li&gt;{item}&lt;/li&gt;
-                    })
-                }
-            &lt;/ul&gt;
-        &lt;/div&gt;
+      if (typeof result === 'string') {
+        if (typeof getUserConfirmation === 'function') {
+          getUserConfirmation(result, callback);
+        } 
+      } else {
+        // Return false from a transition hook to cancel the transition.
+        callback(result !== false);
+      }
+    } else {
+      callback(true);
+    }
+  }
+  
+  var listeners = [];
+  
+  function appendListener(fn) {
+    var isActive = true;
+
+    function listener() {
+      if (isActive) fn.apply(void 0, arguments);
+    }
+
+    listeners.push(listener);
+    return function () {
+      isActive = false;
+      listeners = listeners.filter(function (item) {
+        return item !== listener;
+      });
+    };
+  }
+
+  function notifyListeners() {
+    listeners.forEach(function (listener) {
+      return listener.apply(void 0, args);
+    });
+  }
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="4-history-中-createBrowserHistory-props-函数的-setState"><a href="#4-history-中-createBrowserHistory-props-函数的-setState" class="headerlink" title="4. history  中 createBrowserHistory(props) 函数的 setState"></a>4. <code>history</code>  中 createBrowserHistory(props) 函数的 setState</h4><pre class="line-numbers language-react" data-language="react"><code class="language-react"> /* 通知listener更新，这里通知到 react-router了 */
+const setState = (nextState) =&gt; {
+    /* 合并信息 */
+    Object.assign(history, nextState)
+    history.length = globalHistory.length
+    /* 通知每一个listens路由已经发生变化 */
+    transitionManager.notifyListeners(
+      history.location,
+      history.action
     )
-}
-
-Son.propTypes = {
-    name: PropTypes.string.isRequired,
-    age: PropTypes.number,
-    height: PropTypes.number,
-    names: PropTypes.array
-}
-
-// 默认属性
-Son.defaultProps = {
-    name: "hcb",
-    age: 11,
-    height: 178,
-    names: ["hcb", "bbxk"]
-}
+  }<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
-export default class App extends Component {
-    render() {
-        return (
-            &lt;div&gt;
-                &lt;Son name="beiyep333" age="18" height="1.88" names={["aaa", "bbb", "ccc"]}&gt;&lt;/Son&gt;
-                &lt;Son name="hala333" age="188" height="1.88" names={["aaa", "bbb", "ccc"]}&gt;&lt;/Son&gt;
-                &lt;Son name="indexjs函数" age="11118" height="1.8228"&gt;&lt;/Son&gt;
-            &lt;/div&gt;
-        )
+<h4 id="5-路由匹配"><a href="#5-路由匹配" class="headerlink" title="5. 路由匹配"></a>5. 路由匹配</h4><pre class="line-numbers language-react" data-language="react"><code class="language-react"> /* 5. 监听并进行路由匹配 */
+class Router extends React.Component {
+  static computeRootMatch(pathname) {
+    return { path: "/", url: "/", params: {}, isExact: pathname === "/" };
+  }
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      location: props.history.location
+    };
+
+    this._isMounted = false;
+    this._pendingLocation = null;
+
+    if (!props.staticContext) {
+      this.unlisten = props.history.listen(location =&gt; {
+        if (this._isMounted) {
+          this.setState({ location });
+        } else {
+          this._pendingLocation = location;
+        }
+      });
     }
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+  }
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-
-
+<h4 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h4><p>路由转换的大致流程就是：</p>
+<ol>
+<li>模拟点击 Link</li>
+<li>调用 history.push 方法，通过 <code>history.pushState</code> 来改变当前 <code>url</code></li>
+<li>接下来触发history下面的 <code>setState</code> 方法，产生新的 location 对象，</li>
+<li>然后通知 Router 组件更新 <code>location</code></li>
+<li>路由匹配组件中监听更新的消息，找出符合的组件，最后进行页面更新。</li>
+</ol>
+<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6886290490640039943#heading-13">「源码解析 」这一次彻底弄懂react-router路由原理</a></p>
 
                 
             </div>
@@ -554,7 +692,7 @@ export default class App extends Component {
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://danonlylane.github.io/2022/01/31/reactnote04-zu-jian-tong-xin-fang-shi/">https://danonlylane.github.io/2022/01/31/reactnote04-zu-jian-tong-xin-fang-shi/</a>
+                    <a href="https://danonlylane.github.io/2022/03/03/duan-dian-kan-yuan-ma-tan-jiu-react-router-nei-bu-gong-zuo-liu-cheng/">https://danonlylane.github.io/2022/03/03/duan-dian-kan-yuan-ma-tan-jiu-react-router-nei-bu-gong-zuo-liu-cheng/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -592,8 +730,8 @@ export default class App extends Component {
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/React/">
-                                    <span class="chip bg-color">React</span>
+                                <a href="/tags/React-React%E6%BA%90%E7%A0%81/">
+                                    <span class="chip bg-color">React React源码</span>
                                 </a>
                             
                         </div>
@@ -852,81 +990,29 @@ export default class App extends Component {
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2022/01/31/css-ji-chong-chang-jian-de-bu-ju/">
+                <a href="/2022/03/03/duan-dian-kan-yuan-ma-tan-jiu-react-router-nei-bu-gong-zuo-liu-cheng/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="CSS几种常见的布局">
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="断点看源码：探究React-router内部工作流程">
                         
-                        <span class="card-title">CSS几种常见的布局</span>
+                        <span class="card-title">断点看源码：探究React-router内部工作流程</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            几种常见且基础的CSS布局一. 单列布局常见的单列布局有两种：
-
-header,content和footer等宽的单列布局
-header与footer等宽,content略窄的单列布局
-
-                        
-                    </div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-01-31
-                        </span>
-                        <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/CSS%E7%AC%94%E8%AE%B0/" class="post-category">
-                                    CSS笔记
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/CSS/">
-                        <span class="chip bg-color">CSS</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2022/01/17/reactnote03-jsx-ben-zhi-ji-yuan-ma-jie-xi/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
-                        
-                        <span class="card-title"></span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            JSX 的本质实际上，jsx 仅仅只是 React.createElement(component, props, …children) 函数的语法糖。所有的 jsx 语法都会被转换为 React.createElement 语法的调用。
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-17
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-03-03
                             </span>
                         <span class="publish-author">
                             
@@ -940,11 +1026,61 @@ header与footer等宽,content略窄的单列布局
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/React/">
-                        <span class="chip bg-color">React</span>
+                    <a href="/tags/React-React%E6%BA%90%E7%A0%81/">
+                        <span class="chip bg-color">React React源码</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/02/16/hexo-shi-yong-matery-zhu-ti-dui-bo-ke-jin-xing-mei-hua/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="hexo:使用matery主题对博客进行美化">
+                        
+                        <span class="card-title">hexo:使用matery主题对博客进行美化</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-16
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%95%99%E7%A8%8B/" class="post-category">
+                                    教程
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/hexo/">
+                        <span class="chip bg-color">hexo</span>
                     </a>
                     
                 </div>
