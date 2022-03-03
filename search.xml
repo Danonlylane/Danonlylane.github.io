@@ -3336,8 +3336,8 @@ export default class Profile extends PureComponent {
 
 <p>如图：</p>
 <p><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1gzwst9j6j4j225y0n844l.jpg"></p>
-<p>点击 button 按钮，进行单步调试。然后程序就跳到 node_modules/history/cjs/history.js 的 push 函数里面了。</p>
-<p>这是为什么呢？因为 Link 组件里面判断了是用什么方法改变路径的。这里我们模拟的是 push 方法</p>
+<p>点击 <code>button</code> 按钮，进行单步调试。然后程序就跳到 <code>node_modules/history/cjs/history.js</code> 的 <code>push</code> 函数里面了。</p>
+<p>这是为什么呢？因为 <code>Link</code> 组件里面判断了是用什么方法改变路径的。这里我们模拟的是 <code>push</code> 方法</p>
 <h4 id="1-Link-里面的判断代码片段（以下源码均为节选）"><a href="#1-Link-里面的判断代码片段（以下源码均为节选）" class="headerlink" title="1. Link 里面的判断代码片段（以下源码均为节选）"></a>1. Link 里面的判断代码片段（以下源码均为节选）</h4><pre class="line-numbers language-react" data-language="react"><code class="language-react">// 1. Link 里面的判断代码片段
 var props = _extends({}, rest, {
       href: href,
@@ -3349,7 +3349,7 @@ var props = _extends({}, rest, {
       }
     }); // React 15 compat<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h4 id="2-这里调用的是-history-下的-push-方法"><a href="#2-这里调用的是-history-下的-push-方法" class="headerlink" title="2. 这里调用的是 history 下的 push 方法"></a>2. 这里调用的是 history 下的 push 方法</h4><p>push方法里面创建一个新的 location 对象，然后通过 globalHistory 方法改变浏览器当前路由,最后通过<code>setState</code> 方法通知 <code>React-Router</code> 更新（这里会跳到 ReactRefreshEntry.js 这个文件），并传递当前的 location 对象</p>
+<h4 id="2-这里调用的是-history-下的-push-方法"><a href="#2-这里调用的是-history-下的-push-方法" class="headerlink" title="2. 这里调用的是 history 下的 push 方法"></a>2. 这里调用的是 <code>history</code> 下的 <code>push</code> 方法</h4><p><code>push</code> 方法里面创建一个新的 <code>location</code> 对象，然后通过 <code>globalHistory</code> 方法改变浏览器当前路由,最后通过<code>setState</code> 方法通知 <code>React-Router</code> 更新（这里会跳到 <code>ReactRefreshEntry.js</code> 这个文件），并传递当前的 <code>location</code> 对象</p>
 <pre class="line-numbers language-react" data-language="react"><code class="language-react">function push(path, state) {
     var action = 'PUSH';
   	/* 2. 创建location对象 */
@@ -3431,7 +3431,7 @@ function createTransitionManager() {
 
 
 
-<h4 id="4-history-中-createBrowserHistory-props-函数的-setState"><a href="#4-history-中-createBrowserHistory-props-函数的-setState" class="headerlink" title="4. history  中 createBrowserHistory(props) 函数的 setState"></a>4. <code>history</code>  中 createBrowserHistory(props) 函数的 setState</h4><pre class="line-numbers language-react" data-language="react"><code class="language-react"> /* 通知listener更新，这里通知到 react-router了 */
+<h4 id="4-history-中-createBrowserHistory-props-函数的-setState"><a href="#4-history-中-createBrowserHistory-props-函数的-setState" class="headerlink" title="4. history  中 createBrowserHistory(props) 函数的 setState"></a>4. <code>history</code>  中 <code>createBrowserHistory(props)</code> 函数的 <code>setState</code></h4><pre class="line-numbers language-react" data-language="react"><code class="language-react"> /* 通知listener更新，这里通知到 react-router了 */
 const setState = (nextState) =&gt; {
     /* 合并信息 */
     Object.assign(history, nextState)
@@ -3475,13 +3475,15 @@ class Router extends React.Component {
 
 <h4 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h4><p>路由转换的大致流程就是：</p>
 <ol>
-<li>模拟点击 Link</li>
-<li>调用 history.push 方法，通过 <code>history.pushState</code> 来改变当前 <code>url</code></li>
-<li>接下来触发history下面的 <code>setState</code> 方法，产生新的 location 对象，</li>
-<li>然后通知 Router 组件更新 <code>location</code></li>
+<li>模拟点击 <code>Link</code></li>
+<li>调用 <code>history.push</code> 方法，通过 <code>history.pushState</code> 来改变当前 <code>url</code></li>
+<li>接下来触发 <code>history</code> 下面的 <code>setState</code> 方法，产生新的 location 对象，</li>
+<li>然后通知 <code>Router</code> 组件更新 <code>location</code></li>
 <li>路由匹配组件中监听更新的消息，找出符合的组件，最后进行页面更新。</li>
 </ol>
-<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><p><a href="https://juejin.cn/post/6886290490640039943#heading-13">「源码解析 」这一次彻底弄懂react-router路由原理</a></p>
+<p><strong>纸上得来终觉浅,绝知此事要躬行</strong></p>
+<p>还得再多加油 多多 coding 多多看源码</p>
+<h4 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h4><p><a href="https://juejin.cn/post/6886290490640039943#heading-13">「源码解析 」这一次彻底弄懂react-router路由原理</a></p>
 ]]></content>
       <categories>
         <category>React笔记</category>
