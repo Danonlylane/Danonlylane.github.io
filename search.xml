@@ -1179,6 +1179,8 @@ export function createElement(type, config, children) {
     <url>/2022/02/16/hexo-shi-yong-matery-zhu-ti-dui-bo-ke-jin-xing-mei-hua/</url>
     <content><![CDATA[<h1 id="使用-matery-主题搭建很好看的博客页面"><a href="#使用-matery-主题搭建很好看的博客页面" class="headerlink" title="使用 matery 主题搭建很好看的博客页面"></a>使用 <code>matery</code> 主题搭建很好看的博客页面</h1><p>因为最近看到一位腾讯大佬 <a href="https://yangchaoyi.vip/">一百个Chocolate</a> 的个人博客，使用的也是 <code>matery</code> 主题，而且用了 <a href="https://mazhuang.org/wiki/chinese-copywriting-guidelines/">中文文案排版指北 (简体中文版)</a>  对博客文章进行排版，第一眼感觉非常惊艳，这样的博客看起来很舒服，所以自己也想向大佬看齐。</p>
 <p>一下如无特别说明，以下配置文件都是 <code>matery</code> 主题下的 <code>_config.yml</code> </p>
+<span id="more"></span>
+
 <h2 id="下载（最好下载master分支最新稳定版的代码）"><a href="#下载（最好下载master分支最新稳定版的代码）" class="headerlink" title="下载（最好下载master分支最新稳定版的代码）"></a>下载（最好下载master分支最新稳定版的代码）</h2><p>本主题<strong>推荐你使用 Hexo 5.0.0 及以上的版本</strong>。如果，你已经有一个自己的 <a href="https://hexo.io/zh-cn/">Hexo</a> 博客了，建议你将 Hexo 升级到最新稳定的版本。</p>
 <p>点击 <a href="https://codeload.github.com/blinkfox/hexo-theme-matery/zip/master">这里</a> 下载 <code>master</code> 分支的最新稳定版的代码，解压缩后，将 <code>hexo-theme-matery</code> 的文件夹复制到你 Hexo 的 <code>themes</code> 文件夹中即可。（用这种方式下载的文件夹名字是 <code>hexo-theme-matery-master</code>，需要改成 <code>hexo-theme-matery</code> 再复制到 Hexo 的 <code>themes</code> 文件夹中）</p>
 <p>当然你也可以在你的 <code>themes</code> 文件夹下使用 <code>git clone</code> 命令来下载:</p>
@@ -1542,12 +1544,15 @@ waline:
     <url>/2022/03/20/shou-xie-promise-a-gui-fan/</url>
     <content><![CDATA[<h3 id="手写-Promise-A-规范"><a href="#手写-Promise-A-规范" class="headerlink" title="手写 Promise/A+ 规范"></a>手写 Promise/A+ 规范</h3><p>所谓 <code>Promise</code>，简单说就是一个容器，里面保存着某个未来才会结束的事件（通常是一个异步操作）的结果。从语法上说，Promise 是一个对象，从它可以获取异步操作的消息。Promise 提供统一的 API，各种异步操作都可以用同样的方法进行处理。</p>
 <p>想要写出 Promise/A+ 规范的 promsie，首先要熟读 Promise/A+ 的<a href="https://promisesaplus.com/">英文规范文档</a>，建议先看几遍英文文档，了解一下规则。还有这篇中文文档翻译的也很到位 <a href="https://zhuanlan.zhihu.com/p/143204897">中文规范文档</a></p>
+<span id="more"></span>
+
 <p>状态：</p>
 <p>Promise存在三个状态（state）pending、fulfilled、rejected</p>
 <p>pending（等待态）为初始态，并可以转化为 fulfilled（成功态）和 rejected（失败态），一旦确定就不可以改变</p>
 <p>如果 executor 函数报错，则直接执行 reject(reason);</p>
 <p>then 方法：</p>
 <p>promise的 <code>then</code> 方法接收两个可选参数，表示该 <code>promise</code> 状态改变时的回调</p>
+<p><code>jflasdjfkaj</code></p>
 <p><code>then</code>方法返回一个<code>promise</code>，<code>then</code> 方法可以被同一个 promise 调用多次</p>
 <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">promise2 <span class="token operator">=</span> promise1<span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>onFulfilled<span class="token punctuation">,</span>onRejected<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
@@ -1723,7 +1728,9 @@ module<span class="token punctuation">.</span>exports <span class="token operato
 <p>终端下执行验证命令：</p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">promises-aplus-tests promise.js<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p>搞点，收工</p>
+
+
+<p>结语：刚开始接触 promise 的时候，觉得这东西好抽象，但是用了段时间之后，感觉确实好用。作为一名有追求的程序员，怎么能不挑战一下 promise/A+ 呢！不能被它的规范很多吓到，其实它的规范也是我们平时使用的规则，从这个点出发去写，就不那么枯燥了嘿嘿</p>
 ]]></content>
       <categories>
         <category>JavaScript</category>
@@ -2892,11 +2899,13 @@ const element = React.createElement(
   </entry>
   <entry>
     <title>黑马程序员C++提高编程笔记</title>
-    <url>/2021/11/03/hei-ma-cheng-xu-yuan-c-ti-gao-bian-cheng-bi-ji/</url>
+    <url>/2022/01/03/hei-ma-cheng-xu-yuan-c-ti-gao-bian-cheng-bi-ji/</url>
     <content><![CDATA[<h1 id="黑马程序员C-提高编程笔记"><a href="#黑马程序员C-提高编程笔记" class="headerlink" title="黑马程序员C++提高编程笔记"></a>黑马程序员C++提高编程笔记</h1><p>[toc]</p>
 <h2 id="1-STL"><a href="#1-STL" class="headerlink" title="1. STL"></a>1. STL</h2><h3 id="1-1-STL"><a href="#1-1-STL" class="headerlink" title="1.1 STL"></a>1.1 STL</h3><ul>
 <li>标准模版库（Standard Templete Library）</li>
 </ul>
+<span id="more"></span>
+
 <h3 id="1-2-STL基本概念："><a href="#1-2-STL基本概念：" class="headerlink" title="1.2 STL基本概念："></a>1.2 STL基本概念：</h3><ul>
 <li><p>STL六大组件：</p>
 <ul>
@@ -3690,603 +3699,1084 @@ foo<span class="token punctuation">.</span><span class="token function">fn</span
   </entry>
   <entry>
     <title>黑马程序员C++核心编程笔记</title>
-    <url>/2021/11/07/hei-ma-cheng-xu-yuan-c-he-xin-bian-cheng-bi-ji/</url>
-    <content><![CDATA[<h1 id="黑马程序员C-核心编程笔记"><a href="#黑马程序员C-核心编程笔记" class="headerlink" title="黑马程序员C++核心编程笔记"></a>黑马程序员C++核心编程笔记</h1><p>[toc]</p>
-<h2 id="1-STL"><a href="#1-STL" class="headerlink" title="1. STL"></a>1. STL</h2><h3 id="1-1-STL"><a href="#1-1-STL" class="headerlink" title="1.1 STL"></a>1.1 STL</h3><ul>
-<li>标准模版库（Standard Templete Library）</li>
-</ul>
-<h3 id="1-2-STL基本概念："><a href="#1-2-STL基本概念：" class="headerlink" title="1.2 STL基本概念："></a>1.2 STL基本概念：</h3><ul>
-<li><p>STL六大组件：</p>
+    <url>/2022/01/03/hei-ma-cheng-xu-yuan-c-he-xin-bian-cheng-bi-ji/</url>
+    <content><![CDATA[<h2 id="黑马程序员C-核心编程笔记"><a href="#黑马程序员C-核心编程笔记" class="headerlink" title="黑马程序员C++核心编程笔记"></a>黑马程序员C++核心编程笔记</h2><p>[toc]</p>
+<h2 id="C-核心编程"><a href="#C-核心编程" class="headerlink" title="C++核心编程"></a>C++核心编程</h2><h3 id="0-基础知识"><a href="#0-基础知识" class="headerlink" title="0.基础知识"></a>0.基础知识</h3><p>结构体：</p>
 <ul>
-<li>容器：各种数据结构、如vector、list、map、set、deque</li>
-<li>算法：各种常见的算法、比如sort、find、copy、for_each</li>
-<li>迭代器：扮演了容器和算法之间的粘合剂</li>
-<li>仿函数：行为类似函数、可以作为 算法的某种策略</li>
-<li>适配器：一种用来修饰容器或者仿函数或迭代器接口的东西</li>
-<li>空间配置器：负责空间的配置与管理</li>
+<li>  结构体属于用户自定义的类型，允许用户存储不同的数据</li>
 </ul>
-</li>
-<li><p>容器就是用来存放数据的</p>
-</li>
-<li><p>STL容器就是将一些运用最广泛的数据结构实现出来</p>
-</li>
-<li><p>常用的数据结构：数组、链表、二叉树、栈、队列、集合、映射表</p>
-</li>
-<li><p>这些容器分为序列式容器和关联式容器</p>
-<ul>
-<li>序列式容器强调值的排序，里面每个值都有固定的位置</li>
-<li>关联式容器：二叉树结构、各元素之间没有严格的物理上的顺序关系</li>
-</ul>
-</li>
-</ul>
-<h3 id="1-2-容器算法"><a href="#1-2-容器算法" class="headerlink" title="1.2 容器算法"></a>1.2 容器算法</h3><ul>
-<li>算法<ul>
-<li>算法就是用有限的步骤，解决数学或者逻辑上的问题</li>
-<li>算法分为质变算法和非质变算法<ul>
-<li>质变算法是指运算过程中会更改区间内的元素，例如拷贝、删除、替换</li>
-<li>非质变算法是指运算过程中不会更改区间内的元素。例如查找、计数、遍历、寻找极值等</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="1-3-迭代器"><a href="#1-3-迭代器" class="headerlink" title="1.3 迭代器"></a>1.3 迭代器</h3><ul>
-<li>迭代器就是容器和算法之间的粘合剂<ul>
-<li>提供一种方法，使之能够依序访问容器内的各个元素，而不暴露容器的内部表示方式</li>
-</ul>
-</li>
-</ul>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">//
-//  main.cpp
-//  迭代器初识
-//
-//  Created by OnlyBei on 2021/9/24.
-//
+<p>C语言和C++结构体的区别</p>
+<span id="more"></span>
 
-#include &lt;iostream&gt;
-#include &lt;vector&gt;
+<ul>
+<li>  在C语言中，可以定义结构体类型，将多个相关的变量包装成为一个整体使用。在结构体中的变量，可以是相同、部分相同，或完全不同的数据类型。在C语言中，结构体不能包含函数。在面向对象的程序设计中，对象具有状态（属性）和行为，状态保存在成员变量中，行为通过成员方法（函数）来实现。C语言中的结构体只能描述一个对象的状态，不能描述一个对象的行为。在C++中，考虑到C语言到C++语言过渡的连续性，对结构体进行了扩展，C++的结构体可以包含函数，这样，C++的结构体也具有类的功能，与class不同的是，结构体包含的函数默认为public，而不是private</li>
+</ul>
+<h3 id="1-内存分区模型"><a href="#1-内存分区模型" class="headerlink" title="1. 内存分区模型"></a>1. 内存分区模型</h3><p>c++在执行时，将内存大方向划分为4个区域</p>
+<p>●    代码区：存放函数体的二进制代码，由操作系统进行管理。</p>
+<ul>
+<li>  代码区是共享和只读的</li>
+</ul>
+<p>●    全局区：存放全局变量和静态变量以及常量。</p>
+<ul>
+<li>  全局区还包含了常量区：字符串常量和const修饰的全局常量也存放在此</li>
+<li>  该区域的数据在程序结束后由操作系统释放</li>
+</ul>
+<p>●    栈区：由编译器自动分配释放，存放函数的参数值，局部变量等。局部常量也是存放在栈区的</p>
+<p>●    堆区：由程序员分配和释放，若程序员不释放，程序结束时由操作系统回收。</p>
+<p><strong>内存四区的意义：</strong></p>
+<p>不同区域存放的数据，赋予不同的生命周期，给我们更大的灵活编程。</p>
+<h4 id="1-1-程序运行前"><a href="#1-1-程序运行前" class="headerlink" title="1.1 程序运行前"></a>1.1 程序运行前</h4><p>在程序编译以后，生成了exe可执行程序，<strong>未执行程序前</strong>分为两个区域。</p>
+<p><strong>代码区</strong>：    </p>
+<p>​        存放CPU执行的机器指令</p>
+<p>​        代码区是共享的，共享的目的是对于频繁被执行的程序，只需要在内存中有一份代码即可。</p>
+<p>​        代码区是只读的，为了防止程序意外的修改它的指令，造成损失。</p>
+<p><strong>全局区</strong>：</p>
+<p>​        全局变量和静态变量存放于此。</p>
+<p>​        全局区还包含了常量区，字符串常量和其他常量存放于此。</p>
+<p>​        该区域的数据在程序结束后由操作系统释放。</p>
+<p>​        （在函数中的变量都是局部变量。全局变量就是写在函数外的。）</p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNgy1gqro09wr02j30wm09uq5a.jpg"></p>
+<p><strong>总结：</strong></p>
+<p>​        ●    C++在程序运行前分为全局区和代码区。</p>
+<p>​        ●    代码区的特点是共享和只读</p>
+<p>​        ●    全局区中存放全局变量，静态变量，常量</p>
+<p>​        ●    常量区中存放const修饰的全局常量和字符串常量</p>
+<h4 id="1-2-程序运行后"><a href="#1-2-程序运行后" class="headerlink" title="1.2 程序运行后"></a>1.2 程序运行后</h4><p>​    <strong>栈区：</strong></p>
+<p>​            由编译器自动分配释放，存放函数的参数值，局部变量等。</p>
+<p>​            注意事项：不要返回局部变量的地址，栈区开辟的数据由编译器自动释放。</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
 using namespace std;
 
-void myPrint(int val) {
+//栈区数据注意事项：不要返回局部变量的地址
+//栈区的数据由编译器管理开发的释放
+
+int *func()	//形参数据也会放在栈区
+{
+    int a = 10;	//局部变量：存放在栈区，栈区的数据在函数执行完后自动释放
+    return &amp;a;	//返回局部变量的地址
+}	
+
+int main()
+{
+  	//接受func函数的返回值
+    int *p = func();
+    cout &lt;&lt; *p &lt;&lt; endl;	//第一次可以打印正确的数字，是因为编译器做了保留
+    cout &lt;&lt; *p &lt;&lt; endl;	//没有保留
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNgy1gqro6fredqj30va07aq3n.jpg"></p>
+<p>​    <strong>堆区：</strong></p>
+<p>​            由程序员分配释放，若程序员不释放，程序结束时由操作系统释放。</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include&lt;iostream&gt;
+using namespace std;
+
+int *func()
+{
+  	//利用new关键字 将数据开辟到堆区
+  	//new int(188)返回的是一个地址，所有用指针去接受地址
+  	//指针本质上也是局部变量，放在栈上，指针保存的数据是放在堆区
+    int *p=new int(188);	//小括号里面就是堆区开辟地址初始值。
+    return p;
+
+}
+int main()
+{
+  	//在堆区开辟数据
+    int *p=func();
+    cout&lt;&lt;*p&lt;&lt;endl;
+    cout&lt;&lt;*p&lt;&lt;endl;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<img src="https://tva1.sinaimg.cn/large/008i3skNgy1gqro7o51hzj30j607gjrm.jpg" style="zoom:67%;">
+
+<p>​    <strong>总结：</strong></p>
+<p>​            堆区数据有程序员管理开辟和释放。</p>
+<p>​            堆区数据利用new关键字进行开辟内存。            </p>
+<p>​            </p>
+<h4 id="1-3-new操作符"><a href="#1-3-new操作符" class="headerlink" title="1.3 new操作符"></a>1.3 new操作符</h4><p>​        </p>
+<p>​        C++中利用new操作符在堆区开辟数据</p>
+<p>​        堆区开辟的数据，由程序员手动开辟，手动释放，释放利用操作符delete</p>
+<p>​        语法：new 数据类型</p>
+<p>​        利用new创建的数据，会返回该数据对应的类型的指针</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
+using namespace std;
+
+int *func()
+{
+    //在堆区创建整型数据
+    //new返回的是 该创建数据类型的指针
+    //int* 是接受这个地址并且解引用
+    int *a = new int(18);
+    return a;
+}
+
+void test01()
+{
+    int *p = func();
+    cout &lt;&lt; *p &lt;&lt; endl;
+    cout &lt;&lt; *p &lt;&lt; endl;
+    cout &lt;&lt; *p &lt;&lt; endl;
+    delete p;
+    cout &lt;&lt; *p &lt;&lt; endl;	//不知道为什么，这个在Mac上的vscode上可以输出
+}
+
+void test02()
+{
+    //创建一个10整型数据的数组，在堆区
+    int *arr = new int[10]; //代表数组由10个元素
+  
+    for (int i = 0; i &lt; 10; i++)
+    {
+        arr[i] = i + 100;
+    }
+  
+    for (int i = 0; i &lt; 10; i++)
+    {
+        cout &lt;&lt; arr[i] &lt;&lt; endl;
+    }
+  	//释放堆区数组
+  	//如果不加[],只释放了第一个指针，后面的指针被称为野指针。
+  	delete[] arr;
+}
+
+int main()
+{
+    test01();
+  
+    test02();
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="2-引用"><a href="#2-引用" class="headerlink" title="2. 引用"></a>2. 引用</h3><h4 id="2-1-引用的基本使用"><a href="#2-1-引用的基本使用" class="headerlink" title="2.1 引用的基本使用"></a>2.1 引用的基本使用</h4><p>作用：给变量起别名 </p>
+<p>语法：数据类型 &amp;别名 = 原名</p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNgy1gqro8f0t2fj30vg0ggwip.jpg"></p>
+<h4 id="2-2-引用的注意事项"><a href="#2-2-引用的注意事项" class="headerlink" title="2.2 引用的注意事项"></a>2.2 引用的注意事项</h4><p>​    ●    引用必须初始化</p>
+<p>​    ●    引用在初始化后，不可以改变</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
+
+using namespace std;
+
+//引用必须要初始化 如int &amp;b；是错误的
+//引用一旦初始化后，局部可以更改
+int main()
+{
+    int a = 10;
+    int &amp;b = a;
+    cout &lt;&lt; b &lt;&lt; endl;
+    int c = 30;
+    b = c;  //这是赋值操作，不是更改引用
+
+    cout &lt;&lt; b &lt;&lt; endl;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="2-3-引用做函数参数"><a href="#2-3-引用做函数参数" class="headerlink" title="2.3 引用做函数参数"></a>2.3 引用做函数参数</h4><p>作用：函数传参时，可以利用引用的技术让形参修饰实参</p>
+<p>优点：可以简化指针修改实参</p>
+<p>代码：</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
+
+using namespace std;
+
+
+//  值传递
+void swap01(int a, int b)
+{
+    int temp = a;
+    a = b;
+    b = temp;
+}
+
+//  地址传递
+void swap02(int *a, int *b)
+{
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+//  引用传递
+void swap03(int &amp;a, int &amp;b)
+{
+    int temp = a;
+    a = b;
+    b = temp;
+}
+int main()
+{
+    int a=11;
+    int b=888;
+    swap01(a,b);
+    cout&lt;&lt;"a="&lt;&lt;a&lt;&lt;"\tb="&lt;&lt;b&lt;&lt;endl;
+
+    swap02(&amp;a,&amp;b);
+    cout&lt;&lt;"a="&lt;&lt;a&lt;&lt;"\tb="&lt;&lt;b&lt;&lt;endl;
+
+
+    int c=777;
+    int d=12222;
+    swap03(c,d);
+    cout&lt;&lt;"c="&lt;&lt;c&lt;&lt;"\td="&lt;&lt;d&lt;&lt;endl;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>运行结果：</p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNgy1gqro9g1dnvj30vc06igme.jpg"></p>
+<p>总结：总结：通过引用参数产生的效果同按地址传递是一样的，引用的语法更清楚简单。</p>
+<h4 id="2-4-引用做函数返回值"><a href="#2-4-引用做函数返回值" class="headerlink" title="2.4 引用做函数返回值"></a>2.4 引用做函数返回值</h4><pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">#include &lt;iostream&gt;
+
+using namespace std;
+
+int &amp;test01()
+{
+    int a = 10;
+    //return a;
+}
+
+int &amp;test02()
+{
+    static int a = 99;
+    return a;
+}
+
+int main()
+{
+
+    //不能返回局部变量的引用
+    int &amp;ret = test01();
+		//非法操作
+    cout &lt;&lt; "ret=" &lt;&lt; ret &lt;&lt; endl;
+    cout &lt;&lt; "ret=" &lt;&lt; ret &lt;&lt; endl;
+
+    //如果函数做左值，那么必须返回引用
+    int &amp;ret2 = test02();
+
+    cout &lt;&lt; "ret=" &lt;&lt; ret2 &lt;&lt; endl;
+    cout &lt;&lt; "ret=" &lt;&lt; ret2 &lt;&lt; endl;
+
+    test02() = 1000;
+    cout &lt;&lt; "ret=" &lt;&lt; ret2 &lt;&lt; endl;
+    cout &lt;&lt; "ret=" &lt;&lt; ret2 &lt;&lt; endl;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="2-5-引用的本质"><a href="#2-5-引用的本质" class="headerlink" title="2.5 引用的本质"></a>2.5 引用的本质</h4><p>本质：<strong>引用的本质在c++内部实现是一个指针常量</strong></p>
+<p>也就是指针的指向不可以更改，而指针指向的值可以改，也就符合了引用定义后就不能修改的原则</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include&lt;iostream&gt;
+
+using namespace std;
+
+// 发现是引用 转换为int* const ref = &amp;a；
+void func(int &amp;ref)
+{
+    ref=100; // ref是引用，转换为*ref = 100
+}
+
+
+int main()
+{
+    int a=11;
+
+    //自动转换为int* const ref = &amp;a；指针常量是指针指向不可改，也说明为什么引用不可改
+    int &amp;ref=a;
+    ref=20; // 发现是引用 转换为*ref = 20；
+
+    cout&lt;&lt;"a="&lt;&lt;a&lt;&lt;endl;
+    cout&lt;&lt;"ref="&lt;&lt;ref&lt;&lt;endl;
+
+    func(a);
+    return 0;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>总结：C++推荐用引用技术，是因为语法方便，引用本质是指针常量，但是所有的指针操作编译器都帮我们做了。</p>
+<h4 id="2-6-常量引用"><a href="#2-6-常量引用" class="headerlink" title="2.6 常量引用"></a>2.6 常量引用</h4><p><img src="https://tva1.sinaimg.cn/large/008i3skNgy1gqsehx3ealj31180sg15a.jpg"> </p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNgy1gqse66vlomj31ai0n0anv.jpg"></p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
+using namespace std;
+
+// 引用使用的场景，通常用来修饰形参,如果不加const，就会可能无意被修改，特别是以后代码量大的时候，
+// 可能会忘记自己曾经写的这个值能不能改
+void showValue(int &amp;val)
+{
+    val=10088;
     cout &lt;&lt; val &lt;&lt; endl;
 }
 
-int main(int argc, const char * argv[]) {
-    // insert code here...
-    vector&lt;int&gt; v;
-    v.push_back(10);
-    v.push_back(20);
-    v.push_back(30);
-    v.push_back(40);
-    
-    vector&lt;int&gt;::iterator pBegin = v.begin();
-    vector&lt;int&gt;::iterator pEnd = v.end();
-    
-    // 第一种遍历方式
-    while(pBegin != pEnd) {
-        cout &lt;&lt; *pBegin &lt;&lt; endl;
-        pBegin++;
-    }
-    
-    // 第二种
-    for(vector&lt;int&gt;::iterator it = v.begin(); it != v.end(); it++) {
-        cout &lt;&lt; *it &lt;&lt; endl;
-    }
-    
-    for_each(v.begin(), v.end(), myPrint);
-    
+void showValueTwo(const int &amp;val)
+{
+    // val=888; // 错误，这里就不能改了
+    cout&lt;&lt;val&lt;&lt;endl;
 }
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+int main()
+{
+
+    // 函数中利用常量引用防止误操作修改实参
+    int a = 10;
+    showValue(a);
+
+    cout &lt;&lt; "a=" &lt;&lt; a &lt;&lt; endl;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
-<h3 id="1-4-vector存放自定义数组"><a href="#1-4-vector存放自定义数组" class="headerlink" title="1.4 vector存放自定义数组"></a>1.4 vector存放自定义数组</h3><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">//
+<h3 id="3-函数的提高"><a href="#3-函数的提高" class="headerlink" title="3. 函数的提高"></a>3. 函数的提高</h3><h4 id="3-1-函数的默认参数"><a href="#3-1-函数的默认参数" class="headerlink" title="3.1 函数的默认参数"></a>3.1 函数的默认参数</h4><p><img src="https://tva1.sinaimg.cn/large/008i3skNgy1gqsemgo09fj314y0ssqec.jpg"></p>
+<h4 id="3-2-函数占位参数"><a href="#3-2-函数占位参数" class="headerlink" title="3.2 函数占位参数"></a>3.2 函数占位参数</h4><p>c++中函数的参数列表可以用占位参数，用来做占位，调用函数时必须填补该位置。</p>
+<p>语法：返回值类型 函数名 （数据类型）{}</p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNgy1gqses5y3bhj30rc0dgdkh.jpg"></p>
+<p>也可以这些写</p>
+<img src="https://tva1.sinaimg.cn/large/008i3skNgy1gqsesmh6elj30v80k0tif.jpg" style="zoom: 50%;">
+
+
+
+<h4 id="3-3-函数重载"><a href="#3-3-函数重载" class="headerlink" title="3.3 函数重载"></a>3.3 函数重载</h4><h5 id="3-3-1-函数重载概述"><a href="#3-3-1-函数重载概述" class="headerlink" title="3.3.1 函数重载概述"></a>3.3.1 函数重载概述</h5><p> <strong>作用：函数名可以相同，提高复用性</strong></p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNgy1gqsezyq7mvj313m0tqk4p.jpg"></p>
+<h5 id="3-3-2-函数重载注意事项"><a href="#3-3-2-函数重载注意事项" class="headerlink" title="3.3.2 函数重载注意事项"></a>3.3.2 函数重载注意事项</h5><p>● 引用作为重载条件</p>
+<p>● 函数重载碰到函数默认参数</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include&lt;iostream&gt;
+
+using namespace std;
+
+// 函数重载的注意事项
+// 1.引用作为重载的条件
+//假如func(10)调用的是这个的话，那么是int &amp;a = 10； 不合法
+// 10存储在全局区的常量区，而引用必须要一个合法的内存空间，要么在栈区要么在堆区。
+// 所以这样引用明显不合法
+void func(int &amp;a) 
+{
+    cout&lt;&lt;"func(int &amp;a)'s call of"&lt;&lt;endl;
+}
+
+
+void func(const int &amp;a) // const int &amp;a = 10;
+{
+    cout&lt;&lt;"func(const int &amp;a)'s call of"&lt;&lt;endl;
+}
+
+void func2(int a,int b=10)
+{
+    cout&lt;&lt;"func(int a,int b=10)'s call of"&lt;&lt;endl;
+}
+
+
+void func2(int a)
+{
+    cout&lt;&lt;"func(int a)'s call of"&lt;&lt;endl;
+}
+
+
+int main()
+{
+    int a=10; //调用的是a是一个变量，可读可写，所以引用的是第一个函数
+    func(a);
+
+    func(10); //
+
+    // !func2(10); error 
+    // because There are 
+    // multiple instances of overloaded function "func2" 
+    // that match the parameter list
+    return 0;
+
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>总结：</p>
+<p>● 写函数重载的时候不要写默认参数，容易发生错误。</p>
+<h3 id="4-类和对象"><a href="#4-类和对象" class="headerlink" title="4.类和对象"></a>4.类和对象</h3><h4 id="4-2-对象的初始化和清理"><a href="#4-2-对象的初始化和清理" class="headerlink" title="4.2 对象的初始化和清理"></a>4.2 对象的初始化和清理</h4><h5 id="4-2-1-构造函数和析构函数"><a href="#4-2-1-构造函数和析构函数" class="headerlink" title="4.2.1 构造函数和析构函数"></a>4.2.1 构造函数和析构函数</h5><p>构造函数：</p>
+<pre class="line-numbers language-none"><code class="language-none">1. 构造函数没有返回值
+2. 构造函数可以重载
+3. 程序在调用对象时会自动调用构造，而且只调用一次<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>析构函数：</p>
+<pre class="line-numbers language-none"><code class="language-none">1. 析构函数没有返回值
+2. 析构函数没有参数不可以重载
+3. 程序在对象销毁前会自动调用析构函数，无需手动调用，而且只会调用一次<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h5 id="4-2-2-构造函数的分类及调用"><a href="#4-2-2-构造函数的分类及调用" class="headerlink" title="4.2.2 构造函数的分类及调用"></a>4.2.2 构造函数的分类及调用</h5><p>两种分类方式：</p>
+<p>​    按参数分为：有参构造和无参构造</p>
+<p>​    按类型分为：普通构造和拷贝构造</p>
+<p>三种调用方式：</p>
+<p>​    括号法 </p>
+<p>​    显示法</p>
+<p>​    隐式转换法</p>
+<p><font color="red">example：</font></p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
+
+using namespace std;
+
+class Person
+{
+private:
+    /* data */
+public:
+    Person();
+    Person(int a);
+    Person(const Person &amp;a);
+    ~Person();
+    int age;
+};
+
+Person::Person()
+{
+    cout &lt;&lt; "Person's call of nonparametric constructor" &lt;&lt; endl;
+}
+
+Person::Person(int a)
+{
+    age = a;
+    cout &lt;&lt; "Person's call of parametric constructor" &lt;&lt; endl;
+}
+
+Person::Person(const Person &amp;p) //就是把一个对象的所有值拷贝给另一个对象
+{
+    age = p.age;
+    cout &lt;&lt; "Person's call of copy constructor" &lt;&lt; endl;
+}
+
+Person::~Person()
+{
+    cout &lt;&lt; "Person's call of destructor" &lt;&lt; endl;
+}
+
+// call fo
+void test01()
+{
+    // 1.括号法
+    // Person p1;     //默认构造函数调用
+    // Person p2(10); // 有参构造函数
+    // Person p3(p2); //拷贝构造函数
+
+    //! 注意事项
+    // 调用默认构造函数的时候，不要加（）
+    // 因为下面这行代码，编译器会认为是一个函数的声明，不会认为在创建对象
+
+    //? Person p1();
+    // 比如 void test(); 这样
+
+    // cout &lt;&lt; "p2's age:" &lt;&lt; p2.age &lt;&lt; endl;
+    // cout &lt;&lt; "p3's age:" &lt;&lt; p3.age &lt;&lt; endl;
+
+    // 2.显示法
+
+    // Person p11;
+    // Person p21 = Person(10); //有参调用
+    // Person p31 = Person(p21); //拷贝构造函数
+
+    // Person(20); // 匿名对象 // 特点：当前行执行结束后，系统会立即回收匿名对象
+    // cout &lt;&lt; "aaaaa" &lt;&lt; endl;
+
+    // 注意事项2: 
+
+    // 不要利用拷贝构造函数初始化匿名对象
+    // 编译器会认为是 Person （p3） == Person p3；
+
+    //Person(p31); 
+
+    // 3.隐式调用
+    Person p4=10; // Person p4 = Person(10);
+    Person p5=p4;
+
+}
+
+int main()
+{
+    test01();
+
+    return 0;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h5 id="4-2-3-拷贝构造函数调用时机"><a href="#4-2-3-拷贝构造函数调用时机" class="headerlink" title="4.2.3 拷贝构造函数调用时机"></a>4.2.3 拷贝构造函数调用时机</h5><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
+
+using namespace std;
+
+class Person
+{
+private:
+    /* data */
+public:
+    Person();
+    Person(int a);
+    Person(const Person &amp;a);
+    ~Person();
+    int m_age;
+};
+
+Person::Person()
+{
+    // 无参构造，也就是默认构造
+    cout &lt;&lt; "Person's call of nonparametric constructor" &lt;&lt; endl;
+}
+
+Person::Person(int age)
+{
+    m_age = age;
+    cout &lt;&lt; "Person's call of parametric constructor" &lt;&lt; endl;
+}
+
+Person::Person(const Person &amp;p)
+{
+    m_age = p.m_age;
+    cout &lt;&lt; "Person's call of copy constructor" &lt;&lt; endl;
+}
+
+Person::~Person()
+{
+    cout &lt;&lt; "Person's call of destructor" &lt;&lt; endl;
+}
+
+// 1.使用一个以及创建完毕的对象来初始化一个新对象
+void test01()
+{
+    
+    Person p1(20);
+    Person p2(p1);
+
+    cout &lt;&lt; "p2's age is:" &lt;&lt; endl;
+}
+
+// 2.值传递的方式给函数参数传值
+void doWork(Person p)
+{
+
+}
+
+void test02()
+{
+    Person p; // 默认构造
+    doWork(p); // 拷贝构造
+}
+
+// 3.值方式返回局部对象
+
+Person dowork2()
+{
+    Person p11;
+    cout&lt;&lt;(int*)&amp;p11&lt;&lt;endl;
+    return p11; // 拷贝构造
+}
+
+void test03()
+{
+    Person p=dowork2();
+    cout&lt;&lt;(int*)&amp;p&lt;&lt;endl;
+}
+
+int main()
+{
+    //test01();
+    test03();
+    return 0;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h5 id="4-2-4-拷贝构造函数调用规则"><a href="#4-2-4-拷贝构造函数调用规则" class="headerlink" title="4.2.4 拷贝构造函数调用规则"></a>4.2.4 拷贝构造函数调用规则</h5><p>默认情况下，c++编译器至少给一个类添加3个函数</p>
+<ol>
+<li> 默认构造函数（无参，函数体为空）</li>
+<li> 默认析构函数（无参，函数体为空）</li>
+<li> 默认拷贝构造函数，对属性进行值拷贝</li>
+</ol>
+<p>构造函数调用规则如下:</p>
+<p>● 如果用户定义有参构造函数，C++不在提供默认无参构造，但是会提供默认拷贝构造<br>● 如果用户定义拷贝构造函数, C++不会再提供其他构造函数</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">class Person {
+public:
+	Person() {
+		cout &lt;&lt; "无参构造函数!" &lt;&lt; endl;
+		mAge = 0;
+	}
+	Person(int age) {
+		cout &lt;&lt; "有参构造函数!" &lt;&lt; endl;
+		mAge = age;
+	}
+	Person(const Person&amp; p) {
+		cout &lt;&lt; "拷贝构造函数!" &lt;&lt; endl;
+		mAge = p.mAge;
+	}
+	//析构函数在释放内存之前调用
+	~Person() {
+		cout &lt;&lt; "析构函数!" &lt;&lt; endl;
+	}
+public:
+	int mAge;
+};
+
+//1. 使用一个已经创建完毕的对象来初始化一个新对象
+void test01() {
+
+	Person man(100); //p对象已经创建完毕
+	Person newman(man); //调用拷贝构造函数
+	Person newman2 = man; //拷贝构造
+
+	//Person newman3;
+	//newman3 = man; //不是调用拷贝构造函数，赋值操作
+}
+
+//2. 值传递的方式给函数参数传值
+//相当于Person p1 = p;
+void doWork(Person p1) {}
+void test02() {
+	Person p; //无参构造函数
+	doWork(p);
+}
+
+//3. 以值方式返回局部对象
+Person doWork2()
+{
+	Person p1;
+	cout &lt;&lt; (int *)&amp;p1 &lt;&lt; endl;
+	return p1;
+}
+
+void test03()
+{
+	Person p = doWork2();
+	cout &lt;&lt; (int *)&amp;p &lt;&lt; endl;
+}
+
+
+int main() {
+
+	//test01();
+	//test02();
+	test03();
+
+	system("pause");
+
+	return 0;
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h5 id="4-2-5-深拷贝与浅拷贝"><a href="#4-2-5-深拷贝与浅拷贝" class="headerlink" title="4.2.5 深拷贝与浅拷贝"></a>4.2.5 深拷贝与浅拷贝</h5><p>深浅拷贝是面试经典问题，也是常见的一个坑</p>
+<p>浅拷贝：简单的赋值拷贝操作</p>
+<p>深拷贝：在堆区重新申请空间，进行拷贝操作</p>
+<h5 id="4-2-6-初始化列表"><a href="#4-2-6-初始化列表" class="headerlink" title="4.2.6 初始化列表"></a>4.2.6 初始化列表</h5><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include&lt;iostream&gt; 
+using namespace std;
+
+class Student {
+public:
+  Student(int a, int s, int h):m_Age(a), m_Score(s), m_Hight(h){}
+private:
+  int m_Age;
+  int m_Score;
+  int m_Hight;
+}
+
+int main() {
+  Student s1;
+  return 0;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h5 id="4-2-7-类对象作为类成员"><a href="#4-2-7-类对象作为类成员" class="headerlink" title="4.2.7 类对象作为类成员"></a>4.2.7 类对象作为类成员</h5><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include&lt;iostream&gt; 
+using namespace std;
+
+class Phone {
+public:
+  Phone(string name) {
+    m_PhoneName = name;
+  }
+  string m_PhoneName;
+}
+
+class Student {
+public:
+  Student(int a, int s, int h):m_Age(a), m_Score(s), m_Hight(h){}
+  Phone m_Phone;
+private:
+  int m_Age;
+  int m_Score;
+  int m_Hight;
+}
+
+int main() {
+  Student s1;
+  return 0;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h5 id="4-2-8-静态成员"><a href="#4-2-8-静态成员" class="headerlink" title="4.2.8 静态成员"></a>4.2.8 静态成员</h5><p>静态成员就是类中的成员变量和成员函数前面加上static，就是静态成员</p>
+<ul>
+<li>静态成员变量：<ul>
+<li>  所有对象共享一份数据</li>
+<li>  在编译阶段分配内存</li>
+<li>  类内声明，类外初始化</li>
+</ul>
+</li>
+<li>静态成员函数：<ul>
+<li>  所有对象共享一个函数</li>
+<li>  静态成员函数只能访问静态成员变量</li>
+</ul>
+</li>
+<li></li>
+</ul>
+<h4 id="4-3-C-对象模型和this指针"><a href="#4-3-C-对象模型和this指针" class="headerlink" title="4.3 C++对象模型和this指针"></a>4.3 C++对象模型和this指针</h4><h5 id="4-3-2-成员变量和成员函数分开存储"><a href="#4-3-2-成员变量和成员函数分开存储" class="headerlink" title="4.3.2 成员变量和成员函数分开存储"></a>4.3.2 成员变量和成员函数分开存储</h5><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include&lt;iostream&gt;
+using namespace std;
+
+// 类的大小为类的非静态成员变量
+// 类的成员函数和静态成员函数不在类的存储空间中
+// 此时类的大小为4
+class Person {
+  static int m_Score;
+  int m_Age;
+  void run() {
+    cout &lt;&lt; "run" &lt;&lt; endl;
+  }
+}
+
+// 空类的大小为1
+class Person1 {
+  
+}
+
+int main() {
+  cout &lt;&lt; sizeof(Person()) &lt;&lt; endl;
+  return 0;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h5 id="4-3-2-this指针"><a href="#4-3-2-this指针" class="headerlink" title="4.3.2 this指针"></a>4.3.2 this指针</h5><p>通过前面一节我们知道C++中成员变量和成员函数是分开存储的</p>
+<p>每一个非静态成员函数只会诞生一份函数实例，也就是说多个同类型对象会共用一块代码</p>
+<p>那么这一块代码究竟是怎么区分那个对象调用自己的呢</p>
+<p>C++通过提供特殊对象指针，this指针，解决上述问题，this指针指向被调用的成员函数所属的对象</p>
+<p>this指针是隐含每一个非静态成员函数内的一种指针</p>
+<p>this指针不需要定义，直接使用即可</p>
+<p>this指针的用途：</p>
+<p><code>this指针的本质是指针常量，this的指向不可以改变</code></p>
+<ul>
+<li>  当形参和成员变量同名时，用来区分二者</li>
+<li>  在类的非静态成员函数中返回对象本身，可使用return *this</li>
+</ul>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">//
 //  main.cpp
-//  vector中存放自定义数据类型
+//  this指针
 //
-//  Created by OnlyBei on 2021/9/24.
+//  Created by ChengBei's iMac on 2021/9/8.
 //
 
 #include &lt;iostream&gt;
-#include &lt;vector&gt;
 using namespace std;
 
 class Person {
 public:
-    Person(string name, int age) {
-        this-&gt;m_Name = name;
-        this-&gt;m_Age = age;
+    Person(int age) {
+        m_Age = age;
     }
-public:
-    string m_Name;
-    int m_Age;
+    void addPersonAge(int age) {
+        m_Age = m_Age + age;
+    }
+    
+    // 返回类的本身，可以链式调用
+    // 这里为什么要返回引用呢，因为要引用传递，放回这个类的本身，而不是它的拷贝
+    Person&amp; addPersonAgeTwo(int age) {
+        m_Age += age;
+        return *this; // 为什么返回的是this呢，因为this指向的是这个对象的指针，所以*this是这个对象本身
+    }
+    int m_Age = 0;
 };
 
-void test01() {
-    vector&lt;Person&gt; v;
-    
-    Person p1("aaa", 10);
-    Person p2("bbb", 20);
-    Person p3("ccc", 30);
-    Person p4("ddd", 40);
-    
-    v.push_back(p1);
-    v.push_back(p2);
-    v.push_back(p3);
-    v.push_back(p4);
-    
-    for(vector&lt;Person&gt;::iterator it = v.begin(); it != v.end(); it++) {
-//        cout &lt;&lt; "姓名：" &lt;&lt; it-&gt;m_Name &lt;&lt; "年龄：" &lt;&lt; it-&gt;m_Age &lt;&lt; endl;
-        cout &lt;&lt; "姓名：" &lt;&lt; (*it).m_Name &lt;&lt; "年龄：" &lt;&lt; (*it).m_Age &lt;&lt; endl;
-
-    }
-
-}
-
-void test02() {
-    vector&lt;Person*&gt; v;
-    
-    Person p1("aaa", 10);
-    Person p2("bbb", 20);
-    Person p3("ccc", 30);
-    Person p4("ddd", 40);
-    
-    v.push_back(&amp;p1); // 取地址
-    v.push_back(&amp;p2);
-    v.push_back(&amp;p3);
-    v.push_back(&amp;p4);
-    
-    for(vector&lt;Person*&gt;::iterator it = v.begin(); it != v.end(); it++) {
-      // 双重指针
-//        cout &lt;&lt; "2姓名：" &lt;&lt; (*(*it)).m_Name &lt;&lt; "年龄：" &lt;&lt; (*(*it)).m_Age &lt;&lt; endl;
-        cout &lt;&lt; "2姓名：" &lt;&lt; (*it)-&gt;m_Name &lt;&lt; "年龄：" &lt;&lt; (*it)-&gt;m_Age &lt;&lt; endl;
-
-    }
-
-}
-
 int main(int argc, const char * argv[]) {
-    // insert code here...
-//    test01();
-    test02();
+    
+    Person p1(10);
+    p1.addPersonAge(10);
+    
+    Person p2(20);
+    p2.addPersonAgeTwo(30).addPersonAge(20);
+    cout &lt;&lt; p1.m_Age &lt;&lt; endl;
+    cout &lt;&lt; p2.m_Age &lt;&lt; endl;
+    return 0;
 }
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h5 id="4-3-4-const修饰成员函数"><a href="#4-3-4-const修饰成员函数" class="headerlink" title="4.3.4 const修饰成员函数"></a>4.3.4 const修饰成员函数</h5><p>常函数：</p>
+<ul>
+<li>  成员函数前面加上const后称为常函数</li>
+<li>  常函数内不可以修改成员属性</li>
+<li>  成员属性内加关键字mutable后，在常函数中依然可以修改</li>
+</ul>
+<p>常对象：</p>
+<ul>
+<li>  声明对象前加const称该对象为常对象</li>
+<li>  常对象只能调用常函数</li>
+</ul>
+<h4 id="4-5-运算符重载"><a href="#4-5-运算符重载" class="headerlink" title="4.5 运算符重载"></a>4.5 运算符重载</h4><h5 id="4-5-1-加号运算符重载"><a href="#4-5-1-加号运算符重载" class="headerlink" title="4.5.1 加号运算符重载"></a>4.5.1 加号运算符重载</h5><p>作用：实现两个自定义数据的相加</p>
+<h5 id="4-5-6-继承同名成员处理方式"><a href="#4-5-6-继承同名成员处理方式" class="headerlink" title="4.5.6 继承同名成员处理方式"></a>4.5.6 继承同名成员处理方式</h5><ol>
+<li>  子类对象可以直接访问到子类中同名成员</li>
+<li>  子类对象加作用域可以访问到父类同名成员</li>
+<li>  当子类与父类拥有同名的成员函数，子类会隐藏父类中的成员函数，这时候加作用域可以访问到父类中的成员函数</li>
+</ol>
+<h3 id="5-文件操作"><a href="#5-文件操作" class="headerlink" title="5. 文件操作"></a>5. 文件操作</h3><p>程序运行时产生的数据都属于临时数据，程序一旦运行结束都会被释放。</p>
+<p>通过文件可以将数据存储。</p>
+<p>文件类型分为两种：</p>
+<p>1.文本文件：文件以文本ASCII码形式存储在计算机中</p>
+<p>2.二进制文件：文件以文本二进制形式存储在计算机中</p>
+<p>操作文件三大类：</p>
+<ol>
+<li> ofstream：写操作</li>
+<li> ifstream：读操作</li>
+<li> fstream：读写操作</li>
+</ol>
+<h4 id="4-7-多态"><a href="#4-7-多态" class="headerlink" title="4.7 多态"></a>4.7 多态</h4><h5 id="4-7-1-多态的基本概念："><a href="#4-7-1-多态的基本概念：" class="headerlink" title="4.7.1 多态的基本概念："></a>4.7.1 多态的基本概念：</h5><p>多态分为两类：</p>
+<ul>
+<li>  静态多态：函数重载和运算符重载属于静态多态，复用函数名</li>
+<li>  动态多态：派生类和虚函数实现运行时多态</li>
+</ul>
+<p>静态多态和动态多态的区别：</p>
+<ul>
+<li>  静态多态的地址早绑定  - 编译阶段确定函数地址</li>
+<li>  动态多态的地址晚绑定 - 运行阶段确定函数地址（因为运行时才确定到底走哪个函数）</li>
+</ul>
+<h5 id="4-7-5-虚析构和纯虚析构"><a href="#4-7-5-虚析构和纯虚析构" class="headerlink" title="4.7.5 虚析构和纯虚析构"></a>4.7.5 虚析构和纯虚析构</h5><p>多态使用时，如果子类有属性开辟到堆区，那么父类指针在释放时无法调用到子类的析构代码</p>
+<p>解决方式：将父类中的析构函数改为虚析构或纯虚析构</p>
+<p>虚析构和纯虚析构共性：</p>
+<ul>
+<li>  可以解决父类指针释放子类对象的问题</li>
+<li>  都需要有具体的函数实现</li>
+</ul>
+<p>区别：</p>
+<ul>
+<li>  如果是纯虚析构，该类属于抽象类，无法实例化</li>
+</ul>
+<p>总结：</p>
+<ol>
+<li>  虚析构和纯虚析构就是用来解决通过父类指针释放子类对象的</li>
+<li>  如果子类中没有堆区数据，可以不写虚析构或纯虚析构</li>
+<li>  拥有纯虚析构的函数也属于抽象类</li>
+</ol>
+<h4 id="5-1-文本文件"><a href="#5-1-文本文件" class="headerlink" title="5.1 文本文件"></a>5.1 文本文件</h4><h5 id="5-1-1-写文件"><a href="#5-1-1-写文件" class="headerlink" title="5.1.1 写文件"></a>5.1.1 写文件</h5><p>写文件步骤如下：</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">1.包含头文件
+	#include&lt;fstream&gt;
+
+2.创建流对象
+  ofstream.ofs;
+
+3.打开文件
+  ofs.open("文件路径",打开方式)；
+  
+4.写数据
+  ofs&lt;&lt;"写入"；
+  
+5.关闭文件
+  ofs.close();<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
-<h3 id="1-5-vector的嵌套结构"><a href="#1-5-vector的嵌套结构" class="headerlink" title="1.5 vector的嵌套结构"></a>1.5 vector的嵌套结构</h3><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">//
-//  main.cpp
-//  vector中的嵌套数据类型
-//
-//  Created by OnlyBei on 2021/9/24.
-//
+<p>文件打开方式：</p>
+<table>
+<thead>
+<tr>
+<th align="center">打开方式</th>
+<th align="center">解释:</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">ios::in</td>
+<td align="center">为读文件而打开文件</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">ios::out</td>
+<td align="center">为写文件而打开文件</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">ios::ate</td>
+<td align="center">初始位置：文件尾</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">ios::app</td>
+<td align="center">追加方式写文件</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">ios::trunc</td>
+<td align="center">如果文件存在先删除，再创建</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">iOS::binary</td>
+<td align="center">二进制方式</td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>注意：文件打开方式可以配合|使用</strong></p>
+<p><strong>用二进制方式写文件 ios::binary | ios::out</strong></p>
+<h5 id="5-1-2-读文件"><a href="#5-1-2-读文件" class="headerlink" title="5.1.2 读文件"></a>5.1.2 读文件</h5><p>写文件步骤如下：</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">1.包含头文件
+	#include&lt;fstream&gt;
 
-#include &lt;iostream&gt;
-#include &lt;vector&gt;
+2.创建流对象
+  ifstream ifs;
+
+3.打开文件
+  ofs.open("文件路径",打开方式)；
+  
+4.写数据
+  四种方式读取
+  
+5.关闭文件
+  ifs.close();<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>文件打开方式：</p>
+<table>
+<thead>
+<tr>
+<th align="center">打开方式</th>
+<th align="center">解释:</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">ios::in</td>
+<td align="center">为读文件而打开文件</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">ios::out</td>
+<td align="center">为写文件而打开文件</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">ios::ate</td>
+<td align="center">初始位置：文件尾</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">ios::app</td>
+<td align="center">追加方式写文件</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">ios::trunc</td>
+<td align="center">如果文件存在先删除，再创建</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">iOS::binary</td>
+<td align="center">二进制方式</td>
+<td></td>
+</tr>
+</tbody></table>
+<h4 id="5-2-二进制文件"><a href="#5-2-二进制文件" class="headerlink" title="5.2 二进制文件"></a>5.2 二进制文件</h4><p>以二进制的方式对文件进行读写操作</p>
+<p>打开方式要指定为 ios::binary</p>
+<h5 id="5-2-1-写文件"><a href="#5-2-1-写文件" class="headerlink" title="5.2.1 写文件"></a>5.2.1 写文件</h5><p>二进制方式写文件主要利用流对象调用成员函数write</p>
+<p>函数原型 ：<code>ostream&amp; write(const char * buffer,int len);</code></p>
+<p>参数解释：字符指针buffer指向内存中一段存储空间。len是读写的字节数</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;fstream&gt;
+#include &lt;string&gt;
+
 using namespace std;
 
-void test() {
-    vector&lt;vector&lt;int&gt; &gt; v;
-    
-    vector&lt;int&gt; v1;
-    vector&lt;int&gt; v2;
-    vector&lt;int&gt; v3;
-    vector&lt;int&gt; v4;
-    
-    for(int i = 0; i &lt; 4; i++) {
-        v1.push_back(i);
-        v2.push_back(i + 4);
-        v3.push_back(i + 8);
-        v4.push_back(i + 12);
-    }
-    
-    v.push_back(v1);
-    v.push_back(v2);
-    v.push_back(v3);
-    v.push_back(v4);
-    
-    for(vector&lt;vector&lt;int&gt; &gt;::iterator it = v.begin(); it != v.end(); it++) {
-        for(vector&lt;int&gt;::iterator vit = (*it).begin(); vit != (*it).end(); vit++) {
-            cout &lt;&lt; *vit &lt;&lt; " ";
-        }
-        cout &lt;&lt; endl;
-    }
+class Person
+{
+public:
+	char m_Name[64];
+	int m_Age;
+};
 
+//二进制文件  写文件
+void test01()
+{
+	//1、包含头文件
+
+	//2、创建输出流对象
+	ofstream ofs("person.txt", ios::out | ios::binary);
+	
+	//3、打开文件
+	//ofs.open("person.txt", ios::out | ios::binary);
+
+	Person p = {"张三"  , 18};
+
+	//4、写文件
+	ofs.write((const char *)&amp;p, sizeof(p));
+
+	//5、关闭文件
+	ofs.close();
 }
 
-int main(int argc, const char * argv[]) {
-    // insert code here...
-    test();
+int main() {
+
+	test01();
+	return 0;
 }
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-
-
-<h2 id="2-String容器"><a href="#2-String容器" class="headerlink" title="2. String容器"></a>2. String容器</h2><h3 id="2-0-前置知识："><a href="#2-0-前置知识：" class="headerlink" title="2.0 前置知识："></a>2.0 前置知识：</h3><ul>
-<li><p>在C语言中:</p>
+<p>总结：</p>
 <ul>
-<li>char是定义一个字符，存储一个字符，占一个字节。</li>
-<li>string是定义一个字符串，存储的是一段如“abcd”的数据，而且最后还有一个结束符’\0’。</li>
+<li>  文件输出流对象 可以通过write函数，以二进制方式写数据</li>
 </ul>
-</li>
-<li><p>在C++中:</p>
-<ul>
-<li><p>string有两种，要区别理解；</p>
-</li>
-<li><p>第一种是字符串char[ ]，例如’a’是char, “a”是char string，这两者都是普通的字符和字符串，和C语言中没什么不同值得注意的是后者包含两个字符，末尾有一个隐身的’\0’。</p>
-</li>
-<li><p>第二种是封装好的字符串类，如string str = “a” 是C++ 封装好的string。</p>
-</li>
-<li><p>C++中的char string和string不是一回事。当用到了”string”这个关键词，就不是普通的字符串，而是用到了封装后的类。</p>
-</li>
-<li><p>在C++中，char仍然是一个primitive type(原始类型)，而string已经经过封装，成为了一个class(类)用到它时，我们需要 #include<string>，它是C++ Standard Library (C++标准库)的一部分。</string></p>
-</li>
-</ul>
-</li>
-<li><p>c中的char* 定义字符串，不能改变字符串内的字符的内容，但却可以把另外一个字符串赋给它。</p>
-</li>
-</ul>
-<h3 id="2-1-String的基本概念"><a href="#2-1-String的基本概念" class="headerlink" title="2.1 String的基本概念"></a>2.1 String的基本概念</h3><ul>
-<li>string是C++风格的字符串，而string本质是一个类</li>
-<li>string和char *的区别<ul>
-<li>char *是一个指针</li>
-<li>string是一个类，类内部封装了char * ，管理这个字符串，是一个char * 的容器</li>
-</ul>
-</li>
-<li>特点：<ul>
-<li>string内部封装了很多成员方法</li>
-<li>例如：find查找、insert插入、delete删除、replace替换、copy拷贝</li>
-<li>string管理char*的内存，不用担心复制越界和取值越界等，由类内部负责</li>
-</ul>
-</li>
-</ul>
-<h3 id="2-2-String的构造函数"><a href="#2-2-String的构造函数" class="headerlink" title="2.2 String的构造函数"></a>2.2 String的构造函数</h3><ul>
-<li>string();     //创建一个空的字符串，例如string str</li>
-<li>string(const char* s);   // 使用字符串s初始化</li>
-<li>string(const string&amp; str); // 使用一个string对象初始化另一个string对象</li>
-<li>string(int n, char c); // 使用n个字符c初始化</li>
-</ul>
-<h3 id="2-3-Sring的赋值操作"><a href="#2-3-Sring的赋值操作" class="headerlink" title="2.3 Sring的赋值操作"></a>2.3 Sring的赋值操作</h3><ul>
-<li>string&amp; operator = (const char* s);        //char*类型字符串，赋值给当前字符串</li>
-<li>string&amp; operator = (const  string &amp;s);    //把字符串s赋值给当前字符串</li>
-<li>string&amp; operator = (char c);                     //把字符赋值给当前字符串</li>
-<li>string&amp; assign(const char* s);                //把字符串s赋值给当前字符串 </li>
-<li>string&amp; assign(const char* s, int n);      //把字符串s的前n位赋值给当前字符串 </li>
-<li>string&amp; assign(const stringr &amp;s);           //把字符串s赋值给当前字符串 </li>
-<li>string&amp; assign(int n, char c);                   //用n个字符赋值给当前字符串</li>
-</ul>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">//
-//  main.cpp
-//  String的赋值操作
-//
-//  Created by OnlyBei on 2021/9/24.
-//
-
-#include &lt;iostream&gt;
+<h5 id="5-2-2-读文件"><a href="#5-2-2-读文件" class="headerlink" title="5.2.2 读文件"></a>5.2.2 读文件</h5><p>二进制方式读文件主要利用流对象调用成员函数read</p>
+<p>函数原型：<code>istream&amp; read(char *buffer,int len);</code></p>
+<p>参数解释：字符指针buffer指向内存中一段存储空间。len是读写的字节数</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;fstream&gt;
 #include &lt;string&gt;
 using namespace std;
 
-void test() {
-    string s1;
-    s1 = "hello,world";
-    cout &lt;&lt; "s1 = " &lt;&lt; s1 &lt;&lt; endl;
-    
-    string s2 = s1;
-    cout &lt;&lt; "s2 = " &lt;&lt; s2 &lt;&lt; endl;
-    
-    string s3;
-    s3 = "a";
-    cout &lt;&lt; "s3 = " &lt;&lt; s3 &lt;&lt; endl;
-    
-    string s4;
-    s4.assign("hello, c++");
-    cout &lt;&lt; "s4 = " &lt;&lt; s4 &lt;&lt; endl;
-    
-    string s5;
-    s5.assign("hello, c++", 5);
-    cout &lt;&lt; "s5 = " &lt;&lt; s5 &lt;&lt; endl;
-    
-    string s6;
-    s6.assign(s5);
-    cout &lt;&lt; "s6 = " &lt;&lt; s6 &lt;&lt; endl;
-    
-    string s7;
-    s7.assign(15, 'h');
-    cout &lt;&lt; "s7 = " &lt;&lt; s7 &lt;&lt; endl;
-}
-
-int main(int argc, const char * argv[]) {
-    // insert code here...
-    test();
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
-<h3 id="2-4-String字符串拼接"><a href="#2-4-String字符串拼接" class="headerlink" title="2.4 String字符串拼接"></a>2.4 String字符串拼接</h3><ul>
-<li>string&amp; operator += (const char* str); // 重载+=操作符</li>
-<li>string&amp; operator += (const char c); // 重载+=操作符</li>
-<li>string&amp; operator += (const string&amp; str); // 重载+=操作符</li>
-<li>string&amp; append(const char *s); // 把字符串s连接到当前字符串的结尾</li>
-<li>string&amp; append(const char *s,int n);  // 把字符串s的前n位连接到当前字符串的结尾</li>
-<li>string&amp; append(const string &amp;s); //同string&amp; operator += (const char* str)</li>
-<li>string&amp; append(const string &amp;s, int pos, int n); // 字符串s从pos开始的n个字符拼接到当前字符串的尾部</li>
-</ul>
-<h3 id="2-5-String字符串的查找"><a href="#2-5-String字符串的查找" class="headerlink" title="2.5 String字符串的查找"></a>2.5 String字符串的查找</h3><ul>
-<li>功能描述<ul>
-<li>查找：查找指定字符串是否存在</li>
-<li>替换：在指定的位置替换字符串</li>
-</ul>
-</li>
-<li>函数原型：<ul>
-<li>int find(const string&amp; str, int pos = 0) const; // 查找str第一次出现的位置，从pos开始查找</li>
-<li>Int find(cosnt char* s, int pos = 0) const; // 查找s第一次出现的位置，从pos开始查找</li>
-<li>int find(const char* s, int pos, int n) const; //从pos位置查找s的前n个字符第一次位置</li>
-<li>int find(const char c, int pos = 0) const; // 查找字符c第一次出现位置</li>
-<li>int rfind(const string&amp; str, int pos = npos) const; // 查找str最后一次位置，从pos开始查找</li>
-<li>int find(const char* s, int pos = npos) const;  // 查找s最后一次出现位置，从pos开始查找</li>
-<li>int rfind(const char* s, int pos, int n) const;   //从pos查找s的前n个字符最后一次出现位置</li>
-<li>int rfind(const char s, int pos = 0) const;  //查找字符c最后一次出现位置</li>
-<li>string&amp; replace(int pos, int n , const string&amp; str); //替换从pos开始n个字符位字符串str</li>
-<li>string&amp; replace(int pos, int n, const char* s); //替换从pos开始的n个字符为字符串</li>
-</ul>
-</li>
-</ul>
-<h3 id="2-6-String字符串比较"><a href="#2-6-String字符串比较" class="headerlink" title="2.6 String字符串比较"></a>2.6 String字符串比较</h3><ul>
-<li><p>功能描述：</p>
-<ul>
-<li>字符串之间的比较</li>
-</ul>
-</li>
-<li><p>比较方式：</p>
-<ul>
-<li>字符串比较是按字符的ASCII码进行对比</li>
-<li>=  的话返回 0</li>
-<li><code>&gt;的话返回 1</code></li>
-<li><code>&lt;的话返回 -1</code></li>
-</ul>
-</li>
-<li><p>函数原型：</p>
-<ul>
-<li>int compare(const string &amp;s) const; //与字符串s进行比较</li>
-<li>int compare(const char *s) const; //与字符串s进行比较</li>
-</ul>
-</li>
-</ul>
-<h3 id="2-7-String字符串的存取"><a href="#2-7-String字符串的存取" class="headerlink" title="2.7 String字符串的存取"></a>2.7 String字符串的存取</h3><ul>
-<li>string中单个字符的存取有两种方式</li>
-<li>char&amp; operator[] (int n); //通过[]方式取字符</li>
-<li>Char&amp; at(int n); //通过at方式取字符</li>
-</ul>
-<p>修改的话直接，str[i] = “”; 或者 str.at(n) = “”;</p>
-<h3 id="2-8-String插入和删除"><a href="#2-8-String插入和删除" class="headerlink" title="2.8 String插入和删除"></a>2.8 String插入和删除</h3><ul>
-<li>功能描述：<ul>
-<li>对string字符串进行插入和删除操作</li>
-</ul>
-</li>
-<li>函数原型：<ul>
-<li>string&amp; insert(int pos, const char* s); //插入字符串</li>
-<li>string&amp; insert(int pos, const string&amp; s); //插入字符串</li>
-<li>string&amp; insert(int pos, int n, char c); //在指定位置插入n个字符串c</li>
-<li>string&amp; erase(int pos, int n = npos); //删除从pos开始的n个字符</li>
-</ul>
-</li>
-</ul>
-<h3 id="2-9-String字符串子串"><a href="#2-9-String字符串子串" class="headerlink" title="2.9 String字符串子串"></a>2.9 String字符串子串</h3><ul>
-<li>功能描述：<ul>
-<li>从字符串中获取想要的子串</li>
-</ul>
-</li>
-<li>函数原型：<ul>
-<li>string substr(int pos = 0, int n = npos) const; // 返回从pos开始由n个字符组成的字符串</li>
-</ul>
-</li>
-</ul>
-<h2 id="3-Vector容器"><a href="#3-Vector容器" class="headerlink" title="3. Vector容器"></a>3. Vector容器</h2><h3 id="3-1-Vector基本概念"><a href="#3-1-Vector基本概念" class="headerlink" title="3.1 Vector基本概念"></a>3.1 Vector基本概念</h3><ul>
-<li>功能：<ul>
-<li>vector数据结构和数组非常相似，也称为单端数组</li>
-</ul>
-</li>
-<li>vector与普通数组的区别<ul>
-<li>vector可以动态扩展</li>
-</ul>
-</li>
-<li>动态扩展：<ul>
-<li>并不是在原有空间之后拼接新空间，而是找更大的内存空间，然后将数据拷贝到新空间，释放原空间</li>
-</ul>
-</li>
-<li>vector容器迭代器是支持随机访问的一个迭代器</li>
-</ul>
-<h3 id="3-2-Vector容量和大小"><a href="#3-2-Vector容量和大小" class="headerlink" title="3.2 Vector容量和大小"></a>3.2 Vector容量和大小</h3><ul>
-<li>功能描述：<ul>
-<li>对vector的容器的容量和大小进行操作</li>
-</ul>
-</li>
-<li>函数原型<ul>
-<li>empty();     //判断容器是否为空</li>
-<li>capacity(); //容器的容量</li>
-<li>size(); //返回容器中元素的个数</li>
-<li>resize(int num); //重新指定容器的大小为num，若容器变长，则以默认值填充新位置，若变短，则末尾超出容器元素被删除</li>
-<li>resize(int num, in elem);//重新指定容器的大小为num，若容器变长，则以elem值填充新位置，若变短，则末尾超出容器元素被删除</li>
-</ul>
-</li>
-</ul>
-<h3 id="3-3-Vector容器的插入和删除"><a href="#3-3-Vector容器的插入和删除" class="headerlink" title="3.3 Vector容器的插入和删除"></a>3.3 Vector容器的插入和删除</h3><ul>
-<li>push_back(); //尾插法</li>
-<li>pop_back(); // 删除尾部的元素</li>
-<li>clear(); //删除容器中所有元素</li>
-<li>front(); // 返回容器中第一个元素</li>
-<li>back(); // 返回容器中最后一个元素</li>
-<li>swap(); //实现两个容器进行互换操作，实现内存收缩的效果<ul>
-<li>用swap可以玩很多花样</li>
-<li><a href="https://blog.csdn.net/m0_37251750/article/details/100071023">一篇关于swap写的很好的博客</a></li>
-</ul>
-</li>
-<li>reverse(int len); //容器预留len个元素长度，预留位置不初始化，元素不可访问</li>
-</ul>
-<h2 id="4-deque容器"><a href="#4-deque容器" class="headerlink" title="4. deque容器"></a>4. deque容器</h2><h3 id="3-1-deque容器基本概念"><a href="#3-1-deque容器基本概念" class="headerlink" title="3.1 deque容器基本概念"></a>3.1 deque容器基本概念</h3><ul>
-<li>功能<ul>
-<li>双端数组，可以对头端进行插入删除</li>
-</ul>
-</li>
-<li>deque的区别<ul>
-<li>vector对于头部的插入删除效率低、数据量越大、效率越低</li>
-<li>deque相对而言，在头部进行数据插入删除的效率比vector高</li>
-<li>vector访问元素的速度比deque快，这是由两者的内部实现有关</li>
-</ul>
-</li>
-</ul>
-<h2 id="5-List容器"><a href="#5-List容器" class="headerlink" title="5. List容器"></a>5. List容器</h2><h3 id="5-1-list基本概念"><a href="#5-1-list基本概念" class="headerlink" title="5.1 list基本概念"></a>5.1 list基本概念</h3><ul>
-<li>功能<ul>
-<li>将数据进行链式存储</li>
-<li>链表（list）是一种物理存储非连续的物理结构，数据元素的逻辑顺序是通过指针链接实现的</li>
-<li>STL中的链表是一个双向循环链表</li>
-</ul>
-</li>
-</ul>
-<h2 id="6-Set容器"><a href="#6-Set容器" class="headerlink" title="6.Set容器"></a>6.Set容器</h2><ul>
-<li>set简介<ul>
-<li>所有元素在插入时会自动排序</li>
-</ul>
-</li>
-<li>本质<ul>
-<li>set/multiset属于关联式容器，底层用二叉树实现</li>
-</ul>
-</li>
-<li>set不允许用重复元素</li>
-<li>multiset允许重复元素</li>
-</ul>
-<h2 id="7-Map容器"><a href="#7-Map容器" class="headerlink" title="7.Map容器"></a>7.Map容器</h2><ul>
-<li><p>简介：</p>
-<ul>
-<li>map中所有元素都是pair（对组）</li>
-<li>pair中第一个元素为key（键值），起到索引作用，第二个元素为value（元素）</li>
-<li>所有元素都会按照key值进行排序</li>
-</ul>
-</li>
-<li><p>本质</p>
-<ul>
-<li>map/multimap属于关联式容器，底层用二叉树实现</li>
-</ul>
-</li>
-<li><p>优点：</p>
-<ul>
-<li>可以根据key值快速找到value值</li>
-</ul>
-</li>
-<li><p>区别：</p>
-<ul>
-<li>map不允许用重复元素</li>
-<li>multimap允许重复元素</li>
-</ul>
-</li>
-</ul>
-<h2 id="8-谓词"><a href="#8-谓词" class="headerlink" title="8. 谓词"></a>8. 谓词</h2><h3 id="8-1-谓词概念"><a href="#8-1-谓词概念" class="headerlink" title="8.1 谓词概念"></a>8.1 谓词概念</h3><ul>
-<li>概念：<ul>
-<li>返回布尔类型的仿函数称为谓词</li>
-<li>如果operator（）接受一个参数，那么叫做一元谓词</li>
-<li>如果operator（）接受两个参数，那么叫做二元谓词</li>
-</ul>
-</li>
-</ul>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">//
-//  main.cpp
-//  谓词
-//
-//  Created by OnlyBei on 2021/9/25.
-//
-
-#include &lt;iostream&gt;
-#include &lt;vector&gt;
-#include &lt;algorithm&gt;
-using namespace std;
-
-class getFive{
-public:
-    bool operator()(int val) { // 仿函数为什么这样写呢，可以看下面一段代码的源码
-        return val &gt; 5;
-    }
-};
-
-void test() {
-    vector&lt;int&gt; v;
-    for(int i = 0; i &lt; 10; i++) {
-        v.push_back(i);
-    }
-    
-    // getFive()是一个仿函数
-    vector&lt;int&gt;::iterator it =  find_if(v.begin(), v.end(), getFive());
-    
-    if(it != v.end()) {
-        cout &lt;&lt; "找到了 " &lt;&lt; *it &lt;&lt; endl;
-    }else {
-        cout &lt;&lt; "未找到" &lt;&lt; endl;
-    }
-    
-}
-
-int main(int argc, const char * argv[]) {
-    // insert code here...
-    test();
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">find_if(_InputIterator __first, _InputIterator __last, _Predicate __pred)
+class Person
 {
-    for (; __first != __last; ++__first)
-        if (__pred(*__first)) // 如果这个为真，则跳出循环，放回一个迭代器
-            break;
-    return __first; 
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
-<ul>
-<li><p>二元谓词</p>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">//
-//  main.cpp
-//  谓词
-//
-//  Created by OnlyBei on 2021/9/25.
-//
-
-#include &lt;iostream&gt;
-#include &lt;vector&gt;
-#include &lt;algorithm&gt;
-using namespace std;
-
-class FuncSort {
 public:
-    bool operator() (int a, int b) {
-        return a &gt; b;
+	char m_Name[64];
+	int m_Age;
+};
+
+void test01()
+{
+	ifstream ifs("person.txt", ios::in | ios::binary);
+	if (!ifs.is_open())
+	{
+		cout &lt;&lt; "文件打开失败" &lt;&lt; endl;
+	}
+
+	Person p;
+	ifs.read((char *)&amp;p, sizeof(p));
+
+	cout &lt;&lt; "姓名： " &lt;&lt; p.m_Name &lt;&lt; " 年龄： " &lt;&lt; p.m_Age &lt;&lt; endl;
+}
+
+int main() {
+
+	test01();
+
+	system("pause");
+
+	return 0;
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+
+
+<pre class="line-numbers language-none"><code class="language-none">class Solution {
+public:
+    int integerBreak(int n) {
+        vector&lt;int&gt; dp(n + 1);
+        dp[2] = 1;
+        for (int i = 3; i &lt;= n ; i++) {
+            for (int j = 1; j &lt; i - 1; j++) {
+                dp[i] = max(dp[i], max((i - j) * j, dp[i - j] * j));
+            }
+        }
+        return dp[n];
     }
 };
 
-void test02() {
-    vector&lt;int&gt; v1;
-    v1.push_back(10);
-    v1.push_back(30);
-    v1.push_back(80);
-    v1.push_back(50);
-    v1.push_back(20);
-    
-//    sort(v1.begin(), v1.end()); // 默认从小打大
-    sort(v1.begin(), v1.end(), FuncSort());
-    
-    for(vector&lt;int&gt;::iterator it = v1.begin(); it != v1.end(); it++) {
-        cout &lt;&lt; *it &lt;&lt; " ";
-    }
-    cout &lt;&lt; endl;
+5
+i = 3 dp[3] = <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-}
-
-int main(int argc, const char * argv[]) {
-    test02();
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
-</ul>
 ]]></content>
       <categories>
         <category>C++</category>
@@ -4377,220 +4867,222 @@ console<span class="token punctuation">.</span><span class="token function">log<
     <content><![CDATA[<h3 id="从实际出发搞清楚react-router内部原理"><a href="#从实际出发搞清楚react-router内部原理" class="headerlink" title="从实际出发搞清楚react-router内部原理"></a>从实际出发搞清楚react-router内部原理</h3><p>[toc]</p>
 <p>前言：最近在看 <code>react-router</code> 的工作原理网上看了一圈文章，发现很多都是介绍了 <code>history</code> 库的原理和 <code>react-router</code> 里面的 <code>BrowserRouter</code> 组件、<code>Router</code> 组件等等，看了原理是大概知道了，但是它的内部是怎么样的一个工作流程还是一脸懵逼，又在找了一圈资料，看完还是觉得具体流程理不太清。想到平时在 js 代码的调试中可以打断点观察各个变量的情况以及程序的流程，<code>react</code> 程序那应该也可以这样调试。</p>
 <p>随后写了一个小 demo 测试一下：</p>
+<span id="more"></span>
+
 <h4 id="准备文件："><a href="#准备文件：" class="headerlink" title="准备文件："></a>准备文件：</h4><p><code>App.js</code> 文件</p>
-<pre class="line-numbers language-react" data-language="react"><code class="language-react">import React, { PureComponent } from 'react'
-import { Link, Switch, Route, withRouter } from 'react-router-dom'
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">import</span> React<span class="token punctuation">,</span> <span class="token punctuation">{</span> PureComponent <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react'</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Link<span class="token punctuation">,</span> Switch<span class="token punctuation">,</span> Route<span class="token punctuation">,</span> withRouter <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react-router-dom'</span>
 
-// 为了看 history 的源码而引入
-import history from 'history'
+<span class="token comment">// 为了看 history 的源码而引入</span>
+<span class="token keyword">import</span> history <span class="token keyword">from</span> <span class="token string">'history'</span>
 
-import Home from './pages/home';
-import Profile from './pages/profile';
+<span class="token keyword">import</span> Home <span class="token keyword">from</span> <span class="token string">'./pages/home'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> Profile <span class="token keyword">from</span> <span class="token string">'./pages/profile'</span><span class="token punctuation">;</span>
 
-class App extends PureComponent {
-    constructor(props) {
-        super(props);
-        this.state = {
-        }
-    }
+<span class="token keyword">class</span> <span class="token class-name">App</span> <span class="token keyword">extends</span> <span class="token class-name">PureComponent</span> <span class="token punctuation">{</span>
+    <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">super</span><span class="token punctuation">(</span>props<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>state <span class="token operator">=</span> <span class="token punctuation">{</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
 
-    render() {
-        console.log(this.props);
-        return (
-            &lt;div&gt;
-                &lt;Link className='mylink' to="/"&gt;首页&lt;/Link&gt;
-                &lt;Link className='mylink' to="/profile"&gt;我的&lt;/Link&gt;
-                &lt;button onClick={() =&gt; this.jumpToProduct()}&gt;测试&lt;/button&gt;
+    <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token punctuation">(</span>
+            <span class="token operator">&lt;</span>div<span class="token operator">&gt;</span>
+                <span class="token operator">&lt;</span>Link className<span class="token operator">=</span><span class="token string">'mylink'</span> to<span class="token operator">=</span><span class="token string">"/"</span><span class="token operator">&gt;</span>首页<span class="token operator">&lt;</span><span class="token operator">/</span>Link<span class="token operator">&gt;</span>
+                <span class="token operator">&lt;</span>Link className<span class="token operator">=</span><span class="token string">'mylink'</span> to<span class="token operator">=</span><span class="token string">"/profile"</span><span class="token operator">&gt;</span>我的<span class="token operator">&lt;</span><span class="token operator">/</span>Link<span class="token operator">&gt;</span>
+                <span class="token operator">&lt;</span>button onClick<span class="token operator">=</span><span class="token punctuation">{</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">jumpToProduct</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token operator">&gt;</span>测试<span class="token operator">&lt;</span><span class="token operator">/</span>button<span class="token operator">&gt;</span>
 
-                &lt;Switch&gt;
-                    &lt;Route exact path="/" component={Home} /&gt;
-                    &lt;Route path="/profile" component={Profile} /&gt;
-                &lt;/Switch&gt;
-            &lt;/div&gt;
-        )
-    }
+                <span class="token operator">&lt;</span>Switch<span class="token operator">&gt;</span>
+                    <span class="token operator">&lt;</span>Route exact path<span class="token operator">=</span><span class="token string">"/"</span> component<span class="token operator">=</span><span class="token punctuation">{</span>Home<span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">&gt;</span>
+                    <span class="token operator">&lt;</span>Route path<span class="token operator">=</span><span class="token string">"/profile"</span> component<span class="token operator">=</span><span class="token punctuation">{</span>Profile<span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">&gt;</span>
+                <span class="token operator">&lt;</span><span class="token operator">/</span>Switch<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+        <span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
 
-    jumpToProduct() {
-        this.props.history.push("/profile");
-    }
-}
+    <span class="token function">jumpToProduct</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>history<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token string">"/profile"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 
-export default withRouter(App);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token function">withRouter</span><span class="token punctuation">(</span>App<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><code>index.js</code> 文件</p>
-<pre class="line-numbers language-react" data-language="react"><code class="language-react">import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> ReactDOM <span class="token keyword">from</span> <span class="token string">'react-dom'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> App <span class="token keyword">from</span> <span class="token string">'./App'</span><span class="token punctuation">;</span>
 
-import {
-  BrowserRouter,
-} from 'react-router-dom';
+<span class="token keyword">import</span> <span class="token punctuation">{</span>
+  BrowserRouter<span class="token punctuation">,</span>
+<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react-router-dom'</span><span class="token punctuation">;</span>
 
-ReactDOM.render(
-  &lt;BrowserRouter&gt;
-    &lt;App /&gt;
-  &lt;/BrowserRouter&gt;
-  ,
-  document.getElementById('root')
-);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+ReactDOM<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span>
+  <span class="token operator">&lt;</span>BrowserRouter<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>App <span class="token operator">/</span><span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span><span class="token operator">/</span>BrowserRouter<span class="token operator">&gt;</span>
+  <span class="token punctuation">,</span>
+  document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'root'</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><code>profile.js</code> 组件， Home 一样</p>
-<pre class="line-numbers language-react" data-language="react"><code class="language-react">import React, { PureComponent } from 'react'
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">import</span> React<span class="token punctuation">,</span> <span class="token punctuation">{</span> PureComponent <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react'</span>
 
-export default class Profile extends PureComponent {
-    render() {
-        return (
-            &lt;div&gt;
-                &lt;h2&gt;Profile&lt;/h2&gt;
-            &lt;/div&gt;
-        )
-    }
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">Profile</span> <span class="token keyword">extends</span> <span class="token class-name">PureComponent</span> <span class="token punctuation">{</span>
+    <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token punctuation">(</span>
+            <span class="token operator">&lt;</span>div<span class="token operator">&gt;</span>
+                <span class="token operator">&lt;</span>h2<span class="token operator">&gt;</span>Profile<span class="token operator">&lt;</span><span class="token operator">/</span>h2<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+        <span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>到这里就可以开始了我们的流程探究了，在 <code>App.js</code> 文件的 <code>jumpToProduct</code> 里面的一行代码打上断点。</p>
 <p>打断点的具体方式是：将 demo 跑起来 -&gt; 打开浏览器的控制台 -&gt; source -&gt; 具体文件 -&gt; 打上断点</p>
-<pre class="line-numbers language-react" data-language="react"><code class="language-react">jumpToProduct() {
-        this.props.history.push("/profile");
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token function">jumpToProduct</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>history<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token string">"/profile"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <p>如图：</p>
 <p><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1gzwst9j6j4j225y0n844l.jpg"></p>
 <p>点击 <code>button</code> 按钮，进行单步调试。然后程序就跳到 <code>node_modules/history/cjs/history.js</code> 的 <code>push</code> 函数里面了。</p>
 <p>这是为什么呢？因为 <code>Link</code> 组件里面判断了是用什么方法改变路径的。这里我们模拟的是 <code>push</code> 方法</p>
-<h4 id="1-Link-里面的判断代码片段（以下源码均为节选）"><a href="#1-Link-里面的判断代码片段（以下源码均为节选）" class="headerlink" title="1. Link 里面的判断代码片段（以下源码均为节选）"></a>1. Link 里面的判断代码片段（以下源码均为节选）</h4><pre class="line-numbers language-react" data-language="react"><code class="language-react">// 1. Link 里面的判断代码片段
-var props = _extends({}, rest, {
-      href: href,
-      navigate: function navigate() {
-        var location = resolveToLocation(to, context.location);
-        var isDuplicateNavigation = history.createPath(context.location) === history.createPath(normalizeToLocation(location));
-        var method = replace || isDuplicateNavigation ? history$1.replace : history$1.push;
-        method(location);
-      }
-    }); // React 15 compat<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="1-Link-里面的判断代码片段（以下源码均为节选）"><a href="#1-Link-里面的判断代码片段（以下源码均为节选）" class="headerlink" title="1. Link 里面的判断代码片段（以下源码均为节选）"></a>1. Link 里面的判断代码片段（以下源码均为节选）</h4><pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 1. Link 里面的判断代码片段</span>
+<span class="token keyword">var</span> props <span class="token operator">=</span> <span class="token function">_extends</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> rest<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+      href<span class="token operator">:</span> href<span class="token punctuation">,</span>
+      <span class="token function-variable function">navigate</span><span class="token operator">:</span> <span class="token keyword">function</span> <span class="token function">navigate</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">var</span> location <span class="token operator">=</span> <span class="token function">resolveToLocation</span><span class="token punctuation">(</span>to<span class="token punctuation">,</span> context<span class="token punctuation">.</span>location<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">var</span> isDuplicateNavigation <span class="token operator">=</span> history<span class="token punctuation">.</span><span class="token function">createPath</span><span class="token punctuation">(</span>context<span class="token punctuation">.</span>location<span class="token punctuation">)</span> <span class="token operator">===</span> history<span class="token punctuation">.</span><span class="token function">createPath</span><span class="token punctuation">(</span><span class="token function">normalizeToLocation</span><span class="token punctuation">(</span>location<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">var</span> method <span class="token operator">=</span> replace <span class="token operator">||</span> isDuplicateNavigation <span class="token operator">?</span> history$<span class="token number">1.</span>replace <span class="token operator">:</span> history$<span class="token number">1.</span>push<span class="token punctuation">;</span>
+        <span class="token function">method</span><span class="token punctuation">(</span>location<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// React 15 compat</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="2-这里调用的是-history-下的-push-方法"><a href="#2-这里调用的是-history-下的-push-方法" class="headerlink" title="2. 这里调用的是 history 下的 push 方法"></a>2. 这里调用的是 <code>history</code> 下的 <code>push</code> 方法</h4><p><code>push</code> 方法里面创建一个新的 <code>location</code> 对象，然后通过 <code>globalHistory</code> 方法改变浏览器当前路由,最后通过<code>setState</code> 方法通知 <code>React-Router</code> 更新（这里会跳到 <code>ReactRefreshEntry.js</code> 这个文件），并传递当前的 <code>location</code> 对象</p>
-<pre class="line-numbers language-react" data-language="react"><code class="language-react">function push(path, state) {
-    var action = 'PUSH';
-  	/* 2. 创建location对象 */
-    var location = createLocation(path, state, createKey(), history.location);
-  	/* 3. 确定是否能进行路由转换 */
-    transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function (ok) {
-      if (!ok) return;
-      var href = createHref(location);
-      var key = location.key,
-          state = location.state;
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">push</span><span class="token punctuation">(</span><span class="token parameter">path<span class="token punctuation">,</span> state</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> action <span class="token operator">=</span> <span class="token string">'PUSH'</span><span class="token punctuation">;</span>
+  	<span class="token comment">/* 2. 创建location对象 */</span>
+    <span class="token keyword">var</span> location <span class="token operator">=</span> <span class="token function">createLocation</span><span class="token punctuation">(</span>path<span class="token punctuation">,</span> state<span class="token punctuation">,</span> <span class="token function">createKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> history<span class="token punctuation">.</span>location<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  	<span class="token comment">/* 3. 确定是否能进行路由转换 */</span>
+    transitionManager<span class="token punctuation">.</span><span class="token function">confirmTransitionTo</span><span class="token punctuation">(</span>location<span class="token punctuation">,</span> action<span class="token punctuation">,</span> getUserConfirmation<span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">ok</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>ok<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+      <span class="token keyword">var</span> href <span class="token operator">=</span> <span class="token function">createHref</span><span class="token punctuation">(</span>location<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">var</span> key <span class="token operator">=</span> location<span class="token punctuation">.</span>key<span class="token punctuation">,</span>
+          state <span class="token operator">=</span> location<span class="token punctuation">.</span>state<span class="token punctuation">;</span>
 
-      if (canUseHistory) {
-        /* 改变 url */
-        globalHistory.pushState({
-          key: key,
-          state: state
-        }, null, href);
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>canUseHistory<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">/* 改变 url */</span>
+        globalHistory<span class="token punctuation">.</span><span class="token function">pushState</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+          key<span class="token operator">:</span> key<span class="token punctuation">,</span>
+          state<span class="token operator">:</span> state
+        <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">,</span> href<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-        if (forceRefresh) {
-          window.location.href = href;
-        } else {
-          /* 改变 react-router location对象, 创建更新环境 */
-          setState({
-            action: action,
-            location: location
-          });
-        }
-      } 
-    });<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>forceRefresh<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          window<span class="token punctuation">.</span>location<span class="token punctuation">.</span>href <span class="token operator">=</span> href<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+          <span class="token comment">/* 改变 react-router location对象, 创建更新环境 */</span>
+          <span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+            action<span class="token operator">:</span> action<span class="token punctuation">,</span>
+            location<span class="token operator">:</span> location
+          <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span> 
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
 <h4 id="3-history-下的-createTransitionManager-函数"><a href="#3-history-下的-createTransitionManager-函数" class="headerlink" title="3. history 下的 createTransitionManager 函数"></a>3. <code>history</code> 下的 <code>createTransitionManager</code> 函数</h4><p>作用是监听判断是否能进行路由转换 </p>
-<pre class="line-numbers language-react" data-language="react"><code class="language-react">/* 3. 确定是否能进行路由转换 */
-function createTransitionManager() {
-  var prompt = null;
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">/* 3. 确定是否能进行路由转换 */</span>
+<span class="token keyword">function</span> <span class="token function">createTransitionManager</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> prompt <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
   
-  function confirmTransitionTo(location, action, getUserConfirmation, callback) {
-    if (prompt != null) {
-      var result = typeof prompt === 'function' ? prompt(location, action) : prompt;
+  <span class="token keyword">function</span> <span class="token function">confirmTransitionTo</span><span class="token punctuation">(</span><span class="token parameter">location<span class="token punctuation">,</span> action<span class="token punctuation">,</span> getUserConfirmation<span class="token punctuation">,</span> callback</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>prompt <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">var</span> result <span class="token operator">=</span> <span class="token keyword">typeof</span> prompt <span class="token operator">===</span> <span class="token string">'function'</span> <span class="token operator">?</span> <span class="token function">prompt</span><span class="token punctuation">(</span>location<span class="token punctuation">,</span> action<span class="token punctuation">)</span> <span class="token operator">:</span> prompt<span class="token punctuation">;</span>
 
-      if (typeof result === 'string') {
-        if (typeof getUserConfirmation === 'function') {
-          getUserConfirmation(result, callback);
-        } 
-      } else {
-        // Return false from a transition hook to cancel the transition.
-        callback(result !== false);
-      }
-    } else {
-      callback(true);
-    }
-  }
+      <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> result <span class="token operator">===</span> <span class="token string">'string'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> getUserConfirmation <span class="token operator">===</span> <span class="token string">'function'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token function">getUserConfirmation</span><span class="token punctuation">(</span>result<span class="token punctuation">,</span> callback<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> 
+      <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        <span class="token comment">// Return false from a transition hook to cancel the transition.</span>
+        <span class="token function">callback</span><span class="token punctuation">(</span>result <span class="token operator">!==</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      <span class="token function">callback</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
   
-  var listeners = [];
+  <span class="token keyword">var</span> listeners <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
   
-  function appendListener(fn) {
-    var isActive = true;
+  <span class="token keyword">function</span> <span class="token function">appendListener</span><span class="token punctuation">(</span><span class="token parameter">fn</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> isActive <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
 
-    function listener() {
-      if (isActive) fn.apply(void 0, arguments);
-    }
+    <span class="token keyword">function</span> <span class="token function">listener</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>isActive<span class="token punctuation">)</span> <span class="token function">fn</span><span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span><span class="token keyword">void</span> <span class="token number">0</span><span class="token punctuation">,</span> arguments<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-    listeners.push(listener);
-    return function () {
-      isActive = false;
-      listeners = listeners.filter(function (item) {
-        return item !== listener;
-      });
-    };
-  }
+    listeners<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>listener<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      isActive <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+      listeners <span class="token operator">=</span> listeners<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">item</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> item <span class="token operator">!==</span> listener<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
 
-  function notifyListeners() {
-    listeners.forEach(function (listener) {
-      return listener.apply(void 0, args);
-    });
-  }
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
-<h4 id="4-history-中-createBrowserHistory-props-函数的-setState"><a href="#4-history-中-createBrowserHistory-props-函数的-setState" class="headerlink" title="4. history  中 createBrowserHistory(props) 函数的 setState"></a>4. <code>history</code>  中 <code>createBrowserHistory(props)</code> 函数的 <code>setState</code></h4><pre class="line-numbers language-react" data-language="react"><code class="language-react"> /* 通知listener更新，这里通知到 react-router了 */
-const setState = (nextState) =&gt; {
-    /* 合并信息 */
-    Object.assign(history, nextState)
-    history.length = globalHistory.length
-    /* 通知每一个listens路由已经发生变化 */
-    transitionManager.notifyListeners(
-      history.location,
-      history.action
-    )
-  }<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+  <span class="token keyword">function</span> <span class="token function">notifyListeners</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    listeners<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">listener</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> <span class="token function">listener</span><span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span><span class="token keyword">void</span> <span class="token number">0</span><span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
-<h4 id="5-路由匹配"><a href="#5-路由匹配" class="headerlink" title="5. 路由匹配"></a>5. 路由匹配</h4><pre class="line-numbers language-react" data-language="react"><code class="language-react"> /* 5. 监听并进行路由匹配 */
-class Router extends React.Component {
-  static computeRootMatch(pathname) {
-    return { path: "/", url: "/", params: {}, isExact: pathname === "/" };
-  }
+<h4 id="4-history-中-createBrowserHistory-props-函数的-setState"><a href="#4-history-中-createBrowserHistory-props-函数的-setState" class="headerlink" title="4. history  中 createBrowserHistory(props) 函数的 setState"></a>4. <code>history</code>  中 <code>createBrowserHistory(props)</code> 函数的 <code>setState</code></h4><pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"> <span class="token comment">/* 通知listener更新，这里通知到 react-router了 */</span>
+<span class="token keyword">const</span> <span class="token function-variable function">setState</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">nextState</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token comment">/* 合并信息 */</span>
+    Object<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span>history<span class="token punctuation">,</span> nextState<span class="token punctuation">)</span>
+    history<span class="token punctuation">.</span>length <span class="token operator">=</span> globalHistory<span class="token punctuation">.</span>length
+    <span class="token comment">/* 通知每一个listens路由已经发生变化 */</span>
+    transitionManager<span class="token punctuation">.</span><span class="token function">notifyListeners</span><span class="token punctuation">(</span>
+      history<span class="token punctuation">.</span>location<span class="token punctuation">,</span>
+      history<span class="token punctuation">.</span>action
+    <span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-  constructor(props) {
-    super(props);
 
-    this.state = {
-      location: props.history.location
-    };
 
-    this._isMounted = false;
-    this._pendingLocation = null;
+<h4 id="5-路由匹配"><a href="#5-路由匹配" class="headerlink" title="5. 路由匹配"></a>5. 路由匹配</h4><pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"> <span class="token comment">/* 5. 监听并进行路由匹配 */</span>
+<span class="token keyword">class</span> <span class="token class-name">Router</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span>
+  <span class="token keyword">static</span> <span class="token function">computeRootMatch</span><span class="token punctuation">(</span><span class="token parameter">pathname</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token punctuation">{</span> path<span class="token operator">:</span> <span class="token string">"/"</span><span class="token punctuation">,</span> url<span class="token operator">:</span> <span class="token string">"/"</span><span class="token punctuation">,</span> params<span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> isExact<span class="token operator">:</span> pathname <span class="token operator">===</span> <span class="token string">"/"</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
 
-    if (!props.staticContext) {
-      this.unlisten = props.history.listen(location =&gt; {
-        if (this._isMounted) {
-          this.setState({ location });
-        } else {
-          this._pendingLocation = location;
-        }
-      });
-    }
-  }
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">super</span><span class="token punctuation">(</span>props<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">this</span><span class="token punctuation">.</span>state <span class="token operator">=</span> <span class="token punctuation">{</span>
+      location<span class="token operator">:</span> props<span class="token punctuation">.</span>history<span class="token punctuation">.</span>location
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">this</span><span class="token punctuation">.</span>_isMounted <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>_pendingLocation <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>props<span class="token punctuation">.</span>staticContext<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>unlisten <span class="token operator">=</span> props<span class="token punctuation">.</span>history<span class="token punctuation">.</span><span class="token function">listen</span><span class="token punctuation">(</span><span class="token parameter">location</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>_isMounted<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">{</span> location <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+          <span class="token keyword">this</span><span class="token punctuation">.</span>_pendingLocation <span class="token operator">=</span> location<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h4><p>路由转换的大致流程就是：</p>
 <ol>
@@ -4619,7 +5111,7 @@ class Router extends React.Component {
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">ssh root@你的公网地址
 password 你的密码<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-
+<span id="more"></span>
 
 <h3 id="阿里云-centos-安装-nginx"><a href="#阿里云-centos-安装-nginx" class="headerlink" title="阿里云 centos 安装 nginx"></a>阿里云 centos 安装 nginx</h3><pre class="line-numbers language-none"><code class="language-none">yum install nginx<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
