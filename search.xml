@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>JavaScript：探索bind和new之间的关系</title>
-    <url>/2022/02/07/javascript-tan-suo-bind-he-new-zhi-jian-de-guan-xi/</url>
+    <url>/2022/02/07/JavaScript:%20%E6%8E%A2%E7%B4%A2bind%E5%92%8Cnew%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB/</url>
     <content><![CDATA[<h3 id="JavaScript-手写-bind-和探索-bind-与-new-之间的关系"><a href="#JavaScript-手写-bind-和探索-bind-与-new-之间的关系" class="headerlink" title="JavaScript: 手写 bind 和探索 bind 与 new 之间的关系"></a>JavaScript: 手写 bind 和探索 bind 与 new 之间的关系</h3><p>首先了解一下 <code>bind</code> 的定义</p>
 <blockquote>
 <p><strong><code>bind()</code></strong> 方法创建一个新的函数，在 <code>bind()</code> 被调用时，这个新函数的 <code>this</code> 被指定为 <code>bind()</code> 的第一个参数，而其余参数将作为新函数的参数，供调用时使用。</p>
@@ -140,7 +140,7 @@
   </entry>
   <entry>
     <title>CSS几种常见的布局</title>
-    <url>/2022/01/31/css-ji-chong-chang-jian-de-bu-ju/</url>
+    <url>/2022/01/31/CSS%E5%87%A0%E7%A7%8D%E5%B8%B8%E8%A7%81%E7%9A%84%E5%B8%83%E5%B1%80/</url>
     <content><![CDATA[<h3 id="几种常见且基础的CSS布局"><a href="#几种常见且基础的CSS布局" class="headerlink" title="几种常见且基础的CSS布局"></a>几种常见且基础的CSS布局</h3><h4 id="一-单列布局"><a href="#一-单列布局" class="headerlink" title="一. 单列布局"></a>一. 单列布局</h4><p>常见的单列布局有两种：</p>
 <ul>
 <li>header,content和footer等宽的单列布局</li>
@@ -403,7 +403,7 @@
   </entry>
   <entry>
     <title>JavaScript：JavaScript数组探究</title>
-    <url>/2022/01/08/javascript-shu-zu-tan-jiu/</url>
+    <url>/2022/01/08/JavaScript%E6%95%B0%E7%BB%84%E6%8E%A2%E7%A9%B6/</url>
     <content><![CDATA[<h1 id="JavaScript数组探究"><a href="#JavaScript数组探究" class="headerlink" title="JavaScript数组探究"></a>JavaScript数组探究</h1><p>数组作为最基础的数据结构，我们不仅要熟练掌握它，还要了解它的许多特性</p>
 <p>js的数组很灵活，和其他语言的数组不一样，js的数组可以存储不同类型的值</p>
 <span id="more"></span>
@@ -611,7 +611,7 @@ arr<span class="token punctuation">.</span><span class="token function">map</spa
   </entry>
   <entry>
     <title>ReactNote01：React的特点和优点</title>
-    <url>/2022/01/12/reactnote01-react-de-te-dian-he-you-dian/</url>
+    <url>/2022/01/12/ReactNote01:%20React%E7%9A%84%E7%89%B9%E7%82%B9%E5%92%8C%E4%BC%98%E7%82%B9/</url>
     <content><![CDATA[<p>React作为国内最流行的前端框架之一，肯定有它的好用先进之处，作为技术geek，那肯定要学穿它🤔</p>
 <span id="more"></span>
 
@@ -761,7 +761,7 @@ arr<span class="token punctuation">.</span><span class="token function">map</spa
   </entry>
   <entry>
     <title>ReactNote04：组件通信方式</title>
-    <url>/2022/01/31/reactnote04-zu-jian-tong-xin-fang-shi/</url>
+    <url>/2022/01/31/ReactNote04:%20%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F/</url>
     <content><![CDATA[<h3 id="组件间的通信方式"><a href="#组件间的通信方式" class="headerlink" title="组件间的通信方式"></a>组件间的通信方式</h3><h4 id="1-父组件传递信息给子组件"><a href="#1-父组件传递信息给子组件" class="headerlink" title="1. 父组件传递信息给子组件"></a>1. 父组件传递信息给子组件</h4><blockquote>
 <p>先看React官网的一句话：当 React 元素为用户自定义组件时，它会将 JSX 所接收的属性（attributes）以及子组件（children）转换为单个对象传递给组件，这个对象被称之为 “props”。</p>
 </blockquote>
@@ -861,7 +861,7 @@ export default class App extends Component {
   </entry>
   <entry>
     <title>ReactNote05：深入源码探究memo、PureComponent</title>
-    <url>/2022/02/08/reactnote05-shen-ru-tan-jiu-memo-purecomponent/</url>
+    <url>/2022/02/08/ReactNote05-%E6%B7%B1%E5%85%A5%E6%8E%A2%E7%A9%B6memo%E3%80%81PureComponent/</url>
     <content><![CDATA[<h3 id="深入源码探究memo、PureComponent"><a href="#深入源码探究memo、PureComponent" class="headerlink" title="深入源码探究memo、PureComponent"></a>深入源码探究memo、PureComponent</h3><h4 id="窥探PureComponent"><a href="#窥探PureComponent" class="headerlink" title="窥探PureComponent"></a>窥探PureComponent</h4><p>今天学到了PureComponent，它可以起到在Component里面添加SCU的效果，虽然类组件以后会很少用，但是它的底层原理还是要了解一下，也能了解一下React不断进步背后的思想，PureComponent在React里面是怎么实现的呢，肘，跟我进源码（版本是16.3.1）。</p>
 <p>这里安利一下vscode的Bookmarks插件，看源码是非常方便。</p>
 <span id="more"></span>
@@ -1005,7 +1005,7 @@ export default class App extends Component {
   </entry>
   <entry>
     <title>ReactNote03：JSX本质及源码解析</title>
-    <url>/2022/01/17/reactnote03-jsx-ben-zhi-ji-yuan-ma-jie-xi/</url>
+    <url>/2022/01/17/ReactNote03:%20JSX%E6%9C%AC%E8%B4%A8%E5%8F%8A%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/</url>
     <content><![CDATA[<h3 id="JSX-的本质"><a href="#JSX-的本质" class="headerlink" title="JSX 的本质"></a>JSX 的本质</h3><p>实际上，jsx 仅仅只是 React.createElement(component, props, …children) 函数的语法糖。所有的 jsx 语法都会被转换为 React.createElement 语法的调用。</p>
 <span id="more"></span>
 
@@ -1176,7 +1176,7 @@ export function createElement(type, config, children) {
   </entry>
   <entry>
     <title>hexo：使用matery主题对博客进行美化</title>
-    <url>/2022/02/16/hexo-shi-yong-matery-zhu-ti-dui-bo-ke-jin-xing-mei-hua/</url>
+    <url>/2022/02/16/hexo-%E4%BD%BF%E7%94%A8matery%E4%B8%BB%E9%A2%98%E5%AF%B9%E5%8D%9A%E5%AE%A2%E8%BF%9B%E8%A1%8C%E7%BE%8E%E5%8C%96/</url>
     <content><![CDATA[<h1 id="使用-matery-主题搭建很好看的博客页面"><a href="#使用-matery-主题搭建很好看的博客页面" class="headerlink" title="使用 matery 主题搭建很好看的博客页面"></a>使用 <code>matery</code> 主题搭建很好看的博客页面</h1><p>因为最近看到一位腾讯大佬 <a href="https://yangchaoyi.vip/">一百个Chocolate</a> 的个人博客，使用的也是 <code>matery</code> 主题，而且用了 <a href="https://mazhuang.org/wiki/chinese-copywriting-guidelines/">中文文案排版指北 (简体中文版)</a>  对博客文章进行排版，第一眼感觉非常惊艳，这样的博客看起来很舒服，所以自己也想向大佬看齐。</p>
 <p>一下如无特别说明，以下配置文件都是 <code>matery</code> 主题下的 <code>_config.yml</code> </p>
 <span id="more"></span>
@@ -1357,7 +1357,7 @@ layout: "friends"
   </entry>
   <entry>
     <title>hexo：next主题美化进阶设置</title>
-    <url>/2022/01/11/hexo-zhi-next-zhu-ti-mei-hua/</url>
+    <url>/2022/01/11/hexo%E4%B9%8Bnext%E4%B8%BB%E9%A2%98%E7%BE%8E%E5%8C%96/</url>
     <content><![CDATA[<h2 id="hexo进阶教程"><a href="#hexo进阶教程" class="headerlink" title="hexo进阶教程"></a>hexo进阶教程</h2><p>[toc]</p>
 <h3 id="Hexo博客-绑定个人域名"><a href="#Hexo博客-绑定个人域名" class="headerlink" title="Hexo博客-绑定个人域名"></a>Hexo博客-绑定个人域名</h3><ol>
 <li><p>首先得有一个域名，在腾讯云阿里云购买都可以。</p>
@@ -1464,7 +1464,7 @@ passage_end_tag:
   </entry>
   <entry>
     <title>hexo：为next主题添加评论系统</title>
-    <url>/2022/02/11/hexo-wei-next-zhu-ti-tian-jia-ping-lun-xi-tong/</url>
+    <url>/2022/02/11/hexo-%E4%B8%BAnext%E4%B8%BB%E9%A2%98%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/</url>
     <content><![CDATA[<h3 id="为hexo的next主题添加评论系统，就能在评论区和网友激情对线了-doge"><a href="#为hexo的next主题添加评论系统，就能在评论区和网友激情对线了-doge" class="headerlink" title="为hexo的next主题添加评论系统，就能在评论区和网友激情对线了[doge]"></a>为hexo的next主题添加评论系统，就能在评论区和网友激情对线了[doge]</h3><p>早就想为自己的博客添加一个评论系统了，能在评论区发表自己的所思所得，还能和网友激情对线，想想都刺激。</p>
 <p>还要清楚的是，Valine 评论系统在 Next 主题高版本 (7.+) 以上已没有支持，且 Valine 已经很久没有更新维护了。不过，有大佬在 Valine 的基础之上开发了 <a href="https://waline.js.org/">Waline</a> 。还有Gitment最新版next也不支持了。</p>
 <p>这次，我们添加的是能够快速上手安装，配置更加人性化且带后端的 <a href="https://waline.js.org/">Waline</a> 评论系统</p>
@@ -1541,8 +1541,9 @@ waline:
   </entry>
   <entry>
     <title>手写 Promise/A+ 规范</title>
-    <url>/2022/03/20/shou-xie-promise-a-gui-fan/</url>
+    <url>/2022/03/20/%E6%89%8B%E5%86%99-Promise-A-%E8%A7%84%E8%8C%83/</url>
     <content><![CDATA[<h3 id="手写-Promise-A-规范"><a href="#手写-Promise-A-规范" class="headerlink" title="手写 Promise/A+ 规范"></a>手写 Promise/A+ 规范</h3><p>所谓 <code>Promise</code>，简单说就是一个容器，里面保存着某个未来才会结束的事件（通常是一个异步操作）的结果。从语法上说，Promise 是一个对象，从它可以获取异步操作的消息。Promise 提供统一的 API，各种异步操作都可以用同样的方法进行处理。</p>
+<p>🐶</p>
 <p>想要写出 Promise/A+ 规范的 promsie，首先要熟读 Promise/A+ 的<a href="https://promisesaplus.com/">英文规范文档</a>，建议先看几遍英文文档，了解一下规则。还有这篇中文文档翻译的也很到位 <a href="https://zhuanlan.zhihu.com/p/143204897">中文规范文档</a></p>
 <span id="more"></span>
 
@@ -1741,7 +1742,7 @@ module<span class="token punctuation">.</span>exports <span class="token operato
   </entry>
   <entry>
     <title>从零开始搭建hexo博客</title>
-    <url>/2022/01/05/cong-ling-kai-shi-da-jian-hexo-bo-ke/</url>
+    <url>/2022/01/05/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BAhexo%E5%8D%9A%E5%AE%A2/</url>
     <content><![CDATA[<h1 id="用Hexo-快速搭建属于自己的博客"><a href="#用Hexo-快速搭建属于自己的博客" class="headerlink" title="用Hexo 快速搭建属于自己的博客"></a>用Hexo 快速搭建属于自己的博客</h1><h3 id="环境准备（安装方法自行查阅网上资料）"><a href="#环境准备（安装方法自行查阅网上资料）" class="headerlink" title="环境准备（安装方法自行查阅网上资料）"></a>环境准备（安装方法自行查阅网上资料）</h3><ul>
 <li>git</li>
 <li>node</li>
@@ -2018,7 +2019,7 @@ search:
   </entry>
   <entry>
     <title>算法与数据结构：二叉树</title>
-    <url>/2022/01/05/suan-fa-yu-shu-ju-jie-gou-er-cha-shu/</url>
+    <url>/2022/01/05/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%9A%E4%BA%8C%E5%8F%89%E6%A0%91/</url>
     <content><![CDATA[<h2 id="力扣刷题之二叉树总结"><a href="#力扣刷题之二叉树总结" class="headerlink" title="力扣刷题之二叉树总结"></a>力扣刷题之二叉树总结</h2><h4 id="145-二叉树的后序遍历"><a href="#145-二叉树的后序遍历" class="headerlink" title="145. 二叉树的后序遍历"></a><a href="https://leetcode-cn.com/problems/binary-tree-postorder-traversal/">145. 二叉树的后序遍历</a></h4><p>难度简单727</p>
 <p>给定一个二叉树，返回它的 <em>后序</em> 遍历。</p>
 <span id="more"></span>
@@ -2791,7 +2792,7 @@ public:
   </entry>
   <entry>
     <title>ReactNote02：了解JSX语法</title>
-    <url>/2022/01/12/reactnote02-liao-jie-jsx-yu-fa/</url>
+    <url>/2022/01/12/ReactNote02:%E4%BA%86%E8%A7%A3JSX%E8%AF%AD%E6%B3%95/</url>
     <content><![CDATA[<h3 id="欲要学好React，JSX语法须先行"><a href="#欲要学好React，JSX语法须先行" class="headerlink" title="欲要学好React，JSX语法须先行"></a>欲要学好React，JSX语法须先行</h3><h3 id="JSX-简介"><a href="#JSX-简介" class="headerlink" title="JSX 简介"></a>JSX 简介</h3><p>先来看这样的一段代码：</p>
 <pre class="line-numbers language-react" data-language="react"><code class="language-react">const element = &lt;h1&gt;Hello, world!&lt;/h1&gt;;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
@@ -2899,7 +2900,7 @@ const element = React.createElement(
   </entry>
   <entry>
     <title>黑马程序员C++提高编程笔记</title>
-    <url>/2022/01/03/hei-ma-cheng-xu-yuan-c-ti-gao-bian-cheng-bi-ji/</url>
+    <url>/2022/01/03/%E9%BB%91%E9%A9%AC%E7%A8%8B%E5%BA%8F%E5%91%98C-%E6%8F%90%E9%AB%98%E7%BC%96%E7%A8%8B%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[<h1 id="黑马程序员C-提高编程笔记"><a href="#黑马程序员C-提高编程笔记" class="headerlink" title="黑马程序员C++提高编程笔记"></a>黑马程序员C++提高编程笔记</h1><p>[toc]</p>
 <h2 id="1-STL"><a href="#1-STL" class="headerlink" title="1. STL"></a>1. STL</h2><h3 id="1-1-STL"><a href="#1-1-STL" class="headerlink" title="1.1 STL"></a>1.1 STL</h3><ul>
 <li>标准模版库（Standard Templete Library）</li>
@@ -3508,7 +3509,7 @@ int main(int argc, const char * argv[]) {
   </entry>
   <entry>
     <title>JavaScript:call和apply的ES6和ES5实现</title>
-    <url>/2022/02/07/javascript-call-he-apply-de-es5-xie-fa/</url>
+    <url>/2022/02/07/JavaScript:%20call%E5%92%8Capply%E7%9A%84ES5%E5%86%99%E6%B3%95/</url>
     <content><![CDATA[<h3 id="JavaScript-call和apply的ES6和ES5实现"><a href="#JavaScript-call和apply的ES6和ES5实现" class="headerlink" title="JavaScript:call和apply的ES6和ES5实现"></a>JavaScript:call和apply的ES6和ES5实现</h3><h4 id="首先来看一下call和apply的定义和作用"><a href="#首先来看一下call和apply的定义和作用" class="headerlink" title="首先来看一下call和apply的定义和作用"></a>首先来看一下call和apply的定义和作用</h4><blockquote>
 <p>**<code>call()</code> **方法使用一个指定的 <code>this</code> 值和单独给出的一个或多个参数来调用一个函数。</p>
 <p><strong><code>apply()</code></strong> 方法调用一个具有给定<code>this</code>值的函数，以及以一个数组（或<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Indexed_collections#working_with_array-like_objects">类数组对象</a>）的形式提供的参数。</p>
@@ -3699,7 +3700,7 @@ foo<span class="token punctuation">.</span><span class="token function">fn</span
   </entry>
   <entry>
     <title>黑马程序员C++核心编程笔记</title>
-    <url>/2022/01/03/hei-ma-cheng-xu-yuan-c-he-xin-bian-cheng-bi-ji/</url>
+    <url>/2022/01/03/%E9%BB%91%E9%A9%AC%E7%A8%8B%E5%BA%8F%E5%91%98C-%E6%A0%B8%E5%BF%83%E7%BC%96%E7%A8%8B%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[<h2 id="黑马程序员C-核心编程笔记"><a href="#黑马程序员C-核心编程笔记" class="headerlink" title="黑马程序员C++核心编程笔记"></a>黑马程序员C++核心编程笔记</h2><p>[toc]</p>
 <h2 id="C-核心编程"><a href="#C-核心编程" class="headerlink" title="C++核心编程"></a>C++核心编程</h2><h3 id="0-基础知识"><a href="#0-基础知识" class="headerlink" title="0.基础知识"></a>0.基础知识</h3><p>结构体：</p>
 <ul>
@@ -4787,7 +4788,7 @@ i = 3 dp[3] = <span aria-hidden="true" class="line-numbers-rows"><span></span><s
   </entry>
   <entry>
     <title>JavaScript: prototype、__proto__、[[prototype]]的区别</title>
-    <url>/2022/02/03/javascript-prototype-proto-prototype-de-qu-bie/</url>
+    <url>/2022/02/03/JavaScript:%20prototype%E3%80%81__proto__%E3%80%81%5B%5Bprototype%5D%5D%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
     <content><![CDATA[<h3 id="prototype、-proto-、-prototype-三者之间的区别"><a href="#prototype、-proto-、-prototype-三者之间的区别" class="headerlink" title="prototype、__proto__、[[prototype]] 三者之间的区别"></a>prototype、__proto__、[[prototype]] 三者之间的区别</h3><p>最近在网上看到 <code>instanceof</code> 的手写版，里面涉及到了 <code>prototype</code>、<code>__proto__</code>，仔细推敲 一下代码，发现自己对 <code>prototype</code>, <code>__proto__ </code> 的理解不够深刻导致自己对手写版的 instanceof 代码理解不是很透彻。</p>
 <span id="more"></span>
 
@@ -4863,7 +4864,7 @@ console<span class="token punctuation">.</span><span class="token function">log<
   </entry>
   <entry>
     <title>断点看源码系列：探究React-router内部工作流程</title>
-    <url>/2022/03/03/duan-dian-kan-yuan-ma-tan-jiu-react-router-nei-bu-gong-zuo-liu-cheng/</url>
+    <url>/2022/03/03/%E6%96%AD%E7%82%B9%E7%9C%8B%E6%BA%90%E7%A0%81%EF%BC%9A%E6%8E%A2%E7%A9%B6react-router%E5%86%85%E9%83%A8%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/</url>
     <content><![CDATA[<h3 id="从实际出发搞清楚react-router内部原理"><a href="#从实际出发搞清楚react-router内部原理" class="headerlink" title="从实际出发搞清楚react-router内部原理"></a>从实际出发搞清楚react-router内部原理</h3><p>[toc]</p>
 <p>前言：最近在看 <code>react-router</code> 的工作原理网上看了一圈文章，发现很多都是介绍了 <code>history</code> 库的原理和 <code>react-router</code> 里面的 <code>BrowserRouter</code> 组件、<code>Router</code> 组件等等，看了原理是大概知道了，但是它的内部是怎么样的一个工作流程还是一脸懵逼，又在找了一圈资料，看完还是觉得具体流程理不太清。想到平时在 js 代码的调试中可以打断点观察各个变量的情况以及程序的流程，<code>react</code> 程序那应该也可以这样调试。</p>
 <p>随后写了一个小 demo 测试一下：</p>
@@ -5105,7 +5106,7 @@ ReactDOM<span class="token punctuation">.</span><span class="token function">ren
   </entry>
   <entry>
     <title>阿里云服务器操作记录</title>
-    <url>/2022/02/01/a-li-yun-fu-wu-qi-cao-zuo-ji-lu/</url>
+    <url>/2022/02/01/%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%93%8D%E4%BD%9C%E8%AE%B0%E5%BD%95/</url>
     <content><![CDATA[<h3 id="阿里云服务器默认不开启-root-远程登录"><a href="#阿里云服务器默认不开启-root-远程登录" class="headerlink" title="阿里云服务器默认不开启 root 远程登录"></a>阿里云服务器默认不开启 root 远程登录</h3><p>需要先进行 VNC 远程连接登录，再进行实例登录。</p>
 <p>可以在Mac的命令行进行登录</p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">ssh root@你的公网地址
