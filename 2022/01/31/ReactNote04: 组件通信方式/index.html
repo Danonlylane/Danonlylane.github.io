@@ -311,7 +311,7 @@
 <span id="more"></span>
 
 <p>以下例子说明了父组件传递信息给子组件的方式是：在父组件的子组件中写形参的时候，React会将子组件接受到的属性转换为props对象传递给组件，所以渲染子组件的时候就可以使用props里面的数据了。函数组件同理。</p>
-<pre class="line-numbers language-react" data-language="react"><code class="language-react">import React, { Component } from 'react'
+<pre class="language-react" data-language="react"><code class="language-react">import React, { Component } from 'react'
 class Son extends Component {
     constructor(props) {
         super(props);
@@ -339,11 +339,11 @@ export default class App extends Component {
             &lt;/div&gt;
         )
     }
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}</code></pre>
 
 
 
-<h4 id="2-组件传递信息时的数据验证"><a href="#2-组件传递信息时的数据验证" class="headerlink" title="2. 组件传递信息时的数据验证"></a>2. 组件传递信息时的数据验证</h4><pre class="line-numbers language-react" data-language="react"><code class="language-react">import React, { Component } from 'react';
+<h4 id="2-组件传递信息时的数据验证"><a href="#2-组件传递信息时的数据验证" class="headerlink" title="2. 组件传递信息时的数据验证"></a>2. 组件传递信息时的数据验证</h4><pre class="language-react" data-language="react"><code class="language-react">import React, { Component } from 'react';
 import PropTypes from "prop-types";
 
 function Son(props) {
@@ -390,7 +390,7 @@ export default class App extends Component {
         )
     }
 }
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 
 
 

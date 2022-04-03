@@ -313,7 +313,7 @@
 <span id="more"></span>
 
 <h4 id="准备文件："><a href="#准备文件：" class="headerlink" title="准备文件："></a>准备文件：</h4><p><code>App.js</code> 文件</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">import</span> React<span class="token punctuation">,</span> <span class="token punctuation">{</span> PureComponent <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react'</span>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">import</span> React<span class="token punctuation">,</span> <span class="token punctuation">{</span> PureComponent <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react'</span>
 <span class="token keyword">import</span> <span class="token punctuation">{</span> Link<span class="token punctuation">,</span> Switch<span class="token punctuation">,</span> Route<span class="token punctuation">,</span> withRouter <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react-router-dom'</span>
 
 <span class="token comment">// 为了看 history 的源码而引入</span>
@@ -350,10 +350,10 @@
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 
-<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token function">withRouter</span><span class="token punctuation">(</span>App<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token function">withRouter</span><span class="token punctuation">(</span>App<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 
 <p><code>index.js</code> 文件</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> ReactDOM <span class="token keyword">from</span> <span class="token string">'react-dom'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> App <span class="token keyword">from</span> <span class="token string">'./App'</span><span class="token punctuation">;</span>
 
@@ -367,10 +367,10 @@ ReactDOM<span class="token punctuation">.</span><span class="token function">ren
   <span class="token operator">&lt;</span><span class="token operator">/</span>BrowserRouter<span class="token operator">&gt;</span>
   <span class="token punctuation">,</span>
   document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'root'</span><span class="token punctuation">)</span>
-<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 
 <p><code>profile.js</code> 组件， Home 一样</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">import</span> React<span class="token punctuation">,</span> <span class="token punctuation">{</span> PureComponent <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react'</span>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">import</span> React<span class="token punctuation">,</span> <span class="token punctuation">{</span> PureComponent <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react'</span>
 
 <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">Profile</span> <span class="token keyword">extends</span> <span class="token class-name">PureComponent</span> <span class="token punctuation">{</span>
     <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -380,19 +380,19 @@ ReactDOM<span class="token punctuation">.</span><span class="token function">ren
             <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
         <span class="token punctuation">)</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">}</span></code></pre>
 
 <p>到这里就可以开始了我们的流程探究了，在 <code>App.js</code> 文件的 <code>jumpToProduct</code> 里面的一行代码打上断点。</p>
 <p>打断点的具体方式是：将 demo 跑起来 -&gt; 打开浏览器的控制台 -&gt; source -&gt; 具体文件 -&gt; 打上断点</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token function">jumpToProduct</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token function">jumpToProduct</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>history<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token string">"/profile"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">}</span></code></pre>
 
 <p>如图：</p>
 <p><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1gzwst9j6j4j225y0n844l.jpg"></p>
 <p>点击 <code>button</code> 按钮，进行单步调试。然后程序就跳到 <code>node_modules/history/cjs/history.js</code> 的 <code>push</code> 函数里面了。</p>
 <p>这是为什么呢？因为 <code>Link</code> 组件里面判断了是用什么方法改变路径的。这里我们模拟的是 <code>push</code> 方法</p>
-<h4 id="1-Link-里面的判断代码片段（以下源码均为节选）"><a href="#1-Link-里面的判断代码片段（以下源码均为节选）" class="headerlink" title="1. Link 里面的判断代码片段（以下源码均为节选）"></a>1. Link 里面的判断代码片段（以下源码均为节选）</h4><pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 1. Link 里面的判断代码片段</span>
+<h4 id="1-Link-里面的判断代码片段（以下源码均为节选）"><a href="#1-Link-里面的判断代码片段（以下源码均为节选）" class="headerlink" title="1. Link 里面的判断代码片段（以下源码均为节选）"></a>1. Link 里面的判断代码片段（以下源码均为节选）</h4><pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 1. Link 里面的判断代码片段</span>
 <span class="token keyword">var</span> props <span class="token operator">=</span> <span class="token function">_extends</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> rest<span class="token punctuation">,</span> <span class="token punctuation">{</span>
       href<span class="token operator">:</span> href<span class="token punctuation">,</span>
       <span class="token function-variable function">navigate</span><span class="token operator">:</span> <span class="token keyword">function</span> <span class="token function">navigate</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -401,10 +401,10 @@ ReactDOM<span class="token punctuation">.</span><span class="token function">ren
         <span class="token keyword">var</span> method <span class="token operator">=</span> replace <span class="token operator">||</span> isDuplicateNavigation <span class="token operator">?</span> history$<span class="token number">1.</span>replace <span class="token operator">:</span> history$<span class="token number">1.</span>push<span class="token punctuation">;</span>
         <span class="token function">method</span><span class="token punctuation">(</span>location<span class="token punctuation">)</span><span class="token punctuation">;</span>
       <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// React 15 compat</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// React 15 compat</span></code></pre>
 
 <h4 id="2-这里调用的是-history-下的-push-方法"><a href="#2-这里调用的是-history-下的-push-方法" class="headerlink" title="2. 这里调用的是 history 下的 push 方法"></a>2. 这里调用的是 <code>history</code> 下的 <code>push</code> 方法</h4><p><code>push</code> 方法里面创建一个新的 <code>location</code> 对象，然后通过 <code>globalHistory</code> 方法改变浏览器当前路由,最后通过<code>setState</code> 方法通知 <code>React-Router</code> 更新（这里会跳到 <code>ReactRefreshEntry.js</code> 这个文件），并传递当前的 <code>location</code> 对象</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">push</span><span class="token punctuation">(</span><span class="token parameter">path<span class="token punctuation">,</span> state</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">push</span><span class="token punctuation">(</span><span class="token parameter">path<span class="token punctuation">,</span> state</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">var</span> action <span class="token operator">=</span> <span class="token string">'PUSH'</span><span class="token punctuation">;</span>
   	<span class="token comment">/* 2. 创建location对象 */</span>
     <span class="token keyword">var</span> location <span class="token operator">=</span> <span class="token function">createLocation</span><span class="token punctuation">(</span>path<span class="token punctuation">,</span> state<span class="token punctuation">,</span> <span class="token function">createKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> history<span class="token punctuation">.</span>location<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -432,12 +432,12 @@ ReactDOM<span class="token punctuation">.</span><span class="token function">ren
           <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
       <span class="token punctuation">}</span> 
-    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 
 
 
 <h4 id="3-history-下的-createTransitionManager-函数"><a href="#3-history-下的-createTransitionManager-函数" class="headerlink" title="3. history 下的 createTransitionManager 函数"></a>3. <code>history</code> 下的 <code>createTransitionManager</code> 函数</h4><p>作用是监听判断是否能进行路由转换 </p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">/* 3. 确定是否能进行路由转换 */</span>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">/* 3. 确定是否能进行路由转换 */</span>
 <span class="token keyword">function</span> <span class="token function">createTransitionManager</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
   <span class="token keyword">var</span> prompt <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
   
@@ -481,11 +481,11 @@ ReactDOM<span class="token punctuation">.</span><span class="token function">ren
       <span class="token keyword">return</span> <span class="token function">listener</span><span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span><span class="token keyword">void</span> <span class="token number">0</span><span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">}</span></code></pre>
 
 
 
-<h4 id="4-history-中-createBrowserHistory-props-函数的-setState"><a href="#4-history-中-createBrowserHistory-props-函数的-setState" class="headerlink" title="4. history  中 createBrowserHistory(props) 函数的 setState"></a>4. <code>history</code>  中 <code>createBrowserHistory(props)</code> 函数的 <code>setState</code></h4><pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"> <span class="token comment">/* 通知listener更新，这里通知到 react-router了 */</span>
+<h4 id="4-history-中-createBrowserHistory-props-函数的-setState"><a href="#4-history-中-createBrowserHistory-props-函数的-setState" class="headerlink" title="4. history  中 createBrowserHistory(props) 函数的 setState"></a>4. <code>history</code>  中 <code>createBrowserHistory(props)</code> 函数的 <code>setState</code></h4><pre class="language-javascript" data-language="javascript"><code class="language-javascript"> <span class="token comment">/* 通知listener更新，这里通知到 react-router了 */</span>
 <span class="token keyword">const</span> <span class="token function-variable function">setState</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">nextState</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
     <span class="token comment">/* 合并信息 */</span>
     Object<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span>history<span class="token punctuation">,</span> nextState<span class="token punctuation">)</span>
@@ -495,11 +495,11 @@ ReactDOM<span class="token punctuation">.</span><span class="token function">ren
       history<span class="token punctuation">.</span>location<span class="token punctuation">,</span>
       history<span class="token punctuation">.</span>action
     <span class="token punctuation">)</span>
-  <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+  <span class="token punctuation">}</span></code></pre>
 
 
 
-<h4 id="5-路由匹配"><a href="#5-路由匹配" class="headerlink" title="5. 路由匹配"></a>5. 路由匹配</h4><pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"> <span class="token comment">/* 5. 监听并进行路由匹配 */</span>
+<h4 id="5-路由匹配"><a href="#5-路由匹配" class="headerlink" title="5. 路由匹配"></a>5. 路由匹配</h4><pre class="language-javascript" data-language="javascript"><code class="language-javascript"> <span class="token comment">/* 5. 监听并进行路由匹配 */</span>
 <span class="token keyword">class</span> <span class="token class-name">Router</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span>
   <span class="token keyword">static</span> <span class="token function">computeRootMatch</span><span class="token punctuation">(</span><span class="token parameter">pathname</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">return</span> <span class="token punctuation">{</span> path<span class="token operator">:</span> <span class="token string">"/"</span><span class="token punctuation">,</span> url<span class="token operator">:</span> <span class="token string">"/"</span><span class="token punctuation">,</span> params<span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> isExact<span class="token operator">:</span> pathname <span class="token operator">===</span> <span class="token string">"/"</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
@@ -525,7 +525,7 @@ ReactDOM<span class="token punctuation">.</span><span class="token function">ren
       <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
   <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">}</span></code></pre>
 
 <h4 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h4><p>路由转换的大致流程就是：</p>
 <ol>

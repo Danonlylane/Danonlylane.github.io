@@ -361,7 +361,7 @@
 <h4 id="1-2-程序运行后"><a href="#1-2-程序运行后" class="headerlink" title="1.2 程序运行后"></a>1.2 程序运行后</h4><p>​    <strong>栈区：</strong></p>
 <p>​            由编译器自动分配释放，存放函数的参数值，局部变量等。</p>
 <p>​            注意事项：不要返回局部变量的地址，栈区开辟的数据由编译器自动释放。</p>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
+<pre class="language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
 using namespace std;
 
 //栈区数据注意事项：不要返回局部变量的地址
@@ -379,12 +379,12 @@ int main()
     int *p = func();
     cout &lt;&lt; *p &lt;&lt; endl;	//第一次可以打印正确的数字，是因为编译器做了保留
     cout &lt;&lt; *p &lt;&lt; endl;	//没有保留
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}</code></pre>
 
 <p><img src="https://tva1.sinaimg.cn/large/008i3skNgy1gqro6fredqj30va07aq3n.jpg"></p>
 <p>​    <strong>堆区：</strong></p>
 <p>​            由程序员分配释放，若程序员不释放，程序结束时由操作系统释放。</p>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include&lt;iostream&gt;
+<pre class="language-c++" data-language="c++"><code class="language-c++">#include&lt;iostream&gt;
 using namespace std;
 
 int *func()
@@ -402,7 +402,7 @@ int main()
     int *p=func();
     cout&lt;&lt;*p&lt;&lt;endl;
     cout&lt;&lt;*p&lt;&lt;endl;
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}</code></pre>
 
 
 
@@ -417,7 +417,7 @@ int main()
 <p>​        堆区开辟的数据，由程序员手动开辟，手动释放，释放利用操作符delete</p>
 <p>​        语法：new 数据类型</p>
 <p>​        利用new创建的数据，会返回该数据对应的类型的指针</p>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
+<pre class="language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
 using namespace std;
 
 int *func()
@@ -464,7 +464,7 @@ int main()
   
     test02();
 }
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 
 
 
@@ -473,7 +473,7 @@ int main()
 <p><img src="https://tva1.sinaimg.cn/large/008i3skNgy1gqro8f0t2fj30vg0ggwip.jpg"></p>
 <h4 id="2-2-引用的注意事项"><a href="#2-2-引用的注意事项" class="headerlink" title="2.2 引用的注意事项"></a>2.2 引用的注意事项</h4><p>​    ●    引用必须初始化</p>
 <p>​    ●    引用在初始化后，不可以改变</p>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
+<pre class="language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
 
 using namespace std;
 
@@ -488,14 +488,14 @@ int main()
     b = c;  //这是赋值操作，不是更改引用
 
     cout &lt;&lt; b &lt;&lt; endl;
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}</code></pre>
 
 
 
 <h4 id="2-3-引用做函数参数"><a href="#2-3-引用做函数参数" class="headerlink" title="2.3 引用做函数参数"></a>2.3 引用做函数参数</h4><p>作用：函数传参时，可以利用引用的技术让形参修饰实参</p>
 <p>优点：可以简化指针修改实参</p>
 <p>代码：</p>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
+<pre class="language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
 
 using namespace std;
 
@@ -538,12 +538,12 @@ int main()
     int d=12222;
     swap03(c,d);
     cout&lt;&lt;"c="&lt;&lt;c&lt;&lt;"\td="&lt;&lt;d&lt;&lt;endl;
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}</code></pre>
 
 <p>运行结果：</p>
 <p><img src="https://tva1.sinaimg.cn/large/008i3skNgy1gqro9g1dnvj30vc06igme.jpg"></p>
 <p>总结：总结：通过引用参数产生的效果同按地址传递是一样的，引用的语法更清楚简单。</p>
-<h4 id="2-4-引用做函数返回值"><a href="#2-4-引用做函数返回值" class="headerlink" title="2.4 引用做函数返回值"></a>2.4 引用做函数返回值</h4><pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">#include &lt;iostream&gt;
+<h4 id="2-4-引用做函数返回值"><a href="#2-4-引用做函数返回值" class="headerlink" title="2.4 引用做函数返回值"></a>2.4 引用做函数返回值</h4><pre class="language-C++" data-language="C++"><code class="language-C++">#include &lt;iostream&gt;
 
 using namespace std;
 
@@ -577,13 +577,13 @@ int main()
     test02() = 1000;
     cout &lt;&lt; "ret=" &lt;&lt; ret2 &lt;&lt; endl;
     cout &lt;&lt; "ret=" &lt;&lt; ret2 &lt;&lt; endl;
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}</code></pre>
 
 
 
 <h4 id="2-5-引用的本质"><a href="#2-5-引用的本质" class="headerlink" title="2.5 引用的本质"></a>2.5 引用的本质</h4><p>本质：<strong>引用的本质在c++内部实现是一个指针常量</strong></p>
 <p>也就是指针的指向不可以更改，而指针指向的值可以改，也就符合了引用定义后就不能修改的原则</p>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include&lt;iostream&gt;
+<pre class="language-c++" data-language="c++"><code class="language-c++">#include&lt;iostream&gt;
 
 using namespace std;
 
@@ -607,12 +607,12 @@ int main()
 
     func(a);
     return 0;
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}</code></pre>
 
 <p>总结：C++推荐用引用技术，是因为语法方便，引用本质是指针常量，但是所有的指针操作编译器都帮我们做了。</p>
 <h4 id="2-6-常量引用"><a href="#2-6-常量引用" class="headerlink" title="2.6 常量引用"></a>2.6 常量引用</h4><p><img src="https://tva1.sinaimg.cn/large/008i3skNgy1gqsehx3ealj31180sg15a.jpg"> </p>
 <p><img src="https://tva1.sinaimg.cn/large/008i3skNgy1gqse66vlomj31ai0n0anv.jpg"></p>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
+<pre class="language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
 using namespace std;
 
 // 引用使用的场景，通常用来修饰形参,如果不加const，就会可能无意被修改，特别是以后代码量大的时候，
@@ -638,7 +638,7 @@ int main()
     showValue(a);
 
     cout &lt;&lt; "a=" &lt;&lt; a &lt;&lt; endl;
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}</code></pre>
 
 
 
@@ -655,7 +655,7 @@ int main()
 <p><img src="https://tva1.sinaimg.cn/large/008i3skNgy1gqsezyq7mvj313m0tqk4p.jpg"></p>
 <h5 id="3-3-2-函数重载注意事项"><a href="#3-3-2-函数重载注意事项" class="headerlink" title="3.3.2 函数重载注意事项"></a>3.3.2 函数重载注意事项</h5><p>● 引用作为重载条件</p>
 <p>● 函数重载碰到函数默认参数</p>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include&lt;iostream&gt;
+<pre class="language-c++" data-language="c++"><code class="language-c++">#include&lt;iostream&gt;
 
 using namespace std;
 
@@ -700,19 +700,19 @@ int main()
     // that match the parameter list
     return 0;
 
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}</code></pre>
 
 <p>总结：</p>
 <p>● 写函数重载的时候不要写默认参数，容易发生错误。</p>
 <h3 id="4-类和对象"><a href="#4-类和对象" class="headerlink" title="4.类和对象"></a>4.类和对象</h3><h4 id="4-2-对象的初始化和清理"><a href="#4-2-对象的初始化和清理" class="headerlink" title="4.2 对象的初始化和清理"></a>4.2 对象的初始化和清理</h4><h5 id="4-2-1-构造函数和析构函数"><a href="#4-2-1-构造函数和析构函数" class="headerlink" title="4.2.1 构造函数和析构函数"></a>4.2.1 构造函数和析构函数</h5><p>构造函数：</p>
-<pre class="line-numbers language-none"><code class="language-none">1. 构造函数没有返回值
+<pre class="language-none"><code class="language-none">1. 构造函数没有返回值
 2. 构造函数可以重载
-3. 程序在调用对象时会自动调用构造，而且只调用一次<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+3. 程序在调用对象时会自动调用构造，而且只调用一次</code></pre>
 
 <p>析构函数：</p>
-<pre class="line-numbers language-none"><code class="language-none">1. 析构函数没有返回值
+<pre class="language-none"><code class="language-none">1. 析构函数没有返回值
 2. 析构函数没有参数不可以重载
-3. 程序在对象销毁前会自动调用析构函数，无需手动调用，而且只会调用一次<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+3. 程序在对象销毁前会自动调用析构函数，无需手动调用，而且只会调用一次</code></pre>
 
 <h5 id="4-2-2-构造函数的分类及调用"><a href="#4-2-2-构造函数的分类及调用" class="headerlink" title="4.2.2 构造函数的分类及调用"></a>4.2.2 构造函数的分类及调用</h5><p>两种分类方式：</p>
 <p>​    按参数分为：有参构造和无参构造</p>
@@ -722,7 +722,7 @@ int main()
 <p>​    显示法</p>
 <p>​    隐式转换法</p>
 <p><font color="red">example：</font></p>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
+<pre class="language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
 
 using namespace std;
 
@@ -805,11 +805,11 @@ int main()
     test01();
 
     return 0;
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}</code></pre>
 
 
 
-<h5 id="4-2-3-拷贝构造函数调用时机"><a href="#4-2-3-拷贝构造函数调用时机" class="headerlink" title="4.2.3 拷贝构造函数调用时机"></a>4.2.3 拷贝构造函数调用时机</h5><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
+<h5 id="4-2-3-拷贝构造函数调用时机"><a href="#4-2-3-拷贝构造函数调用时机" class="headerlink" title="4.2.3 拷贝构造函数调用时机"></a>4.2.3 拷贝构造函数调用时机</h5><pre class="language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
 
 using namespace std;
 
@@ -890,7 +890,7 @@ int main()
     //test01();
     test03();
     return 0;
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}</code></pre>
 
 
 
@@ -902,7 +902,7 @@ int main()
 </ol>
 <p>构造函数调用规则如下:</p>
 <p>● 如果用户定义有参构造函数，C++不在提供默认无参构造，但是会提供默认拷贝构造<br>● 如果用户定义拷贝构造函数, C++不会再提供其他构造函数</p>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">class Person {
+<pre class="language-c++" data-language="c++"><code class="language-c++">class Person {
 public:
 	Person() {
 		cout &lt;&lt; "无参构造函数!" &lt;&lt; endl;
@@ -968,14 +968,14 @@ int main() {
 
 	return 0;
 }
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 
 
 
 <h5 id="4-2-5-深拷贝与浅拷贝"><a href="#4-2-5-深拷贝与浅拷贝" class="headerlink" title="4.2.5 深拷贝与浅拷贝"></a>4.2.5 深拷贝与浅拷贝</h5><p>深浅拷贝是面试经典问题，也是常见的一个坑</p>
 <p>浅拷贝：简单的赋值拷贝操作</p>
 <p>深拷贝：在堆区重新申请空间，进行拷贝操作</p>
-<h5 id="4-2-6-初始化列表"><a href="#4-2-6-初始化列表" class="headerlink" title="4.2.6 初始化列表"></a>4.2.6 初始化列表</h5><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include&lt;iostream&gt; 
+<h5 id="4-2-6-初始化列表"><a href="#4-2-6-初始化列表" class="headerlink" title="4.2.6 初始化列表"></a>4.2.6 初始化列表</h5><pre class="language-c++" data-language="c++"><code class="language-c++">#include&lt;iostream&gt; 
 using namespace std;
 
 class Student {
@@ -990,11 +990,11 @@ private:
 int main() {
   Student s1;
   return 0;
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}</code></pre>
 
 
 
-<h5 id="4-2-7-类对象作为类成员"><a href="#4-2-7-类对象作为类成员" class="headerlink" title="4.2.7 类对象作为类成员"></a>4.2.7 类对象作为类成员</h5><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include&lt;iostream&gt; 
+<h5 id="4-2-7-类对象作为类成员"><a href="#4-2-7-类对象作为类成员" class="headerlink" title="4.2.7 类对象作为类成员"></a>4.2.7 类对象作为类成员</h5><pre class="language-c++" data-language="c++"><code class="language-c++">#include&lt;iostream&gt; 
 using namespace std;
 
 class Phone {
@@ -1018,7 +1018,7 @@ private:
 int main() {
   Student s1;
   return 0;
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}</code></pre>
 
 
 
@@ -1037,7 +1037,7 @@ int main() {
 </li>
 <li></li>
 </ul>
-<h4 id="4-3-C-对象模型和this指针"><a href="#4-3-C-对象模型和this指针" class="headerlink" title="4.3 C++对象模型和this指针"></a>4.3 C++对象模型和this指针</h4><h5 id="4-3-2-成员变量和成员函数分开存储"><a href="#4-3-2-成员变量和成员函数分开存储" class="headerlink" title="4.3.2 成员变量和成员函数分开存储"></a>4.3.2 成员变量和成员函数分开存储</h5><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include&lt;iostream&gt;
+<h4 id="4-3-C-对象模型和this指针"><a href="#4-3-C-对象模型和this指针" class="headerlink" title="4.3 C++对象模型和this指针"></a>4.3 C++对象模型和this指针</h4><h5 id="4-3-2-成员变量和成员函数分开存储"><a href="#4-3-2-成员变量和成员函数分开存储" class="headerlink" title="4.3.2 成员变量和成员函数分开存储"></a>4.3.2 成员变量和成员函数分开存储</h5><pre class="language-c++" data-language="c++"><code class="language-c++">#include&lt;iostream&gt;
 using namespace std;
 
 // 类的大小为类的非静态成员变量
@@ -1059,7 +1059,7 @@ class Person1 {
 int main() {
   cout &lt;&lt; sizeof(Person()) &lt;&lt; endl;
   return 0;
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}</code></pre>
 
 <h5 id="4-3-2-this指针"><a href="#4-3-2-this指针" class="headerlink" title="4.3.2 this指针"></a>4.3.2 this指针</h5><p>通过前面一节我们知道C++中成员变量和成员函数是分开存储的</p>
 <p>每一个非静态成员函数只会诞生一份函数实例，也就是说多个同类型对象会共用一块代码</p>
@@ -1073,7 +1073,7 @@ int main() {
 <li>  当形参和成员变量同名时，用来区分二者</li>
 <li>  在类的非静态成员函数中返回对象本身，可使用return *this</li>
 </ul>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">//
+<pre class="language-c++" data-language="c++"><code class="language-c++">//
 //  main.cpp
 //  this指针
 //
@@ -1112,7 +1112,7 @@ int main(int argc, const char * argv[]) {
     cout &lt;&lt; p2.m_Age &lt;&lt; endl;
     return 0;
 }
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 
 <h5 id="4-3-4-const修饰成员函数"><a href="#4-3-4-const修饰成员函数" class="headerlink" title="4.3.4 const修饰成员函数"></a>4.3.4 const修饰成员函数</h5><p>常函数：</p>
 <ul>
@@ -1170,7 +1170,7 @@ int main(int argc, const char * argv[]) {
 <li>  拥有纯虚析构的函数也属于抽象类</li>
 </ol>
 <h4 id="5-1-文本文件"><a href="#5-1-文本文件" class="headerlink" title="5.1 文本文件"></a>5.1 文本文件</h4><h5 id="5-1-1-写文件"><a href="#5-1-1-写文件" class="headerlink" title="5.1.1 写文件"></a>5.1.1 写文件</h5><p>写文件步骤如下：</p>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">1.包含头文件
+<pre class="language-c++" data-language="c++"><code class="language-c++">1.包含头文件
 	#include&lt;fstream&gt;
 
 2.创建流对象
@@ -1183,7 +1183,7 @@ int main(int argc, const char * argv[]) {
   ofs&lt;&lt;"写入"；
   
 5.关闭文件
-  ofs.close();<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+  ofs.close();</code></pre>
 
 
 
@@ -1230,7 +1230,7 @@ int main(int argc, const char * argv[]) {
 <p><strong>注意：文件打开方式可以配合|使用</strong></p>
 <p><strong>用二进制方式写文件 ios::binary | ios::out</strong></p>
 <h5 id="5-1-2-读文件"><a href="#5-1-2-读文件" class="headerlink" title="5.1.2 读文件"></a>5.1.2 读文件</h5><p>写文件步骤如下：</p>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">1.包含头文件
+<pre class="language-c++" data-language="c++"><code class="language-c++">1.包含头文件
 	#include&lt;fstream&gt;
 
 2.创建流对象
@@ -1243,7 +1243,7 @@ int main(int argc, const char * argv[]) {
   四种方式读取
   
 5.关闭文件
-  ifs.close();<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+  ifs.close();</code></pre>
 
 
 
@@ -1292,7 +1292,7 @@ int main(int argc, const char * argv[]) {
 <h5 id="5-2-1-写文件"><a href="#5-2-1-写文件" class="headerlink" title="5.2.1 写文件"></a>5.2.1 写文件</h5><p>二进制方式写文件主要利用流对象调用成员函数write</p>
 <p>函数原型 ：<code>ostream&amp; write(const char * buffer,int len);</code></p>
 <p>参数解释：字符指针buffer指向内存中一段存储空间。len是读写的字节数</p>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;fstream&gt;
+<pre class="language-c++" data-language="c++"><code class="language-c++">#include &lt;fstream&gt;
 #include &lt;string&gt;
 
 using namespace std;
@@ -1329,7 +1329,7 @@ int main() {
 	test01();
 	return 0;
 }
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 
 <p>总结：</p>
 <ul>
@@ -1338,7 +1338,7 @@ int main() {
 <h5 id="5-2-2-读文件"><a href="#5-2-2-读文件" class="headerlink" title="5.2.2 读文件"></a>5.2.2 读文件</h5><p>二进制方式读文件主要利用流对象调用成员函数read</p>
 <p>函数原型：<code>istream&amp; read(char *buffer,int len);</code></p>
 <p>参数解释：字符指针buffer指向内存中一段存储空间。len是读写的字节数</p>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;fstream&gt;
+<pre class="language-c++" data-language="c++"><code class="language-c++">#include &lt;fstream&gt;
 #include &lt;string&gt;
 using namespace std;
 
@@ -1371,13 +1371,13 @@ int main() {
 
 	return 0;
 }
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 
 
 
 
 
-<pre class="line-numbers language-none"><code class="language-none">class Solution {
+<pre class="language-none"><code class="language-none">class Solution {
 public:
     int integerBreak(int n) {
         vector&lt;int&gt; dp(n + 1);
@@ -1392,7 +1392,7 @@ public:
 };
 
 5
-i = 3 dp[3] = <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+i = 3 dp[3] = </code></pre>
 
 
     </div>

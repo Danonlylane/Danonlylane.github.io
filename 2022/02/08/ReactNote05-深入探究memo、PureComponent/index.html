@@ -312,7 +312,7 @@
 <blockquote>
 <p>以下源码均为节选</p>
 </blockquote>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 路径</span>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 路径</span>
 <span class="token comment">// packages/react-reconciler/src/ReactFiberClassComponent.js</span>
 
 <span class="token keyword">function</span> <span class="token function">checkShouldComponentUpdate</span><span class="token punctuation">(</span>
@@ -348,15 +348,15 @@
     
   <span class="token comment">// 默认返回的是true，也就是更新</span>
   <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">}</span></code></pre>
 
 
 
 <p>这里就弄清楚了判断组件的更新的逻辑，下面我们再看一下shallowEqual这个函数，按住commond进去，</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">import</span> shallowEqual <span class="token keyword">from</span> <span class="token string">'shared/shallowEqual'</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">import</span> shallowEqual <span class="token keyword">from</span> <span class="token string">'shared/shallowEqual'</span><span class="token punctuation">;</span></code></pre>
 
 <p>去<code>share</code>文件夹里面找<code>shallowEqual</code>这个文件</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">shallowEqual</span><span class="token punctuation">(</span><span class="token parameter">objA<span class="token operator">:</span> mixed<span class="token punctuation">,</span> objB<span class="token operator">:</span> mixed</span><span class="token punctuation">)</span><span class="token operator">:</span> boolean <span class="token punctuation">{</span>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">shallowEqual</span><span class="token punctuation">(</span><span class="token parameter">objA<span class="token operator">:</span> mixed<span class="token punctuation">,</span> objB<span class="token operator">:</span> mixed</span><span class="token punctuation">)</span><span class="token operator">:</span> boolean <span class="token punctuation">{</span>
   <span class="token comment">// 同一个对象返回ture，到了checkShouldComponentUpdate那里就是false，因为进行取反操作了</span>
   <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">is</span><span class="token punctuation">(</span>objA<span class="token punctuation">,</span> objB<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
@@ -392,12 +392,12 @@
     <span class="token punctuation">}</span>
   <span class="token punctuation">}</span>
   <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">}</span></code></pre>
 
 
 
 <h4 id="窥探memo"><a href="#窥探memo" class="headerlink" title="窥探memo"></a>窥探memo</h4><p>既然memo和PureComponent作用类似，那么其原理应该也是和PureComponent思想类似</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// packages/react/src/memo.js</span>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// packages/react/src/memo.js</span>
 <span class="token keyword">import</span> <span class="token punctuation">{</span><span class="token constant">REACT_MEMO_TYPE</span><span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'shared/ReactSymbols'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> isValidElementType <span class="token keyword">from</span> <span class="token string">'shared/isValidElementType'</span><span class="token punctuation">;</span>
 
@@ -411,10 +411,10 @@
     type<span class="token punctuation">,</span>
     compare<span class="token operator">:</span> compare <span class="token operator">===</span> <span class="token keyword">undefined</span> <span class="token operator">?</span> <span class="token keyword">null</span> <span class="token operator">:</span> compare<span class="token punctuation">,</span>
   <span class="token punctuation">}</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">}</span></code></pre>
 
 <p>那么源码已经用<code>compare = compare !== null ? compare : shallowEqual;</code>帮助我们做了判断，意思就是如果我们传入了自己编写的compare函数，那么就用这个函数，否则它帮我们调用shallowEqual函数。</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">updateMemoComponent</span><span class="token punctuation">(</span>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">updateMemoComponent</span><span class="token punctuation">(</span>
   <span class="token parameter">current<span class="token operator">:</span> Fiber <span class="token operator">|</span> <span class="token keyword">null</span><span class="token punctuation">,</span>
   workInProgress<span class="token operator">:</span> Fiber<span class="token punctuation">,</span>
   Component<span class="token operator">:</span> any<span class="token punctuation">,</span>
@@ -436,7 +436,7 @@
       <span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
   <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">}</span></code></pre>
 
 
     </div>

@@ -306,49 +306,49 @@
     
     <div class="post-body" itemprop="articleBody">
         <h3 id="欲要学好React，JSX语法须先行"><a href="#欲要学好React，JSX语法须先行" class="headerlink" title="欲要学好React，JSX语法须先行"></a>欲要学好React，JSX语法须先行</h3><h3 id="JSX-简介"><a href="#JSX-简介" class="headerlink" title="JSX 简介"></a>JSX 简介</h3><p>先来看这样的一段代码：</p>
-<pre class="line-numbers language-react" data-language="react"><code class="language-react">const element = &lt;h1&gt;Hello, world!&lt;/h1&gt;;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="language-react" data-language="react"><code class="language-react">const element = &lt;h1&gt;Hello, world!&lt;/h1&gt;;</code></pre>
 
 <p>是不是感觉有点怪怪的，因为它既不是字符串，也不是HTML，它就是 JSX，是一个 JavaScript 的语法扩展。React官方建议在 React 中配合使用 JSX，因为JSX 可以很好地描述 UI 应该呈现出它应有交互的本质形式。</p>
 <span id="more"></span>
 
 <p><strong>在JSX中插入javascript的方式</strong></p>
 <p>在 JSX 语法中，你可以在大括号内放置任何有效的 <strong>JavaScript 表达式</strong>。（什么是表达式？）</p>
-<pre class="line-numbers language-react" data-language="react"><code class="language-react">const name = 'james kobe';
+<pre class="language-react" data-language="react"><code class="language-react">const name = 'james kobe';
 const element = &lt;h1&gt;Hello, {name}&lt;/h1&gt;;
 
 ReactDOM.render(
   element,
   document.getElementById('root')
-);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+);</code></pre>
 
 <p>为了便于阅读，我们可以将JSX语法拆分成多行，并将内容包裹在小括号中，这样可以避免陷入自动插入分号的陷阱。</p>
-<pre class="line-numbers language-react" data-language="react"><code class="language-react">const element = (
+<pre class="language-react" data-language="react"><code class="language-react">const element = (
   &lt;div&gt;
     &lt;h1&gt;Hello!&lt;/h1&gt;
     &lt;h2&gt;Good to see you here.&lt;/h2&gt;
   &lt;/div&gt;
-);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+);</code></pre>
 
 
 
 <p><strong>JSX也是一个表达式</strong></p>
 <p>在编译之后，JSX 表达式会被转为普通 JavaScript 函数调用，并且对其取值后得到 JavaScript 对象。</p>
 <p>也就是说，你可以在 <code>if</code> 语句和 <code>for</code> 循环的代码块中使用 JSX，将 JSX 赋值给变量，把 JSX 当作参数传入，以及从函数中返回 JSX：</p>
-<pre class="line-numbers language-react" data-language="react"><code class="language-react">function getGreeting(user) {
+<pre class="language-react" data-language="react"><code class="language-react">function getGreeting(user) {
   if (user) {
     return &lt;h1&gt;Hello, {formatName(user)}!&lt;/h1&gt;;
   }
   return &lt;h1&gt;Hello, Stranger.&lt;/h1&gt;;
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}</code></pre>
 
 
 
 <p><strong>JSX的特定属性</strong></p>
 <p>你可以通过使用引号，来将属性值指定为字符串字面量：</p>
-<pre class="line-numbers language-react" data-language="react"><code class="language-react">const element = &lt;div tabIndex="0"&gt;&lt;/div&gt;;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="language-react" data-language="react"><code class="language-react">const element = &lt;div tabIndex="0"&gt;&lt;/div&gt;;</code></pre>
 
 <p>也可以使用大括号，来在属性值中插入一个 JavaScript 表达式：</p>
-<pre class="line-numbers language-react" data-language="react"><code class="language-react">const element = &lt;img src={user.avatarUrl}&gt;&lt;/img&gt;;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="language-react" data-language="react"><code class="language-react">const element = &lt;img src={user.avatarUrl}&gt;&lt;/img&gt;;</code></pre>
 
 <p>在属性中嵌入 JavaScript 表达式时，不要在大括号外面加上引号。你应该仅使用引号（对于字符串值）或大括号（对于表达式）中的一个，对于同一属性不能同时使用这两种符号。</p>
 <p><strong>需要注意的是：</strong></p>
@@ -364,22 +364,22 @@ ReactDOM.render(
 </ul>
 <p><strong>使用 JSX 指定子元素</strong></p>
 <p>假如一个标签里面没有内容，也就是说这个标签是一个单标签的话，你可以使用 <code>/&gt;</code> 来闭合标签，就像 XML 语法一样：</p>
-<pre class="line-numbers language-react" data-language="react"><code class="language-react">const element = &lt;img src={user.avatarUrl} /&gt;;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="language-react" data-language="react"><code class="language-react">const element = &lt;img src={user.avatarUrl} /&gt;;</code></pre>
 
 <p>JSX 标签里能够包含很多子元素:</p>
-<pre class="line-numbers language-react" data-language="react"><code class="language-react">const element = (
+<pre class="language-react" data-language="react"><code class="language-react">const element = (
   &lt;div&gt;
     &lt;h1&gt;Hello!&lt;/h1&gt;
     &lt;h2&gt;Good to see you here.&lt;/h2&gt;
   &lt;/div&gt;
-);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+);</code></pre>
 
 
 
 <p><strong>JSX 表示对象</strong></p>
 <p>Babel 会把 JSX 转译成一个名为 <code>React.createElement()</code> 函数调用。</p>
 <p>以下两种示例代码完全等效：</p>
-<pre class="line-numbers language-react" data-language="react"><code class="language-react">const element = (
+<pre class="language-react" data-language="react"><code class="language-react">const element = (
   &lt;h1 className="greeting"&gt;
     Hello, world!
   &lt;/h1&gt;
@@ -389,7 +389,7 @@ const element = React.createElement(
   'h1',
   {className: 'greeting'},
   'Hello, world!'
-);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+);</code></pre>
 
 
 
