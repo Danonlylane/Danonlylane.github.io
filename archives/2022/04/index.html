@@ -22,28 +22,23 @@
   <script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"danonlylane.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.9.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
-<meta name="description" content="组件间的通信方式1. 父组件传递信息给子组件 先看React官网的一句话：当 React 元素为用户自定义组件时，它会将 JSX 所接收的属性（attributes）以及子组件（children）转换为单个对象传递给组件，这个对象被称之为 “props”。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="ReactNote04：组件通信方式">
-<meta property="og:url" content="https://danonlylane.github.io/2022/01/31/ReactNote04:%20%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F/index.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="beiyep&#39;s Blog">
+<meta property="og:url" content="https://danonlylane.github.io/archives/2022/04/index.html">
 <meta property="og:site_name" content="beiyep&#39;s Blog">
-<meta property="og:description" content="组件间的通信方式1. 父组件传递信息给子组件 先看React官网的一句话：当 React 元素为用户自定义组件时，它会将 JSX 所接收的属性（attributes）以及子组件（children）转换为单个对象传递给组件，这个对象被称之为 “props”。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-01-30T17:49:34.000Z">
-<meta property="article:modified_time" content="2022-03-03T13:14:42.174Z">
 <meta property="article:author" content="beiyep">
-<meta property="article:tag" content="React">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://danonlylane.github.io/2022/01/31/ReactNote04:%20%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F/">
+<link rel="canonical" href="https://danonlylane.github.io/archives/2022/04/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://danonlylane.github.io/2022/01/31/ReactNote04:%20%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F/","path":"2022/01/31/ReactNote04: 组件通信方式/","title":"ReactNote04：组件通信方式"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"archives/2022/04/index.html","title":""}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>ReactNote04：组件通信方式 | beiyep's Blog</title>
+<title>归档 | beiyep's Blog</title>
   
 
 
@@ -74,7 +69,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <p class="site-title">beiyep's Blog</p>
+      <h1 class="site-title">beiyep's Blog</h1>
       <i class="logo-line"></i>
     </a>
   </div>
@@ -138,7 +133,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+    <div class="sidebar-inner sidebar-overview-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -151,7 +146,6 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%84%E4%BB%B6%E9%97%B4%E7%9A%84%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F"><span class="nav-number">1.</span> <span class="nav-text">组件间的通信方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E7%88%B6%E7%BB%84%E4%BB%B6%E4%BC%A0%E9%80%92%E4%BF%A1%E6%81%AF%E7%BB%99%E5%AD%90%E7%BB%84%E4%BB%B6"><span class="nav-number">1.1.</span> <span class="nav-text">1. 父组件传递信息给子组件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E7%BB%84%E4%BB%B6%E4%BC%A0%E9%80%92%E4%BF%A1%E6%81%AF%E6%97%B6%E7%9A%84%E6%95%B0%E6%8D%AE%E9%AA%8C%E8%AF%81"><span class="nav-number">1.2.</span> <span class="nav-text">2. 组件传递信息时的数据验证</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -206,241 +200,50 @@
 </noscript>
 
 
-    <div class="main-inner post posts-expand">
+    <div class="main-inner archive posts-collapse">
 
 
   
-
-
-<div class="post-block">
   
   
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://danonlylane.github.io/2022/01/31/ReactNote04:%20%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="beiyep">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="beiyep's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          ReactNote04：组件通信方式
-        </h1>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-01-31 01:49:34" itemprop="dateCreated datePublished" datetime="2022-01-31T01:49:34+08:00">2022-01-31</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-03-03 21:14:42" itemprop="dateModified" datetime="2022-03-03T21:14:42+08:00">2022-03-03</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/React%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">React笔记</span></a>
-        </span>
-    </span>
-
-  
-    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span id="busuanzi_value_page_pv"></span>
-    </span>
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline：</span>
-  
-    <a title="waline" href="/2022/01/31/ReactNote04:%20%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F/#waline-comments" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" id="/2022/01/31/ReactNote04:%20%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F/" data-xid="/2022/01/31/ReactNote04:%20%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>2.3k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>2 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-        <h3 id="组件间的通信方式"><a href="#组件间的通信方式" class="headerlink" title="组件间的通信方式"></a>组件间的通信方式</h3><h4 id="1-父组件传递信息给子组件"><a href="#1-父组件传递信息给子组件" class="headerlink" title="1. 父组件传递信息给子组件"></a>1. 父组件传递信息给子组件</h4><blockquote>
-<p>先看React官网的一句话：当 React 元素为用户自定义组件时，它会将 JSX 所接收的属性（attributes）以及子组件（children）转换为单个对象传递给组件，这个对象被称之为 “props”。</p>
-</blockquote>
-<span id="more"></span>
-
-<p>以下例子说明了父组件传递信息给子组件的方式是：在父组件的子组件中写形参的时候，React会将子组件接受到的属性转换为props对象传递给组件，所以渲染子组件的时候就可以使用props里面的数据了。函数组件同理。</p>
-<pre class="language-react" data-language="react"><code class="language-react">import React, { Component } from 'react'
-class Son extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-        }
-    }
-    render() {
-        // 为什么这里可以通过this.props取得父组件里面传来的值呢？
-        const { name, age, height } = this.props;
-        return (
-            &lt;div&gt;
-                &lt;h2&gt;{name + " " + age + " " + height}&lt;/h2&gt;
-            &lt;/div&gt;
-        )
-    }
-}
-
-export default class App extends Component {
-    render() {
-        return (
-            &lt;div&gt;
-                &lt;Son name="beiyep" age="18" height="1.88"&gt;&lt;/Son&gt;
-                &lt;Son name="hala" age="188" height="1.88"&gt;&lt;/Son&gt;
-                &lt;Son name="indexjs" age="11118" height="1.8228"&gt;&lt;/Son&gt;
-            &lt;/div&gt;
-        )
-    }
-}</code></pre>
-
-
-
-<h4 id="2-组件传递信息时的数据验证"><a href="#2-组件传递信息时的数据验证" class="headerlink" title="2. 组件传递信息时的数据验证"></a>2. 组件传递信息时的数据验证</h4><pre class="language-react" data-language="react"><code class="language-react">import React, { Component } from 'react';
-import PropTypes from "prop-types";
-
-function Son(props) {
-    const { name, age, height, names } = props;
-    return (
-        &lt;div&gt;
-            &lt;h2&gt;{name + " " + age + " " + height}&lt;/h2&gt;
-            &lt;ul&gt;
-                {
-                    names.map((item, index) =&gt; {
-                        return &lt;li&gt;{item}&lt;/li&gt;
-                    })
-                }
-            &lt;/ul&gt;
-        &lt;/div&gt;
-    )
-}
-
-Son.propTypes = {
-    name: PropTypes.string.isRequired,
-    age: PropTypes.number,
-    height: PropTypes.number,
-    names: PropTypes.array
-}
-
-// 默认属性
-Son.defaultProps = {
-    name: "hcb",
-    age: 11,
-    height: 178,
-    names: ["hcb", "bbxk"]
-}
-
-
-
-export default class App extends Component {
-    render() {
-        return (
-            &lt;div&gt;
-                &lt;Son name="beiyep333" age="18" height="1.88" names={["aaa", "bbb", "ccc"]}&gt;&lt;/Son&gt;
-                &lt;Son name="hala333" age="188" height="1.88" names={["aaa", "bbb", "ccc"]}&gt;&lt;/Son&gt;
-                &lt;Son name="indexjs函数" age="11118" height="1.8228"&gt;&lt;/Son&gt;
-            &lt;/div&gt;
-        )
-    }
-}
-</code></pre>
-
-
-
-
-    </div>
-
-    
-    
-    
-    
-    <div>
-      
-      <div>
-    
-        <div style="text-align:center;color: #ccc;font-size:14px;">------------- 本文结束 <i class="fas fa-book-reader"></i> 感谢阅读 -------------</div>
-    
-</div>
+  <div class="post-block">
+    <div class="post-content">
+      <div class="collection-title">
+        <span class="collection-header">嗯..! 目前共计 21 篇日志。 继续努力。</span>
+      </div>
 
       
+    <div class="collection-year">
+      <span class="collection-header">2022</span>
     </div>
 
-    <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/React/" rel="tag"># React</a>
-          </div>
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2022-04-03T22:18:51+08:00"
+              content="2022-04-03">
+          04-03
+        </time>
+      </div>
 
-        
+      <div class="post-title">
+          <a class="post-title-link" href="/2022/04/03/hexo%E4%B8%BB%E9%A2%98%E5%88%87%E6%8D%A2%E6%A0%B7%E5%BC%8F%E9%97%AE%E9%A2%98/" itemprop="url">
+            <span itemprop="name">hexo主题切换样式问题</span>
+          </a>
+      </div>
 
-          <div class="post-nav">
-            <div class="post-nav-item">
-                <a href="/2022/01/17/ReactNote03:%20JSX%E6%9C%AC%E8%B4%A8%E5%8F%8A%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/" rel="prev" title="ReactNote03：JSX本质及源码解析">
-                  <i class="fa fa-chevron-left"></i> ReactNote03：JSX本质及源码解析
-                </a>
-            </div>
-            <div class="post-nav-item">
-                <a href="/2022/01/31/CSS%E5%87%A0%E7%A7%8D%E5%B8%B8%E8%A7%81%E7%9A%84%E5%B8%83%E5%B1%80/" rel="next" title="CSS几种常见的布局">
-                  CSS几种常见的布局 <i class="fa fa-chevron-right"></i>
-                </a>
-            </div>
-          </div>
-    </footer>
+      
+    </header>
   </article>
-</div>
 
 
+    </div>
+  </div>
+  
+  
+  
 
-
-
-
-    <div class="comments" id="waline-comments"></div>
 </div>
   </main>
 
@@ -537,7 +340,7 @@ setInterval("createtime()",250);
 
 
 
-<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"https://hexo-coment-api.vercel.app/","placeholder":"欢迎评论...","avatar":"mm","pageSize":10,"visitor":false,"comment_count":true,"requiredFields":[],"meta":["nick","mail","link"],"libUrl":"https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js","el":"#waline-comments","path":"/2022/01/31/ReactNote04:%20%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F/"}</script>
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"https://hexo-coment-api.vercel.app/","placeholder":"欢迎评论...","avatar":"mm","pageSize":10,"visitor":false,"comment_count":true,"requiredFields":[],"meta":["nick","mail","link"],"libUrl":"https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js","el":"#waline-comments","path":"/archives/2022/04/"}</script>
 <script>
 document.addEventListener('page:loaded', () => {
   NexT.utils.loadComments(CONFIG.waline.el).then(() => 
