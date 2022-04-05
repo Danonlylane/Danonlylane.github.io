@@ -5175,4 +5175,94 @@ i = 3 dp[3] = </code></pre>
         <tag>hexo</tag>
       </tags>
   </entry>
+  <entry>
+    <title>你不知道的js之作用域</title>
+    <url>/2022/03/03/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js%E4%B9%8B%E4%BD%9C%E7%94%A8%E5%9F%9F/</url>
+    <content><![CDATA[<h2 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h2><h3 id="编译原理"><a href="#编译原理" class="headerlink" title="编译原理"></a>编译原理</h3><p>在传统编译语言的流程中，程序中的一段源代码在执行之前会经历三个步骤，统称为“编译”</p>
+<ul>
+<li><p>分词/词法分析（Tokening/Lexing）</p>
+<p>如var a = 2;。会被分解为:var、a、=、2 、;</p>
+</li>
+<li><p>解析/语法分析 (Parsing)</p>
+<p>这个过程是将词法单元流(数组)转换成一个由元素逐级嵌套所组成的代表了程序语法结构的树。这个树被称为“抽象语法树” (Abstract Syntax Tree，AST)</p>
+</li>
+<li><p>代码生成</p>
+<p>将 AST 转换为可执行代码的过程称被称为代码生成</p>
+</li>
+</ul>
+<p>感觉 HTML 的编译过程和这个有点类似。果然天下语言不分家</p>
+<h3 id="理解作用域"><a href="#理解作用域" class="headerlink" title="理解作用域"></a>理解作用域</h3><p>名词解释：</p>
+<ul>
+<li> 引擎</li>
+</ul>
+<p>  从头到尾负责整个 JavaScript 程序的编译及执行过程。</p>
+<ul>
+<li><p>编译器</p>
+<p>负责语法分析及代码生成</p>
+</li>
+<li><p>作用域（重点）</p>
+<p>负责收集并维护由所有声明的标识符(变量)组成的一系列查询，并实施一套非常严格的规则，确定当前执行的代码对这些标识符的访问权限。</p>
+</li>
+</ul>
+<p>为了理解三者关系，举一个🌰来说明</p>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token number">2</span></code></pre>
+
+<ul>
+<li>首先编译器会将这段代码进行词法分析，生成词法单元。然后将词法单元解析，生成 AST</li>
+</ul>
+<ul>
+<li>编译器编译具体过程：<ul>
+<li>遇到 var a，编译器会询问作用域是否已经有一个该名称的变量存在于同一个作用域的集合中。如果是，编译器会忽略该声明，继续进行编译；否则它会要求作用域在当前作用域的集合中声明一个新的变量，并命名为 a。（var 变量提升）</li>
+<li>接下来编译器会为引擎生成运行时所需的代码，这些代码被用来处理 a = 2 这个赋值操作。引擎运行时会首先询问作用域，在当前的作用域集合中是否存在一个叫作 a 的 变量。如果是，引擎就会使用这个变量;如果否，引擎会继续查找该变量（运行时赋值）</li>
+</ul>
+</li>
+</ul>
+<p>LHS 查询 和 RHS 查询</p>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span> a <span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
+<p>其中对 a 的引用是一个 RHS 引用，因为这里 a 并没有赋予任何值。相应地，需要查找并取得 a 的值，这样才能将值传递给 console.log(..)；</p>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript">a <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span></code></pre>
+
+<p>这里对 a 的引用则是 LHS 引用，因为实际上我们并不关心当前的值是什么，只是想要为<code>= 2</code>这个赋值操作找到一个目标。</p>
+<p>LHS 查询 和 RHS 查询总结：</p>
+<p>LHS：赋值操作的目标是谁</p>
+<p>RHS：谁是赋值操作的源头</p>
+<p>对 LHS 和 RHS 进一步的理解：</p>
+<p>考虑如下代码:</p>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">foo</span><span class="token punctuation">(</span><span class="token parameter">a</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+		console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span> a <span class="token operator">+</span> b <span class="token punctuation">)</span><span class="token punctuation">;</span> 
+		b <span class="token operator">=</span> a<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token function">foo</span><span class="token punctuation">(</span> <span class="token number">2</span> <span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
+<p>第一次对 b 进行 RHS 查询时是无法找到该变量的。也就是说，这是一个“未声明”的变 量，因为在任何相关的作用域中都无法找到它。</p>
+<p>如果 RHS 查询在所有嵌套的作用域中遍寻不到所需的变量，引擎就会抛出 ReferenceError 异常。值得注意的是，ReferenceError 是非常重要的异常类型。</p>
+<p>相较之下，当引擎执行 LHS 查询时，如果在顶层(全局作用域)中也无法找到目标变量，</p>
+<p>全局作用域中就会创建一个具有该名称的变量，并将其返还给引擎。（非严格模式下才会创建，严格模式禁止自动或隐式地创建全局变量。因此，在 严格模式中 LHS 查询失败时，并不会创建并返回一个全局变量，引擎会抛出同 RHS 查询 失败时类似的 ReferenceError 异常）</p>
+<p>知识补充：ReferenceError 同作用域判别失败相关，而 TypeError 则代表作用域判别成功了，但是对结果的操作是非法或不合理的</p>
+<h3 id="词法作用域"><a href="#词法作用域" class="headerlink" title="词法作用域"></a>词法作用域</h3><p>词法作用域是什么？</p>
+<p>大部分标准语言编译器的第一个工作阶段叫作词法化(也叫单词化)。回忆一下，词法化的过程会对源代码中的字符进行检查，如果是有状态的解析过程，还会赋予单词语义。</p>
+<p>这个概念是理解词法作用域及其名称来历的基础。</p>
+<p>词法作用域能不能更改？</p>
+<p>简单地说，词法作用域就是定义在词法阶段的作用域。换句话说，词法作用域是由你在写代码时将变量和块作用域写在哪里来决定的，因此当词法分析器处理代码时会保持作用域不变(大部分情况下是这样的，可以使用 eval 进行更改)</p>
+<p>欺骗词法，更改词法作用域（但在严格模式下，eval(..) 在运行时有其自己的词法作用域，意味着其中的声明无法修改所在的作用域）</p>
+<pre class="language-none"><code class="language-none">function foo(str, a) { 
+	eval( str ); // 欺骗! 
+	console.log( a, b );
+}
+var b = 2;
+foo( "var b = 3;", 1 ); // 1, 3</code></pre>
+
+<p>eval(..) 调用中的 “var b = 3;” 这段代码会被当作本来就在那里一样来处理。由于那段代 码声明了一个新的变量 b，因此它对已经存在的 foo(..) 的词法作用域进行了修改。事实 上，和前面提到的原理一样，这段代码实际上在 foo(..) 内部创建了一个变量 b，并遮蔽 了外部(全局)作用域中的同名变量。</p>
+<p>当 console.log(..) 被执行时，会在 foo(..) 的内部同时找到 a 和 b，但是永远也无法找到 外部的 b。因此会输出“1, 3”而不是正常情况下会输出的“1, 2”。</p>
+<p>但是这种在程序中动态生成代码的使用场景非常罕见，因为它所带来的好处无法抵消性能上的损失。因为使用了 eval 之后，编译器的优化几乎起不到作用！</p>
+<p>⚠️ <strong>无论函数在哪里被调用，也无论它如何被调用，它的词法作用域都只由函数被声明时所处的位置决定</strong></p>
+]]></content>
+      <categories>
+        <category>js</category>
+      </categories>
+      <tags>
+        <tag>js</tag>
+      </tags>
+  </entry>
 </search>
