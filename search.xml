@@ -5186,13 +5186,15 @@ i = 3 dp[3] = </code></pre>
 <li><p>解析/语法分析 (Parsing)</p>
 <p>这个过程是将词法单元流(数组)转换成一个由元素逐级嵌套所组成的代表了程序语法结构的树。这个树被称为“抽象语法树” (Abstract Syntax Tree，AST)</p>
 </li>
+</ul>
+<span id="more"></span>
+
+<ul>
 <li><p>代码生成</p>
 <p>将 AST 转换为可执行代码的过程称被称为代码生成</p>
 </li>
 </ul>
 <p>感觉 HTML 的编译过程和这个有点类似。果然天下语言不分家</p>
-<span id="more"></span>
-
 <h3 id="理解作用域"><a href="#理解作用域" class="headerlink" title="理解作用域"></a>理解作用域</h3><p>名词解释：</p>
 <ul>
 <li> 引擎</li>
@@ -5272,6 +5274,8 @@ i = 3 dp[3] = </code></pre>
     <url>/2022/04/06/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84js%E4%B9%8B%E9%97%AD%E5%8C%85/</url>
     <content><![CDATA[<h3 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h3><p>闭包一直是一个困扰初学者的一个问题，网上对闭包的各种定义和解释都大不相同，有的人说闭包很简单，也有的人说闭包很复杂，甚至在评论区 battle，这下可苦坏了初学者，该信哪个啊😢</p>
 <p>其实我们可以看看《你不知道的 JavaScript》的作者对于闭包的理解：</p>
+<span id="more"></span>
+
 <pre class="language-javascript" data-language="javascript"><code class="language-javascript">对于那些有一点 JavaScript 使用经验但从未真正理解闭包概念的人来说，理解闭包可以看
 作是某种意义上的重生，但是需要付出非常多的努力和牺牲才能理解这个概念。
 回忆我前几年的时光，大量使用 JavaScript 但却完全不理解闭包是什么。总是感觉这门语 言有其隐蔽的一面，如果能够掌握将会功力大涨，但讽刺的是我始终无法掌握其中的门 道。还记得我曾经大量阅读早期框架的源码，试图能够理解闭包的工作原理。现在还能回 忆起我的脑海中第一次浮现出关于“模块模式”相关概念时的激动心情。
@@ -5279,7 +5283,7 @@ i = 3 dp[3] = </code></pre>
 闭包是基于词法作用域书写代码时所产生的自然结果，你甚至不需要为了利用它们而有意 识地创建闭包。闭包的创建和使用在你的代码中随处可见。你缺少的是根据你自己的意愿 来识别、拥抱和影响闭包的思维环境。
 最后你恍然大悟<span class="token operator">:</span>原来在我的代码中已经到处都是闭包了，现在我终于能理解它们了。</code></pre>
 
-<span id="more"></span>
+
 
 <h4 id="闭包的定义"><a href="#闭包的定义" class="headerlink" title="闭包的定义"></a>闭包的定义</h4><p><strong>下面是直接了当的定义，你需要掌握它才能理解和识别闭包:</strong></p>
 <pre class="language-none"><code class="language-none">当函数可以记住并访问所在的词法作用域时，就产生了闭包，即使函数是在当前词法作用域之外执行。</code></pre>
@@ -5334,6 +5338,8 @@ i = 3 dp[3] = </code></pre>
     <content><![CDATA[<h2 id="this"><a href="#this" class="headerlink" title="this"></a>this</h2><p>为什么需要 this ？</p>
 <p>来看一下下面两段代码</p>
 <p>先看不使用 this 的</p>
+<span id="more"></span>
+
 <pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">identify</span><span class="token punctuation">(</span><span class="token parameter">context</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">return</span> context<span class="token punctuation">.</span>name<span class="token punctuation">.</span><span class="token function">toUpperCase</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
