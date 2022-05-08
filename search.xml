@@ -5444,13 +5444,15 @@ obj<span class="token punctuation">.</span><span class="token function">foo</spa
       </tags>
   </entry>
   <entry>
-    <title></title>
-    <url>/2022/05/05/%E7%BD%91%E6%98%93%E4%BA%91%E9%9F%B3%E4%B9%90%E4%BD%BF%E7%94%A8%20next.js%20%E6%A1%86%E6%9E%B6%E4%BC%98%E5%8C%96%E4%BD%93%E9%AA%8C%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/</url>
+    <title>网易云音乐使用 next.js 框架优化体验开发记录</title>
+    <url>/2022/05/06/%E7%BD%91%E6%98%93%E4%BA%91%E9%9F%B3%E4%B9%90%E4%BD%BF%E7%94%A8%20next.js%20%E6%A1%86%E6%9E%B6%E4%BC%98%E5%8C%96%E4%BD%93%E9%AA%8C%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/</url>
     <content><![CDATA[<h1 id="网易云音乐使用-next-js-框架优化体验开发记录"><a href="#网易云音乐使用-next-js-框架优化体验开发记录" class="headerlink" title="网易云音乐使用 next.js 框架优化体验开发记录"></a>网易云音乐使用 next.js 框架优化体验开发记录</h1><p>为什么要使用 next.js 呢？</p>
 <p>因为使用 react 框架，开发出来的单页面富应用，是先从服务器请求下来 HTML、CSS、JS 文件，然后在客户端再进行解析。这样的话，会有一段时间的白屏，而且首屏加载速度很慢很慢，自己都受不了自己开发的项目速度这么慢了。本着要把事情做的更好的精神（其实就是受不了这么慢的加载速度），决定使用 next.js 框架对项目进行服务端渲染，加快访问速度。</p>
 <p>使用客户端渲染时的性能分析：</p>
 <p>从下图可以看出，在客户端渲染的情况下解析 HTML 和重新计算样式还有布局占用了很多的时间</p>
 <p><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h1z9nx4oi3j21mg0u012g.jpg"></p>
+<span id="more"></span>
+
 <p>使用服务端渲染时的性能分析：</p>
 <p>从下图可以看出，SSR（服务端渲染）解析 HTML 和重新计算样式还有布局的时间占比是很少的（这里的话应该是在服务端将页面渲染好的），而且服务端渲染的总时间已经减少了很长的时间，所以应用的打开速度比客户端渲染打开的速度快很多。</p>
 <p><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h1zai3mppgj21m90u010c.jpg"></p>
@@ -5534,5 +5536,11 @@ module.exports = nextConfig</code></pre>
 <p>看到有返回信息，说用服务已经起来了。</p>
 <h3 id="部署到-vercel-服务器"><a href="#部署到-vercel-服务器" class="headerlink" title="部署到 vercel 服务器"></a>部署到 vercel 服务器</h3><p>从官网链接点进去，按照说明一步一步进行部署</p>
 ]]></content>
+      <categories>
+        <category>性能优化</category>
+      </categories>
+      <tags>
+        <tag>性能优化</tag>
+      </tags>
   </entry>
 </search>
