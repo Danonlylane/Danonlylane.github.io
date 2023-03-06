@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/myPicture.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/myPicture.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"danonlylane.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.9.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="类别、扩展和协议[toc] OC 中的类别（Category）类别的定义实现某个类的一部分方法的模块叫做类别。类别可以将有很多方法的超大型的类，分散到不同的模块之中。类别本是 smalltalk 中的概念，用于将多个方法按照相互关系、用途等特征分类，以便最快速的找到自己想要的方法。 调用类别中的方法和调用普通类中的方法是一样的，类别和类一样，都是在接口文件中声明，在类文件中实现，但类别中不能声明实">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OC中的类别、扩展和协议">
+<meta property="og:url" content="https://danonlylane.github.io/2022/07/26/Week2_2%EF%BC%9AOC%E4%B8%AD%E7%9A%84%E7%B1%BB%E5%88%AB%E3%80%81%E6%89%A9%E5%B1%95%E5%92%8C%E5%8D%8F%E8%AE%AE/index.html">
+<meta property="og:site_name" content="beiyep&#39;s Blog">
+<meta property="og:description" content="类别、扩展和协议[toc] OC 中的类别（Category）类别的定义实现某个类的一部分方法的模块叫做类别。类别可以将有很多方法的超大型的类，分散到不同的模块之中。类别本是 smalltalk 中的概念，用于将多个方法按照相互关系、用途等特征分类，以便最快速的找到自己想要的方法。 调用类别中的方法和调用普通类中的方法是一样的，类别和类一样，都是在接口文件中声明，在类文件中实现，但类别中不能声明实">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h3p75z04xuj213s0siq5c.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h3p76n8u26j21400smjt2.jpg">
+<meta property="article:published_time" content="2022-07-26T15:28:41.000Z">
+<meta property="article:modified_time" content="2023-03-06T06:11:18.483Z">
+<meta property="article:author" content="beiyep">
+<meta property="article:tag" content="iOS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h3p75z04xuj213s0siq5c.jpg">
+
+
+<link rel="canonical" href="https://danonlylane.github.io/2022/07/26/Week2_2%EF%BC%9AOC%E4%B8%AD%E7%9A%84%E7%B1%BB%E5%88%AB%E3%80%81%E6%89%A9%E5%B1%95%E5%92%8C%E5%8D%8F%E8%AE%AE/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://danonlylane.github.io/2022/07/26/Week2_2%EF%BC%9AOC%E4%B8%AD%E7%9A%84%E7%B1%BB%E5%88%AB%E3%80%81%E6%89%A9%E5%B1%95%E5%92%8C%E5%8D%8F%E8%AE%AE/","path":"2022/07/26/Week2_2：OC中的类别、扩展和协议/","title":"OC中的类别、扩展和协议"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>OC中的类别、扩展和协议 | beiyep's Blog</title>
+  
+
+
+
+<link rel="dns-prefetch" href="https://hexo-coment-api.vercel.app/">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">beiyep's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">12</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">11</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">37</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B1%BB%E5%88%AB%E3%80%81%E6%89%A9%E5%B1%95%E5%92%8C%E5%8D%8F%E8%AE%AE"><span class="nav-number">1.</span> <span class="nav-text">类别、扩展和协议</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#OC-%E4%B8%AD%E7%9A%84%E7%B1%BB%E5%88%AB%EF%BC%88Category%EF%BC%89"><span class="nav-number">1.1.</span> <span class="nav-text">OC 中的类别（Category）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B1%BB%E5%88%AB%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-number">1.1.1.</span> <span class="nav-text">类别的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B1%BB%E5%88%AB%E4%B8%AD%E6%B7%BB%E5%8A%A0%E5%B1%9E%E6%80%A7%E7%9A%84%E6%96%B9%E6%B3%95%EF%BC%9A"><span class="nav-number">1.1.2.</span> <span class="nav-text">类别中添加属性的方法：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OC-%E4%B8%AD%E7%9A%84%E6%89%A9%E5%B1%95%EF%BC%88Extension%EF%BC%89"><span class="nav-number">1.2.</span> <span class="nav-text">OC 中的扩展（Extension）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B1%BB%E6%89%A9%E5%B1%95%E7%9A%84%E5%A3%B0%E6%98%8E"><span class="nav-number">1.2.1.</span> <span class="nav-text">类扩展的声明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B1%BB%E6%89%A9%E5%B1%95%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.2.2.</span> <span class="nav-text">类扩展的实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OC-%E4%B8%AD%E7%9A%84%E5%8D%8F%E8%AE%AE%EF%BC%88Protocol%EF%BC%89"><span class="nav-number">1.3.</span> <span class="nav-text">OC 中的协议（Protocol）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A3%E5%BC%8F%E5%8D%8F%E8%AE%AE"><span class="nav-number">1.3.1.</span> <span class="nav-text">正式协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%9E%E6%AD%A3%E5%BC%8F%E5%8D%8F%E8%AE%AE"><span class="nav-number">1.3.2.</span> <span class="nav-text">非正式协议</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="beiyep"
+      src="/images/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">beiyep</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://danonlylane.github.io/2022/07/26/Week2_2%EF%BC%9AOC%E4%B8%AD%E7%9A%84%E7%B1%BB%E5%88%AB%E3%80%81%E6%89%A9%E5%B1%95%E5%92%8C%E5%8D%8F%E8%AE%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="beiyep">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="beiyep's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          OC中的类别、扩展和协议
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-07-26 23:28:41" itemprop="dateCreated datePublished" datetime="2022-07-26T23:28:41+08:00">2022-07-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-03-06 14:11:18" itemprop="dateModified" datetime="2023-03-06T14:11:18+08:00">2023-03-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/2022/07/26/Week2_2%EF%BC%9AOC%E4%B8%AD%E7%9A%84%E7%B1%BB%E5%88%AB%E3%80%81%E6%89%A9%E5%B1%95%E5%92%8C%E5%8D%8F%E8%AE%AE/#waline-comments" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" id="/2022/07/26/Week2_2%EF%BC%9AOC%E4%B8%AD%E7%9A%84%E7%B1%BB%E5%88%AB%E3%80%81%E6%89%A9%E5%B1%95%E5%92%8C%E5%8D%8F%E8%AE%AE/" data-xid="/2022/07/26/Week2_2%EF%BC%9AOC%E4%B8%AD%E7%9A%84%E7%B1%BB%E5%88%AB%E3%80%81%E6%89%A9%E5%B1%95%E5%92%8C%E5%8D%8F%E8%AE%AE/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>3.8k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>3 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="类别、扩展和协议"><a href="#类别、扩展和协议" class="headerlink" title="类别、扩展和协议"></a>类别、扩展和协议</h1><p>[toc]</p>
+<h2 id="OC-中的类别（Category）"><a href="#OC-中的类别（Category）" class="headerlink" title="OC 中的类别（Category）"></a>OC 中的类别（Category）</h2><h3 id="类别的定义"><a href="#类别的定义" class="headerlink" title="类别的定义"></a>类别的定义</h3><p>实现某个类的一部分方法的模块叫做类别。类别可以将有很多方法的超大型的类，分散到不同的模块之中。类别本是 smalltalk 中的概念，用于将多个方法按照相互关系、用途等特征分类，以便最快速的找到自己想要的方法。</p>
+<p>调用类别中的方法和调用普通类中的方法是一样的，类别和类一样，都是在接口文件中声明，在类文件中实现，但类别中不能声明实例变量，只能声明方法，声明的方法可以是类方法也可以是实例方法。</p>
+<p>类别的声明</p>
+<pre class="language-objc" data-language="objc"><code class="language-objc"><span class="token keyword">@interface</span> 类名（类别名）
+方法的声明；
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token keyword">@end</span></code></pre>
+
+<p>类别的定义</p>
+<pre class="language-objc" data-language="objc"><code class="language-objc"><span class="token operator">@</span>implemention 类名（类别名）
+方法的定义；
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token keyword">@end</span></code></pre>
+
+<span id="more"></span>
+
+<p>Xcode 中为一个类添加类别的过程：</p>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h3p75z04xuj213s0siq5c.jpg" style="zoom:33%;">
+
+
+
+<p>File 填上类别名</p>
+<p>File Type 选择 Category</p>
+<p>Class 选择要添加类别的父类</p>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h3p76n8u26j21400smjt2.jpg" style="zoom:33%;">
+
+
+
+<p>类别的注意事项：</p>
+<p>1、只要保证类别名称唯一，我们可以向一个类中添加任意数量的类别；</p>
+<p>2、类别中可以添加方法，但不能直接添加变量；</p>
+<p>3、类别可以利用运行时功能为已经存在的实例对象增加实例变量；</p>
+<h3 id="类别中添加属性的方法："><a href="#类别中添加属性的方法：" class="headerlink" title="类别中添加属性的方法："></a>类别中添加属性的方法：</h3><p>在类别中添加属性时，只会生成 set 和 get 方法的声明，没有生成 set 和 get 方法的实现。所以如果在类别中添加了属性，直接调用属性的 set 或者 get 是会发生崩溃的。如果有需要在类别中添加属性，可以利用 OC 的 runtime 的特性实现。</p>
+<p><code>Dog + LikeDoing.h</code> 文件</p>
+<pre class="language-objc" data-language="objc"><code class="language-objc"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">import</span> <span class="token expression"><span class="token operator">&lt;</span>Foundation<span class="token operator">/</span>Foundation<span class="token punctuation">.</span>h<span class="token operator">&gt;</span></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">import</span> <span class="token string">"Dog.h"</span></span>
+
+<span class="token keyword">@interface</span> <span class="token function">Dog</span> <span class="token punctuation">(</span>LikeDoing<span class="token punctuation">)</span>
+
+<span class="token keyword">@property</span> <span class="token punctuation">(</span>nonatomic<span class="token punctuation">,</span> copy<span class="token punctuation">)</span> NSString <span class="token operator">*</span>hobby<span class="token punctuation">;</span>
+
+<span class="token operator">-</span> <span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span> printHobby<span class="token punctuation">;</span>
+
+<span class="token keyword">@end</span></code></pre>
+
+<p><code>Dog + LikeDoing.m</code> 文件</p>
+<pre class="language-objc" data-language="objc"><code class="language-objc"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">import</span> <span class="token string">"Dog+LikeDoing.h"</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">import</span> <span class="token expression"><span class="token operator">&lt;</span>objc<span class="token operator">/</span>message<span class="token punctuation">.</span>h<span class="token operator">&gt;</span></span></span>
+
+<span class="token keyword">@implementation</span> <span class="token function">Dog</span> <span class="token punctuation">(</span>LikeDoing<span class="token punctuation">)</span>
+
+<span class="token keyword">static</span> <span class="token keyword">char</span> <span class="token operator">*</span>hobbyKey <span class="token operator">=</span> <span class="token string">"hobbyKey"</span><span class="token punctuation">;</span>
+
+<span class="token operator">-</span> <span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>setHobby<span class="token punctuation">:</span><span class="token punctuation">(</span>NSString <span class="token operator">*</span><span class="token punctuation">)</span>hobby <span class="token punctuation">{</span>
+    <span class="token function">objc_setAssociatedObject</span><span class="token punctuation">(</span><span class="token keyword">self</span><span class="token punctuation">,</span> hobbyKey<span class="token punctuation">,</span> hobby<span class="token punctuation">,</span> OBJC_ASSOCIATION_COPY_NONATOMIC<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token operator">-</span> <span class="token punctuation">(</span>NSString <span class="token operator">*</span><span class="token punctuation">)</span>hobby <span class="token punctuation">{</span>
+    <span class="token keyword">return</span>  <span class="token function">objc_getAssociatedObject</span><span class="token punctuation">(</span><span class="token keyword">self</span><span class="token punctuation">,</span> hobbyKey<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token operator">-</span> <span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span> printHobby <span class="token punctuation">{</span>
+ 
+    <span class="token function">NSLog</span><span class="token punctuation">(</span><span class="token string">@"%@"</span><span class="token punctuation">,</span> <span class="token keyword">self</span><span class="token punctuation">.</span>hobby<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">@end</span></code></pre>
+
+
+
+<h2 id="OC-中的扩展（Extension）"><a href="#OC-中的扩展（Extension）" class="headerlink" title="OC 中的扩展（Extension）"></a>OC 中的扩展（Extension）</h2><h3 id="类扩展的声明"><a href="#类扩展的声明" class="headerlink" title="类扩展的声明"></a>类扩展的声明</h3><p>类别只能增加方法，不能直接添加实例变量，但使用类扩展（Class Extension）可以做到。</p>
+<p>类扩展也叫匿名类别，不需要指定类别名字。</p>
+<pre class="language-objc" data-language="objc"><code class="language-objc"><span class="token comment">//add extension</span>
+<span class="token keyword">@interface</span> <span class="token function">Cat</span> <span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">@property</span> <span class="token punctuation">(</span>nonatomic<span class="token punctuation">,</span> assign<span class="token punctuation">)</span> <span class="token keyword">int</span> prices<span class="token punctuation">;</span>
+
+<span class="token comment">//对外不可见</span>
+<span class="token operator">-</span> <span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span> extensionPrintPrices<span class="token punctuation">;</span>
+
+<span class="token keyword">@end</span></code></pre>
+
+
+
+<h3 id="类扩展的实现"><a href="#类扩展的实现" class="headerlink" title="类扩展的实现"></a>类扩展的实现</h3><p>一般类扩展都是写在.m文件中，不单独建立一个扩展文件，如下：</p>
+<pre class="language-objc" data-language="objc"><code class="language-objc"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">import</span> <span class="token expression"><span class="token operator">&lt;</span>Foundation<span class="token operator">/</span>Foundation<span class="token punctuation">.</span>h<span class="token operator">&gt;</span></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">import</span> <span class="token string">"Cat.h"</span></span>
+
+<span class="token comment">//add extension</span>
+<span class="token keyword">@interface</span> <span class="token function">Cat</span> <span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">@property</span> <span class="token punctuation">(</span>nonatomic<span class="token punctuation">,</span> assign<span class="token punctuation">)</span> <span class="token keyword">int</span> prices<span class="token punctuation">;</span>
+
+<span class="token comment">//对外不可见</span>
+<span class="token operator">-</span> <span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span> extensionPrintPrices<span class="token punctuation">;</span>
+
+<span class="token keyword">@end</span>
+
+
+<span class="token keyword">@implementation</span> Cat
+
+<span class="token operator">-</span> <span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>printPrice <span class="token punctuation">{</span>
+    <span class="token punctuation">[</span><span class="token keyword">self</span> extensionPrintPrices<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token operator">-</span> <span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>extensionPrintPrices <span class="token punctuation">{</span>
+    <span class="token keyword">self</span><span class="token punctuation">.</span>prices <span class="token operator">=</span> <span class="token number">1000</span><span class="token punctuation">;</span>
+    <span class="token function">NSLog</span><span class="token punctuation">(</span><span class="token string">@"%d"</span><span class="token punctuation">,</span> <span class="token keyword">self</span><span class="token punctuation">.</span>prices<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">@end</span>
+</code></pre>
+
+<p>单独生成一个类扩展文件也可以，但必须将类扩展的.h文件包含进本类的.m文件中。</p>
+<p>类扩展的缺陷</p>
+<p>1、类扩展中添加的属性、成员变量和方法都属于私有属性和方法（只能被在本类的 .m 文件调用，并且这些属性和方法不能被子类继承）；</p>
+<p>2、一般类扩展都是写在 .m 文件中，不单独建立一个扩展文件，且必须把类扩展的 @interface 写在本类的 @implementation 的上方，否则编译器会报错； </p>
+<p>3、类扩展只能针对自定义的类，不能给系统类增加类扩展；</p>
+<p>4、类扩展定义的方法必须在类的实现中进行实现（因为单独定义类扩展的话编译器只会生成一个.h文件，类扩展只能在需要扩展的类.m文件里面去进行扩展）；</p>
+<p>5、类扩展中声明的方法可以不实现，但编译器会警告（因为类扩展是在编译阶段被添加到类中，而类别是在运行时添加到类中）；</p>
+<p>6、单独定义类扩展的文件并且只定义属性，也需要在类实现文件中包含进类扩展文件，否则会找不到属性的setter / getter方法。</p>
+<h2 id="OC-中的协议（Protocol）"><a href="#OC-中的协议（Protocol）" class="headerlink" title="OC 中的协议（Protocol）"></a>OC 中的协议（Protocol）</h2><h3 id="正式协议"><a href="#正式协议" class="headerlink" title="正式协议"></a>正式协议</h3><p>OC 中的协议是声明方法的集合体，实现由各个类自行完成，所以实现协议的各个类之间是否有继承关系无关紧要，重要的是这些类如何实现这些协议。</p>
+<p>在使用协议的情况下，如果类实现了协议的方法，那么就说类遵循该协议，而该类的子类也因为继承关系拥有这些协议的方法。当类适用于某个协议时，它的实例也适用于这个协议。</p>
+<p>下面来看看 protocol 怎么用：</p>
+<p><code>Animal.h</code></p>
+<pre class="language-objc" data-language="objc"><code class="language-objc"><span class="token keyword">@protocol</span> AnimalDelegate <span class="token operator">&lt;</span>NSObject<span class="token operator">&gt;</span><span class="token comment">//协议声明</span>
+
+<span class="token operator">@</span>required
+<span class="token operator">-</span> <span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>safeForPeople<span class="token punctuation">;</span>
+
+<span class="token operator">@</span>optional
+……
+
+<span class="token keyword">@end</span>
+
+
+<span class="token keyword">@interface</span> Animal <span class="token punctuation">:</span> NSObject
+
+<span class="token keyword">@end</span></code></pre>
+
+
+
+<p><code>Cat.h</code></p>
+<pre class="language-objc" data-language="objc"><code class="language-objc"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">import</span> <span class="token string">"Animal.h"</span></span>
+
+<span class="token keyword">@interface</span> Cat <span class="token punctuation">:</span> Animal<span class="token operator">&lt;</span>AnimalDelegate<span class="token operator">&gt;</span>
+
+<span class="token operator">-</span> <span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span> printPrice<span class="token punctuation">;</span>
+
+<span class="token keyword">@end</span></code></pre>
+
+
+
+<p><code>Cat.m</code></p>
+<pre class="language-objc" data-language="objc"><code class="language-objc"><span class="token keyword">@implementation</span> Cat
+
+<span class="token operator">-</span> <span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>safeForPeople<span class="token punctuation">{</span>
+    <span class="token function">NSLog</span><span class="token punctuation">(</span><span class="token string">@"Cat can't harm people"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">@end</span></code></pre>
+
+
+
+<p><code>main.m</code></p>
+<pre class="language-objc" data-language="objc"><code class="language-objc"><span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    Cat <span class="token operator">*</span>cat <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">[</span>Cat alloc<span class="token punctuation">]</span> initWeight<span class="token punctuation">:</span><span class="token number">11</span> andHeight<span class="token punctuation">:</span><span class="token number">33</span> andAge<span class="token punctuation">:</span><span class="token number">44</span> andName<span class="token punctuation">:</span><span class="token string">@"bey"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">//protocol</span>
+  	<span class="token punctuation">[</span>cat safeForPeople<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+
+
+
+<p>一个类可以遵循一个或多个协议，任何类只要遵循了协议就相当于拥有了这个协议中所有的方法声明。Protocol 可以定义在一个类的头文件上部，并直接应用在该类中。</p>
+<p>@protocol 是定义一个协议的注解，其中，@required 表示这个方法必须被实现，@optional 表示这个方法不一定要被实现。<br>AnimalProtocol 是协议的名字，规范命名为：类名 + Delegate。</p>
+<p><strong>协议与继承的区别</strong>：</p>
+<ul>
+<li>子类继承父类之后默认就有父类方法的实现，而遵循一个协议只有方法的声明而没有方法的实现；</li>
+<li>相同类型的类可以使用继承，但是不同类型的类遵循同一个协议更方便；</li>
+<li>协议可以将多个类中共有的方法抽取出来，让这些类遵守协议</li>
+</ul>
+<p><strong>协议与类别的区别</strong>：</p>
+<ul>
+<li>类别是针对类进行扩展，协议可以选择性实现；</li>
+<li>类别的方法由此类实现，其他类不能重写次此类的方法。协议只定义方法，遵循此协议的类再实现协议中的方法；</li>
+<li>类别中的方法只能被该类的子类继承，协议可以被不同的类遵循。</li>
+</ul>
+<h3 id="非正式协议"><a href="#非正式协议" class="headerlink" title="非正式协议"></a>非正式协议</h3><p>苹果官方文档 <a target="_blank" rel="noopener" href="http://developer.apple.com/library/ios/#documentation/general/conceptual/devpedia-cocoacore/Protocol.html#//apple_ref/doc/uid/TP40008195-CH45-SW2">Cocoa Core Competencies</a> 一文中是这样介绍非正式协议的：</p>
+<p>An informal protocol is a category on <code>NSObject</code>, which implicitly makes almost all objects adopters of the protocol. (A category is a language feature that enables you to add methods to a class without subclassing it.) Implementation of the methods in an informal protocol is optional. Before invoking a method, the calling object checks to see whether the target object implements it. Until optional protocol methods were introduced in Objective-C 2.0, informal protocols were essential to the way Foundation and AppKit classes implemented delegation.</p>
+<p>大概意思：非正式协议是 NSObject 类（显而易见，还包括它的子类）的类别，其所有的子类都含蓄地接受了这个协议。（类别是 Objective-C 的一个语言特点，可以让你在无需子类化的前提下为一个类增加方法。）非正式协议中的方法是否实现都是可选的，因此在调用非正式协议中的方法之前，需要去检查对象类是否实现了它。在 Objective-C2.0 中引入可选的正式协议方法之前，非正式协议是 Foundation 和 AppKit 类实现委托的唯一方式。</p>
+<p>所以非正式协议就只是基类的类别。</p>
+
+    </div>
+
+    
+    
+    
+    
+    <div>
+      
+      <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">------------- 本文结束 <i class="fas fa-book-reader"></i> 感谢阅读 -------------</div>
+    
+</div>
+
+      
+    </div>
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/iOS/" rel="tag"># iOS</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/07/24/Week2_1%EF%BC%9AOC%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/" rel="prev" title="OC 中的数据存储">
+                  <i class="fa fa-chevron-left"></i> OC 中的数据存储
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/07/28/Week2_3%EF%BC%9A%E6%8E%A2%E7%A9%B6OC%E4%B8%AD%E7%9A%84block/" rel="next" title="OC 中的 block">
+                  OC 中的 block <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline-comments"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">beiyep - 心怀理想 坚定前行</span>
+</div>
+
+
+<span>
+<span class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">163k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">2:28</span>
+  </span>
+</span>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<span class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</span>
+</span>
+
+
+
+<!-- 网站运行时间的设置 -->
+
+<span><span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span></span>
+<script>  
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("01/01/2022 00:00:00");//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"https://hexo-coment-api.vercel.app/","placeholder":"欢迎评论...","avatar":"mm","pageSize":10,"visitor":false,"comment_count":true,"requiredFields":[],"meta":["nick","mail","link"],"libUrl":"https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js","el":"#waline-comments","path":"/2022/07/26/Week2_2%EF%BC%9AOC%E4%B8%AD%E7%9A%84%E7%B1%BB%E5%88%AB%E3%80%81%E6%89%A9%E5%B1%95%E5%92%8C%E5%8D%8F%E8%AE%AE/"}</script>
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() => 
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => {
+    new Waline(CONFIG.waline);
+  });
+});
+</script>
+</body>
+</html>

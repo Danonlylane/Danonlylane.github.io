@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/myPicture.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/myPicture.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"danonlylane.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.9.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="Swift学习笔记[toc] 常量和变量常量的值一旦设定就不能改变，而变量的值可以随意更改。 声明常量和变量 let height &#x3D; 188 var weight &#x3D; 120  这两行代码可以理解为，声明一个名字为 height 的常量，并给它赋值为 188，然后声明一个名字为 weight 的变量，并给它赋值为 120。 如果你的代码中有不需要改变的值，使用  let  关键字将它声明为常量，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Swift学习笔记">
+<meta property="og:url" content="https://danonlylane.github.io/2022/10/11/Week5_1%EF%BC%9ASwift%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="beiyep&#39;s Blog">
+<meta property="og:description" content="Swift学习笔记[toc] 常量和变量常量的值一旦设定就不能改变，而变量的值可以随意更改。 声明常量和变量 let height &#x3D; 188 var weight &#x3D; 120  这两行代码可以理解为，声明一个名字为 height 的常量，并给它赋值为 188，然后声明一个名字为 weight 的变量，并给它赋值为 120。 如果你的代码中有不需要改变的值，使用  let  关键字将它声明为常量，">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-10-11T11:19:03.000Z">
+<meta property="article:modified_time" content="2023-03-06T06:12:09.228Z">
+<meta property="article:author" content="beiyep">
+<meta property="article:tag" content="性能优化">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://danonlylane.github.io/2022/10/11/Week5_1%EF%BC%9ASwift%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://danonlylane.github.io/2022/10/11/Week5_1%EF%BC%9ASwift%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/","path":"2022/10/11/Week5_1：Swift学习笔记/","title":"Swift学习笔记"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Swift学习笔记 | beiyep's Blog</title>
+  
+
+
+
+<link rel="dns-prefetch" href="https://hexo-coment-api.vercel.app/">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">beiyep's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">12</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">11</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">37</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Swift%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0"><span class="nav-number">1.</span> <span class="nav-text">Swift学习笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E9%87%8F%E5%92%8C%E5%8F%98%E9%87%8F"><span class="nav-number">1.1.</span> <span class="nav-text">常量和变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B1%BB%E5%9E%8B%E6%B3%A8%E8%A7%A3"><span class="nav-number">1.2.</span> <span class="nav-text">类型注解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BE%93%E5%87%BA%E5%B8%B8%E9%87%8F%E5%92%8C%E5%8F%98%E9%87%8F"><span class="nav-number">1.3.</span> <span class="nav-text">输出常量和变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B4%E6%95%B0%E5%92%8C%E6%B5%AE%E7%82%B9%E6%95%B0"><span class="nav-number">1.4.</span> <span class="nav-text">整数和浮点数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Int"><span class="nav-number">1.4.1.</span> <span class="nav-text">Int</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UInt"><span class="nav-number">1.4.2.</span> <span class="nav-text">UInt</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%AE%E7%82%B9%E6%95%B0"><span class="nav-number">1.4.3.</span> <span class="nav-text">浮点数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B1%BB%E5%9E%8B%E5%AE%89%E5%85%A8%E5%92%8C%E7%B1%BB%E5%9E%8B%E6%8E%A8%E6%96%AD"><span class="nav-number">1.5.</span> <span class="nav-text">类型安全和类型推断</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E5%80%BC%E5%9E%8B%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="nav-number">1.6.</span> <span class="nav-text">数值型类型转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%83%E5%B0%94%E5%80%BC"><span class="nav-number">1.7.</span> <span class="nav-text">布尔值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%83%E7%BB%84"><span class="nav-number">1.8.</span> <span class="nav-text">元组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%AF%E9%80%89%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.9.</span> <span class="nav-text">可选类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nil"><span class="nav-number">1.10.</span> <span class="nav-text">nil</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%AF%E9%80%89%E7%BB%91%E5%AE%9A"><span class="nav-number">1.11.</span> <span class="nav-text">可选绑定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A9%BA%E5%92%8C%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">1.12.</span> <span class="nav-text">空和运算符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E5%92%8C%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-number">1.13.</span> <span class="nav-text">字符和字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E8%A1%8C%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%AD%97%E9%9D%A2%E9%87%8F"><span class="nav-number">1.13.1.</span> <span class="nav-text">多行字符串字面量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E7%A9%BA%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-number">1.13.2.</span> <span class="nav-text">初始化空字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E5%AD%97%E7%AC%A6%E6%95%B0%E9%87%8F"><span class="nav-number">1.13.3.</span> <span class="nav-text">计算字符数量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8F%92%E5%85%A5%E5%92%8C%E5%88%A0%E9%99%A4"><span class="nav-number">1.13.4.</span> <span class="nav-text">插入和删除</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%90%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-number">1.13.5.</span> <span class="nav-text">子字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%8D%E7%BC%80-%E5%90%8E%E7%BC%80%E7%9B%B8%E7%AD%89"><span class="nav-number">1.13.6.</span> <span class="nav-text">前缀&#x2F;后缀相等</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9B%86%E5%90%88%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.14.</span> <span class="nav-text">集合类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E7%BB%84"><span class="nav-number">1.14.1.</span> <span class="nav-text">数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9B%86%E5%90%88"><span class="nav-number">1.14.2.</span> <span class="nav-text">集合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%97%E5%85%B8"><span class="nav-number">1.14.3.</span> <span class="nav-text">字典</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%A9%E5%B1%95"><span class="nav-number">1.15.</span> <span class="nav-text">扩展</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%95"><span class="nav-number">1.15.1.</span> <span class="nav-text">方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%AF%E5%8F%98%E5%AE%9E%E4%BE%8B%E6%96%B9%E6%B3%95"><span class="nav-number">1.15.2.</span> <span class="nav-text">可变实例方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8B%E6%A0%87"><span class="nav-number">1.15.3.</span> <span class="nav-text">下标</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%BD%E6%95%B0"><span class="nav-number">1.16.</span> <span class="nav-text">函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E7%9A%84%E5%88%9B%E5%BB%BA%E5%92%8C%E8%B0%83%E7%94%A8"><span class="nav-number">1.16.1.</span> <span class="nav-text">函数的创建和调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E7%9A%84%E8%BF%94%E5%9B%9E%E5%80%BC"><span class="nav-number">1.16.2.</span> <span class="nav-text">函数的返回值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0%E5%90%8D"><span class="nav-number">1.16.3.</span> <span class="nav-text">函数参数名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%BB%98%E8%AE%A4%E5%8F%82%E6%95%B0%E5%80%BC"><span class="nav-number">1.16.4.</span> <span class="nav-text">默认参数值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8D%E5%AE%9A%E6%95%B0%E9%87%8F%E5%8F%82%E6%95%B0"><span class="nav-number">1.16.5.</span> <span class="nav-text">不定数量参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#inout%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E5%8F%82%E6%95%B0"><span class="nav-number">1.16.6.</span> <span class="nav-text">inout输入输出参数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AD%E5%8C%85"><span class="nav-number">1.17.</span> <span class="nav-text">闭包</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AD%E5%8C%85%E7%94%A8%E4%BA%8E%E6%8E%92%E5%BA%8F%E6%96%B9%E6%B3%95"><span class="nav-number">1.17.1.</span> <span class="nav-text">闭包用于排序方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AD%E5%8C%85%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%AF%AD%E6%B3%95"><span class="nav-number">1.17.2.</span> <span class="nav-text">闭包表达式语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B9%E6%8D%AE%E4%B8%8A%E4%B8%8B%E6%96%87%E6%8E%A8%E6%96%AD%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.17.3.</span> <span class="nav-text">根据上下文推断类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E6%95%B0%E5%90%8D%E7%A7%B0%E7%BC%A9%E5%86%99"><span class="nav-number">1.17.4.</span> <span class="nav-text">参数名称缩写</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%BE%E9%9A%8F%E9%97%AD%E5%8C%85"><span class="nav-number">1.17.5.</span> <span class="nav-text">尾随闭包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%83%E9%80%B8%E9%97%AD%E5%8C%85"><span class="nav-number">1.17.6.</span> <span class="nav-text">逃逸闭包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%8A%A8%E9%97%AD%E5%8C%85"><span class="nav-number">1.17.7.</span> <span class="nav-text">自动闭包</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B1%BB%E5%92%8C%E7%BB%93%E6%9E%84%E4%BD%93"><span class="nav-number">1.18.</span> <span class="nav-text">类和结构体</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%93%E6%9E%84%E4%BD%93%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%88%90%E5%91%98%E9%80%90%E4%B8%80%E6%9E%84%E9%80%A0%E5%99%A8"><span class="nav-number">1.18.1.</span> <span class="nav-text">结构体类型的成员逐一构造器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%81%92%E7%AD%89%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">1.18.2.</span> <span class="nav-text">恒等运算符</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="beiyep"
+      src="/images/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">beiyep</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://danonlylane.github.io/2022/10/11/Week5_1%EF%BC%9ASwift%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="beiyep">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="beiyep's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Swift学习笔记
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-10-11 19:19:03" itemprop="dateCreated datePublished" datetime="2022-10-11T19:19:03+08:00">2022-10-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-03-06 14:12:09" itemprop="dateModified" datetime="2023-03-06T14:12:09+08:00">2023-03-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" itemprop="url" rel="index"><span itemprop="name">性能优化</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/2022/10/11/Week5_1%EF%BC%9ASwift%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/#waline-comments" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" id="/2022/10/11/Week5_1%EF%BC%9ASwift%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" data-xid="/2022/10/11/Week5_1%EF%BC%9ASwift%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>19k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>17 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="Swift学习笔记"><a href="#Swift学习笔记" class="headerlink" title="Swift学习笔记"></a>Swift学习笔记</h1><p>[toc]</p>
+<h2 id="常量和变量"><a href="#常量和变量" class="headerlink" title="常量和变量"></a>常量和变量</h2><p>常量的值一旦设定就不能改变，而变量的值可以随意更改。</p>
+<p>声明常量和变量</p>
+<pre class="language-swift" data-language="swift"><code class="language-swift"><span class="token keyword">let</span> height <span class="token operator">=</span> <span class="token number">188</span>
+<span class="token keyword">var</span> weight <span class="token operator">=</span> <span class="token number">120</span></code></pre>
+
+<p>这两行代码可以理解为，声明一个名字为 height 的常量，并给它赋值为 188，然后声明一个名字为 weight 的变量，并给它赋值为 120。</p>
+<p>如果你的代码中有不需要改变的值，使用  <code>let</code>  关键字将它声明为常量，只将需要改变的值声明为变量，这样会使你的代码更加合理。</p>
+<p>与变量不同，常量的值一旦被确定就不能更改了。尝试这样做会导致编译时报错：</p>
+<pre class="language-swift" data-language="swift"><code class="language-swift"><span class="token keyword">let</span> height <span class="token operator">=</span> <span class="token number">188</span>
+height <span class="token operator">=</span> <span class="token number">199</span>
+<span class="token comment">// 这会报编译时错误 - height 不可改变</span></code></pre>
+
+<p>你可以在一行中声明多个常量或者多个变量，用逗号隔开：</p>
+<pre class="language-swift" data-language="swift"><code class="language-swift"><span class="token keyword">var</span> x <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> y <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span> z <span class="token operator">=</span> <span class="token number">2</span></code></pre>
+
+<span id="more"></span>
+
+<h2 id="类型注解"><a href="#类型注解" class="headerlink" title="类型注解"></a>类型注解</h2><p>当你声明常量或者变量的时候可以加上 <strong>类型注解（type annotation）</strong>，说明常量或者变量中要存储的值的类型。如果要添加类型注解，需要在常量或者变量名后面加上一个冒号和空格，然后加上类型名称。</p>
+<p>这个例子给 <code>height</code> 变量添加了类型注解，表示这个变量可以存储 <code>Int</code> 类型的值：</p>
+<pre class="language-swift" data-language="swift"><code class="language-swift"><span class="token keyword">let</span> height<span class="token punctuation">:</span> <span class="token class-name">Int</span> <span class="token operator">=</span> <span class="token number">188</span></code></pre>
+
+<p>可以在一行中定义多个同样类型的变量，用逗号分割，并在最后一个变量名之后添加类型注解：</p>
+<pre class="language-swift" data-language="swift"><code class="language-swift"><span class="token keyword">var</span> x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> z<span class="token punctuation">:</span> <span class="token class-name">Double</span></code></pre>
+
+<p>一般来说很少需要写类型注解。如果在声明常量或者变量的时候赋了一个初始值，Swift 可以推断出这个常量或者变量的类型</p>
+<h2 id="输出常量和变量"><a href="#输出常量和变量" class="headerlink" title="输出常量和变量"></a>输出常量和变量</h2><p>你可以用  <code>print(_:separator:terminator:)</code>  函数来输出当前常量或变量的值。</p>
+<p><code>separator</code> 和 <code>terminator</code> 参数具有默认值，因此你调用这个函数的时候可以忽略它们。默认情况下，该函数通过添加换行符来结束当前行。如果不想换行，可以传递一个空字符串给 <code>terminator</code> 参数。例如，<code>print(someValue, terminator:"")</code></p>
+<pre class="language-swift" data-language="swift"><code class="language-swift"><span class="token function">print</span><span class="token punctuation">(</span><span class="token string-literal"><span class="token string">"第一行"</span></span><span class="token punctuation">)</span>
+<span class="token function">print</span><span class="token punctuation">(</span><span class="token string-literal"><span class="token string">"第二行"</span></span><span class="token punctuation">)</span>
+<span class="token function">print</span><span class="token punctuation">(</span><span class="token string-literal"><span class="token string">"第三行"</span></span><span class="token punctuation">,</span>terminator<span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">""</span></span><span class="token punctuation">)</span>
+<span class="token function">print</span><span class="token punctuation">(</span><span class="token string-literal"><span class="token string">"也是第三行"</span></span><span class="token punctuation">,</span>terminator<span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">""</span></span><span class="token punctuation">)</span>
+<span class="token comment">// 第一行</span>
+<span class="token comment">// 第二行</span>
+<span class="token comment">// 第三行也是第三行</span></code></pre>
+
+
+
+<p>Swift 用 <strong>字符串插值（string interpolation）</strong> 的方式把常量名或者变量名当做占位符加入到长字符串中，Swift 会用当前常量或变量的值替换这些占位符。将常量或变量名放入圆括号中，并在开括号前使用反斜杠将其转义：</p>
+<pre class="language-swift" data-language="swift"><code class="language-swift"><span class="token keyword">let</span> nickName <span class="token operator">=</span> <span class="token string-literal"><span class="token string">"beyhuang"</span></span>
+<span class="token function">print</span><span class="token punctuation">(</span><span class="token string-literal"><span class="token string">"The boy nickName is </span><span class="token interpolation-punctuation punctuation">\(</span><span class="token interpolation">nickName</span><span class="token interpolation-punctuation punctuation">)</span><span class="token string">"</span></span><span class="token punctuation">)</span>
+<span class="token comment">// The boy nickName is beyhuang</span></code></pre>
+
+
+
+<h2 id="整数和浮点数"><a href="#整数和浮点数" class="headerlink" title="整数和浮点数"></a>整数和浮点数</h2><p>整数范围</p>
+<p>你可以访问不同整数类型的 <code>min</code> 和 <code>max</code> 属性来获取对应类型的最小值和最大值：</p>
+<pre class="language-swift" data-language="swift"><code class="language-swift"><span class="token keyword">let</span> minValue <span class="token operator">=</span> <span class="token class-name">UInt8</span><span class="token punctuation">.</span>min  <span class="token comment">// minValue 为 0，是 UInt8 类型</span>
+<span class="token keyword">let</span> maxValue <span class="token operator">=</span> <span class="token class-name">UInt8</span><span class="token punctuation">.</span>max  <span class="token comment">// maxValue 为 255，是 UInt8 类型</span></code></pre>
+
+<h3 id="Int"><a href="#Int" class="headerlink" title="Int"></a>Int</h3><p>一般来说，你不需要专门指定整数的长度。Swift 提供了一个特殊的整数类型 <code>Int</code>，长度与当前平台的原生字长相同：</p>
+<p>在32位平台上，<code>Int</code> 和 <code>Int32</code> 长度相同。</p>
+<p>在64位平台上，<code>Int</code> 和 <code>Int64</code> 长度相同。</p>
+<p>除非你需要特定长度的整数，一般来说使用 <code>Int</code> 就够了。这可以提高代码一致性和可复用性。即使是在32位平台上，<code>Int</code> 可以存储的整数范围也可以达到 <code>-2,147,483,648</code> ~ <code>2,147,483,647</code>，大多数时候这已经足够大了。</p>
+<h3 id="UInt"><a href="#UInt" class="headerlink" title="UInt"></a>UInt</h3><p>Swift 也提供了一个特殊的无符号类型 <code>UInt</code>，长度与当前平台的原生字长相同：</p>
+<p>在32位平台上，<code>UInt</code> 和 <code>UInt32</code> 长度相同。</p>
+<p>在64位平台上，<code>UInt</code> 和 <code>UInt64</code> 长度相同。</p>
+<blockquote>
+<p><strong>注意</strong></p>
+<p>尽量不要使用 <code>UInt</code>，除非你真的需要存储一个和当前平台原生字长相同的无符号整数。除了这种情况，最好使用 <code>Int</code>，即使你要存储的值已知是非负的。统一使用 <code>Int</code> 可以提高代码的可复用性，避免不同类型数字之间的转换，并且匹配数字的类型推断</p>
+</blockquote>
+<h3 id="浮点数"><a href="#浮点数" class="headerlink" title="浮点数"></a>浮点数</h3><p>浮点数是有小数部分的数字，比如 <code>3.14159</code>、<code>0.1</code> 和 <code>-273.15</code>。</p>
+<p>浮点类型比整数类型表示的范围更大，可以存储比 <code>Int</code> 类型更大或者更小的数字。Swift 提供了两种有符号浮点数类型：</p>
+<p><code>Double</code> 表示64位浮点数。当你需要存储很大或者很高精度的浮点数时请使用此类型。</p>
+<p><code>Float</code> 表示32位浮点数。精度要求不高的话可以使用此类型。</p>
+<blockquote>
+<p>注意</p>
+<p><code>Double</code> 精确度很高，至少有 15 位小数，而 <code>Float</code> 只有 6 位小数。选择哪个类型取决于你的代码需要处理的值的范围，在两种类型都匹配的情况下，将优先选择 <code>Double</code>。</p>
+</blockquote>
+<h2 id="类型安全和类型推断"><a href="#类型安全和类型推断" class="headerlink" title="类型安全和类型推断"></a>类型安全和类型推断</h2><p>Swift 是一个 <strong>类型安全（type safe）</strong> 的语言。类型安全的语言可以让你清楚地知道代码要处理的值的类型。如果你的代码需要一个 <code>String</code>，你绝对不可能不小心传进去一个 <code>Int</code>。</p>
+<p>由于 Swift 是类型安全的，所以它会在 <strong>编译</strong> 你的代码时进行 <strong>类型检查（type checks）</strong>，并把不匹配的类型标记为错误。这可以让你在开发的时候尽早发现并修复错误。</p>
+<p>当你要处理不同类型的值时，类型检查可以帮你避免错误。然而，这并不是说你每次声明常量和变量的时候都需要显式指定类型。如果你没有显式指定类型，Swift 会使用 <strong>类型推断（type inference）</strong>来选择合适的类型。有了类型推断，编译器可以在编译代码的时候自动推断出表达式的类型。原理很简单，只要检查你赋的值即可。</p>
+<p>因为有类型推断，和 C 或者 Objective-C 比起来 Swift 很少需要声明类型。常量和变量虽然需要明确类型，但是大部分工作并不需要你自己来完成。</p>
+<p>当你声明常量或者变量并赋初值的时候类型推断非常有用。当你在声明常量或者变量的时候赋给它们一个字面量（literal value 或 literal）即可触发类型推断。（字面量就是会直接出现在你代码中的值，比如 <code>42</code> 和 <code>3.14159</code> 。）</p>
+<p>例如，如果你给一个新常量赋值 <code>42</code> 并且没有标明类型，Swift 可以推断出常量类型是 <code>Int</code> ，因为你给它赋的初始值看起来像一个整数：</p>
+<pre class="language-swift" data-language="swift"><code class="language-swift"><span class="token keyword">let</span> meaningOfLife <span class="token operator">=</span> <span class="token number">42</span>
+<span class="token comment">// meaningOfLife 会被推测为 Int 类型</span></code></pre>
+
+<p>同理，如果你没有给浮点字面量标明类型，Swift 会推断你想要的是 <code>Double</code>：</p>
+<pre class="language-swift" data-language="swift"><code class="language-swift"><span class="token keyword">let</span> pi <span class="token operator">=</span> <span class="token number">3.14159</span>
+<span class="token comment">// pi 会被推测为 Double 类型</span></code></pre>
+
+<p>当推断浮点数的类型时，Swift 总是会选择 <code>Double</code> 而不是 <code>Float</code>。</p>
+<p>如果表达式中同时出现了整数和浮点数，会被推断为 <code>Double</code> 类型：</p>
+<pre class="language-swift" data-language="swift"><code class="language-swift"><span class="token keyword">let</span> anotherPi <span class="token operator">=</span> <span class="token number">3</span> <span class="token operator">+</span> <span class="token number">0.14159</span>
+<span class="token comment">// anotherPi 会被推测为 Double 类型</span></code></pre>
+
+<p>原始值 <code>3</code> 没有显式声明类型，而表达式中出现了一个浮点字面量，所以表达式会被推断为 <code>Double</code> 类型。</p>
+<h2 id="数值型类型转换"><a href="#数值型类型转换" class="headerlink" title="数值型类型转换"></a>数值型类型转换</h2><p>不同整数类型的变量和常量可以存储不同范围的数字</p>
+<pre class="language-swift" data-language="swift"><code class="language-swift"><span class="token keyword">let</span> cannotBeNegative<span class="token punctuation">:</span> <span class="token class-name">UInt8</span> <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span>
+<span class="token comment">// UInt8 类型不能存储负数，所以会报错</span>
+<span class="token keyword">let</span> tooBig<span class="token punctuation">:</span> <span class="token class-name">Int8</span> <span class="token operator">=</span> <span class="token class-name">Int8</span><span class="token punctuation">.</span>max <span class="token operator">+</span> <span class="token number">1</span>
+<span class="token comment">// Int8 类型不能存储超过最大值的数，所以会报错</span></code></pre>
+
+<p>不同的数值类型之间运算是需要进行类型转换的</p>
+<pre class="language-swift" data-language="swift"><code class="language-swift"><span class="token keyword">let</span> twoThousand<span class="token punctuation">:</span> <span class="token class-name">UInt16</span> <span class="token operator">=</span> <span class="token number">2_000</span>
+<span class="token keyword">let</span> one<span class="token punctuation">:</span> <span class="token class-name">UInt8</span> <span class="token operator">=</span> <span class="token number">1</span>
+<span class="token keyword">let</span> twoThousandAndOne <span class="token operator">=</span> twoThousand <span class="token operator">+</span> <span class="token class-name">UInt16</span><span class="token punctuation">(</span>one<span class="token punctuation">)</span></code></pre>
+
+<p>整数和浮点数的转换必须显式指定类型</p>
+<pre class="language-swift" data-language="swift"><code class="language-swift"><span class="token keyword">let</span> three <span class="token operator">=</span> <span class="token number">3</span>
+<span class="token keyword">let</span> pointOneFourOneFiveNine <span class="token operator">=</span> <span class="token number">0.14159</span>
+<span class="token keyword">let</span> pi <span class="token operator">=</span> <span class="token class-name">Double</span><span class="token punctuation">(</span>three<span class="token punctuation">)</span> <span class="token operator">+</span> pointOneFourOneFiveNine
+<span class="token comment">// pi 等于 3.14159，所以被推测为 Double 类型</span></code></pre>
+
+
+
+<h2 id="布尔值"><a href="#布尔值" class="headerlink" title="布尔值"></a>布尔值</h2><p>swift 中的布尔值需要注意的是和其他能够进行隐式转换类型的语言不同，当一个 Int 的值为 1 的时候，在进行 if 判断时，swift 并不会将这个值转换为布尔值。</p>
+<p>如果你在需要使用 <code>Bool</code> 类型的地方使用了非布尔值，Swift 的类型安全机制会报错。下面的例子会报告一个编译时错误：</p>
+<pre class="language-swift" data-language="swift"><code class="language-swift"><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">1</span>
+<span class="token keyword">if</span> i <span class="token punctuation">{</span>
+<span class="token comment">// 这个例子不会通过编译，会报错</span>
+<span class="token punctuation">}</span></code></pre>
+
+<p>然而，下面的例子是合法的：</p>
+<pre class="language-swift" data-language="swift"><code class="language-swift"><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">1</span>
+<span class="token keyword">if</span> i <span class="token operator">==</span> <span class="token number">1</span> <span class="token punctuation">{</span>
+<span class="token comment">// 这个例子会编译成功</span>
+<span class="token punctuation">}</span></code></pre>
+
+<p><code>i == 1</code> 的比较结果是 <code>Bool</code> 类型，所以第二个例子可以通过类型检查。类似 <code>i == 1</code> 这样的比较</p>
+<p>和 Swift 中的其他类型安全的例子一样，这个方法可以避免错误并保证这块代码的意图总是清晰的</p>
+<h2 id="元组"><a href="#元组" class="headerlink" title="元组"></a>元组</h2><p><strong>元组（tuples）</strong>把多个值组合成一个复合值。元组内的值可以是任意类型，并不要求是相同类型</p>
+<pre class="language-swift" data-language="swift"><code class="language-swift"><span class="token keyword">let</span> http404Error <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">404</span><span class="token punctuation">,</span> <span class="token string-literal"><span class="token string">"Not Found"</span></span><span class="token punctuation">)</span>
+<span class="token comment">// http404Error 的类型是 (Int, String)，值是 (404, "Not Found")</span></code></pre>
+
+<p>你可以把任意顺序的类型组合成一个元组，这个元组可以包含所有类型。只要你想，你可以创建一个类型为 <code>(Int, Int, Int)</code> 或者 <code>(String, Bool)</code> 或者其他任何你想要的组合的元组。</p>
+<p>你可以将一个元组的内容分解（decompose）成单独的常量和变量，然后你就可以正常使用它们了：</p>
+<pre class="language-swift" data-language="swift"><code class="language-swift"><span class="token keyword">let</span> <span class="token punctuation">(</span>statusCode<span class="token punctuation">,</span> statusMessage<span class="token punctuation">)</span> <span class="token operator">=</span> http404Error
+<span class="token function">print</span><span class="token punctuation">(</span><span class="token string-literal"><span class="token string">"The status code is </span><span class="token interpolation-punctuation punctuation">\(</span><span class="token interpolation">statusCode</span><span class="token interpolation-punctuation punctuation">)</span><span class="token string">"</span></span><span class="token punctuation">)</span>
+<span class="token comment">// The status code is 404</span>
+<span class="token function">print</span><span class="token punctuation">(</span><span class="token string-literal"><span class="token string">"The status message is </span><span class="token interpolation-punctuation punctuation">\(</span><span class="token interpolation">statusMessage</span><span class="token interpolation-punctuation punctuation">)</span><span class="token string">"</span></span><span class="token punctuation">)</span>
+<span class="token comment">// The status message is Not Found</span></code></pre>
+
+<p>如果你只需要一部分元组值，分解的时候可以把要忽略的部分用下划线（<code>_</code>）标记：</p>
+<pre class="language-swift" data-language="swift"><code class="language-swift"><span class="token keyword">let</span> <span class="token punctuation">(</span>justTheStatusCode<span class="token punctuation">,</span> <span class="token omit keyword">_</span><span class="token punctuation">)</span> <span class="token operator">=</span> http404Error
+<span class="token function">print</span><span class="token punctuation">(</span><span class="token string-literal"><span class="token string">"The status code is </span><span class="token interpolation-punctuation punctuation">\(</span><span class="token interpolation">justTheStatusCode</span><span class="token interpolation-punctuation punctuation">)</span><span class="token string">"</span></span><span class="token punctuation">)</span>
+<span class="token comment">// The status code is 404</span></code></pre>
+
+<p>此外，你还可以通过下标来访问元组中的单个元素，下标从零开始：</p>
+<pre class="language-swift" data-language="swift"><code class="language-swift"><span class="token function">print</span><span class="token punctuation">(</span><span class="token string-literal"><span class="token string">"The status code is </span><span class="token interpolation-punctuation punctuation">\(</span><span class="token interpolation">http404Error<span class="token punctuation">.</span><span class="token number">0</span></span><span class="token interpolation-punctuation punctuation">)</span><span class="token string">"</span></span><span class="token punctuation">)</span>
+<span class="token comment">// The status code is 404</span>
+<span class="token function">print</span><span class="token punctuation">(</span><span class="token string-literal"><span class="token string">"The status message is </span><span class="token interpolation-punctuation punctuation">\(</span><span class="token interpolation">http404Error<span class="token punctuation">.</span><span class="token number">1</span></span><span class="token interpolation-punctuation punctuation">)</span><span class="token string">"</span></span><span class="token punctuation">)</span>
+<span class="token comment">// The status message is Not Found</span></code></pre>
+
+<p>你可以在定义元组的时候给单个元素命名：</p>
+<pre class="language-swift" data-language="swift"><code class="language-swift"><span class="token keyword">let</span> http200Status <span class="token operator">=</span> <span class="token punctuation">(</span>statusCode<span class="token punctuation">:</span> <span class="token number">200</span><span class="token punctuation">,</span> description<span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">"OK"</span></span><span class="token punctuation">)</span></code></pre>
+
+<p>给元组中的元素命名后，你可以通过名字来获取这些元素的值：</p>
+<pre class="language-swift" data-language="swift"><code class="language-swift"><span class="token function">print</span><span class="token punctuation">(</span><span class="token string-literal"><span class="token string">"The status code is </span><span class="token interpolation-punctuation punctuation">\(</span><span class="token interpolation">http200Status<span class="token punctuation">.</span>statusCode</span><span class="token interpolation-punctuation punctuation">)</span><span class="token string">"</span></span><span class="token punctuation">)</span>
+<span class="token comment">// The status code is 200</span>
+<span class="token function">print</span><span class="token punctuation">(</span><span class="token string-literal"><span class="token string">"The status message is </span><span class="token interpolation-punctuation punctuation">\(</span><span class="token interpolation">http200Status<span class="token punctuation">.</span>description</span><span class="token interpolation-punctuation punctuation">)</span><span class="token string">"</span></span><span class="token punctuation">)</span>
+<span class="token comment">// The status message is OK</span></code></pre>
+
+<p>作为函数返回值时，元组非常有用。一个用来获取网页的函数可能会返回一个 <code>(Int, String)</code> 元组来描述是否获取成功。和只能返回一个类型的值比较起来，一个包含两个不同类型值的元组可以让函数的返回信息更有用。</p>
+<h2 id="可选类型"><a href="#可选类型" class="headerlink" title="可选类型"></a>可选类型</h2><p>使用 <strong>可选类型（optionals）</strong>来处理值可能缺失的情况。可选类型表示两种可能：值缺失或者有值， 你可以解析可选类型访问这个值， 或者根本没有值。</p>
+<blockquote>
+<p>注意</p>
+<p>C 和 Objective-C 中并没有可选类型这个概念。最接近的是 Objective-C 中的一个特性，一个方法要不返回一个对象要不返回  <code>nil</code>， <code>nil</code>  表示“缺少一个合法的对象”。然而，这只对对象起作用——对于结构体，基本的 C 类型或者枚举类型不起作用。对于这些类型，Objective-C 方法一般会返回一个特殊值（ 比如 <code>NSNotFound</code> ）来暗示值缺失。这种方法假设方法的调用者知道并记得对特殊值进行判断。然而，Swift 的可选类型可以让你暗示 <strong>任意类型</strong> 的值缺失，并不需要一个特殊值。</p>
+</blockquote>
+<p>来看一个例子。Swift 的 <code>Int</code> 类型有一种构造器，作用是将一个 <code>String</code> 值转换成一个 <code>Int</code> 值。然而，并不是所有的字符串都可以转换成一个整数。字符串 <code>"123"</code> 可以被转换成数字 <code>123</code> ，但是字符串 <code>"hello, world"</code> 不行。</p>
+<p>下面的例子使用这种构造器来尝试将一个 <code>String</code> 转换成 <code>Int</code>：</p>
+<pre class="language-swift" data-language="swift"><code class="language-swift"><span class="token keyword">let</span> possibleNumber <span class="token operator">=</span> <span class="token string-literal"><span class="token string">"123"</span></span>
+<span class="token keyword">let</span> convertedNumber <span class="token operator">=</span> <span class="token class-name">Int</span><span class="token punctuation">(</span>possibleNumber<span class="token punctuation">)</span>
+<span class="token comment">// convertedNumber 被推测为类型 "Int?"， 或者类型 "optional Int"</span></code></pre>
+
+<p>因为该构造器可能会失败，所以它返回一个<em>可选类型</em>（optional）<code>Int</code>，而不是一个 <code>Int</code>。一个可选的 <code>Int</code> 被写作 <code>Int?</code> 而不是 <code>Int</code>。问号暗示包含的值是可选类型，也就是说可能包含 <code>Int</code> 值也可能<em>不包含值</em>。（不能包含其他任何值比如 <code>Bool</code> 值或者 <code>String</code> 值。只能是 <code>Int</code> 或者什么都没有。）</p>
+<h2 id="nil"><a href="#nil" class="headerlink" title="nil"></a>nil</h2><p>你可以给可选变量赋值为 <code>nil</code> 来表示它没有值：</p>
+<pre class="language-swift" data-language="swift"><code class="language-swift"><span class="token keyword">var</span> serverResponseCode<span class="token punctuation">:</span> <span class="token class-name">Int</span><span class="token operator">?</span> <span class="token operator">=</span> <span class="token number">404</span>
+<span class="token comment">// serverResponseCode 包含一个可选的 Int 值 404</span>
+serverResponseCode <span class="token operator">=</span> <span class="token nil constant">nil</span>
+<span class="token comment">// serverResponseCode 现在不包含值</span></code></pre>
+
+<blockquote>
+<p>注意</p>
+<p><code>nil</code> 不能用于非可选的常量和变量。如果你的代码中有常量或者变量需要处理值缺失的情况，请把它们声明成对应的可选类型。</p>
+</blockquote>
+<p>如果你声明一个可选常量或者变量但是没有赋值，它们会自动被设置为 <code>nil</code>：</p>
+<pre class="language-swift" data-language="swift"><code class="language-swift"><span class="token keyword">var</span> surveyAnswer<span class="token punctuation">:</span> <span class="token class-name">String</span><span class="token operator">?</span>
+<span class="token comment">// surveyAnswer 被自动设置为 nil</span></code></pre>
+
+<blockquote>
+<p>注意</p>
+<p>Swift 的 <code>nil</code> 和 Objective-C 中的 <code>nil</code> 并不一样。在 Objective-C 中，<code>nil</code> 是一个指向不存在对象的指针。在 Swift 中，<code>nil</code> 不是指针——它是一个确定的值，用来表示值缺失。任何类型的可选状态都可以被设置为 <code>nil</code>，不只是对象类型。</p>
+</blockquote>
+<h2 id="可选绑定"><a href="#可选绑定" class="headerlink" title="可选绑定"></a>可选绑定</h2><p>使用<em>可选绑定（optional binding）</em>来判断可选类型是否包含值，如果包含就把值赋给一个临时常量或者变量。可选绑定可以用在 <code>if</code> 和 <code>while</code> 语句中，这条语句不仅可以用来判断可选类型中是否有值，同时可以将可选类型中的值赋给一个常量或者变量。</p>
+<p>像下面这样在 <code>if</code> 语句中写一个可选绑定：</p>
+<pre class="language-swift" data-language="swift"><code class="language-swift"><span class="token keyword">if</span> <span class="token keyword">let</span> constantName <span class="token operator">=</span> someOptional <span class="token punctuation">{</span>
+			statements
+<span class="token punctuation">}</span></code></pre>
+
+<p>你可以像上面这样使用可选绑定来</p>
+<pre class="language-swift" data-language="swift"><code class="language-swift"><span class="token keyword">if</span> <span class="token keyword">let</span> actualNumber <span class="token operator">=</span> <span class="token class-name">Int</span><span class="token punctuation">(</span>possibleNumber<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+ <span class="token function">print</span><span class="token punctuation">(</span><span class="token string-literal"><span class="token string">"\'</span><span class="token interpolation-punctuation punctuation">\(</span><span class="token interpolation">possibleNumber</span><span class="token interpolation-punctuation punctuation">)</span><span class="token string">\' has an integer value of </span><span class="token interpolation-punctuation punctuation">\(</span><span class="token interpolation">actualNumber</span><span class="token interpolation-punctuation punctuation">)</span><span class="token string">"</span></span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+<span class="token function">print</span><span class="token punctuation">(</span><span class="token string-literal"><span class="token string">"\'</span><span class="token interpolation-punctuation punctuation">\(</span><span class="token interpolation">possibleNumber</span><span class="token interpolation-punctuation punctuation">)</span><span class="token string">\' could not be converted to an integer"</span></span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span class="token comment">// '123' has an integer value of 123</span></code></pre>
+
+<p>重写这个例子</p>
+<pre class="language-swift" data-language="swift"><code class="language-swift"><span class="token keyword">let</span> possibleNumber <span class="token operator">=</span> <span class="token string-literal"><span class="token string">"123"</span></span>
+<span class="token keyword">let</span> convertedNumber <span class="token operator">=</span> <span class="token class-name">Int</span><span class="token punctuation">(</span>possibleNumber<span class="token punctuation">)</span>
+<span class="token comment">// convertedNumber 被推测为类型 "Int?"， 或者类型 "optional Int"</span></code></pre>
+
+
+
+<h2 id="空和运算符"><a href="#空和运算符" class="headerlink" title="空和运算符"></a>空和运算符</h2><p>空和运算符（Nil Coalescing Operator）</p>
+<p><em>空合运算符</em>（ <code>a ?? b</code> ）将对可选类型 <code>a</code> 进行空判断，如果 <code>a</code> 包含一个值就进行解包，否则就返回一个默认值 <code>b</code>。表达式 <code>a</code> 必须是 Optional 类型。默认值 <code>b</code> 的类型必须要和 <code>a</code> 存储值的类型保持一致。</p>
+<p>空合运算符是对以下代码的简短表达方法：</p>
+<pre class="language-swift" data-language="swift"><code class="language-swift">a <span class="token operator">!=</span> <span class="token nil constant">nil</span> <span class="token operator">?</span> a<span class="token operator">!</span> <span class="token punctuation">:</span> b</code></pre>
+
+
+
+<h2 id="字符和字符串"><a href="#字符和字符串" class="headerlink" title="字符和字符串"></a>字符和字符串</h2><h3 id="多行字符串字面量"><a href="#多行字符串字面量" class="headerlink" title="多行字符串字面量"></a>多行字符串字面量</h3><p>如果你需要一个字符串是跨越多行的，那就使用多行字符串字面量 — 由一对三个双引号包裹着的具有固定顺序的文本字符集：</p>
+<pre class="language-swift" data-language="swift"><code class="language-swift"><span class="token keyword">let</span> quotation <span class="token operator">=</span> <span class="token string-literal"><span class="token string">"""
+The White Rabbit put on his spectacles.  "Where shall I begin,
+please your Majesty?" he asked.
+
+"Begin at the beginning," the King said gravely, "and go on
+till you come to the end; then stop."
+"""</span></span></code></pre>
+
+<p>你可以用在行尾写一个反斜杠（<code>\</code>）作为续行符。</p>
+<pre class="language-swift" data-language="swift"><code class="language-swift"><span class="token keyword">let</span> softWrappedQuotation <span class="token operator">=</span> <span class="token string-literal"><span class="token string">"""
+The White Rabbit put on his spectacles.  "Where shall I begin, </span><span class="token punctuation">\</span><span class="token string">
+please your Majesty?" he asked.
+
+"Begin at the beginning," the King said gravely, "and go on </span><span class="token punctuation">\</span><span class="token string">
+till you come to the end; then stop."
+"""</span></span>
+
+<span class="token comment">// The White Rabbit put on his spectacles.  "Where shall I begin, please your Majesty?" he asked.</span>
+
+<span class="token comment">// "Begin at the beginning," the King said gravely, "and go on till you come to the end; then stop."</span></code></pre>
+
+
+
+<h3 id="初始化空字符串"><a href="#初始化空字符串" class="headerlink" title="初始化空字符串"></a>初始化空字符串</h3><p>要创建一个空字符串作为初始值，可以将空的字符串字面量赋值给变量，也可以初始化一个新的 <code>String</code> 实例：</p>
+<pre class="language-swift" data-language="swift"><code class="language-swift"><span class="token keyword">var</span> emptyString <span class="token operator">=</span> <span class="token string-literal"><span class="token string">""</span></span>               <span class="token comment">// 空字符串字面量</span>
+<span class="token keyword">var</span> anotherEmptyString <span class="token operator">=</span> <span class="token class-name">String</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment">// 初始化方法</span>
+<span class="token comment">// 两个字符串均为空并等价。</span></code></pre>
+
+<p>你可以通过检查 <code>Bool</code> 类型的 <code>isEmpty</code> 属性来判断该字符串是否为空：</p>
+<pre class="language-swift" data-language="swift"><code class="language-swift"><span class="token keyword">if</span> emptyString<span class="token punctuation">.</span>isEmpty <span class="token punctuation">{</span>
+		<span class="token function">print</span><span class="token punctuation">(</span><span class="token string-literal"><span class="token string">"Nothing to see here"</span></span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span class="token comment">// Nothing to see here</span></code></pre>
+
+
+
+<h3 id="计算字符数量"><a href="#计算字符数量" class="headerlink" title="计算字符数量"></a>计算字符数量</h3><p>如果想要获得一个字符串中 <code>Character</code> 值的数量，可以使用 <code>count</code> 属性：</p>
+<pre class="language-swift" data-language="swift"><code class="language-swift"><span class="token keyword">let</span> unusualMenagerie <span class="token operator">=</span> <span class="token string-literal"><span class="token string">"Koala 🐨, Snail 🐌, Penguin 🐧, Dromedary 🐪"</span></span>
+<span class="token function">print</span><span class="token punctuation">(</span><span class="token string-literal"><span class="token string">"unusualMenagerie has </span><span class="token interpolation-punctuation punctuation">\(</span><span class="token interpolation">unusualMenagerie<span class="token punctuation">.</span>count</span><span class="token interpolation-punctuation punctuation">)</span><span class="token string"> characters"</span></span><span class="token punctuation">)</span>
+<span class="token comment">// unusualMenagerie has 40 characters</span></code></pre>
+
+<p>注意在 Swift 中，使用可拓展的字符群集作为 <code>Character</code> 值来连接或改变字符串时，并不一定会更改字符串的字符数量。</p>
+<p>例如，如果你用四个字符的单词 <code>cafe</code> 初始化一个新的字符串，然后添加一个 <code>COMBINING ACTUE ACCENT</code>(<code>U+0301</code>)作为字符串的结尾。最终这个字符串的字符数量仍然是 <code>4</code>，因为第四个字符是 <code>é</code>，而不是 <code>e</code>：</p>
+<pre class="language-swift" data-language="swift"><code class="language-swift"><span class="token keyword">var</span> word <span class="token operator">=</span> <span class="token string-literal"><span class="token string">"cafe"</span></span>
+<span class="token function">print</span><span class="token punctuation">(</span><span class="token string-literal"><span class="token string">"the number of characters in </span><span class="token interpolation-punctuation punctuation">\(</span><span class="token interpolation">word</span><span class="token interpolation-punctuation punctuation">)</span><span class="token string"> is </span><span class="token interpolation-punctuation punctuation">\(</span><span class="token interpolation">word<span class="token punctuation">.</span>count</span><span class="token interpolation-punctuation punctuation">)</span><span class="token string">"</span></span><span class="token punctuation">)</span>
+<span class="token comment">// the number of characters in cafe is 4</span>
+word <span class="token operator">+=</span> <span class="token string-literal"><span class="token string">"\u{301}"</span></span>    <span class="token comment">// 拼接一个重音，U+0301</span>
+<span class="token function">print</span><span class="token punctuation">(</span><span class="token string-literal"><span class="token string">"the number of characters in </span><span class="token interpolation-punctuation punctuation">\(</span><span class="token interpolation">word</span><span class="token interpolation-punctuation punctuation">)</span><span class="token string"> is </span><span class="token interpolation-punctuation punctuation">\(</span><span class="token interpolation">word<span class="token punctuation">.</span>count</span><span class="token interpolation-punctuation punctuation">)</span><span class="token string">"</span></span><span class="token punctuation">)</span>
+<span class="token comment">// the number of characters in café is 4</span></code></pre>
+
+
+
+<h3 id="插入和删除"><a href="#插入和删除" class="headerlink" title="插入和删除"></a>插入和删除</h3><p>调用 <code>insert(_:at:)</code> 方法可以在一个字符串的指定索引插入一个字符，调用 <code>insert(contentsOf:at:)</code> 方法可以在一个字符串的指定索引插入一段字符串。</p>
+<pre class="language-swift" data-language="swift"><code class="language-swift"><span class="token keyword">var</span> welcome <span class="token operator">=</span> <span class="token string-literal"><span class="token string">"hello"</span></span>
+welcome<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span><span class="token string-literal"><span class="token string">"!"</span></span><span class="token punctuation">,</span> at<span class="token punctuation">:</span> welcome<span class="token punctuation">.</span>endIndex<span class="token punctuation">)</span>
+<span class="token comment">// hello!</span>
+welcome<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>contentsOf<span class="token punctuation">:</span><span class="token string-literal"><span class="token string">" there"</span></span><span class="token punctuation">,</span> at<span class="token punctuation">:</span> welcome<span class="token punctuation">.</span><span class="token function">index</span><span class="token punctuation">(</span>before<span class="token punctuation">:</span> welcome<span class="token punctuation">.</span>endIndex<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token comment">// hello there!</span></code></pre>
+
+<p>调用 <code>remove(at:)</code> 方法可以在一个字符串的指定索引删除一个字符，调用 <code>removeSubrange(_:)</code> 方法可以在一个字符串的指定索引删除一个子字符串。</p>
+<pre class="language-swift" data-language="swift"><code class="language-swift">welcome<span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span>at<span class="token punctuation">:</span> welcome<span class="token punctuation">.</span><span class="token function">index</span><span class="token punctuation">(</span>before<span class="token punctuation">:</span> welcome<span class="token punctuation">.</span>endIndex<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token comment">// hello there</span>
+<span class="token keyword">let</span> range <span class="token operator">=</span> welcome<span class="token punctuation">.</span><span class="token function">index</span><span class="token punctuation">(</span>welcome<span class="token punctuation">.</span>endIndex<span class="token punctuation">,</span> offsetBy<span class="token punctuation">:</span> <span class="token operator">-</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token operator">..&lt;</span>welcome<span class="token punctuation">.</span>endIndex
+welcome<span class="token punctuation">.</span><span class="token function">removeSubrange</span><span class="token punctuation">(</span>range<span class="token punctuation">)</span>
+<span class="token comment">// hello</span></code></pre>
+
+<blockquote>
+<p>注意</p>
+<p>你可以使用 <code>insert(_:at:)</code>、<code>insert(contentsOf:at:)</code>、<code>remove(at:)</code> 和 <code>removeSubrange(_:)</code> 方法在任意一个确认的并遵循 <code>RangeReplaceableCollection</code> 协议的类型里面，如上文所示是使用在 <code>String</code> 中，你也可以使用在 <code>Array</code>、<code>Dictionary</code> 和 <code>Set</code> 中。</p>
+</blockquote>
+<h3 id="子字符串"><a href="#子字符串" class="headerlink" title="子字符串"></a>子字符串</h3><p>当你从字符串中获取一个子字符串 —— 例如，使用下标或者 <code>prefix(_:)</code> 之类的方法 —— 就可以得到一个 <code>Substring</code> 的实例，而非另外一个 <code>String</code>。Swift 里的 <code>Substring</code> 绝大部分函数都跟 <code>String</code> 一样，意味着你可以使用同样的方式去操作 <code>Substring</code> 和 <code>String</code>。然而，跟 <code>String</code> 不同的是，你只有在短时间内需要操作字符串时，才会使用 <code>Substring</code>。当你需要长时间保存结果时，就把 <code>Substring</code> 转化为 <code>String</code> 的实例：</p>
+<pre class="language-swift" data-language="swift"><code class="language-swift"><span class="token keyword">let</span> greeting <span class="token operator">=</span> <span class="token string-literal"><span class="token string">"Hello, world!"</span></span>
+<span class="token keyword">let</span> index <span class="token operator">=</span> greeting<span class="token punctuation">.</span><span class="token function">firstIndex</span><span class="token punctuation">(</span>of<span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">","</span></span><span class="token punctuation">)</span> <span class="token operator">??</span> greeting<span class="token punctuation">.</span>endIndex
+<span class="token keyword">let</span> beginning <span class="token operator">=</span> greeting<span class="token punctuation">[</span><span class="token operator">..&lt;</span>index<span class="token punctuation">]</span>
+<span class="token comment">// beginning 的值为 "Hello"</span>
+<span class="token comment">// 把结果转化为 String 以便长期存储。</span>
+<span class="token keyword">let</span> newString <span class="token operator">=</span> <span class="token class-name">String</span><span class="token punctuation">(</span>beginning<span class="token punctuation">)</span></code></pre>
+
+<p>就像 <code>String</code>，每一个 <code>Substring</code> 都会在内存里保存字符集。而 <code>String</code> 和 <code>Substring</code> 的区别在于性能优化上，<code>Substring</code> 可以重用原 <code>String</code> 的内存空间，或者另一个 <code>Substring</code> 的内存空间（<code>String</code> 也有同样的优化，但如果两个 <code>String</code> 共享内存的话，它们就会相等）。这一优化意味着你在修改 <code>String</code> 和 <code>Substring</code> 之前都不需要消耗性能去复制内存。就像前面说的那样，<code>Substring</code> 不适合长期存储 —— 因为它重用了原 <code>String</code> 的内存空间，原 <code>String</code> 的内存空间必须保留直到它的 <code>Substring</code> 不再被使用为止。</p>
+<h3 id="前缀-后缀相等"><a href="#前缀-后缀相等" class="headerlink" title="前缀/后缀相等"></a>前缀/后缀相等</h3><p>通过调用字符串的 <code>hasPrefix(_:)</code>/<code>hasSuffix(_:)</code> 方法来检查字符串是否拥有特定前缀/后缀，两个方法均接收一个 <code>String</code> 类型的参数，并返回一个布尔值。</p>
+<pre class="language-swift" data-language="swift"><code class="language-swift"><span class="token keyword">let</span> string4 <span class="token operator">=</span> <span class="token string-literal"><span class="token string">"i after j"</span></span>
+<span class="token function">print</span><span class="token punctuation">(</span>string4<span class="token punctuation">.</span><span class="token function">hasPrefix</span><span class="token punctuation">(</span><span class="token string-literal"><span class="token string">"i"</span></span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token function">print</span><span class="token punctuation">(</span>string4<span class="token punctuation">.</span><span class="token function">hasSuffix</span><span class="token punctuation">(</span><span class="token string-literal"><span class="token string">"j"</span></span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token function">print</span><span class="token punctuation">(</span>string4<span class="token punctuation">.</span><span class="token function">hasSuffix</span><span class="token punctuation">(</span><span class="token string-literal"><span class="token string">"r"</span></span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token comment">// true</span>
+<span class="token comment">// true</span>
+<span class="token comment">// false</span></code></pre>
+
+
+
+<h2 id="集合类型"><a href="#集合类型" class="headerlink" title="集合类型"></a>集合类型</h2><blockquote>
+<p><strong>注意</strong>：</p>
+<p>字符串中的 <code>insert(_:at:)</code>、<code>insert(contentsOf:at:)</code>、<code>remove(at:)</code> 和 <code>removeSubrange(_:)</code> 方法在任意一个确认的并遵循 <code>RangeReplaceableCollection</code> 协议的类型里面都可以使用，如上文所示是使用在 <code>String</code> 中，你也可以使用在 <code>Array</code>、<code>Dictionary</code> 和 <code>Set</code> 中。</p>
+</blockquote>
+<p>所以这里就不加篇幅去举例子了，可以自己去尝试一下</p>
+<h3 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h3><pre class="language-swift" data-language="swift"><code class="language-swift"><span class="token comment">// 创建一个空数组</span>
+<span class="token keyword">var</span> someInts<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token class-name">Int</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+
+<span class="token comment">// 创建一个带有默认值的数组</span>
+<span class="token keyword">var</span> threeDoubles <span class="token operator">=</span> <span class="token class-name">Array</span><span class="token punctuation">(</span>repeating<span class="token punctuation">:</span> <span class="token number">0.0</span><span class="token punctuation">,</span> count<span class="token punctuation">:</span> <span class="token number">3</span><span class="token punctuation">)</span>
+<span class="token comment">// threeDoubles 是一种 [Double] 数组，等价于 [0.0, 0.0, 0.0]</span>
+
+<span class="token comment">// 用数组字面量构造数组</span>
+<span class="token keyword">var</span> shoppingList<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token class-name">String</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string-literal"><span class="token string">"Eggs"</span></span><span class="token punctuation">,</span> <span class="token string-literal"><span class="token string">"Milk"</span></span><span class="token punctuation">]</span>
+
+<span class="token comment">// 利用下标来一次改变一系列数据值</span>
+shoppingList<span class="token punctuation">[</span><span class="token number">2</span><span class="token operator">...</span><span class="token number">4</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string-literal"><span class="token string">"Bananas"</span></span><span class="token punctuation">,</span> <span class="token string-literal"><span class="token string">"Apples"</span></span><span class="token punctuation">]</span>
+
+<span class="token comment">// 移除数组中的最后一项</span>
+<span class="token keyword">let</span> apples <span class="token operator">=</span> shoppingList<span class="token punctuation">.</span><span class="token function">removeLast</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment">// 同时遍历每个数据项的值和索引值</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span>index<span class="token punctuation">,</span> value<span class="token punctuation">)</span> <span class="token keyword">in</span> shoppingList<span class="token punctuation">.</span><span class="token function">enumerated</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">print</span><span class="token punctuation">(</span><span class="token string-literal"><span class="token string">"Item </span><span class="token interpolation-punctuation punctuation">\(</span><span class="token interpolation"><span class="token class-name">String</span><span class="token punctuation">(</span>index <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span></span><span class="token interpolation-punctuation punctuation">)</span><span class="token string">: </span><span class="token interpolation-punctuation punctuation">\(</span><span class="token interpolation">value</span><span class="token interpolation-punctuation punctuation">)</span><span class="token string">"</span></span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span></code></pre>
+
+
+
+<h3 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h3><p><strong>集合</strong> 用来存储相同类型并且没有确定顺序的值。当集合元素顺序不重要时或者希望确保每个元素只出现一次时可以使用集合而不是数组。</p>
+<p>Swift 中的集合类型被写为 <code>Set&lt;Element&gt;</code>，这里的 <code>Element</code> 表示集合中允许存储的类型。和数组不同的是，集合没有等价的简化形式。</p>
+<pre class="language-swift" data-language="swift"><code class="language-swift"><span class="token comment">// 创建和构造一个空的集合</span>
+<span class="token keyword">var</span> letters <span class="token operator">=</span> <span class="token class-name">Set</span><span class="token operator">&lt;</span><span class="token class-name">Character</span><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token function">print</span><span class="token punctuation">(</span><span class="token string-literal"><span class="token string">"letters is of type Set&lt;Character&gt; with </span><span class="token interpolation-punctuation punctuation">\(</span><span class="token interpolation">letters<span class="token punctuation">.</span>count</span><span class="token interpolation-punctuation punctuation">)</span><span class="token string"> items."</span></span><span class="token punctuation">)</span>
+<span class="token comment">// letters is of type Set&lt;Character&gt; with 0 items.</span>
+
+letters<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span><span class="token string-literal"><span class="token string">"a"</span></span><span class="token punctuation">)</span>
+<span class="token comment">// letters 现在含有1个 Character 类型的值</span>
+
+letters <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+<span class="token comment">// letters 现在是一个空的 Set，但是它依然是 Set&lt;Character&gt; 类型</span>
+
+<span class="token comment">// 用数组字面量创建集合</span>
+<span class="token keyword">var</span> favoriteGenres<span class="token punctuation">:</span> <span class="token class-name">Set</span><span class="token operator">&lt;</span><span class="token class-name">String</span><span class="token operator">&gt;</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string-literal"><span class="token string">"Rock"</span></span><span class="token punctuation">,</span> <span class="token string-literal"><span class="token string">"Classical"</span></span><span class="token punctuation">,</span> <span class="token string-literal"><span class="token string">"Hip hop"</span></span><span class="token punctuation">]</span>
+<span class="token comment">// favoriteGenres 被构造成含有三个初始值的集合</span>
+
+<span class="token comment">// 使用 contains(_:) 方法去检查集合中是否包含一个特定的值</span>
+<span class="token function">print</span><span class="token punctuation">(</span>favoriteGenres<span class="token punctuation">.</span><span class="token function">contains</span><span class="token punctuation">(</span><span class="token string-literal"><span class="token string">"Funk"</span></span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+
+<p>集合操作</p>
+<ul>
+<li><p>使用 <code>intersection(_:)</code> 方法根据两个集合的交集创建一个新的集合。</p>
+</li>
+<li><p>使用 <code>symmetricDifference(_:)</code> 方法根据两个集合不相交的值创建一个新的集合。</p>
+</li>
+<li><p>使用 <code>union(_:)</code> 方法根据两个集合的所有值创建一个新的集合。</p>
+</li>
+<li><p>使用 <code>subtracting(_:)</code> 方法根据不在另一个集合中的值创建一个新的集合。</p>
+</li>
+</ul>
+<pre class="language-swift" data-language="swift"><code class="language-swift"><span class="token keyword">let</span> oddDigits<span class="token punctuation">:</span> <span class="token class-name">Set</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">]</span>
+<span class="token keyword">let</span> evenDigits<span class="token punctuation">:</span> <span class="token class-name">Set</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">]</span>
+<span class="token keyword">let</span> singleDigitPrimeNumbers<span class="token punctuation">:</span> <span class="token class-name">Set</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">]</span>
+
+oddDigits<span class="token punctuation">.</span><span class="token function">union</span><span class="token punctuation">(</span>evenDigits<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">sorted</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment">// [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]</span>
+oddDigits<span class="token punctuation">.</span><span class="token function">intersection</span><span class="token punctuation">(</span>evenDigits<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">sorted</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment">// []</span>
+oddDigits<span class="token punctuation">.</span><span class="token function">subtracting</span><span class="token punctuation">(</span>singleDigitPrimeNumbers<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">sorted</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment">// [1, 9]</span>
+oddDigits<span class="token punctuation">.</span><span class="token function">symmetricDifference</span><span class="token punctuation">(</span>singleDigitPrimeNumbers<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">sorted</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment">// [1, 2, 9]</span></code></pre>
+
+
+
+<h3 id="字典"><a href="#字典" class="headerlink" title="字典"></a>字典</h3><p><strong>字典</strong> 是一种无序的集合，它存储的是键值对之间的关系，其所有键的值需要是相同的类型，所有值的类型也需要相同。每个值（value）都关联唯一的<em>键</em>（key），键作为字典中这个值数据的标识符。和数组中的数据项不同，字典中的数据项并没有具体顺序。你在需要通过标识符（键）访问数据的时候使用字典。</p>
+<pre class="language-swift" data-language="swift"><code class="language-swift"><span class="token comment">// 创建一个空字典</span>
+<span class="token keyword">var</span> namesOfIntegers<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token class-name">Int</span><span class="token punctuation">:</span> <span class="token class-name">String</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">]</span>
+<span class="token comment">// namesOfIntegers 是一个空的 [Int: String] 字典</span>
+
+<span class="token comment">// 用字典字面量创建字典</span>
+<span class="token keyword">var</span> airports<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token class-name">String</span><span class="token punctuation">:</span> <span class="token class-name">String</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string-literal"><span class="token string">"YYZ"</span></span><span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">"Toronto Pearson"</span></span><span class="token punctuation">,</span> <span class="token string-literal"><span class="token string">"DUB"</span></span><span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">"Dublin"</span></span><span class="token punctuation">]</span>
+
+<span class="token comment">// 给字典添加新的数据项</span>
+airports<span class="token punctuation">[</span><span class="token string-literal"><span class="token string">"LHR"</span></span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string-literal"><span class="token string">"London"</span></span>
+
+<span class="token comment">// 改变特定键对应的值</span>
+airports<span class="token punctuation">[</span><span class="token string-literal"><span class="token string">"LHR"</span></span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string-literal"><span class="token string">"London Heathrow"</span></span>
+<span class="token comment">// “LHR”对应的值被改为“London Heathrow”</span></code></pre>
+
+<p>作为一种替代下标语法的方式，字典的 <code>updateValue(_:forKey:)</code> 方法可以设置或者更新特定键对应的值。就像上面所示的下标示例，<code>updateValue(_:forKey:)</code> 方法在这个键不存在对应值的时候会设置新值或者在存在时更新已存在的值。和下标的方式不同，<code>updateValue(_:forKey:)</code> 这个方法返回更新值之前的<em>原值</em>。这样使得你可以检查更新是否成功。</p>
+<p><code>updateValue(_:forKey:)</code> 方法会返回对应值类型的可选类型。举例来说：对于存储 <code>String</code> 值的字典，这个函数会返回一个 <code>String?</code> 或者“可选 <code>String</code>”类型的值。如果有值存在于更新前，则这个可选值包含了旧值，否则它将会是 <code>nil</code> ：</p>
+<pre class="language-swift" data-language="swift"><code class="language-swift"><span class="token keyword">if</span> <span class="token keyword">let</span> oldValue <span class="token operator">=</span> airports<span class="token punctuation">.</span><span class="token function">updateValue</span><span class="token punctuation">(</span><span class="token string-literal"><span class="token string">"Dublin Airport"</span></span><span class="token punctuation">,</span> forKey<span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">"DUB"</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">print</span><span class="token punctuation">(</span><span class="token string-literal"><span class="token string">"The old value for DUB was </span><span class="token interpolation-punctuation punctuation">\(</span><span class="token interpolation">oldValue</span><span class="token interpolation-punctuation punctuation">)</span><span class="token string">."</span></span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span class="token comment">// 输出“The old value for DUB was Dublin.”</span></code></pre>
+
+<p>你也可以使用下标语法来在字典中检索特定键对应的值。因为有可能请求的键没有对应的值存在，字典的下标访问会返回对应值类型的可选类型。如果这个字典包含请求键所对应的值，下标会返回一个包含这个存在值的可选类型，否则将返回 <code>nil</code>：</p>
+<pre class="language-swift" data-language="swift"><code class="language-swift"><span class="token keyword">if</span> <span class="token keyword">let</span> airportName <span class="token operator">=</span> airports<span class="token punctuation">[</span><span class="token string-literal"><span class="token string">"DUB"</span></span><span class="token punctuation">]</span> <span class="token punctuation">{</span>
+    <span class="token function">print</span><span class="token punctuation">(</span><span class="token string-literal"><span class="token string">"The name of the airport is </span><span class="token interpolation-punctuation punctuation">\(</span><span class="token interpolation">airportName</span><span class="token interpolation-punctuation punctuation">)</span><span class="token string">."</span></span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    <span class="token function">print</span><span class="token punctuation">(</span><span class="token string-literal"><span class="token string">"That airport is not in the airports dictionary."</span></span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span class="token comment">// 打印“The name of the airport is Dublin Airport.”</span></code></pre>
+
+
+
+<p>还可以使用下标语法通过将某个键的对应值赋值为 <code>nil</code> 来从字典里移除一个键值对：</p>
+<pre class="language-swift" data-language="swift"><code class="language-swift">airports<span class="token punctuation">[</span><span class="token string-literal"><span class="token string">"APL"</span></span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string-literal"><span class="token string">"Apple Internation"</span></span>
+<span class="token comment">// “Apple Internation”不是真的 APL 机场，删除它</span>
+airports<span class="token punctuation">[</span><span class="token string-literal"><span class="token string">"APL"</span></span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token nil constant">nil</span>
+<span class="token comment">// APL 现在被移除了</span></code></pre>
+
+<p>此外，<code>removeValue(forKey:)</code> 方法也可以用来在字典中移除键值对。这个方法在键值对存在的情况下会移除该键值对并且返回被移除的值或者在没有对应值的情况下返回 <code>nil</code>：</p>
+<pre class="language-swift" data-language="swift"><code class="language-swift"><span class="token keyword">if</span> <span class="token keyword">let</span> removedValue <span class="token operator">=</span> airports<span class="token punctuation">.</span><span class="token function">removeValue</span><span class="token punctuation">(</span>forKey<span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">"DUB"</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">print</span><span class="token punctuation">(</span><span class="token string-literal"><span class="token string">"The removed airport's name is </span><span class="token interpolation-punctuation punctuation">\(</span><span class="token interpolation">removedValue</span><span class="token interpolation-punctuation punctuation">)</span><span class="token string">."</span></span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    <span class="token function">print</span><span class="token punctuation">(</span><span class="token string-literal"><span class="token string">"The airports dictionary does not contain a value for DUB."</span></span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span class="token comment">// 打印“The removed airport's name is Dublin Airport.”</span></code></pre>
+
+
+
+<h2 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h2><p><strong>扩展</strong> 可以给一个现有的类，结构体，枚举，还有协议添加新的功能。它还拥有不需要访问被扩展类型源代码就能完成扩展的能力。扩展和 Objective-C 的分类很相似，与 Objective-C 分类不同的是，Swift 扩展是没有名字的。</p>
+<p>Swift 中的扩展可以：</p>
+<ul>
+<li>添加计算型实例属性和计算型类属性</li>
+<li>定义实例方法和类方法</li>
+<li>提供新的构造器</li>
+<li>定义下标</li>
+<li>定义和使用新的嵌套类型</li>
+<li>使已经存在的类型遵循（conform）一个协议</li>
+</ul>
+<blockquote>
+<p>注意</p>
+<p>扩展可以给一个类型添加新的功能，但是不能重写已经存在的功能。</p>
+</blockquote>
+<pre class="language-swift" data-language="swift"><code class="language-swift"><span class="token comment">// 使用 extension 关键字声明扩展</span>
+<span class="token keyword">extension</span> <span class="token class-name">SomeType</span> <span class="token punctuation">{</span>
+  <span class="token comment">// 在这里给 SomeType 添加新的功能</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 扩展可以扩充一个现有的类型，给它添加一个或多个协议</span>
+<span class="token keyword">extension</span> <span class="token class-name">SomeType</span><span class="token punctuation">:</span> <span class="token class-name">SomeProtocol</span><span class="token punctuation">,</span> <span class="token class-name">AnotherProtocol</span> <span class="token punctuation">{</span>
+  <span class="token comment">// 协议所需要的实现写在这里</span>
+<span class="token punctuation">}</span></code></pre>
+
+
+
+<h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><p>扩展可以给现有类型添加新的实例方法和类方法。在下面的例子中，给 <code>Int</code> 类型添加了一个新的实例方法叫做 <code>repetitions</code>：</p>
+<pre class="language-swift" data-language="swift"><code class="language-swift"><span class="token keyword">extension</span> <span class="token class-name">Int</span> <span class="token punctuation">{</span>
+    <span class="token keyword">func</span> <span class="token function-definition function">repetitions</span><span class="token punctuation">(</span>task<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token class-name">Void</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">for</span> <span class="token omit keyword">_</span> <span class="token keyword">in</span> <span class="token number">0</span><span class="token operator">..&lt;</span><span class="token keyword">self</span> <span class="token punctuation">{</span>
+            <span class="token function">task</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+
+<pre class="language-swift" data-language="swift"><code class="language-swift"><span class="token number">3</span><span class="token punctuation">.</span>repetitions <span class="token punctuation">{</span>
+    <span class="token function">print</span><span class="token punctuation">(</span><span class="token string-literal"><span class="token string">"Hello!"</span></span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span class="token comment">// Hello!</span>
+<span class="token comment">// Hello!</span>
+<span class="token comment">// Hello!</span></code></pre>
+
+<h3 id="可变实例方法"><a href="#可变实例方法" class="headerlink" title="可变实例方法"></a>可变实例方法</h3><p>通过扩展添加的实例方法同样也可以修改（或 <em>mutating（改变）</em>）实例本身。结构体和枚举的方法，若是可以修改 <code>self</code> 或者它自己的属性，则必须将这个实例方法标记为 <code>mutating</code>，就像是改变了方法的原始实现。</p>
+<p>在下面的例子中，对 Swift 的 <code>Int</code> 类型添加了一个新的 mutating 方法，叫做 <code>square</code>，它将原始值求平方：</p>
+<pre class="language-swift" data-language="swift"><code class="language-swift"><span class="token keyword">extension</span> <span class="token class-name">Int</span> <span class="token punctuation">{</span>
+    <span class="token keyword">mutating</span> <span class="token keyword">func</span> <span class="token function-definition function">square</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">self</span> <span class="token operator">=</span> <span class="token keyword">self</span> <span class="token operator">*</span> <span class="token keyword">self</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">var</span> someInt <span class="token operator">=</span> <span class="token number">3</span>
+someInt<span class="token punctuation">.</span><span class="token function">square</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment">// someInt 现在是 9</span></code></pre>
+
+
+
+<h3 id="下标"><a href="#下标" class="headerlink" title="下标"></a>下标</h3><p>扩展可以给现有的类型添加新的下标。下面的例子中，对 Swift 的 <code>Int</code> 类型添加了一个整数类型的下标。下标 <code>[n]</code> 返回从数字右侧开始的第 <code>n</code> 位数字：</p>
+<pre class="language-swift" data-language="swift"><code class="language-swift"><span class="token keyword">extension</span> <span class="token class-name">Int</span> <span class="token punctuation">{</span>
+    <span class="token keyword">subscript</span><span class="token punctuation">(</span>digitIndex<span class="token punctuation">:</span> <span class="token class-name">Int</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token class-name">Int</span> <span class="token punctuation">{</span>
+        <span class="token keyword">var</span> decimalBase <span class="token operator">=</span> <span class="token number">1</span>
+        <span class="token keyword">for</span> <span class="token omit keyword">_</span> <span class="token keyword">in</span> <span class="token number">0</span><span class="token operator">..&lt;</span>digitIndex <span class="token punctuation">{</span>
+            decimalBase <span class="token operator">*=</span> <span class="token number">10</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token keyword">self</span> <span class="token operator">/</span> decimalBase<span class="token punctuation">)</span> <span class="token operator">%</span> <span class="token number">10</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token number">746381295</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+<span class="token comment">// 返回 5</span>
+<span class="token number">746381295</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
+<span class="token comment">// 返回 9</span>
+<span class="token number">746381295</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span>
+<span class="token comment">// 返回 2</span>
+<span class="token number">746381295</span><span class="token punctuation">[</span><span class="token number">8</span><span class="token punctuation">]</span>
+<span class="token comment">// 返回 7</span></code></pre>
+
+<p>如果操作的 <code>Int</code> 值没有足够的位数满足所请求的下标，那么下标的现实将返回 <code>0</code>，将好像在数字的左边补上了 0：</p>
+<pre class="language-swift" data-language="swift"><code class="language-swift"><span class="token number">746381295</span><span class="token punctuation">[</span><span class="token number">9</span><span class="token punctuation">]</span>
+<span class="token comment">// 返回 0，就好像你进行了这个请求：</span>
+<span class="token number">0746381295</span><span class="token punctuation">[</span><span class="token number">9</span><span class="token punctuation">]</span></code></pre>
+
+
+
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><h3 id="函数的创建和调用"><a href="#函数的创建和调用" class="headerlink" title="函数的创建和调用"></a>函数的创建和调用</h3><pre class="language-swift" data-language="swift"><code class="language-swift"><span class="token keyword">func</span> <span class="token function-definition function">isMoreThanTen</span><span class="token punctuation">(</span>count<span class="token punctuation">:</span> <span class="token class-name">Int</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token class-name">Bool</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> count <span class="token operator">&gt;</span> <span class="token number">10</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token boolean">true</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token boolean">false</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">isMoreThanTen</span><span class="token punctuation">(</span>count<span class="token punctuation">:</span> <span class="token number">8</span><span class="token punctuation">)</span>
+<span class="token function">isMoreThanTen</span><span class="token punctuation">(</span>count<span class="token punctuation">:</span> <span class="token number">24</span><span class="token punctuation">)</span>
+
+<span class="token comment">// 无参函数</span>
+<span class="token keyword">func</span> <span class="token function-definition function">myFun1</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token class-name">String</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token string-literal"><span class="token string">"kobe"</span></span>
+<span class="token punctuation">}</span>
+</code></pre>
+
+
+
+<h3 id="函数的返回值"><a href="#函数的返回值" class="headerlink" title="函数的返回值"></a>函数的返回值</h3><pre class="language-swift" data-language="swift"><code class="language-swift"><span class="token keyword">func</span> <span class="token function-definition function">myFuncReturnTest</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">print</span><span class="token punctuation">(</span><span class="token string-literal"><span class="token string">"func return test"</span></span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">myFuncReturnTest</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token function">print</span><span class="token punctuation">(</span><span class="token function">myFuncReturnTest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token comment">// func return test</span>
+<span class="token comment">// func return test</span>
+<span class="token comment">// ()</span></code></pre>
+
+
+
+<blockquote>
+<p>注意<br>严格上来说，虽然没有返回值被定义，<code>sayGoodbye(_:)</code> 函数依然返回了值。没有定义返回类型的函数会返回特殊的值，叫 <code>Void</code>。它其实是一个空的元组（tuple），没有任何元素，可以写成 <code>()</code>。</p>
+</blockquote>
+<h3 id="函数参数名"><a href="#函数参数名" class="headerlink" title="函数参数名"></a>函数参数名</h3><p>函数的参数名在各个编程语言中都有不同的特点，OC中的函数参数名是隐含于函数名称中的</p>
+<pre class="language-objc" data-language="objc"><code class="language-objc"><span class="token operator">-</span> <span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>getDataFromDataID<span class="token punctuation">:</span><span class="token punctuation">(</span>NSString <span class="token operator">*</span><span class="token punctuation">)</span> dataID <span class="token punctuation">{</span>
+  
+<span class="token punctuation">}</span>
+<span class="token punctuation">[</span><span class="token keyword">self</span> getDataFromDataID<span class="token punctuation">:</span><span class="token string">@"1101"</span><span class="token punctuation">]</span><span class="token punctuation">;</span></code></pre>
+
+<p>虽然这样很容易推断出该函数的意义，但是当参数多了之后，函数名称变得非常冗长，很吓人，会使人觉得很繁琐，不过看久用多了也就习惯了</p>
+<p>在 Java 中，参数名是直接添加到参数列表中的</p>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">getMyData</span><span class="token punctuation">(</span><span class="token class-name">String</span> dataID<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+<span class="token punctuation">}</span>
+<span class="token function">getMyData</span><span class="token punctuation">(</span><span class="token string">"1101"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
+<p>Swift 借鉴了这两者的优点，引入了参数内部命名和外部命名的概念，内部命名在函数实现时使用，外部命名在函数调用时使用，如果不设置外部命名，则默认函数参数的外部命名和内部命名相同。</p>
+<pre class="language-swift" data-language="swift"><code class="language-swift"><span class="token comment">// 多参数函数</span>
+<span class="token comment">// 函数体内只有一行代码，省略 return</span>
+<span class="token keyword">func</span> <span class="token function-definition function">myFunc1</span><span class="token punctuation">(</span>param1<span class="token punctuation">:</span> <span class="token class-name">Int</span><span class="token punctuation">,</span> param2<span class="token punctuation">:</span> <span class="token class-name">Int</span><span class="token punctuation">,</span> param3<span class="token punctuation">:</span> <span class="token class-name">Int</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    param1 <span class="token operator">+</span> param2 <span class="token operator">+</span> param3
+<span class="token punctuation">}</span>
+<span class="token function">myFunc1</span><span class="token punctuation">(</span>param1<span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span> param2<span class="token punctuation">:</span> <span class="token number">2</span><span class="token punctuation">,</span> param3<span class="token punctuation">:</span> <span class="token number">3</span><span class="token punctuation">)</span>
+
+<span class="token comment">// 添加额外命名</span>
+<span class="token keyword">func</span> <span class="token function-definition function">myFunc2</span><span class="token punctuation">(</span>out1 param1<span class="token punctuation">:</span> <span class="token class-name">Int</span><span class="token punctuation">,</span> out2 param2<span class="token punctuation">:</span> <span class="token class-name">Int</span><span class="token punctuation">,</span> out3 param3<span class="token punctuation">:</span> <span class="token class-name">Int</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    param1 <span class="token operator">+</span> param2 <span class="token operator">+</span> param3
+<span class="token punctuation">}</span>
+<span class="token function">myFunc2</span><span class="token punctuation">(</span>out1<span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span> out2<span class="token punctuation">:</span> <span class="token number">2</span><span class="token punctuation">,</span> out3<span class="token punctuation">:</span> <span class="token number">4</span><span class="token punctuation">)</span>
+
+<span class="token comment">// 使用下划线可以省略函数参数外部名称</span>
+<span class="token keyword">func</span> <span class="token function-definition function">myFunc3</span><span class="token punctuation">(</span><span class="token omit keyword">_</span> param1<span class="token punctuation">:</span> <span class="token class-name">Int</span><span class="token punctuation">,</span> <span class="token omit keyword">_</span> param2<span class="token punctuation">:</span> <span class="token class-name">Int</span><span class="token punctuation">,</span> <span class="token omit keyword">_</span> param3<span class="token punctuation">:</span> <span class="token class-name">Int</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    param1 <span class="token operator">+</span> param2 <span class="token operator">+</span> param3
+<span class="token punctuation">}</span>
+<span class="token function">myFunc3</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span></code></pre>
+
+
+
+<h3 id="默认参数值"><a href="#默认参数值" class="headerlink" title="默认参数值"></a>默认参数值</h3><pre class="language-swift" data-language="swift"><code class="language-swift"><span class="token keyword">func</span> <span class="token function-definition function">myFunc4</span><span class="token punctuation">(</span>param1<span class="token punctuation">:</span> <span class="token class-name">Int</span><span class="token punctuation">,</span> param2<span class="token punctuation">:</span> <span class="token class-name">Int</span> <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">,</span> param3<span class="token punctuation">:</span> <span class="token class-name">Int</span> <span class="token operator">=</span> <span class="token number">88</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    param1 <span class="token operator">+</span> param2 <span class="token operator">+</span> param3
+<span class="token punctuation">}</span>
+<span class="token function">myFunc4</span><span class="token punctuation">(</span>param1<span class="token punctuation">:</span> <span class="token number">3</span><span class="token punctuation">)</span>
+<span class="token function">myFunc4</span><span class="token punctuation">(</span>param1<span class="token punctuation">:</span> <span class="token number">5</span><span class="token punctuation">,</span> param2<span class="token punctuation">:</span> <span class="token number">42</span><span class="token punctuation">)</span>
+
+<span class="token keyword">func</span> <span class="token function-definition function">myFunc5</span><span class="token punctuation">(</span>param1<span class="token punctuation">:</span> <span class="token class-name">Int</span><span class="token punctuation">,</span> param2<span class="token punctuation">:</span> <span class="token class-name">Int</span> <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">,</span> param3<span class="token punctuation">:</span> <span class="token class-name">Int</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    param1 <span class="token operator">+</span> param2 <span class="token operator">+</span> param3
+<span class="token punctuation">}</span>
+<span class="token function">myFunc5</span><span class="token punctuation">(</span>param1<span class="token punctuation">:</span> <span class="token number">10</span><span class="token punctuation">,</span> param3<span class="token punctuation">:</span> <span class="token number">5</span><span class="token punctuation">)</span></code></pre>
+
+
+
+<h3 id="不定数量参数"><a href="#不定数量参数" class="headerlink" title="不定数量参数"></a>不定数量参数</h3><p>在swift中，在某个参数类型后面追加符号 <code>...</code> 就会将此参数设置为数量可变。在函数内部，开发者传递的值会被包装成一个集合类型赋值给对应的参数</p>
+<pre class="language-swift" data-language="swift"><code class="language-swift"><span class="token keyword">func</span> <span class="token function-definition function">myFunc6</span><span class="token punctuation">(</span>param<span class="token punctuation">:</span> <span class="token class-name">Int</span><span class="token operator">...</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> sum <span class="token operator">=</span> <span class="token number">0</span>
+    <span class="token keyword">for</span> count <span class="token keyword">in</span> param <span class="token punctuation">{</span>
+        sum <span class="token operator">+=</span> count
+    <span class="token punctuation">}</span>
+    <span class="token function">print</span><span class="token punctuation">(</span>sum<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">myFunc6</span><span class="token punctuation">(</span>param<span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span>
+<span class="token function">myFunc6</span><span class="token punctuation">(</span>param<span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span></code></pre>
+
+
+
+<h3 id="inout输入输出参数"><a href="#inout输入输出参数" class="headerlink" title="inout输入输出参数"></a>inout输入输出参数</h3><p>swift函数中，如果传递的是值类型的参数，那么参数值在传递进去函数内部时会将原值复制为一份常量，且在函数内不可以修改。</p>
+<p>错误示范</p>
+<pre class="language-swift" data-language="swift"><code class="language-swift"><span class="token keyword">func</span> <span class="token function-definition function">myFunc7</span><span class="token punctuation">(</span>param<span class="token punctuation">:</span> <span class="token class-name">Int</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    param <span class="token operator">+=</span> <span class="token number">1</span>
+<span class="token punctuation">}</span>
+<span class="token comment">// error: left side of mutating operator isn't mutable: 'param' is a 'let' constant</span>
+<span class="token comment">//    param += 1</span></code></pre>
+
+<p>如果需要在函数内部修改传递进去的变量的值，可以将此参数声明为 inout 类型</p>
+<pre class="language-swift" data-language="swift"><code class="language-swift"><span class="token keyword">func</span> <span class="token function-definition function">myFunc7</span><span class="token punctuation">(</span>param<span class="token punctuation">:</span> <span class="token keyword">inout</span> <span class="token class-name">Int</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    param <span class="token operator">+=</span> <span class="token number">1</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">var</span> para <span class="token operator">=</span> <span class="token number">10</span>
+<span class="token function">myFunc7</span><span class="token punctuation">(</span>param<span class="token punctuation">:</span> <span class="token operator">&amp;</span>para<span class="token punctuation">)</span>
+<span class="token function">print</span><span class="token punctuation">(</span>para<span class="token punctuation">)</span></code></pre>
+
+<p><code>&amp;</code> 符号传递参数变量的内存地址</p>
+<h2 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h2><p><strong>闭包</strong> 是自包含的函数代码块，可以在代码中被传递和使用。Swift 中的闭包与 C 和 Objective-C 中的代码块（blocks）以及其他一些编程语言中的匿名函数（Lambdas）比较相似。</p>
+<p>先来看看用闭包怎么表示函数</p>
+<pre class="language-swift" data-language="swift"><code class="language-swift"><span class="token keyword">func</span> <span class="token function-definition function">myFunc</span><span class="token punctuation">(</span>param<span class="token punctuation">:</span> <span class="token class-name">Int</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token class-name">Int</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> param <span class="token operator">*</span> param
+<span class="token punctuation">}</span></code></pre>
+
+<p>用闭包来表示</p>
+<pre class="language-swift" data-language="swift"><code class="language-swift"><span class="token keyword">let</span> myClosures <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token punctuation">(</span>param<span class="token punctuation">:</span> <span class="token class-name">Int</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token class-name">Int</span> <span class="token keyword">in</span>
+   <span class="token keyword">return</span> param <span class="token operator">*</span> param
+<span class="token punctuation">}</span>
+<span class="token function">myFunc</span><span class="token punctuation">(</span>param<span class="token punctuation">:</span> <span class="token number">10</span><span class="token punctuation">)</span>
+<span class="token function">myClusures</span><span class="token punctuation">(</span><span class="token number">9</span><span class="token punctuation">)</span></code></pre>
+
+<p>闭包在语法上有这样的标准结构</p>
+<p><code>{(参数列表) -&gt; 返回值 in 闭包体}</code></p>
+<p>关键字 in 前面为闭包的参数列表和返回值，其书写规则和函数一致，in 后面为闭包体</p>
+<p>与函数不一样的是，闭包的返回值是可以省略的，在闭包体中，如果有 return 返回，则闭包会自动将 return 的数据类型作为返回值类型，所以上面的闭包表达式可以简写为</p>
+<pre class="language-swift" data-language="swift"><code class="language-swift"><span class="token keyword">let</span> myClosures <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token punctuation">(</span>param<span class="token punctuation">:</span> <span class="token class-name">Int</span><span class="token punctuation">)</span> <span class="token keyword">in</span>
+   <span class="token keyword">return</span> param <span class="token operator">*</span> param
+<span class="token punctuation">}</span></code></pre>
+
+
+
+<h3 id="闭包用于排序方法"><a href="#闭包用于排序方法" class="headerlink" title="闭包用于排序方法"></a>闭包用于排序方法</h3><p>Swift 标准库提供了名为 <code>sorted(by:)</code> 的方法，它会基于你提供的排序闭包表达式的判断结果对数组中的值（类型确定）进行排序。一旦它完成排序过程，<code>sorted(by:)</code> 方法会返回一个与旧数组类型大小相同类型的新数组，该数组的元素有着正确的排序顺序。原数组不会被 <code>sorted(by:)</code> 方法修改</p>
+<pre class="language-swift" data-language="swift"><code class="language-swift"><span class="token keyword">let</span> names <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string-literal"><span class="token string">"Chris"</span></span><span class="token punctuation">,</span> <span class="token string-literal"><span class="token string">"Alex"</span></span><span class="token punctuation">,</span> <span class="token string-literal"><span class="token string">"Ewa"</span></span><span class="token punctuation">,</span> <span class="token string-literal"><span class="token string">"Barry"</span></span><span class="token punctuation">,</span> <span class="token string-literal"><span class="token string">"Daniella"</span></span><span class="token punctuation">]</span>
+<span class="token comment">// 提供排序闭包函数的一种方式是撰写一个符合其类型要求的普通函数，并将其作为 sorted(by:) 方法的参数传入</span>
+<span class="token keyword">func</span> <span class="token function-definition function">backward</span><span class="token punctuation">(</span><span class="token omit keyword">_</span> s1<span class="token punctuation">:</span> <span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token omit keyword">_</span> s2<span class="token punctuation">:</span> <span class="token class-name">String</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token class-name">Bool</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> s1 <span class="token operator">&gt;</span> s2
+<span class="token punctuation">}</span>
+<span class="token keyword">var</span> reversedNames <span class="token operator">=</span> names<span class="token punctuation">.</span><span class="token function">sorted</span><span class="token punctuation">(</span>by<span class="token punctuation">:</span> backward<span class="token punctuation">)</span>
+<span class="token comment">// reversedNames 为 ["Ewa", "Daniella", "Chris", "Barry", "Alex"]</span></code></pre>
+
+
+
+<h3 id="闭包表达式语法"><a href="#闭包表达式语法" class="headerlink" title="闭包表达式语法"></a>闭包表达式语法</h3><pre class="language-swift" data-language="swift"><code class="language-swift"><span class="token punctuation">{</span> <span class="token punctuation">(</span>parameters<span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token keyword">return</span> type <span class="token keyword">in</span>
+    statements
+<span class="token punctuation">}</span></code></pre>
+
+<p>上面的排序例子可以用闭包进行简化</p>
+<pre class="language-swift" data-language="swift"><code class="language-swift">reversedNames <span class="token operator">=</span> names<span class="token punctuation">.</span><span class="token function">sorted</span><span class="token punctuation">(</span>by<span class="token punctuation">:</span> <span class="token punctuation">{</span> <span class="token punctuation">(</span>s1<span class="token punctuation">:</span> <span class="token class-name">String</span><span class="token punctuation">,</span> s2<span class="token punctuation">:</span> <span class="token class-name">String</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token class-name">Bool</span> <span class="token keyword">in</span>
+    <span class="token keyword">return</span> s1 <span class="token operator">&gt;</span> s2
+<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
+
+
+
+<h3 id="根据上下文推断类型"><a href="#根据上下文推断类型" class="headerlink" title="根据上下文推断类型"></a>根据上下文推断类型</h3><p>因为排序闭包函数是作为 <code>sorted(by:)</code> 方法的参数传入的，Swift 可以推断其参数和返回值的类型。<code>sorted(by:)</code> 方法被一个字符串数组调用，因此其参数必须是 <code>(String, String) -&gt; Bool</code> 类型的函数。这意味着 <code>(String, String)</code> 和 <code>Bool</code> 类型并不需要作为闭包表达式定义的一部分。因为所有的类型都可以被正确推断，返回箭头（<code>-&gt;</code>）和围绕在参数周围的括号也可以被省略：</p>
+<pre class="language-swift" data-language="swift"><code class="language-swift">reversedNames <span class="token operator">=</span> names<span class="token punctuation">.</span><span class="token function">sorted</span><span class="token punctuation">(</span>by<span class="token punctuation">:</span> <span class="token punctuation">{</span> s1<span class="token punctuation">,</span> s2 <span class="token keyword">in</span> <span class="token keyword">return</span> s1 <span class="token operator">&gt;</span> s2 <span class="token punctuation">}</span> <span class="token punctuation">)</span></code></pre>
+
+
+
+<h3 id="参数名称缩写"><a href="#参数名称缩写" class="headerlink" title="参数名称缩写"></a>参数名称缩写</h3><p>Swift 自动为内联闭包提供了参数名称缩写功能，你可以直接通过 <code>$0</code>，<code>$1</code>，<code>$2</code> 来顺序调用闭包的参数，以此类推。</p>
+<p>如果你在闭包表达式中使用参数名称缩写，你可以在闭包定义中省略参数列表，并且对应参数名称缩写的类型会通过函数类型进行推断。闭包接受的参数的数量取决于所使用的缩写参数的最大编号。<code>in</code> 关键字也同样可以被省略，因为此时闭包表达式完全由闭包函数体构成：</p>
+<pre class="language-swift" data-language="swift"><code class="language-swift">reversedNames <span class="token operator">=</span> names<span class="token punctuation">.</span><span class="token function">sorted</span><span class="token punctuation">(</span>by<span class="token punctuation">:</span> <span class="token punctuation">{</span> <span class="token short-argument">$0</span> <span class="token operator">&gt;</span> <span class="token short-argument">$1</span> <span class="token punctuation">}</span> <span class="token punctuation">)</span></code></pre>
+
+
+
+<h3 id="尾随闭包"><a href="#尾随闭包" class="headerlink" title="尾随闭包"></a>尾随闭包</h3><p>如果你需要将一个很长的闭包表达式作为最后一个参数传递给函数，将这个闭包替换成为尾随闭包的形式很有用。尾随闭包是一个书写在函数圆括号之后的闭包表达式，函数支持将其作为最后一个参数调用。在使用尾随闭包时，你不用写出它的参数标签：</p>
+<pre class="language-swift" data-language="swift"><code class="language-swift"><span class="token keyword">func</span> <span class="token function-definition function">someFunctionThatTakesAClosure</span><span class="token punctuation">(</span>closure<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token class-name">Void</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 以下是不使用尾随闭包进行函数调用</span>
+<span class="token function">someFunctionThatTakesAClosure</span><span class="token punctuation">(</span>closure<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token comment">// 以下是使用尾随闭包进行函数调用</span>
+<span class="token function">someFunctionThatTakesAClosure</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span></code></pre>
+
+
+
+<h3 id="逃逸闭包"><a href="#逃逸闭包" class="headerlink" title="逃逸闭包"></a>逃逸闭包</h3><p>当一个闭包作为参数传到一个函数中，但是这个闭包在函数返回之后才被执行，我们称该闭包从函数中<em>逃逸</em>。当你定义接受闭包作为参数的函数时，你可以在参数名之前标注 <code>@escaping</code>，用来指明这个闭包是允许“逃逸”出这个函数的。</p>
+<p>一种能使闭包“逃逸”出函数的方法是，将这个闭包保存在一个函数外部定义的变量中。举个例子，很多启动异步操作的函数接受一个闭包参数作为 completion handler。这类函数会在异步操作开始之后立刻返回，但是闭包直到异步操作结束后才会被调用。在这种情况下，闭包需要“逃逸”出函数，因为闭包需要在函数返回之后被调用。例如：</p>
+<pre class="language-swift" data-language="swift"><code class="language-swift"><span class="token keyword">var</span> completionHandlers<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token class-name">Void</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+<span class="token keyword">func</span> <span class="token function-definition function">someFunctionWithEscapingClosure</span><span class="token punctuation">(</span>completionHandler<span class="token punctuation">:</span> <span class="token attribute atrule">@escaping</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token class-name">Void</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    completionHandlers<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span>completionHandler<span class="token punctuation">)</span>
+<span class="token punctuation">}</span></code></pre>
+
+
+
+<h3 id="自动闭包"><a href="#自动闭包" class="headerlink" title="自动闭包"></a>自动闭包</h3><p>swift 中有一种语法，可以实现对简单闭包的自动生成，这种闭包通常被称为自动闭包，自动闭包的参数的使用有严格条件的，首先此闭包不能够有参数，其次在调用参数传参时，闭包的实现只能由一句表达式组成，闭包的返回值即为此表达式的值，自动闭包参数由 <code>@autoclosure</code> 来声明</p>
+<pre class="language-swift" data-language="swift"><code class="language-swift"><span class="token comment">// 将闭包参数声明为自动闭包</span>
+<span class="token keyword">func</span> <span class="token function-definition function">myFunc</span><span class="token punctuation">(</span>closure<span class="token punctuation">:</span> <span class="token attribute atrule">@autoclosure</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token class-name">Bool</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+<span class="token punctuation">}</span>
+<span class="token function">myFunc</span><span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">+</span> <span class="token number">2</span> <span class="token operator">+</span> <span class="token number">3</span> <span class="token operator">&gt;</span> <span class="token number">10</span><span class="token punctuation">)</span></code></pre>
+
+<p>自动闭包默认是非逃逸的，如果要使用逃逸类型的闭包参数，需要声明如下</p>
+<pre class="language-swift" data-language="swift"><code class="language-swift"><span class="token keyword">func</span> <span class="token function-definition function">myFunc</span><span class="token punctuation">(</span>closure<span class="token punctuation">:</span> <span class="token attribute atrule">@autoclosure</span> <span class="token attribute atrule">@escaping</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token class-name">Bool</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+<span class="token punctuation">}</span></code></pre>
+
+
+
+<h2 id="类和结构体"><a href="#类和结构体" class="headerlink" title="类和结构体"></a>类和结构体</h2><p><strong>Swift 中结构体和类有很多共同点。两者都可以：</strong></p>
+<ul>
+<li>定义属性用于存储值</li>
+<li>定义方法用于提供功能</li>
+<li>定义下标操作用于通过下标语法访问它们的值</li>
+<li>定义构造器用于设置初始值</li>
+<li>通过扩展以增加默认实现之外的功能</li>
+<li>遵循协议以提供某种标准功能</li>
+</ul>
+<p><strong>与结构体相比，类还有如下的附加功能：</strong></p>
+<ul>
+<li>继承允许一个类继承另一个类的特征</li>
+<li>类型转换允许在运行时检查和解释一个类实例的类型</li>
+<li>析构器允许一个类实例释放任何其所被分配的资源</li>
+<li>引用计数允许对一个类的多次引用</li>
+</ul>
+<h3 id="结构体类型的成员逐一构造器"><a href="#结构体类型的成员逐一构造器" class="headerlink" title="结构体类型的成员逐一构造器"></a>结构体类型的成员逐一构造器</h3><p>所有结构体都有一个自动生成的 <strong>成员逐一构造器</strong>，用于初始化新结构体实例中成员的属性。新实例中各个属性的初始值可以通过属性的名称传递到成员逐一构造器之中：</p>
+<pre class="language-swift" data-language="swift"><code class="language-swift"><span class="token keyword">let</span> vga <span class="token operator">=</span> <span class="token class-name">Resolution</span><span class="token punctuation">(</span>width<span class="token punctuation">:</span> <span class="token number">640</span><span class="token punctuation">,</span> height<span class="token punctuation">:</span> <span class="token number">480</span><span class="token punctuation">)</span></code></pre>
+
+<p>与结构体不同，类实例没有默认的成员逐一构造器</p>
+<p>注意：<strong>结构体和枚举是值类型，类是引用类型</strong></p>
+<h3 id="恒等运算符"><a href="#恒等运算符" class="headerlink" title="恒等运算符"></a>恒等运算符</h3><p>因为类是引用类型，所以多个常量和变量可能在幕后同时引用同一个类实例。（对于结构体和枚举来说，这并不成立。因为它们作为值类型，在被赋予到常量、变量或者传递到函数时，其值总是会被拷贝。）</p>
+<p>判定两个常量或者变量是否引用同一个类实例有时很有用。为了达到这个目的，Swift 提供了两个恒等运算符：</p>
+<ul>
+<li>相同（<code>===</code>）</li>
+<li>不相同（<code>!==</code>）</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+    
+    <div>
+      
+      <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">------------- 本文结束 <i class="fas fa-book-reader"></i> 感谢阅读 -------------</div>
+    
+</div>
+
+      
+    </div>
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" rel="tag"># 性能优化</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/09/11/Week1_2%EF%BC%9A%E5%9F%B9%E5%85%BB%E8%AE%A1%E5%88%92%E5%AE%9E%E8%B7%B5%E4%BD%9C%E4%B8%9A1/" rel="prev" title="2022年iOS实习期实践作业">
+                  <i class="fa fa-chevron-left"></i> 2022年iOS实习期实践作业
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/11/11/Week12_1%EF%BC%9A%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="next" title="单元测试学习笔记">
+                  单元测试学习笔记 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline-comments"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">beiyep - 心怀理想 坚定前行</span>
+</div>
+
+
+<span>
+<span class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">163k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">2:28</span>
+  </span>
+</span>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<span class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</span>
+</span>
+
+
+
+<!-- 网站运行时间的设置 -->
+
+<span><span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span></span>
+<script>  
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("01/01/2022 00:00:00");//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"https://hexo-coment-api.vercel.app/","placeholder":"欢迎评论...","avatar":"mm","pageSize":10,"visitor":false,"comment_count":true,"requiredFields":[],"meta":["nick","mail","link"],"libUrl":"https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js","el":"#waline-comments","path":"/2022/10/11/Week5_1%EF%BC%9ASwift%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"}</script>
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() => 
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => {
+    new Waline(CONFIG.waline);
+  });
+});
+</script>
+</body>
+</html>

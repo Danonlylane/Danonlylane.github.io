@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/myPicture.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/myPicture.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"danonlylane.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.9.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="单元测试学习笔记[toc] 理论知识为什么需要单元测试？  迫使从调用者的角度去思考，从而优化代码结构使其可测试性高 更细致地去测试代码，提高代码的健壮性  单元测试（Unit Test）一个单元测试是一段测试代码，这段测试代码调用生产代码的一个工作单元(如一个方法)，并检验该工作单元的一个具体的最终结果。 如果关于这个最终结果的假设不成立，那这个单元测试就失败了。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="单元测试学习笔记">
+<meta property="og:url" content="https://danonlylane.github.io/2022/11/11/Week12_1%EF%BC%9A%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="beiyep&#39;s Blog">
+<meta property="og:description" content="单元测试学习笔记[toc] 理论知识为什么需要单元测试？  迫使从调用者的角度去思考，从而优化代码结构使其可测试性高 更细致地去测试代码，提高代码的健壮性  单元测试（Unit Test）一个单元测试是一段测试代码，这段测试代码调用生产代码的一个工作单元(如一个方法)，并检验该工作单元的一个具体的最终结果。 如果关于这个最终结果的假设不成立，那这个单元测试就失败了。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h68g10gu9qj20vt0u03zd.jpg">
+<meta property="article:published_time" content="2022-11-11T14:51:56.000Z">
+<meta property="article:modified_time" content="2023-03-06T06:12:14.588Z">
+<meta property="article:author" content="beiyep">
+<meta property="article:tag" content="iOS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h68g10gu9qj20vt0u03zd.jpg">
+
+
+<link rel="canonical" href="https://danonlylane.github.io/2022/11/11/Week12_1%EF%BC%9A%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://danonlylane.github.io/2022/11/11/Week12_1%EF%BC%9A%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/","path":"2022/11/11/Week12_1：单元测试学习笔记/","title":"单元测试学习笔记"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>单元测试学习笔记 | beiyep's Blog</title>
+  
+
+
+
+<link rel="dns-prefetch" href="https://hexo-coment-api.vercel.app/">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">beiyep's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">12</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">11</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">37</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0"><span class="nav-number">1.</span> <span class="nav-text">单元测试学习笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%90%86%E8%AE%BA%E7%9F%A5%E8%AF%86"><span class="nav-number">1.1.</span> <span class="nav-text">理论知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%EF%BC%88Unit-Test%EF%BC%89"><span class="nav-number">1.1.1.</span> <span class="nav-text">单元测试（Unit Test）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E7%BB%88%E7%BB%93%E6%9E%9C%EF%BC%88Final-Result%EF%BC%89"><span class="nav-number">1.1.2.</span> <span class="nav-text">最终结果（Final Result）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A1%86%E6%9E%B6%E7%AE%80%E4%BB%8B"><span class="nav-number">1.2.</span> <span class="nav-text">框架简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#XCTest"><span class="nav-number">1.2.1.</span> <span class="nav-text">XCTest</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OCMock"><span class="nav-number">1.2.2.</span> <span class="nav-text">OCMock</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B1%BBMock"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">类Mock</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8D%8F%E8%AE%AEMock"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">协议Mock</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%A5%E6%A0%BC%E7%9A%84%E7%B1%BB%E5%92%8C%E5%8D%8F%E8%AE%AEMock"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">严格的类和协议Mock</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%83%A8%E5%88%86Mock"><span class="nav-number">1.2.2.4.</span> <span class="nav-text">部分Mock</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%82%E5%AF%9F%E8%80%85Mock"><span class="nav-number">1.2.2.5.</span> <span class="nav-text">观察者Mock</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Mock%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E6%96%B9%E6%B3%95"><span class="nav-number">1.2.2.6.</span> <span class="nav-text">Mock创建对象方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Mock%E6%96%B9%E6%B3%95%E5%BF%BD%E7%95%A5%E9%9D%9E%E5%AF%B9%E8%B1%A1%E5%8F%82%E6%95%B0"><span class="nav-number">1.2.2.7.</span> <span class="nav-text">Mock方法忽略非对象参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#mock-%E6%96%B9%E6%B3%95%E5%85%B6%E4%BB%96%E5%8F%82%E6%95%B0%E7%BA%A6%E6%9D%9F"><span class="nav-number">1.2.2.8.</span> <span class="nav-text">mock 方法其他参数约束</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A1%8C%E4%B8%BA%E9%AA%8C%E8%AF%81"><span class="nav-number">1.2.2.9.</span> <span class="nav-text">行为验证</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#mock-%E6%96%B9%E6%B3%95%E7%9A%84-block-%E5%8F%82%E6%95%B0"><span class="nav-number">1.2.2.10.</span> <span class="nav-text">mock 方法的 block 参数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OCHamcrest"><span class="nav-number">1.2.3.</span> <span class="nav-text">OCHamcrest</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Object-%E5%AF%B9%E8%B1%A1"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">Object - 对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#String-%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">String - 字符串</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Collection-%E9%9B%86%E5%90%88"><span class="nav-number">1.2.3.3.</span> <span class="nav-text">Collection - 集合</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Number-%E6%95%B0%E5%AD%97"><span class="nav-number">1.2.3.4.</span> <span class="nav-text">Number - 数字</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Logical-%E9%80%BB%E8%BE%91"><span class="nav-number">1.2.3.5.</span> <span class="nav-text">Logical - 逻辑</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Decorator-%E4%BF%AE%E9%A5%B0"><span class="nav-number">1.2.3.6.</span> <span class="nav-text">Decorator - 修饰</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%82%E6%AD%A5%E6%96%AD%E8%A8%80"><span class="nav-number">1.2.3.7.</span> <span class="nav-text">异步断言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E5%8C%B9%E9%85%8D%E5%99%A8"><span class="nav-number">1.2.3.8.</span> <span class="nav-text">自定义匹配器</span></a></li></ol></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="beiyep"
+      src="/images/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">beiyep</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://danonlylane.github.io/2022/11/11/Week12_1%EF%BC%9A%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="beiyep">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="beiyep's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          单元测试学习笔记
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-11-11 22:51:56" itemprop="dateCreated datePublished" datetime="2022-11-11T22:51:56+08:00">2022-11-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-03-06 14:12:14" itemprop="dateModified" datetime="2023-03-06T14:12:14+08:00">2023-03-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/2022/11/11/Week12_1%EF%BC%9A%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/#waline-comments" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" id="/2022/11/11/Week12_1%EF%BC%9A%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" data-xid="/2022/11/11/Week12_1%EF%BC%9A%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>6.2k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>6 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="单元测试学习笔记"><a href="#单元测试学习笔记" class="headerlink" title="单元测试学习笔记"></a>单元测试学习笔记</h1><p>[toc]</p>
+<h2 id="理论知识"><a href="#理论知识" class="headerlink" title="理论知识"></a>理论知识</h2><p>为什么需要单元测试？</p>
+<ul>
+<li>迫使从调用者的角度去思考，从而优化代码结构使其可测试性高</li>
+<li>更细致地去测试代码，提高代码的健壮性</li>
+</ul>
+<h3 id="单元测试（Unit-Test）"><a href="#单元测试（Unit-Test）" class="headerlink" title="单元测试（Unit Test）"></a><a target="_blank" rel="noopener" href="http://cocoa.gitpages.futuoa.com/cocoaunittestdoc/#/basis_info?id=%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%EF%BC%88unit-test%EF%BC%89">单元测试（Unit Test）</a></h3><p>一个单元测试是一段测试代码，这段测试代码调用生产代码的一个工作单元(如一个方法)，并检验该工作单元的一个具体的最终结果。</p>
+<p>如果关于这个最终结果的假设不成立，那这个单元测试就失败了。</p>
+<span id="more"></span>
+
+<h3 id="最终结果（Final-Result）"><a href="#最终结果（Final-Result）" class="headerlink" title="最终结果（Final Result）"></a><a target="_blank" rel="noopener" href="http://cocoa.gitpages.futuoa.com/cocoaunittestdoc/#/basis_info?id=%E6%9C%80%E7%BB%88%E7%BB%93%E6%9E%9C%EF%BC%88final-result%EF%BC%89">最终结果（Final Result）</a></h3><p>上面提到工作单元的概念，一个工作单元一般会产生以下三种最终结果的一种：</p>
+<ol>
+<li>返回一个值</li>
+<li>改变了被测系统的某个状态（例如，某个全局变量，或类的某个成员数据）</li>
+<li>调用了一个其他工作单元（例如，某个第三方接口，或类的某个其他方法）</li>
+</ol>
+<h2 id="框架简介"><a href="#框架简介" class="headerlink" title="框架简介"></a><a target="_blank" rel="noopener" href="http://cocoa.gitpages.futuoa.com/cocoaunittestdoc/#/basis_info?id=%E6%A1%86%E6%9E%B6%E7%AE%80%E4%BB%8B">框架简介</a></h2><h3 id="XCTest"><a href="#XCTest" class="headerlink" title="XCTest"></a><a target="_blank" rel="noopener" href="http://cocoa.gitpages.futuoa.com/cocoaunittestdoc/#/basis_info?id=xctest">XCTest</a></h3><p>XCTest 是官方提供的测试框架，使用它可以为 Xcode 项目编写单元测试，同时也可以进行性能测试和 UI 测试。其基本内容有：</p>
+<ul>
+<li><code>XCTestCase</code> 用于定义测试用例、测试方法和性能测试的基类。</li>
+<li><code>XCTAssert</code>、<code>XCTAssertEqual</code> 和 <code>XCTAssertNotEqual</code> 等宏为官方提供的测试断言，通过判断代码执行期间是否满足某些条件，来检查测试方法中的预期值和结果。</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://developer.apple.com/documentation/xctest"> XCTest官方文档</a></p>
+<p><code>XCTest</code>工具类提供了一系列的断言方法，主要分 5 类：</p>
+<ul>
+<li>无条件失败 <code>XCTFail</code></li>
+<li>布尔断言 <code>XCTAssertTrue</code>、<code>XCTAssertFalse</code></li>
+<li>相等断言 <code>XCTAssertEqual</code>、<code>XCTAssertEqualObjects</code>、<code>XCTAssertGreaterThan</code></li>
+<li>空值断言 <code>XCTAssertNil</code>、<code>XCTAssertNotNil</code></li>
+<li>异常断言 <code>XCTAssertThrows</code></li>
+</ul>
+<p>在编写断言语句时，<strong>应避免滥用 bool 判断断言方法，尽可能避免自行判断</strong></p>
+<p>例如：<code>XCTAssertTrue(1 == 2)</code>应该写成<code>XCTAssertEqual(1, 2)</code>，这样当报错的时候，后者可以更好告诉我们错误信息是什么</p>
+<blockquote>
+<p>注意：用例的执行顺序并不是按照用例名字典顺序或我们编写用例顺序执行的，而类似于<strong>乱序执行</strong>，因此我们应<strong>保证每个测试用例相互独立且稳定，用例每次的执行都不受其他用例或执行顺序的影响</strong></p>
+</blockquote>
+<pre class="language-none"><code class="language-none">setUp 实例函数，通常用来做一些所有测试用例都需要执行的准备动作，例如准备 Mock 数据、初始化环境等
+tearDown 实例函数，通常用来做一些所有测试用例都需要执行的回收动作，例如资源回收、变量重置等</code></pre>
+
+<p>有时候我们会遇到<strong>单独执行每个用例都是通过的，但执行整个测试类就会出现失败</strong>的情况，通常都是因为静态变量、单例、环境等未做好重置回收或初始化工作，导致用例间相互影响造成的</p>
+<p><code>setUp</code> 和 <code>tearDown</code> 前面一直提到实例方法，为什么一直强调实例方法呢，因为它俩还有同名类方法！</p>
+<pre class="language-objectivec" data-language="objectivec"><code class="language-objectivec"><span class="token operator">+</span> <span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>setUp<span class="token punctuation">;</span>
+<span class="token operator">+</span> <span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>tearDown<span class="token punctuation">;</span></code></pre>
+
+<p>实例方法是用于标识<strong>测试类每个用例执行前和执行后</strong>所执行的函数，而类方法是用于标识<strong>测试类所有用例执行前和执行后</strong>所执行的函数</p>
+<p>执行顺序：</p>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h68g10gu9qj20vt0u03zd.jpg" style="zoom:33%;">
+
+
+
+<h3 id="OCMock"><a href="#OCMock" class="headerlink" title="OCMock"></a><a target="_blank" rel="noopener" href="http://cocoa.gitpages.futuoa.com/cocoaunittestdoc/#/basis_info?id=ocmock">OCMock</a></h3><p>OCMock 是一个用于为 iOS 或 MacOS 项目配置 Mock 的测试框架。其基本内容有：</p>
+<ul>
+<li><code>OCMClassMock()</code> 进行 Mock 对象，进行代替真实对象。</li>
+<li><code>OCMStub()</code> 指定调用方法要返回的内容。</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://ocmock.org/"> OCMock官方文档</a></p>
+<h4 id="类Mock"><a href="#类Mock" class="headerlink" title="类Mock"></a>类Mock</h4><pre class="language-none"><code class="language-none">id classMock = OCMClassMock([SomeClass class]);</code></pre>
+
+<h4 id="协议Mock"><a href="#协议Mock" class="headerlink" title="协议Mock"></a>协议Mock</h4><pre class="language-objective-c" data-language="objective-c"><code class="language-objective-c">id protocolMock = OCMProtocolMock(@protocol(SomeProtocol));</code></pre>
+
+<h4 id="严格的类和协议Mock"><a href="#严格的类和协议Mock" class="headerlink" title="严格的类和协议Mock"></a>严格的类和协议Mock</h4><p>默认的 mock 方式是nil (方法调用的时候返回nil或者是返回正确的方法)</p>
+<p>严格的模式下，mock 的对象在调用没有被 stub (置换)的方法的时候,会抛出异常</p>
+<pre class="language-objective-c" data-language="objective-c"><code class="language-objective-c">id classMock = OCMStrictClassMock([SomeClass class]);
+id protocolMock = OCMStrictProtocolMock(@protocol(SomeProtocol));</code></pre>
+
+<h4 id="部分Mock"><a href="#部分Mock" class="headerlink" title="部分Mock"></a>部分Mock</h4><pre class="language-objective-c" data-language="objective-c"><code class="language-objective-c">id partialMock = OCMPartialMock(anObject)</code></pre>
+
+<p>这样创建的对象在调用方法时:</p>
+<ul>
+<li>如果方法被stub，调用stub后的方法</li>
+<li>如果方法没有被stub，调用原来的对象的方法</li>
+</ul>
+<p>partialMock 对象在调用方法后,可以用于稍后的验证此方法的调用情况(被调用,调用结果)</p>
+<h4 id="观察者Mock"><a href="#观察者Mock" class="headerlink" title="观察者Mock"></a>观察者Mock</h4><pre class="language-objective-c" data-language="objective-c"><code class="language-objective-c">id observerMock = OCMObserverMock();</code></pre>
+
+<p>这样创建的对象可以用于观察/通知.</p>
+<h4 id="Mock创建对象方法"><a href="#Mock创建对象方法" class="headerlink" title="Mock创建对象方法"></a>Mock创建对象方法</h4><p>在实际开发过程中，经常会出现 A 对象依赖 B 对象，但 B 对象不是通过依赖注入的方式进行创建，而是在 A 对象内部进行创建 B 对象场景。</p>
+<blockquote>
+<p>什么是依赖？</p>
+<p>对象A持有了对象B，我们就可以说对象A依赖对象B，或者对象B是对象A的一个依赖。一个对象需要的依赖越多，该对象耦合度越高，也就越难解耦</p>
+<p>什么是依赖注入？</p>
+<p>依赖注入(Dependency Injection) 是面向对象编程的一种设计模式，用来减少代码之间的耦合度。通常基于接口来实现，也就是说：不需要亲自new一个对象，而是通过相关的控制器来获取对象</p>
+<p>注入的方式</p>
+<p>依赖注入的方式常见有两种：构造方法注入和属性注入 </p>
+</blockquote>
+<p>对于这种情况，我们也可以使用 <code>OCMock</code> 框架使得 A 对 B 进行隔离依赖，但这里需要注意两种情况：</p>
+<ol>
+<li><p>B 对象是采用 init 方法进行创建，需要通过 mock alloc 方法，保证 init 创建对象的结果是 mock 对象，示例代码如下</p>
+<pre class="language-objc" data-language="objc"><code class="language-objc">id balanceMock <span class="token operator">=</span> <span class="token function">OCMClassMock</span><span class="token punctuation">(</span>FTBalance<span class="token punctuation">.</span>class<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">OCMStub</span><span class="token punctuation">(</span><span class="token punctuation">[</span>balanceMock alloc<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">andReturn</span><span class="token punctuation">(</span>balanceMock<span class="token punctuation">)</span><span class="token punctuation">;</span>
+FTBalance <span class="token operator">*</span>balance1 <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">[</span>FTBalance alloc<span class="token punctuation">]</span> init<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token comment">/// 我们可以发现两个变量为同一个对象</span>
+<span class="token function">XCTAssertEqualObjects</span><span class="token punctuation">(</span>balanceMock<span class="token punctuation">,</span> balance1<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></li>
+<li><p>B 对象是采用 initWithXxx 方法创建，需要同时 mock alloc 方法和其他 initWithXxx 方法，才能保证 init 创建对象的结果是 mock 对象，示例代码如下</p>
+<pre class="language-objc" data-language="objc"><code class="language-objc"><span class="token comment">// 由于 FTBalance 具有 initWithMoney: 初始化方法</span>
+id balanceMock <span class="token operator">=</span> <span class="token function">OCMClassMock</span><span class="token punctuation">(</span>FTBalance<span class="token punctuation">.</span>class<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">OCMStub</span><span class="token punctuation">(</span><span class="token punctuation">[</span>balanceMock initWithMoney<span class="token punctuation">:</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">andReturn</span><span class="token punctuation">(</span>balanceMock<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">OCMStub</span><span class="token punctuation">(</span><span class="token punctuation">[</span>balanceMock alloc<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">andReturn</span><span class="token punctuation">(</span>balanceMock<span class="token punctuation">)</span><span class="token punctuation">;</span>
+FTBalance <span class="token operator">*</span>balance2 <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">[</span>FTBalance alloc<span class="token punctuation">]</span> initWithMoney<span class="token punctuation">:</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token comment">/// 我们可以发现两个变量为同一个对象</span>
+<span class="token function">XCTAssertEqualObjects</span><span class="token punctuation">(</span>balanceMock<span class="token punctuation">,</span> balance2<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></li>
+</ol>
+<p>这里提到了 <code>alloc</code> 例子，OCMock 也可以对 <code>alloc</code>, <code>new</code>, <code>copy</code> 等方法进行 mock。</p>
+<h4 id="Mock方法忽略非对象参数"><a href="#Mock方法忽略非对象参数" class="headerlink" title="Mock方法忽略非对象参数"></a>Mock方法忽略非对象参数</h4><p>我们可以使用 <code>ignoringNonObjectArgs()</code> 方法，忽略其方法具体非对象参数，保证所有的传参具有统一的结果，具体代码如下：</p>
+<pre class="language-objective-c" data-language="objective-c"><code class="language-objective-c">OCMStub([balanceMock payAmount:0]).ignoringNonObjectArgs().andReturn(NO);</code></pre>
+
+<p>上面的解决方案是针对非对象参数情况，但实际上我们还会遇到其他传参，如对象传参，接下来我们来看下这些情况需要怎么处理。</p>
+<h4 id="mock-方法其他参数约束"><a href="#mock-方法其他参数约束" class="headerlink" title="mock 方法其他参数约束"></a>mock 方法其他参数约束</h4><h4 id="行为验证"><a href="#行为验证" class="headerlink" title="行为验证"></a>行为验证</h4><p>OCMVerify 可以验证某个方法的调用情况</p>
+<ul>
+<li><code>OCMVerify([mock someMethod])</code>: 验证 someMethod 方法是否被调用过</li>
+<li><code>OCMVerify(times(n), [mock doStuff])</code>: 验证 doStuff 方法是否被调用过 n 次</li>
+<li><code>OCMVerify(never(), [mock doStuff])</code>: 验证 doStuff 方法是否从没有调用过，其实这里 <code>never()</code> 相当于 <code>times(0)</code></li>
+<li><code>OCMVerify(atLeast(n), [mock doStuff])</code>: 验证 doStuff 方法是否最少被调用过 n 次</li>
+<li><code>OCMVerify(atMost(n), [mock doStuff])</code>: 验证 doStuff 方法是否最多被调用过 n 次</li>
+<li><code>OCMVerifyAllWithDelay(balanceMock, 1)</code>: 延迟行为验证，数值 <code>1</code> （表示为 NSTimeInterval）是模拟将等待的最大值。它通常会在满足预期后立即返回</li>
+</ul>
+<h4 id="mock-方法的-block-参数"><a href="#mock-方法的-block-参数" class="headerlink" title="mock 方法的 block 参数"></a><a target="_blank" rel="noopener" href="http://cocoa.gitpages.futuoa.com/cocoaunittestdoc/#/learn_framework/OCMock?id=mock-%E6%96%B9%E6%B3%95%E7%9A%84-block-%E5%8F%82%E6%95%B0">mock 方法的 block 参数</a></h4><p>通过 <code>andReturn()</code> 函数可以 mock 一个方法的返回值，但存在一个场景，方法执行的结果最终会调用某个 block，这个场景在异步/网络中经常出现。</p>
+<pre class="language-objc" data-language="objc"><code class="language-objc"><span class="token comment">/// invokeBlockWithArgs: 方法第一个参数为 @"First arg"。第二个参数为 [NSNull null]，表示对象值为 nil。第三个参数 nil 代表后面没有更多参数</span>
+<span class="token comment">/// 特别注意：这里有 [OCMArg invokeBlockWithArgs:...] 会被一个括号括起来！！！</span>
+<span class="token function">OCMStub</span><span class="token punctuation">(</span><span class="token punctuation">[</span>mock someMethodWithBlock<span class="token punctuation">:</span><span class="token punctuation">(</span><span class="token punctuation">[</span>OCMArg invokeBlockWithArgs<span class="token punctuation">:</span><span class="token string">@"First arg"</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>NSNull null<span class="token punctuation">]</span><span class="token punctuation">,</span> nil<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">/// 生产代码</span>
+<span class="token comment">/// 当生产代码执行到此方法，且该方法已 mock，block 可立刻同步执行，并响应 @"First arg" 和 nil 这两个传参</span>
+<span class="token punctuation">[</span><span class="token keyword">self</span> someMethodWithBlock<span class="token punctuation">:</span><span class="token operator">^</span><span class="token punctuation">(</span>NSString <span class="token operator">*</span>string<span class="token punctuation">,</span> NSObject <span class="token operator">*</span>obj<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">/// 此时 string 值为 @"First arg"，obj 值为 nil</span>
+<span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">;</span></code></pre>
+
+
+
+<h3 id="OCHamcrest"><a href="#OCHamcrest" class="headerlink" title="OCHamcrest"></a><a target="_blank" rel="noopener" href="http://cocoa.gitpages.futuoa.com/cocoaunittestdoc/#/basis_info?id=ochamcrest">OCHamcrest</a></h3><p>OCHamcrest 简单理解是一个测试断言库，提供了大量匹配断言语句，大大丰富了断言的类型，方便我们编写富有表现力且灵活的单元测试。其基本内容有：</p>
+<ul>
+<li>提供方便对象断言的相关断言语句，如<code>conformsTo</code>、<code>equalTo</code>、<code>instanceOf</code>，对于容器、数值、文本、逻辑等还有更多丰富的断言语句</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="http://hamcrest.org/OCHamcrest/"> OCHamcrest官方文档</a></p>
+<p>OCHamcrest 主要提供了以下内容：</p>
+<ul>
+<li>匹配器仓库，拥有丰富的预定义匹配器（如 <code>equalTo</code>、<code>closeTo</code> 等），可用于声明规则以检查给定对象是否匹配</li>
+<li>支持自定义匹配器（如可自定一个父类匹配器，<code>isSuperClassOf:</code>）</li>
+</ul>
+<p>OCHamcrest 的函数实际上是用“HC”包前缀（例如<code>HC_assertThat</code>和<code>HC_equalTo</code>）声明的，以避免名称冲突。但为了使编写速度更快、代码更清晰，默认情况下提供了可选的简短语法。例如，不用写<code>HC_assertThat</code>，只需写<code>assertThat</code>。</p>
+<blockquote>
+<p>若需要关闭简写模式，只需要声明<code>HC_DISABLE_SHORT_SYNTAX</code>宏即可</p>
+</blockquote>
+<h4 id="Object-对象"><a href="#Object-对象" class="headerlink" title="Object - 对象"></a><a target="_blank" rel="noopener" href="http://cocoa.gitpages.futuoa.com/cocoaunittestdoc/#/learn_framework/OCHamcrest?id=object-%E5%AF%B9%E8%B1%A1">Object - 对象</a></h4><p>OCHamcrest 框架针对对象类型提供了以下匹配器：</p>
+<ul>
+<li>conformsTo - 该对象是否遵循了给出的协议</li>
+<li>equalTo - 该对象是否与参数对象相同</li>
+<li>hasDescription - 允许使用文本规则对给出的一段文本与该对象的描述进行匹配</li>
+<li>hasProperty - 该对象是否含有给出的属性</li>
+<li>instanceOf - 是给出的类的实例，或是给出的类子类的实例</li>
+<li>isA - 是给出的类的实例，不同于 IsInstanceOf，无法匹配子类实例</li>
+<li>nilValue，notNilValue - 分别匹对空和非空</li>
+<li>sameInstance - 与给出的对象是同一个实例</li>
+<li>throwsException - 该对象是否捕获到异常</li>
+<li>HCArgumentCaptor - 匹配任何，捕获所有值</li>
+</ul>
+<h4 id="String-字符串"><a href="#String-字符串" class="headerlink" title="String - 字符串"></a><a target="_blank" rel="noopener" href="http://cocoa.gitpages.futuoa.com/cocoaunittestdoc/#/learn_framework/OCHamcrest?id=string-%E5%AD%97%E7%AC%A6%E4%B8%B2">String - 字符串</a></h4><p>OCHamcrest 框架针对字符串类型提供了以下匹配器：</p>
+<ul>
+<li>containsSubstring - 匹配某个字符串是否包含某子串的规则</li>
+<li>endsWith - 匹配某个字符串结尾是否包含某子串</li>
+<li>equalToIgnoringCase - 匹配某个字符串，但忽略大小写</li>
+<li>equalToIgnoringWhitespace - 匹配某个字符串，但忽略空格</li>
+<li>startsWith - 匹配字符串是否已某子为开头</li>
+<li>stringContainsInOrder, stringContainsInOrderIn - 匹配文本是否包含一定顺序的若干文本片段</li>
+</ul>
+<h4 id="Collection-集合"><a href="#Collection-集合" class="headerlink" title="Collection - 集合"></a><a target="_blank" rel="noopener" href="http://cocoa.gitpages.futuoa.com/cocoaunittestdoc/#/learn_framework/OCHamcrest?id=collection-%E9%9B%86%E5%90%88">Collection - 集合</a></h4><p>OCHamcrest 框架针对集合类型提供了以下匹配器：</p>
+<ul>
+<li>contains, containsIn - 断言包含</li>
+<li>containsInAnyOrder, containsInAnyOrderIn - 断言乱序包含（数量必须相同）</li>
+<li>containsInRelativeOrder, containsInRelativeOrderIn - 断言包含相对顺序项目的集合</li>
+<li>everyItem - 断言每个 item 都满足某个条件</li>
+<li>hasCountOf - 断言集合与给定数量的元素</li>
+<li>hasEntries - 断言包含多个键值对</li>
+<li>hasEntriesIn - 断言字典与字典中的键值对</li>
+<li>hasEntry - 断言包含键值对的</li>
+<li>hasItem - 断言给定的项目出现在和集合中</li>
+<li>hasItems, hasItemsIn - 断言给定的项目以任何顺序出现</li>
+<li>hasKey - 断言字典存在某个 key</li>
+<li>hasValue - 断言字典存在某个 value</li>
+<li>isEmpty - 断言空集合</li>
+<li>isIn - 断言对象在给定集合中</li>
+<li>onlyContains, onlyContainsIn - 断言集合的项目出现在给定列表中</li>
+</ul>
+<h4 id="Number-数字"><a href="#Number-数字" class="headerlink" title="Number - 数字"></a><a target="_blank" rel="noopener" href="http://cocoa.gitpages.futuoa.com/cocoaunittestdoc/#/learn_framework/OCHamcrest?id=number-%E6%95%B0%E5%AD%97">Number - 数字</a></h4><p>OCHamcrest 框架针对数字类型提供了以下匹配器：</p>
+<ul>
+<li>closeTo - 匹配靠近给予的数值</li>
+<li>greaterThan, greaterThanOrEqualTo, lessThan, lessThanOrEqualTo - 匹配比较数字大小</li>
+<li>isFalse - 匹配错误（0）</li>
+<li>isTrue - 匹配正确（非 0）</li>
+</ul>
+<h4 id="Logical-逻辑"><a href="#Logical-逻辑" class="headerlink" title="Logical - 逻辑"></a><a target="_blank" rel="noopener" href="http://cocoa.gitpages.futuoa.com/cocoaunittestdoc/#/learn_framework/OCHamcrest?id=logical-%E9%80%BB%E8%BE%91">Logical - 逻辑</a></h4><p>OCHamcrest 框架针对逻辑提供了以下匹配器：</p>
+<ul>
+<li>allOf, allOfIn - 匹配满足所有条件</li>
+<li>anyOf, anyOfIn - 匹配满足任意一个</li>
+<li>anything - 匹配任何东西（当您不关心特定值时，在复合匹配器中很有用）</li>
+<li>isNot - 否定匹配器</li>
+</ul>
+<h4 id="Decorator-修饰"><a href="#Decorator-修饰" class="headerlink" title="Decorator - 修饰"></a><a target="_blank" rel="noopener" href="http://cocoa.gitpages.futuoa.com/cocoaunittestdoc/#/learn_framework/OCHamcrest?id=decorator-%E4%BF%AE%E9%A5%B0">Decorator - 修饰</a></h4><p>OCHamcrest 框架提供了以下修饰型匹配器：</p>
+<ul>
+<li>describedAs - 提供匹配器一个自定义的失败描述</li>
+<li>is - 促进增强阅读性</li>
+</ul>
+<h4 id="异步断言"><a href="#异步断言" class="headerlink" title="异步断言"></a><a target="_blank" rel="noopener" href="http://cocoa.gitpages.futuoa.com/cocoaunittestdoc/#/learn_framework/OCHamcrest?id=%E5%BC%82%E6%AD%A5%E6%96%AD%E8%A8%80">异步断言</a></h4><p>开发过程中肯定存在一些异步执行的场景，最常见的就是网络请求，对于此，OCHamcrest 提供了异步断言机制<code>assertWithTimeout</code>，其将会保持验证表达式，直到匹配上或达到超时。</p>
+<p>例如，</p>
+<pre class="language-objc" data-language="objc"><code class="language-objc"><span class="token function">assertWithTimeout</span> <span class="token punctuation">(</span> <span class="token number">30</span> <span class="token punctuation">,</span> <span class="token function">thatEventually</span><span class="token punctuation">(</span><span class="token keyword">self</span><span class="token punctuation">.</span>code<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">is</span><span class="token punctuation">(</span> <span class="token operator">@</span><span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">)</span>  <span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
+<p>上述代码表示，在 30s 内将会一直进行匹配判断 self.code 值是否为 200，规定时间内匹配成功，则执行用例成功，否则执行失败。</p>
+<h4 id="自定义匹配器"><a href="#自定义匹配器" class="headerlink" title="自定义匹配器"></a><a target="_blank" rel="noopener" href="http://cocoa.gitpages.futuoa.com/cocoaunittestdoc/#/learn_framework/OCHamcrest?id=%E8%87%AA%E5%AE%9A%E4%B9%89%E5%8C%B9%E9%85%8D%E5%99%A8">自定义匹配器</a></h4><p>OCHamcrest 支持自定义匹配器，简单来说只需要继承自 HCBaseMatcher 基类，实现<code>-matches:</code>和<code>-describe_to:</code>方法即可，其中<code>-matches:</code>方法需要实现具体匹配逻辑，<code>-describe_to:</code>方法需要实现描述。</p>
+
+    </div>
+
+    
+    
+    
+    
+    <div>
+      
+      <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">------------- 本文结束 <i class="fas fa-book-reader"></i> 感谢阅读 -------------</div>
+    
+</div>
+
+      
+    </div>
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/iOS/" rel="tag"># iOS</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/10/11/Week5_1%EF%BC%9ASwift%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="prev" title="Swift学习笔记">
+                  <i class="fa fa-chevron-left"></i> Swift学习笔记
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/12/03/Week11_1%EF%BC%9AQuoteUtil%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" rel="next" title="工程中 QuoteUtil文件夹阅读笔记">
+                  工程中 QuoteUtil文件夹阅读笔记 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline-comments"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">beiyep - 心怀理想 坚定前行</span>
+</div>
+
+
+<span>
+<span class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">163k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">2:28</span>
+  </span>
+</span>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<span class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</span>
+</span>
+
+
+
+<!-- 网站运行时间的设置 -->
+
+<span><span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span></span>
+<script>  
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("01/01/2022 00:00:00");//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"https://hexo-coment-api.vercel.app/","placeholder":"欢迎评论...","avatar":"mm","pageSize":10,"visitor":false,"comment_count":true,"requiredFields":[],"meta":["nick","mail","link"],"libUrl":"https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js","el":"#waline-comments","path":"/2022/11/11/Week12_1%EF%BC%9A%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"}</script>
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() => 
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => {
+    new Waline(CONFIG.waline);
+  });
+});
+</script>
+</body>
+</html>

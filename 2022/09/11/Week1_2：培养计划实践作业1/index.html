@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/myPicture.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/myPicture.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"danonlylane.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.9.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="2022年iOS实习期实践作业[toc] 第一周练习实践1:子类重写父类的方法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2022年iOS实习期实践作业">
+<meta property="og:url" content="https://danonlylane.github.io/2022/09/11/Week1_2%EF%BC%9A%E5%9F%B9%E5%85%BB%E8%AE%A1%E5%88%92%E5%AE%9E%E8%B7%B5%E4%BD%9C%E4%B8%9A1/index.html">
+<meta property="og:site_name" content="beiyep&#39;s Blog">
+<meta property="og:description" content="2022年iOS实习期实践作业[toc] 第一周练习实践1:子类重写父类的方法">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-09-11T15:45:41.000Z">
+<meta property="article:modified_time" content="2023-03-06T06:08:54.895Z">
+<meta property="article:author" content="beiyep">
+<meta property="article:tag" content="iOS">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://danonlylane.github.io/2022/09/11/Week1_2%EF%BC%9A%E5%9F%B9%E5%85%BB%E8%AE%A1%E5%88%92%E5%AE%9E%E8%B7%B5%E4%BD%9C%E4%B8%9A1/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://danonlylane.github.io/2022/09/11/Week1_2%EF%BC%9A%E5%9F%B9%E5%85%BB%E8%AE%A1%E5%88%92%E5%AE%9E%E8%B7%B5%E4%BD%9C%E4%B8%9A1/","path":"2022/09/11/Week1_2：培养计划实践作业1/","title":"2022年iOS实习期实践作业"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2022年iOS实习期实践作业 | beiyep's Blog</title>
+  
+
+
+
+<link rel="dns-prefetch" href="https://hexo-coment-api.vercel.app/">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">beiyep's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">12</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">11</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">37</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2022%E5%B9%B4iOS%E5%AE%9E%E4%B9%A0%E6%9C%9F%E5%AE%9E%E8%B7%B5%E4%BD%9C%E4%B8%9A"><span class="nav-number">1.</span> <span class="nav-text">2022年iOS实习期实践作业</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E5%91%A8"><span class="nav-number">2.</span> <span class="nav-text">第一周</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%83%E4%B9%A0%E5%AE%9E%E8%B7%B51-%E5%AD%90%E7%B1%BB%E9%87%8D%E5%86%99%E7%88%B6%E7%B1%BB%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-number">2.1.</span> <span class="nav-text">练习实践1:子类重写父类的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%83%E4%B9%A0%E5%AE%9E%E8%B7%B52-%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C"><span class="nav-number">2.2.</span> <span class="nav-text">练习实践2:两数之和</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%83%E4%B9%A0%E5%AE%9E%E8%B7%B53-%E9%87%8D%E5%86%99%E7%B1%BB%E7%9A%84-init-%E5%87%BD%E6%95%B0"><span class="nav-number">2.3.</span> <span class="nav-text">练习实践3:重写类的 init 函数</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="beiyep"
+      src="/images/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">beiyep</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://danonlylane.github.io/2022/09/11/Week1_2%EF%BC%9A%E5%9F%B9%E5%85%BB%E8%AE%A1%E5%88%92%E5%AE%9E%E8%B7%B5%E4%BD%9C%E4%B8%9A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="beiyep">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="beiyep's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2022年iOS实习期实践作业
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-09-11 23:45:41" itemprop="dateCreated datePublished" datetime="2022-09-11T23:45:41+08:00">2022-09-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-03-06 14:08:54" itemprop="dateModified" datetime="2023-03-06T14:08:54+08:00">2023-03-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/2022/09/11/Week1_2%EF%BC%9A%E5%9F%B9%E5%85%BB%E8%AE%A1%E5%88%92%E5%AE%9E%E8%B7%B5%E4%BD%9C%E4%B8%9A1/#waline-comments" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" id="/2022/09/11/Week1_2%EF%BC%9A%E5%9F%B9%E5%85%BB%E8%AE%A1%E5%88%92%E5%AE%9E%E8%B7%B5%E4%BD%9C%E4%B8%9A1/" data-xid="/2022/09/11/Week1_2%EF%BC%9A%E5%9F%B9%E5%85%BB%E8%AE%A1%E5%88%92%E5%AE%9E%E8%B7%B5%E4%BD%9C%E4%B8%9A1/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>4.2k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>4 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="2022年iOS实习期实践作业"><a href="#2022年iOS实习期实践作业" class="headerlink" title="2022年iOS实习期实践作业"></a>2022年iOS实习期实践作业</h2><p>[toc]</p>
+<h2 id="第一周"><a href="#第一周" class="headerlink" title="第一周"></a>第一周</h2><h3 id="练习实践1-子类重写父类的方法"><a href="#练习实践1-子类重写父类的方法" class="headerlink" title="练习实践1:子类重写父类的方法"></a>练习实践1:子类重写父类的方法</h3><span id="more"></span>
+
+<pre class="language-objc" data-language="objc"><code class="language-objc">#import &lt;Foundation/Foundation.h&gt;
+
+//声明类Student
+@interface Student : NSObject  //通过@interface关键字来声明类
+
+//类所包含的变量
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, assign) int age;
+@property (nonatomic, assign) double score;
+
+//类所包含的函数
+- (void)display;
+
+@end  //使用@end关键字结束类的声明
+
+//实现在类中声明的函数
+@implementation Student  //通过@implementation关键字来实现类中的函数
+
+- (void)display {
+    NSLog(@"%@的年龄是 %d，成绩是 %f", self.name, self.age, self.score);
+}
+
+@end  //使用@end关键字结束类中函数的实现
+
+
+//声明动物类
+@interface Animal : NSObject
+
+- (void)run;
+
+- (void)eat;
+
+@end
+
+//为动物类添加方法
+@implementation Animal
+
+- (void)run {
+    NSLog(@"动物都会移动");
+}
+
+- (void)eat{
+    NSLog(@"动物都要吃东西");
+}
+
+@end
+
+//声明猫和狗
+@interface Cat : Animal
+
+@end
+
+@interface Dog : Animal
+
+@end
+
+//重写父类方法
+@implementation Cat
+
+- (void)run {
+    NSLog(@"猫跑可以的很快");
+}
+
+- (void)eat {
+    NSLog(@"猫喜欢吃鱼");
+}
+
+@end
+
+@implementation Dog
+
+- (void)run {
+    NSLog(@"狗也跑可以的很快");
+}
+
+- (void)eat {
+    NSLog(@"狗喜欢吃骨头");
+}
+
+@end
+
+int main() {
+    Cat *cat = [[Cat alloc] init];
+    Dog *dog = [[Dog alloc] init];
+    [cat run];
+    [cat eat];
+    [dog run];
+    [dog eat];
+    return 0;
+}</code></pre>
+
+
+
+<h3 id="练习实践2-两数之和"><a href="#练习实践2-两数之和" class="headerlink" title="练习实践2:两数之和"></a>练习实践2:两数之和</h3><pre class="language-none"><code class="language-none">1. 两数之和
+给定一个整数数组 nums 和一个整数目标值 target，请你在该数组中找出 和为目标值 target  的那 两个 整数，并返回它们的数组下标。
+
+你可以假设每种输入只会对应一个答案。但是，数组中同一个元素在答案里不能重复出现。
+
+你可以按任意顺序返回答案。
+
+示例 1：
+
+输入：nums = [2,7,11,15], target = 9
+输出：[0,1]
+解释：因为 nums[0] + nums[1] == 9 ，返回 [0, 1] 。
+示例 2：
+
+输入：nums = [3,2,4], target = 6
+输出：[1,2]
+示例 3：
+
+输入：nums = [3,3], target = 6
+输出：[0,1]</code></pre>
+
+
+
+
+
+<p>C++ 解法：</p>
+<pre class="language-c++" data-language="c++"><code class="language-c++">class Solution {
+public:
+    vector&lt;int&gt; twoSum(vector&lt;int&gt;&amp; nums, int target) {
+        int len = nums.size();
+        unordered_map&lt;int, int&gt; map;
+
+        for(int i = 0; i &lt; len; i++) {
+            auto iterator = map.find(target - nums[i]);
+            if(iterator != map.end()) return {iterator-&gt;second, i};
+            map[nums[i]] = i;
+        }
+        return {};
+    }
+};</code></pre>
+
+
+
+<p>Objective-C解法：</p>
+<pre class="language-objective-c" data-language="objective-c"><code class="language-objective-c">int main(int argc, const char * argv[]) {
+    @autoreleasepool {
+        NSMutableArray *inputArray = [NSMutableArray arrayWithCapacity:0];
+        int target;
+        int len;
+        
+        NSLog(@"请输入数组长度");
+        scanf("%d", &amp;len);
+        NSLog(@"请输入数组");
+        
+        for(int i = 0; i &lt; len; i++) {
+            int tmp;
+            scanf("%d", &amp;tmp);
+            [inputArray addObject:@(tmp)];
+        }
+        
+        NSLog(@"请输入两数之和");
+        scanf("%d", &amp;target);
+        
+        NSMutableDictionary *valueToIndexDict = [NSMutableDictionary dictionary];
+
+        NSInteger tmpValue;
+        NSNumber *findIndex;
+        
+        for(int i = 0; i &lt; len; i++) {
+            tmpValue = [inputArray[i] integerValue];
+            findIndex = @(target - tmpValue);
+            
+            if(valueToIndexDict[findIndex] != nil) {
+                NSLog(@"%@ %d", valueToIndexDict[findIndex], i);
+            }
+            [valueToIndexDict setValue:@(i) forKey:(inputArray[i])];
+        }
+    }
+    return 0;
+}</code></pre>
+
+
+
+<h3 id="练习实践3-重写类的-init-函数"><a href="#练习实践3-重写类的-init-函数" class="headerlink" title="练习实践3:重写类的 init 函数"></a>练习实践3:重写类的 init 函数</h3><p>注意命名规范，重写的 init 函数要以 init 开头</p>
+<pre class="language-objective-c" data-language="objective-c"><code class="language-objective-c">#import &lt;Foundation/Foundation.h&gt;
+
+//声明动物类
+@interface Animal : NSObject
+
+@property (nonatomic, assign) int height;
+@property (nonatomic, assign) int weight;
+@property (nonatomic, assign) int age;
+@property (nonatomic, copy) NSString *name;
+
+- (void)run;
+
+- (void)eat;
+
+- (id)initWithHeight:(int)height weight:(int)weight age:(int)age name:(NSString *)name;
+
+@end
+
+//为动物类添加方法
+@implementation Animal
+
+- (void)run {
+    NSLog(@"动物都会移动");
+}
+
+- (void)eat{
+    NSLog(@"动物都要吃东西");
+}
+
+- (void)printAnimalData {
+    NSLog(@"它的各项数据是：身高：%d 体重：%d 年龄：%d 名称：%@",self.height, self.weight, self.age, self.name);
+}
+
+- (id)initWithHeight:(int)height weight:(int)weight age:(int)age name:(NSString *)name{
+    if(self = [super init]) {
+        self.height = height;
+        self.weight = weight;
+        self.age = age;
+        self.name = name;
+    }
+    return self;
+}
+
+@end
+
+//声明猫和狗
+@interface Cat : Animal
+
+@end
+
+@interface Dog : Animal
+
+@end
+
+//重写父类方法
+@implementation Cat
+
+- (void)run {
+    NSLog(@"猫跑可以的很快");
+}
+
+- (void)eat {
+    NSLog(@"猫喜欢吃鱼");
+}
+
+@end
+
+@implementation Dog
+
+- (void)run {
+    NSLog(@"狗也跑可以的很快");
+}
+
+- (void)eat {
+    NSLog(@"狗喜欢吃骨头");
+}
+
+@end
+
+int main() {
+    Cat *cat = [[Cat alloc] initWithHeight:11 weight:33 age:44 name:@"bey"];
+    Dog *dog = [[Dog alloc] initWithHeight:2 weight:49 age:488 name:@"huang"];
+    [cat printAnimalData];
+    [cat run];
+    [cat eat];
+    [dog printAnimalData];
+    [dog run];
+    [dog eat];
+    return 0;
+}</code></pre>
+
+
+    </div>
+
+    
+    
+    
+    
+    <div>
+      
+      <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">------------- 本文结束 <i class="fas fa-book-reader"></i> 感谢阅读 -------------</div>
+    
+</div>
+
+      
+    </div>
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/iOS/" rel="tag"># iOS</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/09/04/Week4_2%EF%BC%9AiTerm2%E5%8A%A0zsh%E6%90%AD%E5%BB%BA%E9%AB%98%E9%A2%9C%E5%80%BC%E5%BC%BA%E5%A4%A7%E7%BB%88%E7%AB%AF/" rel="prev" title="iTerm2终端神器快速安装教程">
+                  <i class="fa fa-chevron-left"></i> iTerm2终端神器快速安装教程
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/10/11/Week5_1%EF%BC%9ASwift%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="next" title="Swift学习笔记">
+                  Swift学习笔记 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline-comments"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">beiyep - 心怀理想 坚定前行</span>
+</div>
+
+
+<span>
+<span class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">163k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">2:28</span>
+  </span>
+</span>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<span class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</span>
+</span>
+
+
+
+<!-- 网站运行时间的设置 -->
+
+<span><span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span></span>
+<script>  
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("01/01/2022 00:00:00");//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"https://hexo-coment-api.vercel.app/","placeholder":"欢迎评论...","avatar":"mm","pageSize":10,"visitor":false,"comment_count":true,"requiredFields":[],"meta":["nick","mail","link"],"libUrl":"https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js","el":"#waline-comments","path":"/2022/09/11/Week1_2%EF%BC%9A%E5%9F%B9%E5%85%BB%E8%AE%A1%E5%88%92%E5%AE%9E%E8%B7%B5%E4%BD%9C%E4%B8%9A1/"}</script>
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() => 
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => {
+    new Waline(CONFIG.waline);
+  });
+});
+</script>
+</body>
+</html>

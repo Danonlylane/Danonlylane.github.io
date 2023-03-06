@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/myPicture.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/myPicture.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"danonlylane.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.9.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="工程中QuoteUtil文件夹阅读笔记[toc] 基本信息目录结构： . ├── ColorManager ├── FTEmptyTableViewCell.h ├── FTEmptyTableViewCell.m ├── FTEmptyTableViewCell.xib ├── FTQuoteAlertUtil.swift ├── FTQuoteCustomEmptyFailedView.h ├">
+<meta property="og:type" content="article">
+<meta property="og:title" content="工程中 QuoteUtil文件夹阅读笔记">
+<meta property="og:url" content="https://danonlylane.github.io/2022/12/03/Week11_1%EF%BC%9AQuoteUtil%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="beiyep&#39;s Blog">
+<meta property="og:description" content="工程中QuoteUtil文件夹阅读笔记[toc] 基本信息目录结构： . ├── ColorManager ├── FTEmptyTableViewCell.h ├── FTEmptyTableViewCell.m ├── FTEmptyTableViewCell.xib ├── FTQuoteAlertUtil.swift ├── FTQuoteCustomEmptyFailedView.h ├">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h5wxdimm2tj20u01sx7ab.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h5yaqloi3zj21880seaex.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h5yaplykznj218q0u0tbw.jpg">
+<meta property="article:published_time" content="2022-12-03T14:18:51.000Z">
+<meta property="article:modified_time" content="2023-03-06T06:13:14.535Z">
+<meta property="article:author" content="beiyep">
+<meta property="article:tag" content="iOS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h5wxdimm2tj20u01sx7ab.jpg">
+
+
+<link rel="canonical" href="https://danonlylane.github.io/2022/12/03/Week11_1%EF%BC%9AQuoteUtil%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://danonlylane.github.io/2022/12/03/Week11_1%EF%BC%9AQuoteUtil%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/","path":"2022/12/03/Week11_1：QuoteUtil阅读笔记/","title":"工程中 QuoteUtil文件夹阅读笔记"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>工程中 QuoteUtil文件夹阅读笔记 | beiyep's Blog</title>
+  
+
+
+
+<link rel="dns-prefetch" href="https://hexo-coment-api.vercel.app/">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">beiyep's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">12</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">11</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">37</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B7%A5%E7%A8%8B%E4%B8%ADQuoteUtil%E6%96%87%E4%BB%B6%E5%A4%B9%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0"><span class="nav-number">1.</span> <span class="nav-text">工程中QuoteUtil文件夹阅读笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="nav-number">1.0.1.</span> <span class="nav-text">基本信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E5%9D%97%E5%AF%B9%E5%BA%94%E7%BB%84%E4%BB%B6"><span class="nav-number">1.0.2.</span> <span class="nav-text">模块对应组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E8%A7%A3%E8%AF%BB"><span class="nav-number">1.0.3.</span> <span class="nav-text">代码片段解读</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%AB%A0"><span class="nav-number">1.0.4.</span> <span class="nav-text">参考文章</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="beiyep"
+      src="/images/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">beiyep</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://danonlylane.github.io/2022/12/03/Week11_1%EF%BC%9AQuoteUtil%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="beiyep">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="beiyep's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          工程中 QuoteUtil文件夹阅读笔记
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-12-03 22:18:51" itemprop="dateCreated datePublished" datetime="2022-12-03T22:18:51+08:00">2022-12-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-03-06 14:13:14" itemprop="dateModified" datetime="2023-03-06T14:13:14+08:00">2023-03-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/2022/12/03/Week11_1%EF%BC%9AQuoteUtil%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/#waline-comments" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" id="/2022/12/03/Week11_1%EF%BC%9AQuoteUtil%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" data-xid="/2022/12/03/Week11_1%EF%BC%9AQuoteUtil%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.9k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>3 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="工程中QuoteUtil文件夹阅读笔记"><a href="#工程中QuoteUtil文件夹阅读笔记" class="headerlink" title="工程中QuoteUtil文件夹阅读笔记"></a>工程中QuoteUtil文件夹阅读笔记</h1><p>[toc]</p>
+<h3 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h3><p>目录结构：</p>
+<pre class="language-apl" data-language="apl"><code class="language-apl"><span class="token dyadic-operator operator">.</span>
+├── ColorManager
+├── FTEmptyTableViewCell<span class="token dyadic-operator operator">.</span>h
+├── FTEmptyTableViewCell<span class="token dyadic-operator operator">.</span>m
+├── FTEmptyTableViewCell<span class="token dyadic-operator operator">.</span>xib
+├── FTQuoteAlertUtil<span class="token dyadic-operator operator">.</span>swift
+├── FTQuoteCustomEmptyFailedView<span class="token dyadic-operator operator">.</span>h
+├── FTQuoteCustomEmptyFailedView<span class="token dyadic-operator operator">.</span>m
+├── FTQuoteCustomEmptyNoDataView<span class="token dyadic-operator operator">.</span>h
+├── FTQuoteCustomEmptyNoDataView<span class="token dyadic-operator operator">.</span>m
+├── FTQuoteCustomLoadingEmptyDataSetView<span class="token dyadic-operator operator">.</span>h
+├── FTQuoteCustomLoadingEmptyDataSetView<span class="token dyadic-operator operator">.</span>m
+├── FTQuoteCustomLoadingView<span class="token dyadic-operator operator">.</span>h
+├── FTQuoteCustomLoadingView<span class="token dyadic-operator operator">.</span>m
+├── FTQuoteStockNewsMiniView<span class="token dyadic-operator operator">.</span>h
+├── FTQuoteStockNewsMiniView<span class="token dyadic-operator operator">.</span>m
+├── FTQuoteUtil<span class="token dyadic-operator operator">.</span>h
+├── FTQuoteUtil<span class="token dyadic-operator operator">.</span>m
+├── FTSensorsTimeTrackManager<span class="token dyadic-operator operator">.</span>h
+├── FTSensorsTimeTrackManager<span class="token dyadic-operator operator">.</span>m
+└── UIImage<span class="token function">+</span>Share<span class="token dyadic-operator operator">.</span>swift</code></pre>
+
+
+
+<h3 id="模块对应组件"><a href="#模块对应组件" class="headerlink" title="模块对应组件"></a>模块对应组件</h3><p>上面这些代码对应的都是牛牛中的什么组件？其实看名字也能猜出个大概，文件名中很多都有Empty字眼，猜测是没网时数据加载不出来需要展示的组件。</p>
+<p>怎么去找呢？</p>
+<ol>
+<li>在你想要找到这个模块中打一个断点，根据名字猜测出大概的位置，然后在模拟器上多点几下试试，如果当前页面触发了断点，那么该页面就调用了此代码模块对应的组件，打开牛牛bate版，找到对应的页面，摇一摇打开3D视图，就能很清楚的看到这个组件的信息了。</li>
+<li>同时牛牛也是一个庞大的工程，如果像无头苍蝇一样乱点的话，可能点半天也找不到对应的组件，那就要从代码里面的注释去抓敏感信息。</li>
+</ol>
+<p>对应第一个方法：以下图片为 <code>FTQuoteCustomLoadingEmptyDataSetView</code> 对应的组件</p>
+<span id="more"></span>
+
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5wxdimm2tj20u01sx7ab.jpg" style="zoom: 25%;">
+
+
+
+<p>对应第二个方法：</p>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5yaqloi3zj21880seaex.jpg" style="zoom:50%;">
+
+<p>看到代码中有“资讯”两字，就应该去资讯页去找对应的组件</p>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5yaplykznj218q0u0tbw.jpg" style="zoom:50%;">
+
+
+
+
+
+<h3 id="代码片段解读"><a href="#代码片段解读" class="headerlink" title="代码片段解读"></a>代码片段解读</h3><blockquote>
+<p>futunn/ftphonequote/Business/Quote/QuoteUtil/FTQuoteCustomLoadingEmptyDataSetView.m</p>
+</blockquote>
+<pre class="language-objc" data-language="objc"><code class="language-objc">- (FTQuoteCustomEmptyFailedView *)failedView {
+    if (!_failedView) {
+        _failedView = [[FTQuoteCustomEmptyFailedView alloc] init];
+        _failedView.contentEdgeTopInset = self.contentEdgeTopInset;
+        ft_weakify_self;
+        _failedView.didClickButtonBlock = ^(UIButton * _Nonnull button) {
+            ft_strongify_self;
+            if ([self.delegate respondsToSelector:@selector(emptyDataSetView:didTapButton:)]) {
+                [self.delegate emptyDataSetView:self didTapButton:button];
+            }
+        };
+    }
+    return _failedView;
+}</code></pre>
+
+
+
+<p>这里的 <code>ft_weakify_self</code> 和 <code>ft_strongify_self</code> 是什么意思呢？为什么要在block前一行和block里面调用这个东西呢？</p>
+<p>点进去一看，发现 <code>ft_weakify_self</code> 就是 <code>@weakify(self)</code> 。</p>
+<pre class="language-objc" data-language="objc"><code class="language-objc">//
+//  FTWeakHelper.h
+//  FTCocoaDevelopKit
+//
+//  Created by jenson on 2018/10/26.
+//  Copyright © 2018年 FUTU. All rights reserved.
+//
+
+#ifndef FTWeakHelper_h
+#define FTWeakHelper_h
+
+#import "EXTScope.h"
+
+#define ft_weakify_self  @weakify(self)
+
+#define ft_strongify_self \
+@strongify(self); \
+if (self == nil) { \
+return ; \
+}
+
+#define ft_strongify_self_nil_return(returnValue) \
+@strongify(self); \
+if (self == nil) { \
+return returnValue; \
+}
+
+
+#endif /* FTWeakHelper_h */
+</code></pre>
+
+
+
+<p>为什么会有这么多换行符呢？</p>
+<p>首先来了解下宏的一些基本东西</p>
+<pre class="language-none"><code class="language-none">- 程序第一步是在预编译之前会有一些操作, 例如删除反斜线和换行符的组合, 将每个注释用一个空格替代...,
+- 然后在进入预编译的时候, 会寻找可能存在的预处理指定(由#开头), 例如C中常用的#include, 或者oc中的#import, #define...很多(条件编译语句...)
+- 处理#define的时候,然后预处理器会从#开始, 一直到执行到第一个换行符(写代码的时候换行的作用), 自然, #define只会允许定义一行的宏, 不过正因为上面提到的预处理之前会删除反斜线和换行符的组合, 所以可以利用反斜线定义多行宏, 在删除反斜线和换行符的组合后, 逻辑上就成了一行的宏了
+- 宏作用在预编译时期, 其真正的效果就是代码替换, 而且是直接替换(内联函数!!!), 这个和函数有着很大的区别, 并且正因为是直接替换, 在使用的时候就需要注意了
+- 宏可以被称为 类对象宏, 类函数宏
+- 宏在预处理阶段只进行文本的替换(相当于把代码拷贝粘贴), 不会进行具体的计算(发生在编译时期)</code></pre>
+
+
+
+<p>了解了这个我们再来回答：为什么要在block前一行和block里面调用这个东西呢？</p>
+<p>来看一下一个循环引用的例子：假设一个对象有一个强引用的 block 属性，同时此 block 通过 self 指针访问了该对象的其它属性，这将导致 block 也对该对象进行了强引用。这样的话会引起内存泄露，block和当前对象都无法释放。</p>
+<p>所以 <code>ft_weakify_self</code> 的作用是：block 对 self 是弱引用引用，打破了循环引用的闭环</p>
+<p><code>ft_strongify_self</code> 的作用是：避免 block 代码执行一半，self 指向的对象被释放</p>
+<h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><p><a target="_blank" rel="noopener" href="https://xie.infoq.cn/article/903068956d7c2a5952059b16c">一篇文章搞懂 @weakify 和 @strongify</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/bc794fa07167">介绍iOS中@strongify和@weakify</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/60e219324356">IOS-OC-@synthesize 的作用</a></p>
+
+    </div>
+
+    
+    
+    
+    
+    <div>
+      
+      <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">------------- 本文结束 <i class="fas fa-book-reader"></i> 感谢阅读 -------------</div>
+    
+</div>
+
+      
+    </div>
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/iOS/" rel="tag"># iOS</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/11/11/Week12_1%EF%BC%9A%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="prev" title="单元测试学习笔记">
+                  <i class="fa fa-chevron-left"></i> 单元测试学习笔记
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline-comments"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">beiyep - 心怀理想 坚定前行</span>
+</div>
+
+
+<span>
+<span class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">163k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">2:28</span>
+  </span>
+</span>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<span class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</span>
+</span>
+
+
+
+<!-- 网站运行时间的设置 -->
+
+<span><span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span></span>
+<script>  
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("01/01/2022 00:00:00");//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"https://hexo-coment-api.vercel.app/","placeholder":"欢迎评论...","avatar":"mm","pageSize":10,"visitor":false,"comment_count":true,"requiredFields":[],"meta":["nick","mail","link"],"libUrl":"https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js","el":"#waline-comments","path":"/2022/12/03/Week11_1%EF%BC%9AQuoteUtil%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/"}</script>
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() => 
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => {
+    new Waline(CONFIG.waline);
+  });
+});
+</script>
+</body>
+</html>

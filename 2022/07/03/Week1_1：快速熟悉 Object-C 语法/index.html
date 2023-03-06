@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/myPicture.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/myPicture.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"danonlylane.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.9.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="从C++到OC，快速掌握 OC语法[toc] 学习Objective-C 的笔记，有 C&#x2F;C++ 基础的同学阅读文章此可以快速掌握 OC。Xcode 快捷键格式化代码：Command + A 全选（选中需要格式的代码段） 再 Ctrl + i 格式化代码 C 和 OC 的区别由于 OC 的底层是 C 语言，所以 OC 和 C 完全兼容，在编程过程中，OC 和 C 可以混合使用。 分析一下一段最基本">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从C++到OC，快速掌握 OC语法">
+<meta property="og:url" content="https://danonlylane.github.io/2022/07/03/Week1_1%EF%BC%9A%E5%BF%AB%E9%80%9F%E7%86%9F%E6%82%89%20Object-C%20%E8%AF%AD%E6%B3%95/index.html">
+<meta property="og:site_name" content="beiyep&#39;s Blog">
+<meta property="og:description" content="从C++到OC，快速掌握 OC语法[toc] 学习Objective-C 的笔记，有 C&#x2F;C++ 基础的同学阅读文章此可以快速掌握 OC。Xcode 快捷键格式化代码：Command + A 全选（选中需要格式的代码段） 再 Ctrl + i 格式化代码 C 和 OC 的区别由于 OC 的底层是 C 语言，所以 OC 和 C 完全兼容，在编程过程中，OC 和 C 可以混合使用。 分析一下一段最基本">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h3jde77qqfj22730u043r.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h3jgnrb3u0j229q0u012u.jpg">
+<meta property="article:published_time" content="2022-07-03T14:18:51.000Z">
+<meta property="article:modified_time" content="2023-03-06T06:03:31.570Z">
+<meta property="article:author" content="beiyep">
+<meta property="article:tag" content="iOS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h3jde77qqfj22730u043r.jpg">
+
+
+<link rel="canonical" href="https://danonlylane.github.io/2022/07/03/Week1_1%EF%BC%9A%E5%BF%AB%E9%80%9F%E7%86%9F%E6%82%89%20Object-C%20%E8%AF%AD%E6%B3%95/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://danonlylane.github.io/2022/07/03/Week1_1%EF%BC%9A%E5%BF%AB%E9%80%9F%E7%86%9F%E6%82%89%20Object-C%20%E8%AF%AD%E6%B3%95/","path":"2022/07/03/Week1_1：快速熟悉 Object-C 语法/","title":"从C++到OC，快速掌握 OC语法"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>从C++到OC，快速掌握 OC语法 | beiyep's Blog</title>
+  
+
+
+
+<link rel="dns-prefetch" href="https://hexo-coment-api.vercel.app/">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">beiyep's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">12</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">11</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">37</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%8EC-%E5%88%B0OC%EF%BC%8C%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1-OC%E8%AF%AD%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">从C++到OC，快速掌握 OC语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%A6%E4%B9%A0Objective-C-%E7%9A%84%E7%AC%94%E8%AE%B0%EF%BC%8C%E6%9C%89-C-C-%E5%9F%BA%E7%A1%80%E7%9A%84%E5%90%8C%E5%AD%A6%E9%98%85%E8%AF%BB%E6%96%87%E7%AB%A0%E6%AD%A4%E5%8F%AF%E4%BB%A5%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1-OC%E3%80%82"><span class="nav-number">1.1.</span> <span class="nav-text">学习Objective-C 的笔记，有 C&#x2F;C++ 基础的同学阅读文章此可以快速掌握 OC。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Xcode-%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="nav-number">1.2.</span> <span class="nav-text">Xcode 快捷键</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C-%E5%92%8C-OC-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">1.3.</span> <span class="nav-text">C 和 OC 的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OC-%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%92%8C%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="nav-number">1.4.</span> <span class="nav-text">OC 中的数据类型和数据结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OC-%E4%B8%AD%E7%9A%84%E5%B1%9E%E6%80%A7%E5%A3%B0%E6%98%8E"><span class="nav-number">1.5.</span> <span class="nav-text">OC 中的属性声明</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#property-%E7%9A%84%E5%87%A0%E7%A7%8D%E5%B8%B8%E7%94%A8%E4%BF%AE%E9%A5%B0%E8%AF%8D"><span class="nav-number">1.5.1.</span> <span class="nav-text">@property 的几种常用修饰词</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B5%8B%E5%80%BC%E6%97%B6%E7%9A%84%E9%80%89%E9%A1%B9"><span class="nav-number">1.5.2.</span> <span class="nav-text">赋值时的选项</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OC-%E4%B8%AD%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1"><span class="nav-number">1.6.</span> <span class="nav-text">OC 中类和对象</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="beiyep"
+      src="/images/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">beiyep</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://danonlylane.github.io/2022/07/03/Week1_1%EF%BC%9A%E5%BF%AB%E9%80%9F%E7%86%9F%E6%82%89%20Object-C%20%E8%AF%AD%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="beiyep">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="beiyep's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          从C++到OC，快速掌握 OC语法
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-07-03 22:18:51" itemprop="dateCreated datePublished" datetime="2022-07-03T22:18:51+08:00">2022-07-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-03-06 14:03:31" itemprop="dateModified" datetime="2023-03-06T14:03:31+08:00">2023-03-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/2022/07/03/Week1_1%EF%BC%9A%E5%BF%AB%E9%80%9F%E7%86%9F%E6%82%89%20Object-C%20%E8%AF%AD%E6%B3%95/#waline-comments" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" id="/2022/07/03/Week1_1%EF%BC%9A%E5%BF%AB%E9%80%9F%E7%86%9F%E6%82%89%20Object-C%20%E8%AF%AD%E6%B3%95/" data-xid="/2022/07/03/Week1_1%EF%BC%9A%E5%BF%AB%E9%80%9F%E7%86%9F%E6%82%89%20Object-C%20%E8%AF%AD%E6%B3%95/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>4.1k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>4 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="从C-到OC，快速掌握-OC语法"><a href="#从C-到OC，快速掌握-OC语法" class="headerlink" title="从C++到OC，快速掌握 OC语法"></a>从C++到OC，快速掌握 OC语法</h2><p>[toc]</p>
+<h3 id="学习Objective-C-的笔记，有-C-C-基础的同学阅读文章此可以快速掌握-OC。"><a href="#学习Objective-C-的笔记，有-C-C-基础的同学阅读文章此可以快速掌握-OC。" class="headerlink" title="学习Objective-C 的笔记，有 C/C++ 基础的同学阅读文章此可以快速掌握 OC。"></a>学习Objective-C 的笔记，有 C/C++ 基础的同学阅读文章此可以快速掌握 OC。</h3><h3 id="Xcode-快捷键"><a href="#Xcode-快捷键" class="headerlink" title="Xcode 快捷键"></a>Xcode 快捷键</h3><p>格式化代码：Command + A 全选（选中需要格式的代码段） 再 Ctrl + i 格式化代码</p>
+<h3 id="C-和-OC-的区别"><a href="#C-和-OC-的区别" class="headerlink" title="C 和 OC 的区别"></a>C 和 OC 的区别</h3><p>由于 OC 的底层是 C 语言，所以 OC 和 C 完全兼容，在编程过程中，OC 和 C 可以混合使用。</p>
+<p>分析一下一段最基本的 OC 代码：</p>
+<pre class="language-objective-c" data-language="objective-c"><code class="language-objective-c">#import &lt;Foundation/Foundation.h&gt;
+
+int main() {
+    NSLog(@"Hello, World!");
+    return 0;
+}</code></pre>
+
+<span id="more"></span>
+
+<ul>
+<li><p>在 OC 中， <code>#import</code> 命令用来引入头文件。与 C 语言中的 <code>#include</code> 相比，<code>#import</code>  能够保证头文件只被引入一次，也就是说，只有第一次引入有效，后续对同一文件的引入都会被忽略。而在 C 语言中，每次使用 #include 命令都会将头文件的内容引入一次，所以在头文件中必须使用 <code>#ifndef</code> 和 <code>#endif</code> 宏来保证头文件只被编译一次</p>
+</li>
+<li><p><code>Foundation/Foundation.h</code> 是 Foundation 框架的头文件，只要引入了它，就可以使用 Foundation 框架的功能。</p>
+<p>Foundation 是 OC 语言的基础框架，它提供了 OC 专有的基本数据类型（如字符串、数组、时间日期等），提供了多线程、网络连接、文件操作、本地数据存储等常用功能。Foundation.h 就像 C 语言中的 stdio.h，一般都需要引入</p>
+</li>
+<li><p> NSLog() 是 OC 中的格式化输出函数，相当于 C 语言中的 printf() 的升级版，不仅可以用来输出 C 语言中的数据，还可以输出 OC 中的数据。</p>
+</li>
+</ul>
+  <pre class="language-objc" data-language="objc"><code class="language-objc">#import &lt;Foundation/Foundation.h&gt;
+
+int main() {
+    NSLog(@"Hello, World!");
+    int a = 100;
+    float b = 3.14;
+    char *str = "hello, c";
+    NSString *NSstr = @"hello,object-c";
+    NSLog(@"\n a: %d\n b: %f\n str: %s\n OC str: %@",a, b, str, NSstr);
+    return 0;
+}</code></pre>
+
+<ul>
+<li><code>@ </code>符号没有实际含义，只是用来作为 OC 字符串的特有标志。在 OC 中，字符串前面都要加 <code>@</code>，如果不加，就变成了 C 语言中的字符串，就要使用字符指针或字符数组来定义</li>
+</ul>
+<h3 id="OC-中的数据类型和数据结构"><a href="#OC-中的数据类型和数据结构" class="headerlink" title="OC 中的数据类型和数据结构"></a>OC 中的数据类型和数据结构</h3><p>因为 OC 是完全兼容 C 的，所以 C 中的数据类型都可以在 OC 中使用。</p>
+<p><strong>先来看看 C 中有什么数据类型</strong></p>
+<ul>
+<li>C 语言数据类型<ul>
+<li>基本类型<ul>
+<li>数值（int、long、float、double）</li>
+<li>字符串（char）</li>
+</ul>
+</li>
+<li>构造类型<ul>
+<li>数组</li>
+<li>结构体（struct）</li>
+<li>共用体（union）</li>
+<li>枚举（enum）</li>
+</ul>
+</li>
+<li>指针类型</li>
+<li>空类型void</li>
+</ul>
+</li>
+</ul>
+<p>很明显 C 中的数据类型有些少，当我们需要用到哈希表这样的数据结构的时候，就需要我们自己手写一个，OC 明显考虑到这个麻烦，所以添加了很多便于使用的数据结构。</p>
+<p>比如有 <code>NSObject、NSString(NSMutableString)、NSArray(NSMutableArray)、NSDictionary(NSMutableDictionary)、NSSet(NSMutableSet)、NSAttributedString(NSMutableAttributedString)</code> 这些数据结构，使开发效率能够提高。</p>
+<p>这些数据结构是由 Cocoa Foundation 框架提供的集合类，这些集合类中只可以放入对象，不能放入基本类型的数据。所以 Cocoa 提供了包裹类</p>
+<ul>
+<li>NSNumber 类来包装 int、long、char 等基本数据类型，使其可以放入集合类中。</li>
+<li>NSValue 可以将结构体、枚举、指针这些复杂的数据类型转换为对象放入集合类中。</li>
+<li>NSNull 可以将 nil 包裹之后放入集合类中。</li>
+</ul>
+<p><strong>提取包裹类中的值</strong></p>
+<p>使用下列的方法可以提取出 NSNumber 实例中的 NSInteger 的值</p>
+<pre class="language-objective-c" data-language="objective-c"><code class="language-objective-c">-（NSInteger） integerValue</code></pre>
+
+<p>需要注意的是：NSInteger 不是一个对象，而是基本数据类型的 typedef</p>
+<h3 id="OC-中的属性声明"><a href="#OC-中的属性声明" class="headerlink" title="OC 中的属性声明"></a>OC 中的属性声明</h3><p>一般来说，属性是指一个对象的属性或者特性（也就是变量和方法）</p>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h3jde77qqfj22730u043r.jpg" style="zoom: 25%;">
+
+<p>属性的声明有一些规律：</p>
+<ul>
+<li><p>自动生成访问方法：</p>
+<p>能够为声明的实例变量自动生成访问方法。既可以同时生成 getter 方法和 setter方法，也可以只生成 getter，也可以手动定义访问方法。</p>
+</li>
+<li><p>自动生成实例变量：</p>
+<p>如果不存在同名的实例变量的话，在生成访问方法的同时，也会自动生成同名的实例变量。</p>
+</li>
+<li><p>更简单的调用访问方法</p>
+<p>可以通过 <code>.</code> 操作符来访问调用方法。</p>
+</li>
+</ul>
+<h4 id="property-的几种常用修饰词"><a href="#property-的几种常用修饰词" class="headerlink" title="@property 的几种常用修饰词"></a>@property 的几种常用修饰词</h4><p><strong>nonatomic 和 atomic</strong></p>
+<p>nonatomic：非原子性，涉及到多线程的相关知识。访问方法被 nonatomic 修饰的情况下，意味着它执行过程中可以被打断，如果多个线程同时调用 getter 或者 setter 方法，那么就会出现值丢失或内存泄漏等错误</p>
+<p>atomic (默认)：原子性。和 nonatomic 正好相反，它对属性的访问进行了限制，保护了声明属性的安全，缺点就是：访问效率低，速度慢。</p>
+<p><strong>assign、copy、retain、unsafe_unretained、strong、weak</strong></p>
+<p>assign：单纯赋值，可用于基础数据类型和对象类型</p>
+<p>copy：复制对象，使用对象的副本进行赋值</p>
+<p>retain：进行保持操作</p>
+<p>release：进行释放操作</p>
+<p>unsafe_unretained：同 assign 一样</p>
+<p>strong：强引用，同 retain 一样，用于 ARC</p>
+<p>weak：弱引用，用于 ARC</p>
+<p><strong>readonly和readwrite</strong></p>
+<p>readwrite（默认）：它代表这个属性即可以读，也可以写(可以调用它的 get 和 set 方法)</p>
+<p>readonly：和 readwrite 不同，它代表这个属性只能读，不能进行写操作(只能调用 get 方法，不能调用 set 方法)</p>
+<h4 id="赋值时的选项"><a href="#赋值时的选项" class="headerlink" title="赋值时的选项"></a>赋值时的选项</h4><p><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h3jgnrb3u0j229q0u012u.jpg"></p>
+<h3 id="OC-中类和对象"><a href="#OC-中类和对象" class="headerlink" title="OC 中类和对象"></a>OC 中类和对象</h3><p>OC 中的类和 C 中的结构体功能类似，但是 C 只能在结构体里面定义不同类型的变量，而 OC 可以在类里面定义变量和方法，和 C++ 里面的类相似。</p>
+<p>首先来看一下 C 中的结构体</p>
+<pre class="language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h&gt;</span></span>
+
+<span class="token keyword">struct</span> <span class="token class-name">Student</span> <span class="token punctuation">{</span>
+    <span class="token keyword">char</span> <span class="token operator">*</span>name<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> age<span class="token punctuation">;</span>
+    <span class="token keyword">float</span> score<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">void</span> <span class="token function">display</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">Student</span> stu<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%s的年龄是:%d，成绩是:%f\n"</span><span class="token punctuation">,</span> stu<span class="token punctuation">.</span>name<span class="token punctuation">,</span> stu<span class="token punctuation">.</span>age<span class="token punctuation">,</span> stu<span class="token punctuation">.</span>score<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span> argv<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">struct</span> <span class="token class-name">Student</span> stu<span class="token punctuation">;</span>
+    stu<span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">"beyhuang"</span><span class="token punctuation">;</span>
+    stu<span class="token punctuation">.</span>age <span class="token operator">=</span> <span class="token number">22</span><span class="token punctuation">;</span>
+    stu<span class="token punctuation">.</span>score <span class="token operator">=</span> <span class="token number">88</span><span class="token punctuation">;</span>
+    <span class="token function">display</span><span class="token punctuation">(</span>stu<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+
+
+
+<p>再来看看 OC 中的类</p>
+<pre class="language-objective-c" data-language="objective-c"><code class="language-objective-c">#import &lt;Foundation/Foundation.h&gt;
+
+//声明类Student
+@interface Student : NSObject  //通过@interface关键字来声明类
+//类所包含的变量
+@property NSString *name;
+@property int age;
+@property double score;
+//类所包含的函数
+-(void)display;
+@end  //使用@end关键字结束类的声明
+
+//实现在类中声明的函数
+@implementation Student  //通过@implementation关键字来实现类中的函数
+-(void)display{
+    NSLog(@"%@的年龄是 %d，成绩是 %f", self.name, self.age, self.score);
+}
+@end  //使用@end关键字结束类中函数的实现
+
+int main(int argc, const char * argv[]) {
+    //通过类来定义变量stu1，即创建对象stu1
+    Student *stu1 = [[Student alloc] init];  //alloc函数为对象分配内存空间，init函数会初始化对象
+    //操作类的成员
+    stu1.name = @"beyhuang";
+    stu1.age = 18;
+    stu1.score = 66.66666;
+    //调用类的函数
+    [stu1 display];
+
+    return 0;
+}
+</code></pre>
+
+<ul>
+<li><p>OC 使用 <code>@interface</code> 来声明一个类；<code>Student  </code> 是类的名称；<code>student</code>  后面的 <code>NSObject </code> 表示当前类派生自 <code>NSObject</code> 类</p>
+</li>
+<li><p>在 OC 中，类所包含的变量和函数都有特定的称呼，变量被称为属性（Property），函数被称为方法（Method），属性和方法统称为类的成员（Member）。从上面的代码可以看出，声明类的属性要使用 <code>@property</code> 关键字，而声明类的方法不需要使用任何关键字。</p>
+</li>
+<li><p><code>-</code>  号和<code>+</code> 号代表的意思：</p>
+<ul>
+<li><p>减号表示</p>
+<p>为实例方法，必须使用类的实例才可以调用的。</p>
+<p>比如C语言中，一个方法的写法可能是：</p>
+<pre class="language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">hello</span><span class="token punctuation">(</span>bool ishello<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token punctuation">}</span></code></pre></li>
+<li><p>用Objective-C写出来就是</p>
+<pre class="language-objc" data-language="objc"><code class="language-objc">-(void) hello:(BOOL)ishello
+{
+......
+}</code></pre></li>
+<li><p>加号表示类方法，这类方法是可以直接用类名来调用的，就是其他函数可以直接调用这个类中的这个函数，而不用创建这个类的实例。</p>
+</li>
+</ul>
+</li>
+<li><p>消息表达式</p>
+<ul>
+<li><pre><code>// [obj msg];
+[stu1 display];
+</code></pre>
+</li>
+<li><p>上面就是消息表达式的语法，其中消息接受者 obj 是一个对象，消息 msg 告诉它要去做什么</p>
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+    
+    <div>
+      
+      <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">------------- 本文结束 <i class="fas fa-book-reader"></i> 感谢阅读 -------------</div>
+    
+</div>
+
+      
+    </div>
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/iOS/" rel="tag"># iOS</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/05/06/%E7%BD%91%E6%98%93%E4%BA%91%E9%9F%B3%E4%B9%90%E4%BD%BF%E7%94%A8%20next.js%20%E6%A1%86%E6%9E%B6%E4%BC%98%E5%8C%96%E4%BD%93%E9%AA%8C%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/" rel="prev" title="网易云音乐使用 next.js 框架优化体验开发记录">
+                  <i class="fa fa-chevron-left"></i> 网易云音乐使用 next.js 框架优化体验开发记录
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/07/24/Week2_1%EF%BC%9AOC%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/" rel="next" title="OC 中的数据存储">
+                  OC 中的数据存储 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline-comments"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">beiyep - 心怀理想 坚定前行</span>
+</div>
+
+
+<span>
+<span class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">163k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">2:28</span>
+  </span>
+</span>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<span class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</span>
+</span>
+
+
+
+<!-- 网站运行时间的设置 -->
+
+<span><span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span></span>
+<script>  
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("01/01/2022 00:00:00");//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"https://hexo-coment-api.vercel.app/","placeholder":"欢迎评论...","avatar":"mm","pageSize":10,"visitor":false,"comment_count":true,"requiredFields":[],"meta":["nick","mail","link"],"libUrl":"https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js","el":"#waline-comments","path":"/2022/07/03/Week1_1%EF%BC%9A%E5%BF%AB%E9%80%9F%E7%86%9F%E6%82%89%20Object-C%20%E8%AF%AD%E6%B3%95/"}</script>
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() => 
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => {
+    new Waline(CONFIG.waline);
+  });
+});
+</script>
+</body>
+</html>
