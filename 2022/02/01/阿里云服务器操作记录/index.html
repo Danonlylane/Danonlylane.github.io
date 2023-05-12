@@ -92,9 +92,9 @@
   <ul class="main-menu menu">
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
-        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">12</span></a></li>
-        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">11</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">37</span></a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">11</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">10</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">36</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -166,18 +166,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-count">36</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -287,7 +287,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1.3k</span>
+      <span>1.1k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -307,7 +307,7 @@
     <div class="post-body" itemprop="articleBody">
         <h3 id="阿里云服务器默认不开启-root-远程登录"><a href="#阿里云服务器默认不开启-root-远程登录" class="headerlink" title="阿里云服务器默认不开启 root 远程登录"></a>阿里云服务器默认不开启 root 远程登录</h3><p>需要先进行 VNC 远程连接登录，再进行实例登录。</p>
 <p>可以在Mac的命令行进行登录</p>
-<pre class="language-shell" data-language="shell"><code class="language-shell">ssh root@你的公网地址
+<pre class="language-shell" data-language="shell"><code class="language-shell"><span class="token function">ssh</span> root@你的公网地址
 password 你的密码</code></pre>
 
 <span id="more"></span>
@@ -318,32 +318,32 @@ password 你的密码</code></pre>
 <p>如果出现错误，那么就是 etc/yum.repos.d/CentOS-AppStream.repo 里面的镜像源出现了错误。</p>
 <p>2022.02.16（出现了镜像源改变，所以我们需要改配置文件里面的路径）</p>
 <p>将这个文件夹下的所有</p>
-<pre class="language-shell" data-language="shell"><code class="language-shell">baseurl=http://mirrors.cloud.aliyuncs.com/$contentdir/$releasever/AppStream/$basearch/os/</code></pre>
+<pre class="language-shell" data-language="shell"><code class="language-shell"><span class="token assign-left variable">baseurl</span><span class="token operator">=</span>http://mirrors.cloud.aliyuncs.com/<span class="token variable">$contentdir</span>/<span class="token variable">$releasever</span>/AppStream/<span class="token variable">$basearch</span>/os/</code></pre>
 
 <p>改成：</p>
-<pre class="language-shell" data-language="shell"><code class="language-shell">baseurl=https://mirrors.aliyun.com/$contentdir/$releasever-stream/AppStream/$basearch/os/</code></pre>
+<pre class="language-shell" data-language="shell"><code class="language-shell"><span class="token assign-left variable">baseurl</span><span class="token operator">=</span>https://mirrors.aliyun.com/<span class="token variable">$contentdir</span>/<span class="token variable">$releasever</span>-stream/AppStream/<span class="token variable">$basearch</span>/os/</code></pre>
 
 <p>比如：</p>
-<pre class="language-shell" data-language="shell"><code class="language-shell"># CentOS-AppStream.repo
-#
-# The mirror system uses the connecting IP address of the client and the
-# update status of each mirror to pick mirrors that are updated to and
-# geographically close to the client.  You should use this for CentOS updates
-# unless you are manually picking other mirrors.
-#
-# If the mirrorlist= does not work for you, as a fall back you can try the
-# remarked out baseurl= line instead.
-#
-#
+<pre class="language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># CentOS-AppStream.repo</span>
+<span class="token comment">#</span>
+<span class="token comment"># The mirror system uses the connecting IP address of the client and the</span>
+<span class="token comment"># update status of each mirror to pick mirrors that are updated to and</span>
+<span class="token comment"># geographically close to the client.  You should use this for CentOS updates</span>
+<span class="token comment"># unless you are manually picking other mirrors.</span>
+<span class="token comment">#</span>
+<span class="token comment"># If the mirrorlist= does not work for you, as a fall back you can try the</span>
+<span class="token comment"># remarked out baseurl= line instead.</span>
+<span class="token comment">#</span>
+<span class="token comment">#</span>
 
-[AppStream]
-name=CentOS-$releasever - AppStream
-#baseurl=http://mirrors.cloud.aliyuncs.com/$contentdir/$releasever/AppStream/$basearch/os/
-#改为下面这个
-baseurl=http://mirrors.aliyuncs.com/$contentdir/$releasever-stream/AppStream/$basearch/os/
-gpgcheck=1
-enabled=1
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-centosofficial</code></pre>
+<span class="token punctuation">[</span>AppStream<span class="token punctuation">]</span>
+<span class="token assign-left variable">name</span><span class="token operator">=</span>CentOS-<span class="token variable">$releasever</span> - AppStream
+<span class="token comment">#baseurl=http://mirrors.cloud.aliyuncs.com/$contentdir/$releasever/AppStream/$basearch/os/</span>
+<span class="token comment">#改为下面这个</span>
+<span class="token assign-left variable">baseurl</span><span class="token operator">=</span>http://mirrors.aliyuncs.com/<span class="token variable">$contentdir</span>/<span class="token variable">$releasever</span>-stream/AppStream/<span class="token variable">$basearch</span>/os/
+<span class="token assign-left variable">gpgcheck</span><span class="token operator">=</span><span class="token number">1</span>
+<span class="token assign-left variable">enabled</span><span class="token operator">=</span><span class="token number">1</span>
+<span class="token assign-left variable">gpgkey</span><span class="token operator">=</span>file:///etc/pki/rpm-gpg/RPM-GPG-KEY-centosofficial</code></pre>
 
 <p>安装成功，配置端口之后重启服务即可</p>
 
@@ -416,13 +416,13 @@ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-centosofficial</code></pre>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">163k</span>
+    <span title="站点总字数">146k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">2:28</span>
+    <span title="站点阅读时长">2:13</span>
   </span>
 </span>
 &nbsp;&nbsp;&nbsp;&nbsp;

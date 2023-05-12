@@ -92,9 +92,9 @@
   <ul class="main-menu menu">
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
-        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">12</span></a></li>
-        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">11</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">37</span></a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">11</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">10</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">36</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -166,18 +166,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-count">36</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -287,7 +287,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>4.2k</span>
+      <span>4k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -308,96 +308,96 @@
         <h2 id="2022年iOS实习期实践作业"><a href="#2022年iOS实习期实践作业" class="headerlink" title="2022年iOS实习期实践作业"></a>2022年iOS实习期实践作业</h2><p>[toc]</p>
 <h2 id="第一周"><a href="#第一周" class="headerlink" title="第一周"></a>第一周</h2><h3 id="练习实践1-子类重写父类的方法"><a href="#练习实践1-子类重写父类的方法" class="headerlink" title="练习实践1:子类重写父类的方法"></a>练习实践1:子类重写父类的方法</h3><span id="more"></span>
 
-<pre class="language-objc" data-language="objc"><code class="language-objc">#import &lt;Foundation/Foundation.h&gt;
+<pre class="language-objc" data-language="objc"><code class="language-objc"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">import</span> <span class="token expression"><span class="token operator">&lt;</span>Foundation<span class="token operator">/</span>Foundation<span class="token punctuation">.</span>h<span class="token operator">&gt;</span></span></span>
 
-//声明类Student
-@interface Student : NSObject  //通过@interface关键字来声明类
+<span class="token comment">//声明类Student</span>
+<span class="token keyword">@interface</span> Student <span class="token punctuation">:</span> NSObject  <span class="token comment">//通过@interface关键字来声明类</span>
 
-//类所包含的变量
-@property (nonatomic, copy) NSString *name;
-@property (nonatomic, assign) int age;
-@property (nonatomic, assign) double score;
+<span class="token comment">//类所包含的变量</span>
+<span class="token keyword">@property</span> <span class="token punctuation">(</span>nonatomic<span class="token punctuation">,</span> copy<span class="token punctuation">)</span> NSString <span class="token operator">*</span>name<span class="token punctuation">;</span>
+<span class="token keyword">@property</span> <span class="token punctuation">(</span>nonatomic<span class="token punctuation">,</span> assign<span class="token punctuation">)</span> <span class="token keyword">int</span> age<span class="token punctuation">;</span>
+<span class="token keyword">@property</span> <span class="token punctuation">(</span>nonatomic<span class="token punctuation">,</span> assign<span class="token punctuation">)</span> <span class="token keyword">double</span> score<span class="token punctuation">;</span>
 
-//类所包含的函数
-- (void)display;
+<span class="token comment">//类所包含的函数</span>
+<span class="token operator">-</span> <span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>display<span class="token punctuation">;</span>
 
-@end  //使用@end关键字结束类的声明
+<span class="token keyword">@end</span>  <span class="token comment">//使用@end关键字结束类的声明</span>
 
-//实现在类中声明的函数
-@implementation Student  //通过@implementation关键字来实现类中的函数
+<span class="token comment">//实现在类中声明的函数</span>
+<span class="token keyword">@implementation</span> Student  <span class="token comment">//通过@implementation关键字来实现类中的函数</span>
 
-- (void)display {
-    NSLog(@"%@的年龄是 %d，成绩是 %f", self.name, self.age, self.score);
-}
+<span class="token operator">-</span> <span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>display <span class="token punctuation">{</span>
+    <span class="token function">NSLog</span><span class="token punctuation">(</span><span class="token string">@"%@的年龄是 %d，成绩是 %f"</span><span class="token punctuation">,</span> <span class="token keyword">self</span><span class="token punctuation">.</span>name<span class="token punctuation">,</span> <span class="token keyword">self</span><span class="token punctuation">.</span>age<span class="token punctuation">,</span> <span class="token keyword">self</span><span class="token punctuation">.</span>score<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-@end  //使用@end关键字结束类中函数的实现
+<span class="token keyword">@end</span>  <span class="token comment">//使用@end关键字结束类中函数的实现</span>
 
 
-//声明动物类
-@interface Animal : NSObject
+<span class="token comment">//声明动物类</span>
+<span class="token keyword">@interface</span> Animal <span class="token punctuation">:</span> NSObject
 
-- (void)run;
+<span class="token operator">-</span> <span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>run<span class="token punctuation">;</span>
 
-- (void)eat;
+<span class="token operator">-</span> <span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>eat<span class="token punctuation">;</span>
 
-@end
+<span class="token keyword">@end</span>
 
-//为动物类添加方法
-@implementation Animal
+<span class="token comment">//为动物类添加方法</span>
+<span class="token keyword">@implementation</span> Animal
 
-- (void)run {
-    NSLog(@"动物都会移动");
-}
+<span class="token operator">-</span> <span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>run <span class="token punctuation">{</span>
+    <span class="token function">NSLog</span><span class="token punctuation">(</span><span class="token string">@"动物都会移动"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-- (void)eat{
-    NSLog(@"动物都要吃东西");
-}
+<span class="token operator">-</span> <span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>eat<span class="token punctuation">{</span>
+    <span class="token function">NSLog</span><span class="token punctuation">(</span><span class="token string">@"动物都要吃东西"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-@end
+<span class="token keyword">@end</span>
 
-//声明猫和狗
-@interface Cat : Animal
+<span class="token comment">//声明猫和狗</span>
+<span class="token keyword">@interface</span> Cat <span class="token punctuation">:</span> Animal
 
-@end
+<span class="token keyword">@end</span>
 
-@interface Dog : Animal
+<span class="token keyword">@interface</span> Dog <span class="token punctuation">:</span> Animal
 
-@end
+<span class="token keyword">@end</span>
 
-//重写父类方法
-@implementation Cat
+<span class="token comment">//重写父类方法</span>
+<span class="token keyword">@implementation</span> Cat
 
-- (void)run {
-    NSLog(@"猫跑可以的很快");
-}
+<span class="token operator">-</span> <span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>run <span class="token punctuation">{</span>
+    <span class="token function">NSLog</span><span class="token punctuation">(</span><span class="token string">@"猫跑可以的很快"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-- (void)eat {
-    NSLog(@"猫喜欢吃鱼");
-}
+<span class="token operator">-</span> <span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>eat <span class="token punctuation">{</span>
+    <span class="token function">NSLog</span><span class="token punctuation">(</span><span class="token string">@"猫喜欢吃鱼"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-@end
+<span class="token keyword">@end</span>
 
-@implementation Dog
+<span class="token keyword">@implementation</span> Dog
 
-- (void)run {
-    NSLog(@"狗也跑可以的很快");
-}
+<span class="token operator">-</span> <span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>run <span class="token punctuation">{</span>
+    <span class="token function">NSLog</span><span class="token punctuation">(</span><span class="token string">@"狗也跑可以的很快"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-- (void)eat {
-    NSLog(@"狗喜欢吃骨头");
-}
+<span class="token operator">-</span> <span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>eat <span class="token punctuation">{</span>
+    <span class="token function">NSLog</span><span class="token punctuation">(</span><span class="token string">@"狗喜欢吃骨头"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-@end
+<span class="token keyword">@end</span>
 
-int main() {
-    Cat *cat = [[Cat alloc] init];
-    Dog *dog = [[Dog alloc] init];
-    [cat run];
-    [cat eat];
-    [dog run];
-    [dog eat];
-    return 0;
-}</code></pre>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    Cat <span class="token operator">*</span>cat <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">[</span>Cat alloc<span class="token punctuation">]</span> init<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    Dog <span class="token operator">*</span>dog <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">[</span>Dog alloc<span class="token punctuation">]</span> init<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">[</span>cat run<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">[</span>cat eat<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">[</span>dog run<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">[</span>dog eat<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
 
 
 
@@ -646,13 +646,13 @@ int main() {
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">163k</span>
+    <span title="站点总字数">146k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">2:28</span>
+    <span title="站点阅读时长">2:13</span>
   </span>
 </span>
 &nbsp;&nbsp;&nbsp;&nbsp;

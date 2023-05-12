@@ -95,9 +95,9 @@
   <ul class="main-menu menu">
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
-        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">12</span></a></li>
-        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">11</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">37</span></a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">11</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">10</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">36</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -169,18 +169,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-count">36</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -330,17 +330,17 @@ int main() {
 <li><p> NSLog() 是 OC 中的格式化输出函数，相当于 C 语言中的 printf() 的升级版，不仅可以用来输出 C 语言中的数据，还可以输出 OC 中的数据。</p>
 </li>
 </ul>
-  <pre class="language-objc" data-language="objc"><code class="language-objc">#import &lt;Foundation/Foundation.h&gt;
+  <pre class="language-objc" data-language="objc"><code class="language-objc"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">import</span> <span class="token expression"><span class="token operator">&lt;</span>Foundation<span class="token operator">/</span>Foundation<span class="token punctuation">.</span>h<span class="token operator">&gt;</span></span></span>
 
-int main() {
-    NSLog(@"Hello, World!");
-    int a = 100;
-    float b = 3.14;
-    char *str = "hello, c";
-    NSString *NSstr = @"hello,object-c";
-    NSLog(@"\n a: %d\n b: %f\n str: %s\n OC str: %@",a, b, str, NSstr);
-    return 0;
-}</code></pre>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">NSLog</span><span class="token punctuation">(</span><span class="token string">@"Hello, World!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> a <span class="token operator">=</span> <span class="token number">100</span><span class="token punctuation">;</span>
+    <span class="token keyword">float</span> b <span class="token operator">=</span> <span class="token number">3.14</span><span class="token punctuation">;</span>
+    <span class="token keyword">char</span> <span class="token operator">*</span>str <span class="token operator">=</span> <span class="token string">"hello, c"</span><span class="token punctuation">;</span>
+    NSString <span class="token operator">*</span>NSstr <span class="token operator">=</span> <span class="token string">@"hello,object-c"</span><span class="token punctuation">;</span>
+    <span class="token function">NSLog</span><span class="token punctuation">(</span><span class="token string">@"\n a: %d\n b: %f\n str: %s\n OC str: %@"</span><span class="token punctuation">,</span>a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> str<span class="token punctuation">,</span> NSstr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
 
 <ul>
 <li><code>@ </code>符号没有实际含义，只是用来作为 OC 字符串的特有标志。在 OC 中，字符串前面都要加 <code>@</code>，如果不加，就变成了 C 语言中的字符串，就要使用字符指针或字符数组来定义</li>
@@ -483,10 +483,10 @@ int main(int argc, const char * argv[]) {
 <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
 <span class="token punctuation">}</span></code></pre></li>
 <li><p>用Objective-C写出来就是</p>
-<pre class="language-objc" data-language="objc"><code class="language-objc">-(void) hello:(BOOL)ishello
-{
-......
-}</code></pre></li>
+<pre class="language-objc" data-language="objc"><code class="language-objc"><span class="token operator">-</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span> hello<span class="token punctuation">:</span><span class="token punctuation">(</span>BOOL<span class="token punctuation">)</span>ishello
+<span class="token punctuation">{</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token punctuation">}</span></code></pre></li>
 <li><p>加号表示类方法，这类方法是可以直接用类名来调用的，就是其他函数可以直接调用这个类中的这个函数，而不用创建这个类的实例。</p>
 </li>
 </ul>
@@ -572,13 +572,13 @@ int main(int argc, const char * argv[]) {
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">163k</span>
+    <span title="站点总字数">146k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">2:28</span>
+    <span title="站点阅读时长">2:13</span>
   </span>
 </span>
 &nbsp;&nbsp;&nbsp;&nbsp;
